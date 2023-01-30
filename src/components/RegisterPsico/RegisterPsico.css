@@ -1,0 +1,6 @@
+/* css basico para componente*/
+.classPsicoRegister{
+    display: flex;
+    flex-direction: column;
+}
+
