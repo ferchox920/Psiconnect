@@ -1,21 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+import { userLogin } from "../../features/apiPetitions";
+import style from './index.module.css'
 
 function validate(form) {
   let errors = {};
   if (!form.email) {
     errors.email = "Campo obligatorio";
-  }  if (!form.password) {
+  }
+  if (!form.password) {
     errors.password = "Campo obligatorio";
   }
   return errors;
 }
 
 export default function LoginUser() {
+  function handleCredentialResponse(response) {
+    console.log(response.credential);
+    const dataUser = jwtDecode(response.credential);
+    console.log(dataUser);
+    const body = {
+      email: "email@asd.com",
+      password: "Test1234",
+    };
+    userLogin(body);
+  }
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id:
+        "299389682703-kcloq4hnm9v0q7jafkv4ffule1lhd6s0.apps.googleusercontent.com",
+      callback: handleCredentialResponse,
+    });
+  }, []);
+
+  google.accounts.id.renderButton(document.getElementById("SignInDiv"), {
+    thema: "inline",
+    size: "large",
+  });
+
   const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
+  const [hidden, setHidden] = useState(true);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -29,14 +57,15 @@ export default function LoginUser() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setForm({email:'', password:''})
-window.alert("logged in")
-    }
-    ;
-
+    setForm({ email: "", password: "" });
+    window.alert("logged in");
+    //LoginUser(form)
+  };
   return (
-    <div>
-      <form onSubmit={(e) => submitHandler(e)}>
+    <div className={`${style.container} ${hidden? '': style.hidden}`} onClick={()=> setHidden(false)} >
+      <div className={style.form}>
+
+      <form  onSubmit={(e) => submitHandler(e)}>
         <div>
           <h1>Inicia sesión</h1>
         </div>
@@ -76,13 +105,15 @@ window.alert("logged in")
               errors.email !== undefined || errors.password !== undefined
             }
             value={"Iniciar Sesión"}
-          ></input>
+            ></input>
         </div>
       </form>
       <p>
         ¿Aún no tienes una cuenta?
         <NavLink to="/registerUser">Regístrate aquí</NavLink>
       </p>
+      <div id="SignInDiv" />
+            </div>
     </div>
   );
 }
