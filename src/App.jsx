@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import jwtDecode from 'jwt-decode'
 import { io } from 'socket.io-client'
@@ -25,7 +24,6 @@ function App() {
     document.getElementById('SignInDiv'),
     {thema: 'inline', size:'large'}
   )
-
   return (
     <div className="App">
       <div id='SignInDiv'/>
@@ -34,4 +32,5 @@ function App() {
   )
 }
 
-export default App
+
+export default App;
