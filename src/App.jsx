@@ -1,8 +1,9 @@
 import React from 'react'
+import RegisterUser from './components/RegisterUser/RegisterUser'
 
 function App() {
   return (
-    <div>App</div>
+    <RegisterUser/>
   )
 }
 
