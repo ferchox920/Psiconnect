@@ -1,5 +1,6 @@
+import { Routes, Route } from 'react-router-dom';
+import RegisterPsico from './components/RegisterPsico/RegisterPsico';
 import { useEffect, useState } from 'react'
-import './App.css'
 import jwtDecode from 'jwt-decode'
 import { io } from 'socket.io-client'
 
