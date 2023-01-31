@@ -15,7 +15,7 @@ export default function NavBar() {
       </div>
       <div >
         <Link to={""}>
-          <img className={styles.image} src={img} alt="Earth img" />
+          
         </Link>
     </div>
       </>
