@@ -5,21 +5,21 @@ import { userLogin } from "../../features/apiPetitions";
 import style from './LoginUser.module.css'
 
 function validate(form) {
-  let errors = {};
+  let errorsEmail = '';
+  let errorsPassword= '';
   if (!form.email) {
-    errors.email = "Campo obligatorio";
+    errorsEmail = "Campo obligatorio";
+    return errorsEmail
   }
   if (!form.password) {
-    errors.password = "Campo obligatorio";
+    errorsPassword = "Campo obligatorio";
+    return errorsPassword
   }
-  return errors;
 }
 
 export default function LoginUser() {
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+  const [errorsEmail, setErrorsEmail] = useState('');
+  const [errorsPassword, setErrorsPassword] = useState('');
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -49,14 +49,12 @@ export default function LoginUser() {
     });
   }, []);
 
-  const viewPassword=()=>{
-
-  }
-
+  
   const changeHandler = (e) => {
     e.preventDefault();
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors(validate({ ...form, [e.target.name]: e.target.value }));
+    setErrorsEmail(validate({ ...form, [e.target.name]: e.target.value }));
+    setErrorsPassword(validate({ ...form, [e.target.name]: e.target.value }));
   };
 
   const submitHandler = (e) => {
@@ -83,7 +81,7 @@ export default function LoginUser() {
                 placeholder="Ingresa tu email"
                 onChange={(e) => changeHandler(e)}
               />
-              {errors.email && <p>{errors.email}</p>}
+              {errorsEmail !== '' && <p>{errorsEmail}</p>}
             </div>
             <label>Contraseña</label>
             <div className={style.password}>
@@ -98,19 +96,18 @@ export default function LoginUser() {
 {showPassword ? (<img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6866/6866733.png" alt="showPassword"/>) :
 <img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6405/6405909.png" alt="nonShowPassword"/>}
               </div>
-              {/* Acá iría el ojito para visualizar la contraseña */}
-              {errors.password && <p>{errors.password}</p>}
+              {errorsPassword !== '' && <p>{errorsPassword}</p>}
             </div>
             <NavLink to="/forgotpassword">
               <button>Olvidé mi contraseña</button>
             </NavLink>
           </div>
           <div>
-            {console.log(errors.email, errors.password)}
+          
             <input
               type="submit"
               disabled={
-                errors.email !== undefined || errors.password !== undefined
+                errorsEmail !== '' || errorsPassword !== ''
               }
               value={"Iniciar Sesión"}
             ></input>
