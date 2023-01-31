@@ -1,20 +1,23 @@
-import { Routes, Route } from 'react-router-dom';
-import RegisterPsico from './components/RegisterPsico/RegisterPsico';
-import { useEffect, useState } from 'react'
-import jwtDecode from 'jwt-decode'
-import { io } from 'socket.io-client'
-import RegisterUser from './components/RegisterUser/RegisterUser';
+import './App.css'
+import { Route, Routes } from "react-router";
+import Home from "./views/Home/Home";
+import Details from './views/Details/Details';
+import Professionals from './views/Professionals/Professionals';
+import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <>
-    <RegisterUser></RegisterUser>
-    {/* <div className="App">
-      <div id='SignInDiv'/>
- 
-    </div> */ }
+    <NavBar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/Details/:id" element={<Details />} />
+      <Route path="/Professionals/:area" element={<Professionals />} />
+    </Routes>
+    <Footer />
     </>
-  )
+  );
 }
 
 export default App;
