@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(207, 183, 118);
+    justify-content: center;
+    align-items: center;
+}
+
+.password{
+    border: solid black;
+    width: fit-content;
+    display: flex;
+
+}
+.pswicon{
+    height: 20px;
+    width: 20px;
+}
+.img{
+    height: 20px;
+    width: 20px;
+}
