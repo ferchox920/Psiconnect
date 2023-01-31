@@ -12,7 +12,20 @@ export async function userRegister(body) {
 export async function userLogin(body) {
     try {
       const peticion = await axios.post(`/user/login`,body);
-      localStorage.setItem('tkn', peticion);
+      console.log(peticion?.data.data);
+      localStorage.setItem('tkn', peticion?.data.data);
+      return peticion;
+    } catch (error) {
+      return error.response;
+    }
+  }
+export async function changePassword(body) {
+    try {
+      const peticion = await axios.post(`/user/login`,body,{
+        authorization: `bored: ${localStorage.getItem('tkn')}`
+      });
+      console.log(peticion?.data.data);
+      localStorage.setItem('tkn', peticion?.data.data);
       return peticion;
     } catch (error) {
       return error.response;
