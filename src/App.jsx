@@ -3,6 +3,7 @@ import RegisterPsico from './components/RegisterPsico/RegisterPsico';
 import { useEffect, useState } from 'react'
 import jwtDecode from 'jwt-decode'
 import { io } from 'socket.io-client'
+import RegisterUser from './components/RegisterUser/RegisterUser';
 
 // const socket = io("http://localhost:3001");
 function App() {
@@ -26,10 +27,13 @@ function App() {
     {thema: 'inline', size:'large'}
   )
   return (
-    <div className="App">
+    <>
+    <RegisterUser></RegisterUser>
+    {/* <div className="App">
       <div id='SignInDiv'/>
  
-    </div>
+    </div> */ }
+    </>
   )
 }
 
