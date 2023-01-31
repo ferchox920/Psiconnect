@@ -11,8 +11,8 @@ const validationsForm = (form) => {
     errors.name = "El nombre debe tener al menos 2 letras y no puede tener carateres especiales"
   }
 
-  if(form.lastName.trim().length<2 || !form.lastName.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)){
-    errors.lastName = "El apellido debe tener al menos 2 letras y no puede contener caracteres especiales"
+  if(form.lastName.trim().length<4 || !form.lastName.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)){
+    errors.lastName = "El apellido debe tener al menos 4 letras y no puede contener caracteres especiales"
   }
 
   if(!form.email || !form.email.match(/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/)){
@@ -40,8 +40,6 @@ export default function RegisterUser() {
   const [success, setSuccess] = useState(false)
 
   useEffect(()=>{
-    console.log(google);
-    console.log(Object.values(form)[2])
     google.accounts.id.initialize({
       client_id: '299389682703-76ae343sl2fo2bgjdj8jgllgbusv8i0v.apps.googleusercontent.com',
       callback: handleCredentialResponse
@@ -54,9 +52,7 @@ export default function RegisterUser() {
 
   
   function handleCredentialResponse(response){
-      console.log('response'+response);
       const dataUser = jwtDecode(response.credential);
-      console.log(dataUser);
       const googleRegister ={
         name: dataUser.given_name,
         lastName: dataUser.family_name ? dataUser.family_name : '    ',
