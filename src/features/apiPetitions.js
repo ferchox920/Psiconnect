@@ -31,4 +31,12 @@ export async function changePassword(body) {
       return error.response;
     }
   }
-  
+export async function getAreas(newState) {
+  try {
+    const rawData = await axios.get('/areas')
+    const data = rawData.data
+    newState(data)    
+  } catch (error) {
+    return error.response
+  }
+}
