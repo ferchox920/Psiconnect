@@ -7,30 +7,27 @@ export default function AreaSliderFilter(){
 
     const [areas, setAreas] = useState(null)
 
-    useEffect(()=>{
-        getAreas(setAreas)
-    }, [])
+    useEffect(
+        ()=>{
+            getAreas(setAreas)
+        }
+    , [])
 
-    if(areas) {
-        return(
-            <div className='areas'>
-                <div className='ondas'>
-                    <img src="" alt="" />
-                </div>
-                <h1>Areas</h1>
-                <p>Trabajamos para ayudarte con retos personales como los siguientes:</p>
-                <div className='container'>
-                    {areas.map((area) => {
-                        return(
-                            <Areas key={area.area} img={area.image} area={area.area}/>
-                        )
-                    })}
-                </div>
+    return(
+        <div className='areas'>
+            <div className='ondas'>
+                <img src="" alt="" />
             </div>
-        )
-    }else{
-        return(
-            <div>loading</div>
-        )
-    }
+            <h1>Areas</h1>
+            <p>Trabajamos para ayudarte con retos personales como los siguientes:</p>
+            <div className='container'>
+                {/* {areas?.map(area => {
+                    return(
+                       // <Areas img={area.image} area={area.area}/>
+                    )
+                })} */}
+            </div>
+            
+        </div>
+    )
 }
