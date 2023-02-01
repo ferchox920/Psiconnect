@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { userLogin } from "../../features/apiPetitions";
-import style from './LoginUser.module.css'
+import style from './index.module.css'
 
 function validate(form) {
   let errors = {}
@@ -20,8 +20,34 @@ function validate(form) {
 }
 
 export default function LoginUser() {
-  const [errors, setErrors] = useState({})
-  const [success, setSuccess] = useState()
+  function handleCredentialResponse(response) {
+    console.log(response.credential);
+    const dataUser = jwtDecode(response.credential);
+    console.log(dataUser);
+    const body = {
+      email: "email@asd.com",
+      password: "Test1234",
+    };
+    userLogin(body);
+  }
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id:
+        "299389682703-kcloq4hnm9v0q7jafkv4ffule1lhd6s0.apps.googleusercontent.com",
+      callback: handleCredentialResponse,
+    });
+  }, []);
+
+  google.accounts.id.renderButton(document.getElementById("SignInDiv"), {
+    thema: "inline",
+    size: "large",
+  });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+  const [hidden, setHidden] = useState(true);
   const [form, setForm] = useState({
     email: "",
     password: "",

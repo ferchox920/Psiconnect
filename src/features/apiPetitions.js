@@ -13,10 +13,31 @@ export async function userLogin(body, state) {
     try {
     
       const peticion = await axios.post(`/user/login`,body);
-     
+      console.log(peticion?.data.data);
       localStorage.setItem('tkn', peticion?.data.data);
-      return state(true);
+      return peticion;
     } catch (error) {
-      return state(false);
+      return error.response;
     }
   }
+export async function changePassword(body) {
+    try {
+      const peticion = await axios.post(`/user/login`,body,{
+        authorization: `bored: ${localStorage.getItem('tkn')}`
+      });
+      console.log(peticion?.data.data);
+      localStorage.setItem('tkn', peticion?.data.data);
+      return peticion;
+    } catch (error) {
+      return error.response;
+    }
+  }
+export async function getAreas(newState) {
+  try {
+    const rawData = await axios.get('/areas')
+    const data = rawData.data
+    newState(data)    
+  } catch (error) {
+    return error.response
+  }
+}
