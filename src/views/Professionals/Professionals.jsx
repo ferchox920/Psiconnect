@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfessionalByAreas } from "../../features/apiPetitions";
+import SearchBar from "./SearchBar";
 
 export default function Professionals() {
   const { area } = useParams();
@@ -22,6 +23,7 @@ export default function Professionals() {
 
   return (
     <div>
+      <SearchBar dispatch={dispatch}/>
       {professionals?.map((e) => (
         <h2>{e.name}</h2>
       ))}
