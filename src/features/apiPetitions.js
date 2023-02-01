@@ -9,6 +9,14 @@ export async function userRegister(body) {
     return error.response;
   }
 }
+export async function professionalRegister(body) {
+  try{
+    const request = await axios.post('/professional/register',body)
+    return request;
+  } catch(error){
+    return error.response
+  }
+}
 export async function userLogin(body) {
   try {
     const peticion = await axios.post(`/user/login`, body);
