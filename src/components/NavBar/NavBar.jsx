@@ -1,8 +1,14 @@
 import style from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/LogoCerebro.svg";
+import FormModal from "../modals/Modals";
+import { useState } from "react";
 
 export default function NavBar() {
+  const [modal, setModal] = useState(null);
+  const openModal = ()=>{
+    setModal(true)
+  }
   return (
     <>
       <div className={style.container}>
@@ -37,19 +43,20 @@ export default function NavBar() {
                 <h3>¿Cómo te ayudamos?</h3>
               </Link>
             </div>
-            <div>
-              <Link to={""}>
-                <h3>Inicio</h3>
-              </Link>
+            <div onClick={openModal}>
+            
+                <h3>Iniciar sesion</h3>
+          
             </div>
-            <div>
-              <Link to={""}>
+            <div onClick={openModal}>
+            
                 <h3>Registrate</h3>
-              </Link>
+          
             </div>
           </div>
         </div>
       </div>
+      {modal && ( <FormModal name='User' set={setModal}/>)}
     </>
   );
 }
