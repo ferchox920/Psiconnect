@@ -9,9 +9,8 @@ export async function userRegister(body) {
       return error.response;
     }
   }
-export async function userLogin(body, state) {
+export async function userLogin(body) {
     try {
-    
       const peticion = await axios.post(`/user/login`,body);
       console.log(peticion?.data.data);
       localStorage.setItem('tkn', peticion?.data.data);

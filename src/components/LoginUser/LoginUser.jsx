@@ -5,18 +5,14 @@ import { userLogin } from "../../features/apiPetitions";
 import style from './index.module.css'
 
 function validate(form) {
-  let errors = {}
- 
-  if(!form.email || !form.email.match(/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/)){
-    errors.email = "Debe introducir un formato de e-mail válido"
+  let errors = {};
+  if (!form.email) {
+    errors.email = "Campo obligatorio";
   }
-
-  if(form.password.trim().length<8 || !form.password.match(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)){
-    errors.password = "La contraseña debe tener al menos 8 caracteres, una mayuscula, una minúscula y un número"
+  if (!form.password) {
+    errors.password = "Campo obligatorio";
   }
-
-
-  return errors
+  return errors;
 }
 
 export default function LoginUser() {
@@ -55,16 +51,15 @@ export default function LoginUser() {
   const [showPassword , setShowPassword]= useState(false)
 
   function handleCredentialResponse(response) {
-    
+    console.log(response.credential);
     const dataUser = jwtDecode(response.credential);
-   
+    console.log(dataUser);
     const body = {
       email: dataUser.email,
-      password: `${dataUser.email}${dataUser.sub}A`,
+      password: `${dataUser.email}${dataUser.sub}`,
     };
-    
-    userLogin(body , setSuccess);
-
+    console.log(body);
+    userLogin(body);
   }
   useEffect(() => {
     google.accounts.id.initialize({
@@ -78,58 +73,64 @@ export default function LoginUser() {
     });
   }, []);
 
-  
+  const viewPassword=()=>{
+
+  }
+
   const changeHandler = (e) => {
     e.preventDefault();
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors(validate({...form, [e.target.name]: e.target.value }))
+    setErrors(validate({ ...form, [e.target.name]: e.target.value }));
   };
-  
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setErrors(validate(form))
-    if(Object.keys(errors).length===0 && Object.values(form)[0]!==''){
-    userLogin(form, setSuccess)
-   }
+    userLogin(form);
+    //setForm({email:'', password:''});
+
+    window.alert("logged in");
   };
   return (
     <div className={style.container}>
-    
       <div>
         <form onSubmit={(e) => submitHandler(e)}>
           <div>
             <h1>Inicia sesión</h1>
           </div>
           <div>
+            <label>Email</label>
             <div>
               <input
                 type="text"
                 value={form.email}
                 name="email"
-                placeholder='Correo electrónico'
+                placeholder="Ingresa tu email"
                 onChange={(e) => changeHandler(e)}
               />
-              {errors.email && <h5>{errors.email}</h5>}
+              {errors.email && <p>{errors.email}</p>}
             </div>
+            <label>Contraseña</label>
             <div className={style.password}>
               <input
                 type={ showPassword ? "text" : "password"}
                 value={form.password}
                 name="password"
-                placeholder='Contraseña'
+                placeholder="Ingresa tu contraseña"
                 onChange={(e) => changeHandler(e)}
               />
               <div className={style.pswicon} onClick={()=> setShowPassword(!showPassword)}>
 {showPassword ? (<img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6866/6866733.png" alt="showPassword"/>) :
 <img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6405/6405909.png" alt="nonShowPassword"/>}
               </div>
-              
+              {/* Acá iría el ojito para visualizar la contraseña */}
+              {errors.password && <p>{errors.password}</p>}
             </div>
-            {errors.password && <h5>{errors.password}</h5>}
+            <NavLink to="/forgotpassword">
+              <button>Olvidé mi contraseña</button>
+            </NavLink>
           </div>
           <div>
-          
+            {console.log(errors.email, errors.password)}
             <input
               type="submit"
               disabled={
@@ -138,20 +139,14 @@ export default function LoginUser() {
               value={"Iniciar Sesión"}
             ></input>
           </div>
-          <NavLink to="/forgotpassword">
-              <h5>Olvidé mi contraseña</h5>
-            </NavLink>
-        <div id="SignInDiv" />
           <p>
             ¿Aún no tienes una cuenta?
             <NavLink to="/registerUser">Regístrate aquí</NavLink>
           </p>
         </form>
 
-      </div> 
-      {success ?
-       <h3>Inicio de sesión exitoso </h3> :
-      <h3>Ha ocurrido un error</h3>}
+        <div id="SignInDiv" />
+      </div>
     </div>
   );
 }
