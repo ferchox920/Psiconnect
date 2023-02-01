@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import jwtDecode from 'jwt-decode'
 import { userRegister } from '../../features/apiPetitions'
+import style from './RegisterUser.module.css'
 
 
 
 const validationsForm = (form) => {
   let errors = {}
     
-  if(form.name.trim().length<2 || !form.name.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)){
-    errors.name = "El nombre debe tener al menos 2 letras y no puede tener carateres especiales"
+  if(form.name.trim().length<2 || form.name.trim().length>20 || !form.name.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)){
+    errors.name = "El nombre debe tener entre 2 y 20 letras y no puede tener carateres especiales"
   }
 
-  if(form.lastName.trim().length<4 || !form.lastName.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)){
-    errors.lastName = "El apellido debe tener al menos 4 letras y no puede contener caracteres especiales"
+  if(form.lastName.trim().length<4 || form.lastName.trim().length>20 || !form.lastName.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)){
+    errors.lastName = "El apellido debe tener entre 4 y 20 letras y no puede contener caracteres especiales"
   }
 
   if(!form.email || !form.email.match(/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/)){
@@ -37,6 +38,7 @@ export default function RegisterUser() {
   })
 
   const [errors, setErrors] = useState({})
+  const [showPassword , setShowPassword]= useState(false)
   const [success, setSuccess] = useState(false)
 
   useEffect(()=>{
@@ -109,7 +111,13 @@ export default function RegisterUser() {
             <input type="text" name='email' placeholder='Correo electrónico' onBlur={handleBlur} onChange={handleChange}/></label>
             {errors.email && <h5>{errors.email}</h5>}
           <label>Contraseña
-            <input type="password" name='password' placeholder='Contraseña' onBlur={handleBlur} onChange={handleChange}/>
+            <div className={style.password}>
+              <input type={ showPassword ? "text" : "password"} name='password' placeholder='Contraseña' onBlur={handleBlur} onChange={handleChange}/>
+                <div className={style.pswicon} onClick={()=> setShowPassword(!showPassword)}>
+                    {showPassword ? (<img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6866/6866733.png" alt="showPassword"/>) :
+                    <img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6405/6405909.png" alt="nonShowPassword"/>}
+                </div> 
+            </div>
             {errors.password && <h5>{errors.password}</h5>}
           </label>
           <label>Confirmar contraseña

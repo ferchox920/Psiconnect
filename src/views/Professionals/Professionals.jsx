@@ -25,7 +25,7 @@ export default function Professionals() {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', height:'600px'}}>
       {professionals && professionals.map((e,i) => (
-        <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar}/>
+        <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar} skills={e.skills}/>
       ))}
       {
         // barra de busqueda por nombre del profesional o especialdiad
