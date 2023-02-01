@@ -31,7 +31,7 @@ export default function LoginUser() {
     email: "",
     password: "",
   });
-  const [showPassword , setShowPassword]= useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   function handleCredentialResponse(response) {
     //console.log(response.credential);
@@ -56,6 +56,7 @@ export default function LoginUser() {
     });
   }, []);
 
+  const viewPassword = () => {};
 
   const changeHandler = (e) => {
     e.preventDefault();
@@ -94,15 +95,29 @@ export default function LoginUser() {
             </div>
             <div className={style.password}>
               <input
-                type={ showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "password"}
                 value={form.password}
                 name="password"
                 placeholder='Contraseña'
                 onChange={(e) => changeHandler(e)}
               />
-              <div className={style.pswicon} onClick={()=> setShowPassword(!showPassword)}>
-{showPassword ? (<img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6866/6866733.png" alt="showPassword"/>) :
-<img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6405/6405909.png" alt="nonShowPassword"/>}
+              <div
+                className={style.pswicon}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <img
+                    className={style.img}
+                    src="https://cdn-icons-png.flaticon.com/512/6866/6866733.png"
+                    alt="showPassword"
+                  />
+                ) : (
+                  <img
+                    className={style.img}
+                    src="https://cdn-icons-png.flaticon.com/512/6405/6405909.png"
+                    alt="nonShowPassword"
+                  />
+                )}
               </div>
               
             </div>
