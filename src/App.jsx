@@ -5,6 +5,7 @@ import Details from './views/Details/Details';
 import Professionals from './views/Professionals/Professionals';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
+import FormModal from './components/modals/Modals';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/Details/:id" element={<Details />} />
       <Route path="/Professionals/:area" element={<Professionals />} />
+      <Route path="/modal" element={<FormModal name='User' />} />
     </Routes>
     <Footer />
     </>
