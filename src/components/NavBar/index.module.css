@@ -2,7 +2,7 @@
     width: 100%;
     background-color:blueviolet;
     height: 90px;
-    position: fixed;
+    position: relative;
     top: 0;
     z-index: 2;
 }
