@@ -13,8 +13,6 @@ export default function LoginUser() {
     email: "",
     password: "",
   });
-  // const [showPassword, setShowPassword] = useState(false);
-
   function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);
     const body = {
