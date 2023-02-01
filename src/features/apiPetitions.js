@@ -9,12 +9,14 @@ export async function userRegister(body) {
       return error.response;
     }
   }
-export async function userLogin(body) {
+export async function userLogin(body, state) {
     try {
+    
       const peticion = await axios.post(`/user/login`,body);
-      localStorage.setItem('tkn', peticion);
-      return peticion;
+     
+      localStorage.setItem('tkn', peticion?.data.data);
+      return state(true);
     } catch (error) {
-      return error.response;
+      return state(false);
     }
   }

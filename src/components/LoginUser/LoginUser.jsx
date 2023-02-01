@@ -5,21 +5,23 @@ import { userLogin } from "../../features/apiPetitions";
 import style from './LoginUser.module.css'
 
 function validate(form) {
-  let errorsEmail = '';
-  let errorsPassword= '';
-  if (!form.email) {
-    errorsEmail = "Campo obligatorio";
-    return errorsEmail
+  let errors = {}
+ 
+  if(!form.email || !form.email.match(/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/)){
+    errors.email = "Debe introducir un formato de e-mail válido"
   }
-  if (!form.password) {
-    errorsPassword = "Campo obligatorio";
-    return errorsPassword
+
+  if(form.password.trim().length<8 || !form.password.match(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)){
+    errors.password = "La contraseña debe tener al menos 8 caracteres, una mayuscula, una minúscula y un número"
   }
+
+
+  return errors
 }
 
 export default function LoginUser() {
-  const [errorsEmail, setErrorsEmail] = useState('');
-  const [errorsPassword, setErrorsPassword] = useState('');
+  const [errors, setErrors] = useState({})
+  const [success, setSuccess] = useState()
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -27,15 +29,16 @@ export default function LoginUser() {
   const [showPassword , setShowPassword]= useState(false)
 
   function handleCredentialResponse(response) {
-    console.log(response.credential);
+    
     const dataUser = jwtDecode(response.credential);
-    console.log(dataUser);
+   
     const body = {
       email: dataUser.email,
-      password: `${dataUser.email}${dataUser.sub}`,
+      password: `${dataUser.email}${dataUser.sub}A`,
     };
-    console.log(body);
-    userLogin(body);
+    
+    userLogin(body , setSuccess);
+
   }
   useEffect(() => {
     google.accounts.id.initialize({
@@ -53,73 +56,76 @@ export default function LoginUser() {
   const changeHandler = (e) => {
     e.preventDefault();
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrorsEmail(validate({ ...form, [e.target.name]: e.target.value }));
-    setErrorsPassword(validate({ ...form, [e.target.name]: e.target.value }));
+    setErrors(validate({...form, [e.target.name]: e.target.value }))
   };
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
-    userLogin(form);
-    //setForm({email:'', password:''});
-
-    window.alert("logged in");
+    setErrors(validate(form))
+    if(Object.keys(errors).length===0 && Object.values(form)[0]!==''){
+    userLogin(form, setSuccess)
+   }
   };
   return (
     <div className={style.container}>
+    
       <div>
         <form onSubmit={(e) => submitHandler(e)}>
           <div>
             <h1>Inicia sesión</h1>
           </div>
           <div>
-            <label>Email</label>
             <div>
               <input
                 type="text"
                 value={form.email}
                 name="email"
-                placeholder="Ingresa tu email"
+                placeholder='Correo electrónico'
                 onChange={(e) => changeHandler(e)}
               />
-              {errorsEmail !== '' && <p>{errorsEmail}</p>}
+              {errors.email && <h5>{errors.email}</h5>}
             </div>
-            <label>Contraseña</label>
             <div className={style.password}>
               <input
                 type={ showPassword ? "text" : "password"}
                 value={form.password}
                 name="password"
-                placeholder="Ingresa tu contraseña"
+                placeholder='Contraseña'
                 onChange={(e) => changeHandler(e)}
               />
               <div className={style.pswicon} onClick={()=> setShowPassword(!showPassword)}>
 {showPassword ? (<img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6866/6866733.png" alt="showPassword"/>) :
 <img className={style.img} src="https://cdn-icons-png.flaticon.com/512/6405/6405909.png" alt="nonShowPassword"/>}
               </div>
-              {errorsPassword !== '' && <p>{errorsPassword}</p>}
+              
             </div>
-            <NavLink to="/forgotpassword">
-              <button>Olvidé mi contraseña</button>
-            </NavLink>
+            {errors.password && <h5>{errors.password}</h5>}
           </div>
           <div>
           
             <input
               type="submit"
               disabled={
-                errorsEmail !== '' || errorsPassword !== ''
+                errors.email !== undefined || errors.password !== undefined
               }
               value={"Iniciar Sesión"}
             ></input>
           </div>
+          <NavLink to="/forgotpassword">
+              <h5>Olvidé mi contraseña</h5>
+            </NavLink>
+        <div id="SignInDiv" />
           <p>
             ¿Aún no tienes una cuenta?
             <NavLink to="/registerUser">Regístrate aquí</NavLink>
           </p>
         </form>
 
-        <div id="SignInDiv" />
-      </div>
+      </div> 
+      {success ?
+       <h3>Inicio de sesión exitoso </h3> :
+      <h3>Ha ocurrido un error</h3>}
     </div>
   );
 }
