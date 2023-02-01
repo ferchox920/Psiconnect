@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { userLogin } from "../../features/apiPetitions";
-// import style from "./LoginUser.module.css";
 import { validate } from "./validate";
 
 export default function LoginUser() {
