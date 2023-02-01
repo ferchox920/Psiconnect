@@ -21,11 +21,11 @@ export default function AreaSliderFilter(){
             <h1>Areas</h1>
             <p>Trabajamos para ayudarte con retos personales como los siguientes:</p>
             <div className='container'>
-                {areas.map(area => {
+                {/* {areas?.map(area => {
                     return(
-                        <Areas img={area.image} area={area.area}/>
+                       // <Areas img={area.image} area={area.area}/>
                     )
-                })}
+                })} */}
             </div>
             
         </div>
