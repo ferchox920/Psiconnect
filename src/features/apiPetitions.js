@@ -18,3 +18,11 @@ export async function userLogin(body) {
       return error.response;
     }
   }
+export async function professionalRegister(body) {
+  try{
+    const request = await axios.post('/professional/register',body)
+    return request;
+  } catch(error){
+    return error.response
+  }
+}
