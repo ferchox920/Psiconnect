@@ -1,33 +1,54 @@
-import style from "./index.module.css";
+import style from "./NavBar.module.css";
+import { Link } from "react-router-dom";
+import logo from "../../assets/LogoCerebro.svg";
 
 export default function NavBar() {
   return (
     <>
       <div className={style.container}>
-        <img src="" alt="LOGO" />
-        <Link to={""}>
-          <h2>PSICONNECT</h2>
-        </Link>
-      </div>
-      <div>
-        <Link to={"/home"}>
-          <h3>¿Qué es psiconnect? </h3>
-        </Link>
-      </div>
-      <div>
-        <Link to={"/registerProfesional"}>¿Eres médico?</Link>
-      </div>
-      <div>
-        <Link to={"/AreasProfesional"}>Especialidades y servicios</Link>
-      </div>
-      <div>
-        <Link to={"/Asistencia"}>¿Cómo te ayudamos?</Link>
-      </div>
-      <div>
-        <Link to={""}>Inicio</Link>
-      </div>
-      <div>
-        <Link to={""}>Registrate</Link>
+        <div className={style.nav}>
+          <div className={style.logo}>
+            <Link to={"/"}>
+              <img src={logo} alt="logo" />
+              <div>
+                <h3>PSICONNECT</h3>
+              </div>
+            </Link>
+          </div>
+          <div className={style.nav_list}>
+            <div>
+              <Link to={"/"}>
+                <h3>¿Qué es psiconnect? </h3>
+              </Link>
+            </div>
+            <div>
+              <Link to={"/registerProfesional"}>
+                {" "}
+                <h3>¿Eres medico? </h3>
+              </Link>
+            </div>
+            <div>
+              <Link to={"/AreasProfesional"}>
+                <h3>Especialidades y servicios</h3>
+              </Link>
+            </div>
+            <div>
+              <Link to={"/Asistencia"}>
+                <h3>¿Cómo te ayudamos?</h3>
+              </Link>
+            </div>
+            <div>
+              <Link to={""}>
+                <h3>Inicio</h3>
+              </Link>
+            </div>
+            <div>
+              <Link to={""}>
+                <h3>Registrate</h3>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
