@@ -47,3 +47,11 @@ export async function getProfessionalByAreas({ state, type, area }) {
     return error.response;
   }
 }
+export async function getProfessionalById(id, state) {
+  try {
+    const peticion = await axios.get(`/professional/${id}`);
+    return state(peticion?.data);
+  } catch (error) {
+    return error.response;
+  }
+}
