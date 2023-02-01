@@ -1,5 +1,3 @@
-import { Routes, Route } from 'react-router-dom';
-import RegisterPsico from './components/RegisterPsico/RegisterPsico';
 import './App.css'
 import { Route, Routes } from "react-router";
 import Home from "./views/Home/Home";
@@ -7,6 +5,7 @@ import Details from './views/Details/Details';
 import Professionals from './views/Professionals/Professionals';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
+import RegisterPsico from './components/RegisterPsico/RegisterPsico';
 
 function App() {
   return (
