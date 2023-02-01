@@ -2,48 +2,31 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { userLogin } from "../../features/apiPetitions";
-import style from "./index.module.css";
+import style from './LoginUser.module.css'
 
 function validate(form) {
-  let errors = {};
-  if (!form.email) {
-    errors.email = "Campo obligatorio";
+  let errors = {}
+ 
+  if(!form.email || !form.email.match(/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/)){
+    errors.email = "Debe introducir un formato de e-mail válido"
   }
-  if (!form.password) {
-    errors.password = "Campo obligatorio";
+
+  if(form.password.trim().length<8 || !form.password.match(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)){
+    errors.password = "La contraseña debe tener al menos 8 caracteres, una mayuscula, una minúscula y un número"
   }
-  return errors;
+
+
+  return errors
 }
 
 export default function LoginUser() {
-  function handleCredentialResponse(response) {
-    console.log(response.credential);
-    const dataUser = jwtDecode(response.credential);
-    console.log(dataUser);
-    const body = {
-      email: "email@asd.com",
-      password: "Test1234",
-    };
-    userLogin(body);
-  }
-  useEffect(() => {
-    google.accounts.id.initialize({
-      client_id:
-        "299389682703-kcloq4hnm9v0q7jafkv4ffule1lhd6s0.apps.googleusercontent.com",
-      callback: handleCredentialResponse,
-    });
-  }, []);
+  
 
-  google.accounts.id.renderButton(document.getElementById("SignInDiv"), {
-    thema: "inline",
-    size: "large",
-  });
-
+  
   const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
-  const [hidden, setHidden] = useState(true);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -51,14 +34,14 @@ export default function LoginUser() {
   const [showPassword, setShowPassword] = useState(false);
 
   function handleCredentialResponse(response) {
-    console.log(response.credential);
+    //console.log(response.credential);
     const dataUser = jwtDecode(response.credential);
-    console.log(dataUser);
+    //console.log(dataUser);
     const body = {
       email: dataUser.email,
-      password: `${dataUser.email}${dataUser.sub}`,
+      password: `${dataUser.email}${dataUser.sub}A`,
     };
-    console.log(body);
+   // console.log(body);
     userLogin(body);
   }
   useEffect(() => {
@@ -83,10 +66,14 @@ export default function LoginUser() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    userLogin(form);
+    setErrors(validate(form))
+    if(Object.keys(errors).length===0 && Object.values(form)[0]!==''){
+    userLogin(form)
+     window.alert("logged in");
+   }
     //setForm({email:'', password:''});
 
-    window.alert("logged in");
+   
   };
   return (
     <div className={style.container}>
@@ -96,24 +83,22 @@ export default function LoginUser() {
             <h1>Inicia sesión</h1>
           </div>
           <div>
-            <label>Email</label>
             <div>
               <input
                 type="text"
                 value={form.email}
                 name="email"
-                placeholder="Ingresa tu email"
+                placeholder='Correo electrónico'
                 onChange={(e) => changeHandler(e)}
               />
-              {errors.email && <p>{errors.email}</p>}
+              {errors.email && <h5>{errors.email}</h5>}
             </div>
-            <label>Contraseña</label>
             <div className={style.password}>
               <input
                 type={showPassword ? "text" : "password"}
                 value={form.password}
                 name="password"
-                placeholder="Ingresa tu contraseña"
+                placeholder='Contraseña'
                 onChange={(e) => changeHandler(e)}
               />
               <div
@@ -134,15 +119,12 @@ export default function LoginUser() {
                   />
                 )}
               </div>
-              {/* Acá iría el ojito para visualizar la contraseña */}
-              {errors.password && <p>{errors.password}</p>}
+              
             </div>
-            <NavLink to="/forgotpassword">
-              <button>Olvidé mi contraseña</button>
-            </NavLink>
+            {errors.password && <h5>{errors.password}</h5>}
           </div>
           <div>
-            {console.log(errors.email, errors.password)}
+          
             <input
               type="submit"
               disabled={
@@ -151,14 +133,17 @@ export default function LoginUser() {
               value={"Iniciar Sesión"}
             ></input>
           </div>
+          <NavLink to="/forgotpassword">
+              <h5>Olvidé mi contraseña</h5>
+            </NavLink>
+        <div id="SignInDiv" />
           <p>
             ¿Aún no tienes una cuenta?
             <NavLink to="/registerUser">Regístrate aquí</NavLink>
           </p>
         </form>
 
-        <div id="SignInDiv" />
-      </div>
+      </div> 
     </div>
   );
 }
