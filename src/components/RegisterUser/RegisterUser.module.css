@@ -1,0 +1,13 @@
+.password{
+    width: fit-content;
+    display: flex;
+
+}
+.pswicon{
+    height: 20px;
+    width: 20px;
+}
+.img{
+    height: 20px;
+    width: 20px;
+}

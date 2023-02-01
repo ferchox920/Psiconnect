@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 export default function Areas(props){
     return(
-        <section>
-            <Link>
+        <section key={props.key}>
+            <Link to='/'>
                 <img src={props.img} alt={props.area} />
             </Link>
             <h2>{props.area}</h2>
