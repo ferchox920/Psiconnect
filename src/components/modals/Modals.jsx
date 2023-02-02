@@ -1,15 +1,27 @@
-import React from 'react'
-import LoginUser from '../LoginUser/LoginUser'
+import React from "react";
+import LoginUser from "../LoginUser/LoginUser";
+import User from "./User";
+import "./modal.css";
+import { useState } from "react";
+import { useEffect } from "react";
 
-export default function RegisterUser({name}) {
-
-    switch(name){
-        case 'loginUser':
-        return( <LoginUser />)
-    }
-  return (
-  <div>
-    
-  </div>
-  )
+export default function FormModal({ name, set }) {
+  const [value, setValue] = useState(name);
+  useEffect(()=> setValue(name),[])
+  const click = (e) => {
+    if (e.target.id === "modal-container"){ 
+      setValue("")
+      set(null)
+    };
+  };
+  switch (value) {
+    case "User":
+      return (
+        <div onClick={click} className={`modal-container`} id="modal-container">
+          <User set={setValue} />
+        </div>
+      );
+    case "Professional":
+      return <LoginUser />;
+  }
 }

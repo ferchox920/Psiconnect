@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AreaSliderFilter.css'
 import  Areas  from './Card/Areas.jsx'
 import { getAreas } from '../../features/apiPetitions'
@@ -60,7 +60,7 @@ export default function AreaSliderFilter(){
             </div>
                 <div className = 'pagination'>
             </div>
-            
+            }
         </div>
     )
 }
