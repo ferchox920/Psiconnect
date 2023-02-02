@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-
+import { professionalRegister } from '../../features/apiPetitions';
+import { classPsicoRegister, spanError, inputError  } from './index.module.css';
+import  validationsForm  from './validator.js';
 
 export default function RegisterPsico() {
   
@@ -8,126 +10,121 @@ const [ register, setRegister ] = useState({
     lastName:'',
     email:'',
     DNI:'',
-    avatar:'',
-    avatarIMG:'',
     password:'',
     repeatPassword:''
 })
+const [errors, setErrors ] = useState({})
 
-useEffect(()=>{
-    let img = document.querySelector('#deleteImageAvatar')
-    if(register.avatar === ''){
-        img.disabled = true;
-    }else{
-        img.disabled = false;
-    }
-},[register.avatar])
 
-const handleInputDeletedAvatar = () => {
-    if(!register.avatar && !register.avatarIMG) return
-    setRegister({
-        ...register,
-            avatar:'',
-            avatarIMG:''
+useEffect(()=>{console.log('se cargo el componente')},[])
+
+
+const verifyRepeatPassword = () => {
+    let repeatPassword = validationsForm.confirmPassword(register)
+    setErrors({
+        ...errors, 
+        ...repeatPassword
     })
-    let img = document.querySelector('#imageAvatar')
-    img.value = '';
 }
+
+const handleOnSubmit = async (e) => {
+    e.preventDefault()
+    verifyRepeatPassword()
+    if(!Object.keys(errors).at(0)){
+        const registerProfessional = await professionalRegister(register)
+        console.log(registerProfessional)
+        if(registerProfessional.data.errors || registerProfessional.status === 400){
+            alert(registerProfessional.data.errors?registerProfessional.data.errors : registerProfessional.data)
+        }else{
+            alert('Enviado')
+        }
+    }
+}
+
 const handleInputChange = (e) => {
+    setErrors(
+        validationsForm[e.target.name](
+            {   ...errors,
+                [e.target.name] : e.target.value,
+            }
+    ))
     setRegister({
         ...register,
         [e.target.name] : e.target.value,
     })
 }
-const handleInputChangeAvatar = (e) =>{
-    if(!e.target.files[0]) return
-    setRegister({
-        ...register,
-        [e.target.name] : e.target.files[0],
-        avatarIMG: URL.createObjectURL(e.target.files[0])
-    })
-}
+
 return (
-    <form onSubmit={() => alert('se creo la cuenta')}>
-        <label>Nombres</label>
-            <input 
+    <div >
+    <form onSubmit={(e)=>handleOnSubmit(e)} className={classPsicoRegister}>
+        <br/>
+            <span className={spanError}>{errors.name}</span>
+            <input
+            className={errors.name? inputError:null} 
             type="text"
             name="name" 
             placeholder='Nombres' 
             value={register.name}
             onChange={(e)=>handleInputChange(e)} 
             required/>
-
-        <label>Apellidos</label>
+        <br/>
+            <span 
+            className={spanError}>{errors.lastName}</span>
             <input 
+            className={errors.lastName? inputError:null} 
             type="text"
             name="lastName" 
             placeholder='Apellidos' 
             value={register.lastName}
             onChange={(e)=>handleInputChange(e)} 
             required/>
-
-        <label>Email</label>
+        <br/>
+            <span className={spanError}>{errors.email}</span>
             <input 
+            className={errors.email? inputError:null} 
             type="email" 
             name="email"
-            placeholder='email' 
+            placeholder='Correo@email.com' 
             value={register.email}
             onChange={(e)=>handleInputChange(e)} 
             required/>
-
-        <label>DNI/Pasaporte</label>
+        <br/>
+            <span className={spanError}>{errors.DNI}</span>
             <input 
+            className={errors.DNI? inputError:null} 
             type="text"
             name="DNI" 
             placeholder="numero de DNI/Pasaporte" 
             value={register.DNI}
             onChange={(e)=>handleInputChange(e)}  
             required />
-
-        <label>Avatar</label>
-            <img 
-            width="200" 
-            height="200"
-            src={register.avatarIMG}
-            />
+        <br/>
+            <span className={spanError}>{errors.password}</span>  
             <input
-            id='imageAvatar'
-            type="file" 
-            accept="image/*"
-            name="avatar"
-            onChange={ (e) => handleInputChangeAvatar(e) }
-            required/>
-            <input
-            id='deleteImageAvatar'
-            type='button'
-            name='avatar'
-            value='Borrar imagen'
-            onClick={handleInputDeletedAvatar}
-            />
-
-        <label>Contraseña</label>    
-            <input
+            className={errors.repeatPassword? inputError:null} 
             type="password"
             name="password"
             value={register.password}
             placeholder='Repetir contraseña'
             onChange={(e)=>handleInputChange(e)}
             required />
-
-        <label>Repetir contraseña</label>    
+        <br/>
+            <span className={spanError} >{errors.repeatPassword}</span>    
+            <span className={spanError} >{errors.confirmPassword}</span>
             <input 
+            className={errors.password? inputError:null} 
             type="password"
             name="repeatPassword"
             value={register.repeatPassword}
             placeholder='Repetir contraseña'
             onChange={(e)=>handleInputChange(e)} 
             required/>
-
         <br/>    
-            <input 
+            <input
+            id='idSubmitRegister' 
             type="submit" 
-            value="Crear Cuenta"/>
+            value="Enviar"/>
     </form>
+    </div>
   )
 }
