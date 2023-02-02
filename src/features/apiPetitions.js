@@ -42,6 +42,7 @@ export async function changePassword(body) {
 export async function getAreas(newState) {
   try {
     const peticion = await axios.get("/areas");
+    console.log(peticion.data, 'aqui')
     newState(peticion.data);
   } catch (error) {
     return error.response;

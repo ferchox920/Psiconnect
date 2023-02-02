@@ -1,0 +1,24 @@
+
+.container{
+    width: 80%;
+    height: 250px;
+    margin-left: 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.image{
+    margin-top: 30px;
+    width: 130px;
+    height: 130px;
+  
+}
+
+.titulo{
+    
+    margin-top: 10px;
+    margin-left: 0px;
+}
+
