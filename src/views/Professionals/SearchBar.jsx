@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProfessionalsByName } from "../../features/apiPetitions";
+import { getProfessionalsFilters } from "../../features/apiPetitions";
 
-export default function SearchBar(props) {
+export default function SearchBar({area}) {
 const [input, setInput]= useState('');
 const dispatch= useDispatch();
 
@@ -13,9 +13,10 @@ const handleChange=(e)=>{
 
 const handleSubmit=(e)=>{
 e.preventDefault()
-getProfessionalsByName({
+getProfessionalsFilters({
     type: 'global',
     state: dispatch,
+area: area ? area : null,
 name: input, 
 lastName: input.split(' ')[1] || null
 })

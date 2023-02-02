@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProfessionalByAreas } from "../../features/apiPetitions";
-import { getAreas } from "../../features/apiPetitions"
+import { getProfessionalsFilters } from "../../features/apiPetitions";
 import ProfessionalsCard from "./Card/ProfessionalsCard";
+import SearchBar from "./SearchBar";
+import AreaSliderFilter from "../../components/AreaSliderFilter/AreaSliderFilter";
+import style from './Professionals.module.css'
 
 export default function Professionals() {
   const { area } = useParams();
@@ -16,27 +18,28 @@ export default function Professionals() {
   );
 
   useEffect(() => {  
-    getProfessionalByAreas({
+    getProfessionalsFilters({
       state: dispatch,
-      area,
+      area: area ? area : null,
       type: "global",
     });
   }, [area]);
   console.log(professionals)
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', height:'600px'}}>
-      {professionals && professionals.map((e,i) => (
-        <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar} skills={e.skills}/>
-      ))}
-
-      
-      {
-        // barra de busqueda por nombre del profesional o especialdiad
-        // filtros por areas (reciclar componente)
-        //todos los profesionales
-      }
+    <div>
+      <AreaSliderFilter/>
+      <SearchBar area={area}/>  
+      <div className={style.containerProf}>
+        {professionals && professionals.map((e,i) => (
+         <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar} skills={e.skills}/>))
+        }
+        {
+          // barra de busqueda por nombre del profesional o especialdiad
+          // filtros por areas (reciclar componente)
+          //todos los profesionales
+        }
+      </div>
     </div>
-
   );
 }
