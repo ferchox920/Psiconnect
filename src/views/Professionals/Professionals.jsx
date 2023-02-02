@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfessionalByAreas } from "../../features/apiPetitions";
 import { getAreas } from "../../features/apiPetitions"
+import ProfessionalsCard from "./Card/ProfessionalsCard";
 
 export default function Professionals() {
   const { area } = useParams();
