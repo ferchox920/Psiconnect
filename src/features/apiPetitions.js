@@ -44,6 +44,7 @@ export async function changePassword(body) {
 export async function getAreas(newState) {
   try {
     const peticion = await axios.get("/areas");
+    console.log(peticion.data, 'aqui')
     newState(peticion.data);
   } catch (error) {
     return error.response;
@@ -75,6 +76,19 @@ export async function getProfessionalById(id, state) {
   try {
     const peticion = await axios.get(`/professional/${id}`);
     return state(peticion?.data);
+  } catch (error) {
+    return error.response;
+  }
+}
+
+export async function getProfessionalsByName({ state, type, name, lastName }) {
+  try {
+   
+      const peticion = await axios.get(`/professional?${!lastName ? `name=${name}` : `name=${name}&lastName=${lastName}`}`);
+    console.log(peticion.data)
+    type ==='local'? state(peticion?.data) : state(setFilterProfessional(peticion?.data));
+    
+    
   } catch (error) {
     return error.response;
   }
