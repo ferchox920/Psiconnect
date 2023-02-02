@@ -1,5 +1,6 @@
 import axios from "./axios.js";
 import { setFilterProfessional } from "./professionalSlice.js";
+import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
   try {
@@ -20,17 +21,18 @@ export async function professionalRegister(body) {
 export async function userLogin(body) {
   try {
     const peticion = await axios.post(`/user/login`, body);
-    console.log(peticion?.data.data);
-    localStorage.setItem("tkn", peticion?.data.data);
+    console.log(peticion?.data);
+    localStorage.setItem("tkn", peticion?.data);
     return peticion;
   } catch (error) {
-    return error.response;
+    window.alert(error.response.data);
+    return error;
   }
 }
 export async function changePassword(body) {
   try {
     const peticion = await axios.post(`/user/login`, body, {
-      authorization: `bored: ${localStorage.getItem("tkn")}`,
+      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
     console.log(peticion?.data.data);
     localStorage.setItem("tkn", peticion?.data.data);
@@ -50,9 +52,23 @@ export async function getAreas(newState) {
 export async function getProfessionalByAreas({ state, type, area }) {
   try {
     const peticion = await axios.get(`/areas/professional/${area}`);
-    type ==='local'? state(peticion?.data) : state(setFilterProfessional(peticion?.data));
+    type === "local"
+      ? state(peticion?.data)
+      : state(setFilterProfessional(peticion?.data));
   } catch (error) {
     return error.response;
+  }
+}
+export async function getUserByJWT({ state, type}) {
+  try {
+    const peticion = await axios.get("/user/id", {
+      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+    });
+    type === "local"
+      ? state(peticion?.data)
+      : state(setUser(peticion?.data));
+  } catch (error) {
+    //return window.alert('a');
   }
 }
 export async function getProfessionalById(id, state) {
