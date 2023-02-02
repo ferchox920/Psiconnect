@@ -14,7 +14,6 @@ export default function Professionals() {
     (state) => state.professionals.FilterProfessional
   );
   useEffect(() => {
-    get
     getProfessionalByAreas({
       state: dispatch,
       area,
@@ -34,5 +33,6 @@ export default function Professionals() {
         //todos los profesionales
       }
     </div>
+
   );
 }
