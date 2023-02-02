@@ -28,12 +28,12 @@ export default function NavBar() {
               </Link>
             </div>
             <div>
-              <Link to={"/AreasProfesional"}>
+              <Link to={"/asistencia"}>
                 <h3>Especialidades y servicios</h3>
               </Link>
             </div>
             <div>
-              <Link to={"/Asistencia"}>
+              <Link to={"/asistencia"}>
                 <h3>¿Cómo te ayudamos?</h3>
               </Link>
             </div>
