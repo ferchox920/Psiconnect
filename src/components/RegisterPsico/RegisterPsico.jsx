@@ -15,10 +15,6 @@ const [ register, setRegister ] = useState({
 })
 const [errors, setErrors ] = useState({})
 
-
-useEffect(()=>{console.log('se cargo el componente')},[])
-
-
 const verifyRepeatPassword = () => {
     let repeatPassword = validationsForm.confirmPassword(register)
     setErrors({

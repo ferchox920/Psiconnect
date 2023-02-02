@@ -14,6 +14,7 @@ export default function Professionals() {
     (state) => state.professionals.FilterProfessional
   );
   useEffect(() => {
+    get
     getProfessionalByAreas({
       state: dispatch,
       area,
@@ -27,7 +28,7 @@ export default function Professionals() {
  {/*    // barra de busqueda por nombre del profesional o especialdiad
         // filtros por areas (reciclar componente) 
 */}
-    <div style={{ display: 'flex', flexWrap: 'wrap', height:'600px'}}>
+    <div style={{ display: 'flex', "flex-direction": 'column', "align-items":"center", height:'auto', width:'90%'}}>
       {professionals && professionals.map((e,i) => (
         <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar} skills={e.skills}/>
       ))}
