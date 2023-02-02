@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { getProfessionalsByName } from "../../features/apiPetitions";
 
 export default function SearchBar(props) {
 const [input, setInput]= useState('');
+const dispatch= useDispatch();
 
 const handleChange=(e)=>{
     setInput(e.target.value)
@@ -13,7 +15,7 @@ const handleSubmit=(e)=>{
 e.preventDefault()
 getProfessionalsByName({
     type: 'global',
-    state: props.dispatch,
+    state: dispatch,
 name: input, 
 lastName: input.split(' ')[1] || null
 })
