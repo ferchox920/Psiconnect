@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AreaSliderFilter.css'
 import Areas from './Card/Areas.jsx'
 import { getAreas } from '../../features/apiPetitions'
 
 export default function AreaSliderFilter(){
 
-    const [areas, setAreas] = useState()
+    const [areas, setAreas] = useState(null)
 
     useEffect(
         ()=>{
@@ -20,14 +20,15 @@ export default function AreaSliderFilter(){
             </div>
             <h1>Areas</h1>
             <p>Trabajamos para ayudarte con retos personales como los siguientes:</p>
+            {areas && 
             <div className='container'>
-                {/* {areas?.map(area => {
+                {areas.map(area => {
                     return(
-                       // <Areas img={area.image} area={area.area}/>
+                        <Areas img={area.image} area={area.area}/>
                     )
-                })} */}
+                })}
             </div>
-            
+            }
         </div>
     )
 }
