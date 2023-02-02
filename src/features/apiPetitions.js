@@ -63,3 +63,16 @@ export async function getProfessionalById(id, state) {
     return error.response;
   }
 }
+
+export async function getProfessionalsByName({ state, type, name, lastName }) {
+  try {
+   
+      const peticion = await axios.get(`/professional?${!lastName ? `name=${name}` : `name=${name}&lastName=${lastName}`}`);
+    console.log(peticion.data)
+    type ==='local'? state(peticion?.data) : state(setFilterProfessional(peticion?.data));
+    
+    
+  } catch (error) {
+    return error.response;
+  }
+}

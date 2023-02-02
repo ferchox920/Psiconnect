@@ -30,7 +30,7 @@ export default function Professionals() {
 */}
     <div style={{ display: 'flex', "flex-direction": 'column', "align-items":"center", height:'auto', width:'90%'}}>
       {professionals && professionals.map((e,i) => (
-        <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar}/>
+        <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar} skills={e.skills}/>
       ))}
       {
         //todos los profesionales
