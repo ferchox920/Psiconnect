@@ -13,7 +13,7 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 export default function AreaSliderFilter(){
 
     const [areas, setAreas] = useState()
-    console.log(areas, 'todas las areas')
+    
 
     useEffect(
         ()=>{

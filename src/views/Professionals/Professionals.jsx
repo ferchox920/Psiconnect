@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfessionalByAreas } from "../../features/apiPetitions";
+import { getAreas } from "../../features/apiPetitions"
 
 export default function Professionals() {
   const { area } = useParams();
@@ -12,7 +13,10 @@ export default function Professionals() {
   const professionals = useSelector(
     (state) => state.professionals.FilterProfessional
   );
-  useEffect(() => {
+
+   
+
+  useEffect(() => {  
     getProfessionalByAreas({
       state: dispatch,
       area,
@@ -25,6 +29,8 @@ export default function Professionals() {
       {professionals?.map((e) => (
         <h2>{e.name}</h2>
       ))}
+
+      
       {
         // barra de busqueda por nombre del profesional o especialdiad
         // filtros por areas (reciclar componente)
