@@ -60,7 +60,7 @@ export default function AreaSliderFilter(){
             </div>
                 <div className = 'pagination'>
             </div>
-            }
+            
         </div>
     )
 }
