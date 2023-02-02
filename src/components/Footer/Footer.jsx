@@ -1,15 +1,15 @@
-import style from './index.module.css'
+import './Footer.css'
 
 export default function Footer(){
     return(
-        <div className={style.container}>
-            <div className={style.left}>
+        <div className='container'>
+            <div className='left'>
                 <p>¿Necesitas ayuda?</p>
             </div>
-            <div className={style.center}>
+            <div className='center'>
                 <p>Copyright ©2023 Psiconnect</p>
             </div>
-            <div className={style.right}>
+            <div className='right'>
                 <p>Políticas de uso</p>
             </div>
         </div>

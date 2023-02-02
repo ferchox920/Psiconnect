@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { userRegister } from "../../features/apiPetitions";
+import './RegisterUser.css'
 
 const validationsForm = (form) => {
   let errors = {};
