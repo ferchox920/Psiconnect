@@ -60,7 +60,7 @@ export async function getUserByJWT({ state, type}) {
       ? state(peticion?.data)
       : state(setUser(peticion?.data));
   } catch (error) {
-    return window.alert('a');
+    //return window.alert('a');
   }
 }
 export async function getProfessionalById(id, state) {
