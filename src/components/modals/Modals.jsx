@@ -18,7 +18,7 @@ export default function FormModal({ name, set }) {
     case "User":
       return (
         <div onClick={click} className={`modal-container`} id="modal-container">
-          <User />
+          <User set={setValue} />
         </div>
       );
     case "Professional":

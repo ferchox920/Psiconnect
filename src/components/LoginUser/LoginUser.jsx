@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 import { userLogin } from "../../features/apiPetitions";
 import { validate } from "./validate";
 
-export default function LoginUser() {
+export default function LoginUser({set}) {
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -41,44 +41,41 @@ export default function LoginUser() {
   const submitHandler = (e) => {
     e.preventDefault();
     setErrors(validate(form));
-    if (Object.keys(errors).length === 0 && Object.values(form)[0] !== "") {
-      userLogin(form);
-      window.alert("logged in");
-    }
+    if (!Object.keys(errors).length) 
+      return userLogin(form).then(e => set(false));
+    
+    return window.alert( Object.values(errors)[0])
   };
   return (
-    <form onSubmit={(e) => submitHandler(e)}>
+    <form onSubmit={submitHandler}>
       <h1>Iniciar sesión</h1>
-      <div className="red-social">
-      </div>
+      <div className="red-social"></div>
       <p>Use su cuenta</p>
       <div id="SignInDiv" />
-      <>
-        <input
-          type="text"
-          value={form.email}
-          name="email"
-          placeholder="Correo electrónico"
-          onChange={(e) => changeHandler(e)}
-        />
+      <input
+        type="text"
+        value={form.email}
+        name="email"
+        placeholder="Correo electrónico"
+        onChange={changeHandler}
+        style={errors.email? {border:"1px solid red"}:null}
+      />
+      <input
+        type="password"
+        value={form.password}
+        name="password"
+        placeholder="Contraseña"
+        onChange={changeHandler}
+        style={errors.password? {border:"1px solid red"}:null}
+      />
 
-        <>
-          <input
-            type= "password"
-            value={form.password}
-            name="password"
-            placeholder="Contraseña"
-            onChange={(e) => changeHandler(e)}
-          />
-        </>
-      </>
-      <div>
-        <input
-          type="submit"
-          disabled={errors.email !== undefined || errors.password !== undefined}
-          value={"Iniciar Sesión"}
-        ></input>
-      </div>
+      <button
+        type="submit"
+        onSubmit={submitHandler}
+      >
+        Iniciar Sesión
+      </button>
+
       <NavLink to="/forgotpassword">
         <h5>Olvidé mi contraseña</h5>
       </NavLink>

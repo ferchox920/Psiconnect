@@ -3,7 +3,7 @@ import LoginUser from "../../LoginUser/LoginUser";
 import RegisterUser from "../../RegisterUser/RegisterUser";
 import "./UserModal.css";
 
-export default function User() {
+export default function User({set}) {
     const [switcher, setSwitcher] = useState(false);
 
     const click = ()=>{
@@ -17,7 +17,7 @@ export default function User() {
             <RegisterUser />
         </div>
         <div className="iniciar-sesion">
-            <LoginUser />
+            <LoginUser set={set} />
         </div>
       <div className="overlay-container">
         <div className="overlay">
