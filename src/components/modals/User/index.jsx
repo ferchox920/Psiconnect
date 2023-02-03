@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LoginUser from "../../LoginUser/LoginUser";
 import RegisterUser from "../../RegisterUser/RegisterUser";
-import "./UserModal.css";
+import style from "./UserModal.module.css";
 
 export default function User({set}) {
     const [switcher, setSwitcher] = useState(false);
@@ -10,32 +10,32 @@ export default function User({set}) {
         setSwitcher(!switcher)
     }
   return (
-    <div className= {` User-modal ${
-        switcher ? "container-derecho-activo" : null
+    <div className= {`${style.Usermodal} ${
+        switcher ? style.containerDerechoActivo : null
       }`}>
-         <div className="registrarse">
+         <div className={style.registrarse}>
             <RegisterUser />
         </div>
-        <div className="iniciar-sesion">
+        <div className={style.iniciarSesion}>
             <LoginUser set={set} />
         </div>
-      <div className="overlay-container">
-        <div className="overlay">
-          <div className="overlay-izq">
+      <div className={style.overlayContainer}>
+        <div className={style.overlay}>
+          <div className={style.overlayIzq}>
             <h1>Bienvenido/a de nuevo</h1>
             <p>
               Para mantenerse conectado con nosotros por favor inicie sesión con
               su información personal
             </p>
-            <button id="iniciar-s" onClick={click}>Iniciar sesión</button>
+            <button id={style.iniciarS} onClick={click}>Iniciar sesión</button>
           </div>
-          <div className="overlay-der">
+          <div className={style.overlayD}>
             <h1>!Hola!</h1>
             <p>
               Ingresa tus datos personales y vive esta nueva aventura con
               nosotros
             </p>
-            <button id="registrar-s" onClick={click}>Registrarse</button>
+            <button id={style.registrarse} onClick={click}>Registrarse</button>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import LoginUser from "../LoginUser/LoginUser";
 import User from "./User";
-import "./modal.css";
+import style from "./modal.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -17,7 +17,7 @@ export default function FormModal({ name, set }) {
   switch (value) {
     case "User":
       return (
-        <div onClick={click} className={`modal-container`} id="modal-container">
+        <div onClick={click} className={style.modalContainer} id="modal-container">
           <User set={setValue} />
         </div>
       );

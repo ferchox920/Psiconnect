@@ -37,7 +37,7 @@ export default function HomeInformations() {
           <div className={style.cards}>
             <img className={style.img} src= {especialistaimg} alt="" />
             <div>
-              <h3>Psicólogos colegiados</h3>
+              <h3>Psicólogos Colegiados</h3>
               <p>Llevamos a cabo una rigurosa selección de psicólogos colegiados y con experiencia.</p>
             </div>
           </div>

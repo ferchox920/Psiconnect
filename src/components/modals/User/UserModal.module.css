@@ -1,4 +1,4 @@
-.User-modal{
+.Usermodal{
     position: relative;
     width: 768px;
     max-width: 100%;
@@ -12,7 +12,7 @@
 }
 
 .registrarse,
-.iniciar-sesion {
+.iniciarSesion {
     position: absolute;
     top: 0;
     left: 0;
@@ -26,7 +26,7 @@
     z-index: 1;
 }
 
-.iniciar-sesion {
+.iniciarSesion {
     width: 50%;
     z-index: 2;
 }
@@ -102,23 +102,23 @@ button:active {
 }
 
 
-#iniciar-s,
-#registrar-s {
+#iniciarS,
+#registrarS {
     background-color: transparent;
     border: 2px solid #fff;
 }
 
-.container-derecho-activo .iniciar-sesion {
+.containerDerechoActivo .iniciarSesion {
     transform: translate(100%);
 }
 
-.container-derecho-activo .registrarse {
+.containerDerechActivo .registrarse {
     transform: translate(100%);
     opacity: 1;
     z-index: 5;
 }
 
-.overlay-container {
+.overlayContainer {
     position: absolute;
     top: 0;
     left: 50%;
@@ -129,7 +129,7 @@ button:active {
     z-index: 100;
 }
 
-.container-derecho-activo .overlay-container {
+.containerDerechoActivo .overlayContainer {
     transform: translateX(-100%);
 }
 
@@ -145,12 +145,28 @@ button:active {
     transition: transform 0.6s ease-in-out;
 }
 
-.container-derecho-activo .overlay {
+.containerDerechoActivo .overlay {
     transform: translateX(50%);
 }
 
-.overlay-izq,
-.overlay-der {
+.overlayIzq{
+    
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 650px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 30%;
+        scale: 90%; ;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+    
+}
+.overlayD {
     position: absolute;
     display: flex;
     align-items: center;
@@ -165,28 +181,28 @@ button:active {
     transition: transform 0.6s ease-in-out;
 }
 
-.overlay-izq {
-    transform: translateX(-20%);
+.overlayIzq {
+    transform: translateX(-13%);
 }
 
-.overlay-der {
+.overlayD {
     right: 0;
     transform: translateX(0);
 }
 
-.container-derecho-activo .overlay-izq {
+.containerDerechoActivo .overlayIzq {
     transform: translateX(0);
 }
 
-.container-derecho-activo .overlay-der {
+.containerDerechoActivo .overlayD {
     transform: translateX(20%);
 }
 
-.red-social {
+.redSocial {
     margin: 20px 0;
 }
 
-.red-social a {
+.redSocial a {
     height: 40px;
     width: 40px;
     margin: 0 5px;
@@ -199,4 +215,4 @@ button:active {
 
 i {
     font-size: 28px;
-}
+}       

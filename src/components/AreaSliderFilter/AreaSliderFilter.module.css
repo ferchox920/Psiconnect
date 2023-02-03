@@ -3,25 +3,28 @@
     width: 100%;
     height: 100px;
     background-color: white;
-    margin-bottom: 10px;
-    
+
 }
 
 .areas {
     background-color: white;
-    justify-content: center;    
+    justify-content: center;
+    height: 100%;
+    width: 100%;    
 }
 
 .ondas{
     background-image:url('../../assets/Areas/Ondas.svg');
     background-repeat: no-repeat;
     height: 100vh;
-    margin-bottom: -800px;
+        margin-bottom: -800px;
 }
 
 .titulo{
     display: flex;
     justify-content: center;
+    align-content: center;
+    font-size: 60px;
 }
 
 .parrafo{
@@ -32,7 +35,27 @@
 }
 
 .card{
+    justify-content: center;
+    scale: auto;
     
+}
+
+.container .titulo{
+    align-items: center;
+}
+
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+
+
+.swiper-button-prev .swiper-button-disabled{
+    scale: 10%;
 }
 
 

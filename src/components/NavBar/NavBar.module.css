@@ -1,6 +1,11 @@
 * {
   text-decoration: none;
 }
+
+
+
+
+
 .container {
   width: 100%;
   background-color: cadetblue;
@@ -13,19 +18,24 @@
 .logo {
   display: flex;
   justify-content: space-around;
+  font-family: 'Poppins';
+  font-style: 'Poppins';
 }
 .logo a {
   display: flex;
   justify-content: center;
   align-content: center;
   color: black;
+  font-family: 'Poppins';
+  font-size: 15px;
 }
 .logo h3 {
   margin-left: 9px;
-  font: normal 400 100% 'Adeston';
+  font: normal 400 100% 'Poppins';
+  display: flex;
 }
 .logo img {
-  width: 40px;
+  width: 30px;
 }
 
 .nav {
@@ -41,12 +51,26 @@
 
 .nav_list div {
   font: 'Poppins';
-  font-family: sans-serif;
+  font-family: 'Poppins';
   font-style: 'Medium';
-  font-size: 10px;
+  font-size: 15px;
   display: inline-block;
   padding: 0 40px;
-  color: black;
+  color: rgb(138, 21, 21);
+}
+
+.nav_list a{
+  color: rgb(221, 19, 19);
+  font-family: 'Poppins';
+  font-style: 'Light';
+  
+}
+
+.nav_list h3{
+  color:rgb(253, 253, 253);
+  font: 'Poppins';
+  font-style: 'Light';
+
 }
 
 .img_avatar{
