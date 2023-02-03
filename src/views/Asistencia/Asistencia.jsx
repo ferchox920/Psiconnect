@@ -1,10 +1,13 @@
 import React from "react";
+import style from "./Asistencia.module.css"
 import { Link } from "react-router-dom";
 
 const Asistencia = () => {
   return (
     //navBar
     <>
+    <div className={style.container}>
+
       <h3>Como te ayudamos </h3>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
@@ -50,6 +53,7 @@ const Asistencia = () => {
       <h3>
         <Link to={"/registerUser"}>Confia en nosotros</Link>
       </h3>
+    </div>
     </>
     //footer
   );

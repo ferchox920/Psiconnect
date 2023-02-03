@@ -3,7 +3,7 @@ import style from "./RegisterProfesional.module.css"
 import psicologia from "../../assets/Areas/LogoPsicologia.svg";
 
 
-import style from "./RegisterProfesional.module.css";
+
 
 
 const RegisterProfesional = () => {

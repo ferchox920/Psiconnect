@@ -8,7 +8,10 @@ import Footer from './components/Footer/Footer.jsx';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserByJWT } from './features/apiPetitions';
+
+import Asistencia from './views/Asistencia/Asistencia';
 import RegisterProfesional from './views/registerProfesional/RegisterProfesional';
+
 
 
 function App() {
@@ -24,6 +27,7 @@ function App() {
     <NavBar />
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path='/Asistencia' element={<Asistencia />} />
       <Route path='/registerProfesional' element={<RegisterProfesional />} />
       <Route path="/Details/:id" element={<Details />} />
       <Route path="/Professionals/:area" element={<Professionals />} />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { professionalRegister } from '../../features/apiPetitions';
 import  validationsForm  from './validator.js';
-
+import style from './index.module.css';
 export default function RegisterPsico() {
   
 const [ register, setRegister ] = useState({
@@ -51,7 +51,7 @@ const handleInputChange = (e) => {
 
 return (
     <div >
-    <form onSubmit={(e)=>handleOnSubmit(e)} className={classPsicoRegister}>
+    <form onSubmit={(e)=>handleOnSubmit(e)} className={style.classPsicoRegister}>
         <br/>
             <span className={spanError}>{errors.name}</span>
             <input
@@ -64,7 +64,7 @@ return (
             required/>
         <br/>
             <span 
-            className={spanError}>{errors.lastName}</span>
+            className={style.spanError}>{errors.lastName}</span>
             <input 
             className={errors.lastName? inputError:null} 
             type="text"
@@ -74,7 +74,7 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>
-            <span className={spanError}>{errors.email}</span>
+            <span className={style.spanError}>{errors.email}</span>
             <input 
             className={errors.email? inputError:null} 
             type="email" 
@@ -84,7 +84,7 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>
-            <span className={spanError}>{errors.DNI}</span>
+            <span className={style.spanError}>{errors.DNI}</span>
             <input 
             className={errors.DNI? inputError:null} 
             type="text"
@@ -94,7 +94,7 @@ return (
             onChange={(e)=>handleInputChange(e)}  
             required />
         <br/>
-            <span className={spanError}>{errors.password}</span>  
+            <span className={style.spanError}>{errors.password}</span>  
             <input
             className={errors.repeatPassword? inputError:null} 
             type="password"
