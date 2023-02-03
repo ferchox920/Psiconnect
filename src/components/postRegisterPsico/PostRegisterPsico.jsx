@@ -57,10 +57,10 @@ const handleInputChange = (e) => {
 }
     return(
         <div>
-            <form className='formProfessionalRegister'>
+            <form className={style.formProfessionalRegister}>
                 <label>Avatar</label>
                         <img 
-                        className='avatar'
+                        className={style.avatar}
                         src={register.avatarIMG}
                         alt='imgAvatar'
                         />
