@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { professionalRegister } from '../../features/apiPetitions';
 import  validationsForm  from './validator.js';
-import './RegisterPsico.css'
 
 export default function RegisterPsico() {
   

@@ -1,4 +1,4 @@
-import "./NavBar.css";
+import style from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/LogoCerebro.svg";
 import FormModal from "../modals/Modals";
@@ -13,9 +13,9 @@ export default function NavBar() {
   };
   return (
     <>
-      <div className='container'>
-        <div className='nav'>
-          <div className='logo'>
+      <div className={style.container}>
+        <div className={style.nav}>
+          <div className={style.logo}>
             <Link to={"/"}>
               <img src={logo} alt="logo" />
               <div>
@@ -23,7 +23,7 @@ export default function NavBar() {
               </div>
             </Link>
           </div>
-          <div className='nav_list'>
+          <div className={style.nav_list}>
             <div>
               <Link to={"/"}>
                 <h3>¿Qué es psiconnect? </h3>
@@ -47,7 +47,7 @@ export default function NavBar() {
             </div>
             {user ? (<div style={{display:'flex'}}>
               <h4>{user.name}</h4>
-              <img className='img_avatar' src={user.avatar || 'https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1'} alt={user.name} />
+              <img className={style.img_avatar} src={user.avatar || 'https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1'} alt={user.name} />
             </div>
             ) : (
               <>
