@@ -1,8 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProfessionalByAreas } from "../../features/apiPetitions";
-import { getAreas } from "../../features/apiPetitions"
+import ProfessionalsCard from "./Card/ProfessionalsCard";
+import style from "./index.module.css";
+import Pagination from "./pagination.jsx";
+import SearchBar from "./SearchBar";
+import AreaSliderFilter from "../../components/AreaSliderFilter/AreaSliderFilter";
 
 export default function Professionals() {
   const { area } = useParams();
@@ -14,30 +18,51 @@ export default function Professionals() {
     (state) => state.professionals.FilterProfessional
   );
 
-  useEffect(() => {  
+  useEffect(() => {
     getProfessionalByAreas({
       state: dispatch,
       area,
       type: "global",
-    })
+    });
   }, [area]);
-  console.log(professionals)
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
+  const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
+  const indexOfFirstProfessional =
+    indexOfLastProfessional - ProfessionalsPerPage;
 
   return (
-    <div style={{"margin-top":"14rem","margin-bottom":"14rem", "border":"2px solid red","width":"100%", "heigth":"auto", "display":"flex","flex-direction":"column","align-items":"center"}}>
- {/*    // barra de busqueda por nombre del profesional o especialdiad
+    <div className={style.container}>
+      <div className={style.containerSearchBar}>
+        <SearchBar />
+      </div>
+      <AreaSliderFilter />
+      {/*  
         // filtros por areas (reciclar componente) 
 */}
-    <div style={{ display: 'flex', "flex-direction": 'column', "align-items":"center", height:'auto', width:'90%'}}>
-      {professionals && professionals.map((e,i) => (
-        <ProfessionalsCard  key={i} id={e.id} name={e.name} lastName={e.lastName} email={e.email} avatar={e.avatar} skills={e.skills}/>
-      ))}
-
-      
-      {
-        //todos los profesionales
-      }
-    </div>
+      <div className={style.cardContainer}>
+        {professionals &&
+          professionals
+            .slice(indexOfFirstProfessional, indexOfLastProfessional)
+            .map((e, i) => (
+              <ProfessionalsCard
+                key={i}
+                id={e.id}
+                name={e.name}
+                lastName={e.lastName}
+                email={e.email}
+                avatar={e.avatar}
+                skills={e.skills}
+              />
+            ))}
+      </div>
+      <Pagination
+        ProfessionalsPerPage={ProfessionalsPerPage}
+        allProfessionals={professionals?.length}
+        currentPage={currentPage}
+        paginado={setCurrentPage}
+      />
     </div>
   );
 }

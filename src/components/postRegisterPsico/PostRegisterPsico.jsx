@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAreas } from '../../features/apiPetitions';
-import './PostRegister.css'
+import style from './index.module.css'
 
 const PostRegisterPsico = () => {
 

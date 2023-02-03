@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { userRegister } from "../../features/apiPetitions";
-import './RegisterUser.css'
+
 
 const validationsForm = (form) => {
   let errors = {};
@@ -47,6 +47,20 @@ export default function RegisterUser() {
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+  function handleCredentialResponse(response) {
+    
+    const dataUser = jwtDecode(response.credential);
+    console.log(dataUser)
+    const googleRegister = {
+      name: dataUser.given_name,
+      lastName: dataUser.family_name ? dataUser.family_name : "    ",
+      email: dataUser.email,
+      password: `TestPS1234`,
+      avatar:dataUser.picture
+    };
+    userRegister(googleRegister);
+    setSuccess(true);
+  }
 
   useEffect(() => {
     google.accounts.id.initialize({
@@ -54,23 +68,13 @@ export default function RegisterUser() {
         "299389682703-76ae343sl2fo2bgjdj8jgllgbusv8i0v.apps.googleusercontent.com",
       callback: handleCredentialResponse,
     });
-    google.accounts.id.renderButton(document.getElementById("SignInDiv"), {
+    google.accounts.id.renderButton(document.getElementById("SignInDiv2"), {
       thema: "inline",
       size: "large",
     });
   }, []);
 
-  function handleCredentialResponse(response) {
-    const dataUser = jwtDecode(response.credential);
-    const googleRegister = {
-      name: dataUser.given_name,
-      lastName: dataUser.family_name ? dataUser.family_name : "    ",
-      email: dataUser.email,
-      password: dataUser.email + "1" + "P",
-    };
-    userRegister(googleRegister);
-    setSuccess(true);
-  }
+
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -147,7 +151,7 @@ export default function RegisterUser() {
       />
 
       <input type="submit" value="Crear cuenta" />
-      <div id="SignInDiv" />
+      <div id="SignInDiv2" />
     </form>
   );
 }
