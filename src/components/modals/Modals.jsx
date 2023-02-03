@@ -10,7 +10,7 @@ export default function FormModal({ name, set }) {
   const [value, setValue] = useState(name);
   useEffect(()=> setValue(name),[])
   const click = (e) => {
-    if (e.target.id === `${style.modalContainer}`){ 
+    if (e.target.id === `modal-container`){ 
       setValue("")
       set(null)
     };

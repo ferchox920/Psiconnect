@@ -18,7 +18,7 @@ export default function LoginUser({set}) {
     const dataUser = jwtDecode(response.credential);
     const body = {
       email: dataUser.email,
-      password: `${dataUser.email}${dataUser.sub}A`,
+      password: `${dataUser.email.slice(0,10)}1A`,
     };
     userLogin(body);
   }
@@ -50,7 +50,6 @@ export default function LoginUser({set}) {
   return (
     <form onSubmit={submitHandler}>
       <h1>Iniciar sesión</h1>
-      <div className="red-social"></div>
       <p>Use su cuenta</p>
       <div id="SignInDiv" />
       <input

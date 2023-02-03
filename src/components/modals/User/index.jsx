@@ -22,19 +22,21 @@ export default function User({set}) {
       <div className={style.overlayContainer}>
         <div className={style.overlay}>
           <div className={style.overlayIzq}>
-            <h1>Bienvenido/a de nuevo</h1>
-            <p>
+            <h1 className={style.text}>Bienvenido/a de nuevo</h1>
+            <p className={style.text}>
               Para mantenerse conectado con nosotros por favor inicie sesión con
               su información personal
             </p>
             <button id={style.iniciarSesion} onClick={click}>Iniciar sesión</button>
           </div>
           <div className={style.overlayD}>
-            <h1>!Hola!</h1>
-            <p>
+            <div className={style.ContainerText}>
+            <h1 className={style.text} >!Hola!</h1>
+            <p className={style.text}>
               Ingresa tus datos personales y vive esta nueva aventura con
               nosotros
             </p>
+            </div>
             <button id={style.registrarse} onClick={click}>Registrarse</button>
           </div>
         </div>
