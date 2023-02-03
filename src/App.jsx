@@ -9,28 +9,30 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserByJWT } from './features/apiPetitions';
 
-import Asistencia from './views/Asistencia/Asistencia';
+import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from './views/registerProfesional/RegisterProfesional';
-
-
+import Asistencia from './views/Asistencia/Asistencia';
 
 function App() {
-  const dispacht = useDispatch();
-  useEffect(() =>{
-    getUserByJWT({
-      state:dispacht,
-      type:'global'
-    })}
-    ,[])
+  // const dispacht = useDispatch();
+  // useEffect(() =>{
+  //   getUserByJWT({
+  //     state:dispacht,
+  //     type:'global'
+  //   })}
+  //   ,[])
   return (
     <>
     <NavBar />
     <Routes>
+    {/* <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> */}
       <Route path="/" element={<Home />} />
       <Route path='/Asistencia' element={<Asistencia />} />
       <Route path='/registerProfesional' element={<RegisterProfesional />} />
       <Route path="/Details/:id" element={<Details />} />
+      <Route path="/Professionals" element={<Professionals />} />
       <Route path="/Professionals/:area" element={<Professionals />} />
+      
     </Routes>
     <Footer />
     </>

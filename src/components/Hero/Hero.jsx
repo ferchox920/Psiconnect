@@ -1,33 +1,29 @@
-import style from "./index.module.css";
-import React from "react";
-import img from "../../assets/hero/heroimg.png";
-import { Link } from "react-router-dom";
+import style from './index.module.css'
+import React,{ useState }  from "react";
+import hero from "../../assets/hero.png"
+import FormModal from "../modals/Modals";
 
-export default function Hero() {
-  return (
-    <div className={style.container}>
-      <div className={style.oneBox}>
-        <div className={style.firstInfo}>
-          <div className={style.firstInfoBox}>
-            <h1 className={style.title}>Estamos para ayudarte</h1>
-            <h2>Atención profesional y personalizada solo a un click</h2>
-      <div className={style.buttonContainer}>
-        <button className={style.button} >Registrate</button>
-      </div>
-          </div>
+
+export default function Hero(){
+    const [modal, setModal] = useState(null);
+    const openModal = () => {
+        setModal(true);
+      };
+    return(
+        //navbar
+        <div>
+        <div className={style.container}>
+            <div>
+            <h2>Registrate!</h2>
+            <img className={style.img} src={hero}  alt="" />
+            <h4>y Pide tu hora ya!! </h4><h4>Nuestros profesionales te atenderan 100% Online.</h4>
+                <button onClick={openModal}>
+                    Agendar
+                </button> 
+            </div>
         </div>
-        <div className={style.imgContainer}>
-          <img className={style.img} src={img} alt="Hero img" />
-        </div>
-      <div className={style.lastBox}>
-        <h2>¿Qué es psiconnect?</h2>
-        <h3>Psiconnect es una plataforma online que presta servicios de atencion psicologica....</h3>
-        <span>Contactanos</span>
-      </div>
-      </div>
-     
-     
-    </div>
-    
-  );
+        {modal && <FormModal name="User" set={setModal} />}
+        </div>      
+        //footer
+    )
 }

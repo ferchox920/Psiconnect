@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProfessionalByAreas } from "../../features/apiPetitions";
+import { getProfessionalsFilters } from "../../features/apiPetitions";
 import ProfessionalsCard from "./Card/ProfessionalsCard";
 import style from "./index.module.css";
 import Pagination from "./pagination.jsx";
@@ -18,10 +18,10 @@ export default function Professionals() {
     (state) => state.professionals.FilterProfessional
   );
 
-  useEffect(() => {
-    getProfessionalByAreas({
+  useEffect(() => {  
+    getProfessionalsFilters({
       state: dispatch,
-      area,
+      area: area ? area : null,
       type: "global",
     });
   }, [area]);
@@ -35,7 +35,7 @@ export default function Professionals() {
   return (
     <div className={style.container}>
       <div className={style.containerSearchBar}>
-        <SearchBar />
+        <SearchBar area={area}/>
       </div>
       <AreaSliderFilter />
       {/*  

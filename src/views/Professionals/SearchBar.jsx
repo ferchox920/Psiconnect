@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProfessionalsByName } from "../../features/apiPetitions";
+import { getProfessionalsFilters } from "../../features/apiPetitions";
 import style from './index.module.css'
 import lupa from '../../assets/hero/lupa.svg'
-export default function SearchBar(props) {
+export default function SearchBar({area}) {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
@@ -11,15 +11,16 @@ export default function SearchBar(props) {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getProfessionalsByName({
-      type: "global",
-      state: dispatch,
-      name: input,
-      lastName: input.split(" ")[1] || null,
-    });
-  };
+const handleSubmit=(e)=>{
+e.preventDefault()
+getProfessionalsFilters({
+    type: 'global',
+    state: dispatch,
+area: area ? area : null,
+name: input, 
+lastName: input.split(' ')[1] || null
+})
+}
   return (
     <div className={style.inputCointer}>
       <input

@@ -1,12 +1,13 @@
 import React from "react";
 import style from "./Asistencia.module.css"
 import { Link } from "react-router-dom";
+import AreaSliderFilter from "../../components/AreaSliderFilter/AreaSliderFilter";
 
 const Asistencia = () => {
   return (
     //navBar
     <>
-    <div className={style.container}>
+    <div className={style.countainer}>
 
       <h3>Como te ayudamos </h3>
       <p>
@@ -15,25 +16,7 @@ const Asistencia = () => {
         incidunt!
       </p>
 
-      <Link to={"/areas"}>
-        <img src="" alt="area1" />
-      </Link>
-
-      <Link to={"/areas"}>
-        <img src="" alt="area2" />
-      </Link>
-
-      <Link to={"/areas"}>
-        <img src="" alt="area3" />
-      </Link>
-
-      <Link to={"/areas"}>
-        <img src="" alt="area4" />
-      </Link>
-
-      <Link to={"/areas"}>
-        <img src="" alt="area5" />
-      </Link>
+      <AreaSliderFilter/>
 
       <br />
       <h3>Elige el profesional de tu preferencia</h3>

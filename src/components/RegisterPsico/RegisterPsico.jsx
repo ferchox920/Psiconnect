@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { professionalRegister } from '../../features/apiPetitions';
 import  validationsForm  from './validator.js';
-import style from './index.module.css';
+import { classPsicoRegister,spanError, inputError} from './index.module.css'
+
 export default function RegisterPsico() {
   
 const [ register, setRegister ] = useState({
@@ -27,13 +28,10 @@ const handleOnSubmit = async (e) => {
     verifyRepeatPassword()
     if(!Object.keys(errors).at(0)){
         const registerProfessional = await professionalRegister(register)
-        console.log(registerProfessional)
         if(registerProfessional.data.errors || registerProfessional.status === 400){
             alert(registerProfessional.data.errors?registerProfessional.data.errors : registerProfessional.data)
-        }else{
-            alert('Enviado')
-        }
-    }
+        }else alert('El formulario fue enviado')
+    }else alert('quedan errores')
 }
 
 const handleInputChange = (e) => {
@@ -51,7 +49,7 @@ const handleInputChange = (e) => {
 
 return (
     <div >
-    <form onSubmit={(e)=>handleOnSubmit(e)} className={style.classPsicoRegister}>
+    <form onSubmit={(e)=>handleOnSubmit(e)} className={classPsicoRegister}>
         <br/>
             <span className={spanError}>{errors.name}</span>
             <input
@@ -64,7 +62,7 @@ return (
             required/>
         <br/>
             <span 
-            className={style.spanError}>{errors.lastName}</span>
+            className={spanError}>{errors.lastName}</span>
             <input 
             className={errors.lastName? inputError:null} 
             type="text"
@@ -74,7 +72,7 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>
-            <span className={style.spanError}>{errors.email}</span>
+            <span className={spanError}>{errors.email}</span>
             <input 
             className={errors.email? inputError:null} 
             type="email" 
@@ -84,7 +82,7 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>
-            <span className={style.spanError}>{errors.DNI}</span>
+            <span className={spanError}>{errors.DNI}</span>
             <input 
             className={errors.DNI? inputError:null} 
             type="text"
@@ -94,7 +92,7 @@ return (
             onChange={(e)=>handleInputChange(e)}  
             required />
         <br/>
-            <span className={style.spanError}>{errors.password}</span>  
+            <span className={spanError}>{errors.password}</span>  
             <input
             className={errors.repeatPassword? inputError:null} 
             type="password"
@@ -118,7 +116,9 @@ return (
             <input
             id='idSubmitRegister' 
             type="submit" 
-            value="Enviar"/>
+            value="Enviar"
+            disabled={Object.keys(errors).at(0)? true: false}
+            />
     </form>
     </div>
   )

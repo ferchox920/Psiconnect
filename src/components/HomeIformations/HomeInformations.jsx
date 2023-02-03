@@ -3,6 +3,7 @@ import conectateimg from '../../assets/Conectate.svg';
 import agendaimg from '../../assets/Agenda.svg';
 import especialistaimg from '../../assets/Especialista.svg';
 
+
 export default function HomeInformations() {
   return (
     <div className={style.container}>
