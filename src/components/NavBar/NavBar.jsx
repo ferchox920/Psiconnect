@@ -26,7 +26,7 @@ export default function NavBar() {
           <div className={style.nav_list}>
             <div>
               <Link to={"/"}>
-                <h3>¿Qué es psiconnect? </h3>
+                <h3>¿Qué es Psiconnect? </h3>
               </Link>
             </div>
             <div>

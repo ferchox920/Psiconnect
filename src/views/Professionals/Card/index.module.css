@@ -1,0 +1,27 @@
+.Link {
+  text-decoration: none;
+  color: black;
+}
+.container {
+    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  width: 400px;
+  height: 200px;
+  margin: 10px;
+  border-radius: 10px;
+}
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgContainer img {
+  width: 100%;
+}
+.dataContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
