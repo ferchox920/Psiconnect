@@ -9,7 +9,7 @@ export default function FormModal({ name, set }) {
   const [value, setValue] = useState(name);
   useEffect(()=> setValue(name),[])
   const click = (e) => {
-    if (e.target.id === "modal-container"){ 
+    if (e.target.id === "modalContainer"){ 
       setValue("")
       set(null)
     };
@@ -17,7 +17,7 @@ export default function FormModal({ name, set }) {
   switch (value) {
     case "User":
       return (
-        <div onClick={click} className={`modal-container`} id="modal-container">
+        <div onClick={click} className={`modalContainer`} id="modalContainer">
           <User set={setValue} />
         </div>
       );
