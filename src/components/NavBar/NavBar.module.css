@@ -3,7 +3,7 @@
 }
 .container {
   width: 100%;
-  background-color: rgb(225, 29, 46);
+  background-color: var(--chalk);
   height: 90px;
   position: fixed;
   top: 0;
@@ -21,6 +21,7 @@
 }
 .logo h3 {
   margin-left: 7px;
+  font: normal 400 100% 'Adeston';
 }
 .logo img {
   width: 40px;
