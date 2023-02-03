@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import style from './index.module.css'
 
 const PostRegisterPsico = () => {
 

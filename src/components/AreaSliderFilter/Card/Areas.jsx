@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom'
-import './Areas.css'
+
+import style from './Areas.module.css'
 
 export default function Areas(props){
     return(
-        <div className='container'>
+        <div className={style.container}>
             
-        <div className = 'card'>
+        <div className = {style.card}>
                 <Link to = {`/Professionals/${props.area}`}>
-                <div className = 'image'>
+                <div className = {style.image}>
                 <img  src={props.img} alt={props.area} />   
                 </div>
                 </Link>
-                <div classname = 'titulo'>
-                <h2 className='titulo'>{props.area}</h2>
+                <div classname = {style.titulo}>
+                <h2 className= {style.titulo}>{props.area}</h2>
                 </div>
         </div>
 
