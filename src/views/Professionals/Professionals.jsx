@@ -6,6 +6,7 @@ import ProfessionalsCard from "./Card/ProfessionalsCard";
 import style from "./index.module.css";
 import Pagination from "./pagination.jsx";
 import SearchBar from "./SearchBar";
+import AreaSliderFilter from "../../components/AreaSliderFilter/AreaSliderFilter";
 
 export default function Professionals() {
   const { area } = useParams();
@@ -28,30 +29,33 @@ export default function Professionals() {
   const [currentPage, setCurrentPage] = useState(1);
   const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
-  const indexOfFirstProfessional = indexOfLastProfessional - ProfessionalsPerPage;
+  const indexOfFirstProfessional =
+    indexOfLastProfessional - ProfessionalsPerPage;
 
   return (
     <div className={style.container}>
       <div className={style.containerSearchBar}>
-
-      <SearchBar />
+        <SearchBar />
       </div>
+      <AreaSliderFilter />
       {/*  
         // filtros por areas (reciclar componente) 
 */}
       <div className={style.cardContainer}>
         {professionals &&
-          professionals.slice(indexOfFirstProfessional, indexOfLastProfessional).map((e, i) => (
-            <ProfessionalsCard
-              key={i}
-              id={e.id}
-              name={e.name}
-              lastName={e.lastName}
-              email={e.email}
-              avatar={e.avatar}
-              skills={e.skills}
-            />
-          ))}
+          professionals
+            .slice(indexOfFirstProfessional, indexOfLastProfessional)
+            .map((e, i) => (
+              <ProfessionalsCard
+                key={i}
+                id={e.id}
+                name={e.name}
+                lastName={e.lastName}
+                email={e.email}
+                avatar={e.avatar}
+                skills={e.skills}
+              />
+            ))}
       </div>
       <Pagination
         ProfessionalsPerPage={ProfessionalsPerPage}
