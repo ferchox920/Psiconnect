@@ -3,11 +3,15 @@
 }
 .container {
   width: 100%;
-  background-color: rgb(225, 29, 46);
+  background-color: #D9D9D9;
   height: 90px;
   position: fixed;
   top: 0;
   z-index: 2;
+}
+
+.titlelogo{
+  font-family: 'Adeston', 'poppins';
 }
 
 .logo {

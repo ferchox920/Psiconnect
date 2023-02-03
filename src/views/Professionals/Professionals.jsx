@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfessionalByAreas } from "../../features/apiPetitions";
-import { getAreas } from "../../features/apiPetitions"
+
 
 export default function Professionals() {
   const { area } = useParams();
