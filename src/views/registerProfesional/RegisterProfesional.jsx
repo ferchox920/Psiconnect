@@ -1,6 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import psicologia from "../../assets/Asistencia/LogoPsicologia.svg";
+import RegisterPsico from "../../components/RegisterPsico/RegisterPsico";
+
 import style from "./RegisterProfesional.module.css";
 
 const RegisterProfesional = () => {
@@ -33,9 +35,7 @@ const RegisterProfesional = () => {
           rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
           incidunt!
         </p>
-        <h3>
-          <Link to={"/registerUser"}>Confia en nosotros</Link>
-        </h3>
+        <RegisterPsico/>
       </div>
     </>
   );

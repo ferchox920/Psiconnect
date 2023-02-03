@@ -13,7 +13,7 @@ const Asistencia = () => {
     //navBar
     <>
       <div className={style.countainer}>
-        <h3>Como te ayudamos </h3>
+        <h3>¿Como te ayudamos?</h3>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
           rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
