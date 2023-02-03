@@ -27,7 +27,7 @@ export default function User({set}) {
               Para mantenerse conectado con nosotros por favor inicie sesión con
               su información personal
             </p>
-            <button id={style.iniciarS} onClick={click}>Iniciar sesión</button>
+            <button id={style.iniciarSesion} onClick={click}>Iniciar sesión</button>
           </div>
           <div className={style.overlayD}>
             <h1>!Hola!</h1>

@@ -5,11 +5,12 @@ import style from "./modal.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
+
 export default function FormModal({ name, set }) {
   const [value, setValue] = useState(name);
   useEffect(()=> setValue(name),[])
   const click = (e) => {
-    if (e.target.id === "modal-container"){ 
+    if (e.target.id === `${style.modalContainer}`){ 
       setValue("")
       set(null)
     };
