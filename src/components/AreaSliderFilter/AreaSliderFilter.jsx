@@ -52,9 +52,9 @@ export default function AreaSliderFilter() {
             return (
               <SwiperSlide key={e.id}>
                 <div className={style.card}>
-                  {/* <Link to = {`/Professionals/${e.area}`}> */}
+                  <Link to = {`/Professionals/${e.area}`}>
                   <Areas img={e.image} area={e.area} />
-                  {/* </Link> */}
+                  </Link>
                 </div>
               </SwiperSlide>
             );
