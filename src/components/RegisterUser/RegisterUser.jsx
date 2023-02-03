@@ -55,7 +55,7 @@ export default function RegisterUser() {
       name: dataUser.given_name,
       lastName: dataUser.family_name ? dataUser.family_name : "    ",
       email: dataUser.email,
-      password: `Test1234`,
+      password: `TestPS1234`,
       avatar:dataUser.picture
     };
     userRegister(googleRegister);

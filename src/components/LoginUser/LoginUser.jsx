@@ -18,7 +18,7 @@ export default function LoginUser({set}) {
     const dataUser = jwtDecode(response.credential);
     const body = {
       email: dataUser.email,
-      password: `Test1234`,
+      password: `TestPS1234`,
     };
     userLogin(body);
   }
