@@ -1,6 +1,5 @@
 .container{
     /* width: 100%;*/
-    height: 100vh; 
     background: linear-gradient(180deg, #5AE8E0 0%, #F4F1BB 100%);
     display: flex;
     flex-direction: column;
@@ -18,10 +17,10 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 250px;
 }
 .cardscontainer{
     display: flex;
     justify-content: space-evenly;
     margin: 1%;
 }
+

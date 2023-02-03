@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './AreaSliderFilter.css'
 import  Areas  from './Card/Areas.jsx'
 import { getAreas } from '../../features/apiPetitions'
 import { Link } from 'react-router-dom'
@@ -9,6 +8,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
 import {Autoplay, Pagination, Navigation} from 'swiper'
 import {Swiper, SwiperSlide} from 'swiper/react'
+import style from './AreaSliderFilter.module.css'
 
 export default function AreaSliderFilter(){
 
@@ -22,13 +22,15 @@ export default function AreaSliderFilter(){
     , [])
 
     return(
-        <div className='areas'>
-            <div className='ondas'> {/*Se necesita saber como hacer que el svg abarque todo el ancho de pagina*/}
+        
+        <div className={style.areas}>
+           <div className={style.ondas}> {/*Se necesita saber como hacer que el svg abarque todo el ancho de pagina*/}
                 <img src='' alt=''/>
             </div>
-            <h1 className='titulo'>Areas</h1>
-            <p className = 'parrafo'>Trabajamos para ayudarte con retos personales como los siguientes:</p>
-            <div className='container'>
+           
+            <h1 className={style.titulo}>Areas</h1>
+            <p className={style.parrafo}>Trabajamos para ayudarte con retos personales como los siguientes:</p>
+            <div className={style.container}>
                 <Swiper
                     modules={[Pagination, Autoplay, Navigation]}
                     autoplay = {{
@@ -46,7 +48,7 @@ export default function AreaSliderFilter(){
                             return(
                                 <SwiperSlide key = {e.id}>
                                 
-                                <div clasName = 'card'>
+                                <div className ={style.card}>
                                 {/* <Link to = {`/Professionals/${e.area}`}> */}
                                     <Areas img={e.image} area={e.area}/>
                                 {/* </Link> */}
@@ -58,7 +60,7 @@ export default function AreaSliderFilter(){
                         })} 
                 </Swiper>
             </div>
-                <div className = 'pagination'>
+                <div className = {style.pagination}>
             </div>
             
         </div>
