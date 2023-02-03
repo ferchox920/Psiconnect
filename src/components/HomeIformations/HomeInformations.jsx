@@ -19,7 +19,8 @@ export default function HomeInformations() {
             <img className={style.img} src={conectateimg} alt="" />
             <div>
               <h3>Conectate</h3>
-              <p>Contamos con un gran alcance para que puedas recibir nuestra ayuda estés donde estés.</p>
+              <p>Contamos con un gran alcance 
+                para que puedas recibir nuestra ayuda estés donde estés.</p>
             </div>
           </div>
         </div>

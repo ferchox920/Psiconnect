@@ -17,6 +17,9 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    justify-items: auto;
+    font-family: 'Poppins';
+    font-style: normal;
 }
 .cardscontainer{
     display: flex;
