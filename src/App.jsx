@@ -23,7 +23,7 @@ function App() {
     <>
     <NavBar />
     <Routes>
-    <Route path='/profesional/postRegister' element={<PostRegisterPsico />} />
+    {/* <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> */}
       <Route path="/" element={<Home />} />
       <Route path='/registerProfesional' element={<RegisterPsico />} />
       <Route path="/Details/:id" element={<Details />} />
