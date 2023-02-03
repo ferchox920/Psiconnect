@@ -7,8 +7,8 @@ export default function Home(){
     return(
         <div>
             <Hero />
-            {/* <AreaSliderFilter />
-            <HomeInformations /> */}
+            <AreaSliderFilter />
+            <HomeInformations />
         </div>
     )
 }
