@@ -1,23 +1,33 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import style from './index.module.css'
+import { getAreas } from '../../features/apiPetitions';
+import style from './PostRegisterPsico.module.css'
 
 const PostRegisterPsico = () => {
 
 const [ register, setRegister ] = useState({
     linkedin:'',
     description:'',
-    skills:[],
     Profesión:'',
+    area:'',
     avatar:'',
-    avatarIMG:''
+    avatarIMG:'',
+    skills:[]
 })
+const [ areas, setAreas ] = useState([])
 
 useEffect(()=>{
     let img = document.querySelector('#deleteImageAvatar')
     if(register.avatar === '') img.disabled = true
     else img.disabled = false;
  },[register.avatar])
+
+useEffect(()=>{
+    getAreas({
+        state: setAreas,
+      })
+},[])
+
 
  const handleInputDeletedAvatar = () => {
     if(!register.avatar && !register.avatarIMG) return
@@ -37,19 +47,25 @@ const handleInputChangeAvatar = (e) =>{
         avatarIMG: URL.createObjectURL(e.target.files[0])
     })
 }
-
+const handleInputChange = (e) => {
+    console.log(e.target.name, e.target.value)
+    setRegister({
+        ...register,
+        [e.target.name] : e.target.value,
+    })
+    console.log(register)
+}
     return(
         <div>
-            <form>
+            <form className={style.formProfessionalRegister}>
                 <label>Avatar</label>
-                <div>
-                    <img 
-                    className={avatar}
-                    src={register.avatarIMG}
-                    alt='imgAvatar'
-                    />
+                        <img 
+                        className={style.avatar}
+                        src={register.avatarIMG}
+                        alt='imgAvatar'
+                        />
                     <div>
-                        <input
+                    <input
                         id='imageAvatar'
                         type="file" 
                         accept="image/*"
@@ -64,7 +80,17 @@ const handleInputChangeAvatar = (e) =>{
                         onClick={handleInputDeletedAvatar}
                         />
                     </div>
-                </div> 
+                    <br/>
+                    <label>Area</label>
+                    <select name="area" onChange={(e)=>handleInputChange(e)} required>
+                        <option key='defaultSelect' value='defaultSelect' selected disabled>seleccionar</option>
+                    {   areas.map(el=>{
+                            return(
+                                <option key={el.area} value={el.area} >{el.area}</option>
+                            )
+                        })
+                    }
+                    </select>
             </form>
         </div>
     )
