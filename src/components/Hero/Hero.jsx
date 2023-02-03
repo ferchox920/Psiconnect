@@ -20,7 +20,9 @@ export default function Hero() {
           <img className={style.img} src={img} alt="Hero img" />
         </div>
       <div className={style.lastBox}>
-        
+        <h2>¿Qué es psiconnect?</h2>
+        <h3>Psiconnect es una plataforma online que presta servicios de atencion psicologica....</h3>
+        <span>Contactanos</span>
       </div>
       </div>
      

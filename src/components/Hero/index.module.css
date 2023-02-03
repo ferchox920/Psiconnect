@@ -78,5 +78,7 @@ h2 {
 .lastBox{
     border: 1px solid red;
     width: 100%;
+    position: relative;
+    bottom: 100px;
     height: 200px;
 }
