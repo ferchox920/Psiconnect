@@ -5,8 +5,10 @@ import { setUser } from "./userSlice.js";
 export async function userRegister(body) {
   try {
     const peticion = await axios.post(`/user/register`, body);
+    localStorage.setItem("tkn", peticion?.data);
     return peticion;
   } catch (error) {
+    console.log(error);
     return error.response;
   }
 }
@@ -21,7 +23,6 @@ export async function professionalRegister(body) {
 export async function userLogin(body) {
   try {
     const peticion = await axios.post(`/user/login`, body);
-    console.log(peticion?.data);
     localStorage.setItem("tkn", peticion?.data);
     return peticion;
   } catch (error) {
@@ -41,11 +42,10 @@ export async function changePassword(body) {
     return error.response;
   }
 }
-export async function getAreas(newState) {
+export async function getAreas({state}) {
   try {
     const peticion = await axios.get("/areas");
-    console.log(peticion.data, 'aqui')
-    newState(peticion.data);
+    state(peticion.data);
   } catch (error) {
     return error.response;
   }

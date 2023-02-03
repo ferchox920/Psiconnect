@@ -1,14 +1,102 @@
-.container{
-    height: 100vh;
-    background-color: grey;
-    padding: 90px;
-    text-align: center;
-}    
+.container {
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+}
+.oneBox {
+  height: 47%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
 
-.img{
-    padding: 30px;
-    border-radius: 50%;
-    width: 30%;
-    height: 30%;
-    text-align: center;
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 500px;
+  margin-top: 30%;
+}
+.img {
+  border-radius: 50%;
+  width: 90%;
+}
+
+.firstInfo {
+  display: flex;
+  align-items: center;
+}
+.firstInfoBox {
+  width: 100%;
+  position: relative;
+  height: auto;
+}
+.title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 90%;
+  width: 100%;
+  padding-left: 40px;
+  text-align: start;
+}
+h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 40px;
+  line-height: 95%;
+  text-align: start;
+  padding-left: 80px;
+}
+.buttonContainer {
+  width: 50%;
+  margin-top: 0px;
+  height: auto;
+  padding: 0px;
+}
+
+.button {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 1  00;
+  font-size: 30px;
+  line-height: 120%;
+  box-sizing: border-box;
+  width: 330px;
+  height: 70px;
+  /* Color/ColorFont/Negro */
+
+  background: #000000;
+  border: 3px solid #000000;
+  border-radius: 20px;
+}
+.lastBox{
+    width: 100%;
+    position: relative;
+    bottom: 100px;
+    height: 400px;
+}
+
+.lastBox span{
+  display: flex;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 30px;
+  line-height: 100%;
+  /* or 38px */
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  width: 330px;
+  height: 70px;
+  color: white;
+  position: absolute;
+  margin-left: 11%;
+  /* Color/ColorFont/Negro */
+  background: #000000;
+  border: 3px solid #000000;
+  border-radius: 20px;
 }
