@@ -27,7 +27,7 @@ function App() {
       <Route path="/Details/:id" element={<Details />} />
       <Route path="/Professionals/:area" element={<Professionals />} />
     </Routes>
-    <Footer />
+    {/* <Footer /> */}
     </>
   );
 }
