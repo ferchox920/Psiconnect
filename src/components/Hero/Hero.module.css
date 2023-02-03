@@ -41,15 +41,19 @@
   padding-left: 40px;
   text-align: start;
 }
+
 h2 {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 200;
-  font-size: 40px;
-  line-height: 95%;
   text-align: start;
-  padding-left: 80px;
+  font: var(--hTitle);
+  margin: 0;
 }
+
+h4{
+  font: var(--paragraph);
+  font-size: 150%;
+  margin: 5%;
+}
+
 .buttonContainer {
   width: 50%;
   margin-top: 0px;
@@ -99,4 +103,18 @@ h2 {
   background: #000000;
   border: 3px solid #000000;
   border-radius: 20px;
+}
+
+.heroContainer{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  margin: 15% 0 7% 0;
+}
+
+.left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
 }
