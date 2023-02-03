@@ -1,6 +1,6 @@
 .container{
     height: 100vh;
-    background-color: grey;
+    background-color: var(--white);
     padding: 90px;
     text-align: center;
 }    
