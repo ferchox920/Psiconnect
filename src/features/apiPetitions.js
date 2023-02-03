@@ -41,11 +41,10 @@ export async function changePassword(body) {
     return error.response;
   }
 }
-export async function getAreas(newState) {
+export async function getAreas({state}) {
   try {
     const peticion = await axios.get("/areas");
-    console.log(peticion.data, 'aqui')
-    newState(peticion.data);
+    state(peticion.data);
   } catch (error) {
     return error.response;
   }
