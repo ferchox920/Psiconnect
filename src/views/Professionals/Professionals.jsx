@@ -35,7 +35,7 @@ export default function Professionals() {
   return (
     <div className={style.container}>
       <div className={style.containerSearchBar}>
-        <SearchBar />
+        <SearchBar area={area}/>
       </div>
       <AreaSliderFilter />
       {/*  

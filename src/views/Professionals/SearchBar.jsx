@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getProfessionalsFilters } from "../../features/apiPetitions";
 import style from './index.module.css'
 import lupa from '../../assets/hero/lupa.svg'
-export default function SearchBar(props) {
+export default function SearchBar({area}) {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 

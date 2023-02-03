@@ -42,7 +42,7 @@ export async function changePassword(body) {
     return error.response;
   }
 }
-export async function getAreas({state}) {
+export async function getAreas(state) {
   try {
     const peticion = await axios.get("/areas");
     state(peticion.data);
