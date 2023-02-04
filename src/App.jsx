@@ -4,14 +4,11 @@ import Home from "./views/Home/Home";
 import Details from './views/Details/Details';
 import Professionals from './views/Professionals/Professionals';
 import NavBar from './components/NavBar/NavBar';
-import Footer from './components/Footer/Footer';
+import Footer from './components/Footer/Footer.jsx';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserByJWT } from './features/apiPetitions';
-
-import Asistencia from './views/Asistencia/Asistencia';
-import RegisterProfesional from './views/registerProfesional/RegisterProfesional';
-
+import RegisterPsico from './components/RegisterPsico/RegisterPsico';
 
 function App() {
   const dispacht = useDispatch();
@@ -25,12 +22,12 @@ function App() {
     <>
     <NavBar />
     <Routes>
+    {/* <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> */}
       <Route path="/" element={<Home />} />
-
+      <Route path='/registerProfesional' element={<RegisterPsico />} />
       <Route path="/Details/:id" element={<Details />} />
-      <Route path="/registerProfesional" element={<RegisterProfesional/>} />
-      <Route path="/Asistencia" element={<Asistencia />} />
       <Route path="/Professionals/:area" element={<Professionals />} />
+      
     </Routes>
     <Footer />
     </>

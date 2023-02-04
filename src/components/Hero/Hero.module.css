@@ -1,0 +1,122 @@
+.container {
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+}
+.oneBox {
+  height: 47%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 500px;
+  margin-top: 30%;
+}
+.img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.firstInfo {
+  display: flex;
+  align-items: center;
+}
+.firstInfoBox {
+  width: 100%;
+  position: relative;
+  height: auto;
+}
+.title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 90%;
+  width: 100%;
+  padding-left: 40px;
+  text-align: start;
+}
+
+h2 {
+  text-align: start;
+  font: var(--hTitle);
+  font-size: 6rem;
+  margin: 0;
+}
+
+h4{
+  font: var(--paragraph);
+  font-size: 200%;
+  margin: 5%;
+}
+
+.buttonContainer {
+  width: 50%;
+  margin-top: 0px;
+  height: auto;
+  padding: 0px;
+}
+
+.button {
+  color: #fff;
+  background: #000000;
+  font: var(--paragraph);
+  font-size: 200%;
+  /* padding: 12px 55px;
+  margin: 20px; */
+  border-radius: 20px;
+  border: 1px solid #000000;
+  outline: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+.lastBox{
+    width: 100%;
+    position: relative;
+    bottom: 100px;
+    height: 400px;
+}
+
+.lastBox span{
+  display: flex;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 30px;
+  line-height: 100%;
+  /* or 38px */
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  width: 330px;
+  height: 70px;
+  color: white;
+  position: absolute;
+  margin-left: 11%;
+  /* Color/ColorFont/Negro */
+  background: #000000;
+  border: 3px solid #000000;
+  border-radius: 20px;
+}
+
+.heroContainer{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  margin: 10% 0 6.8% 0;
+}
+
+.left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+}
