@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { professionalRegister } from '../../features/apiPetitions';
 import  validationsForm  from './validator.js';
-import { classPsicoRegister,spanError, inputError} from './index.module.css'
+import { classPsicoRegister,spanError, inputError} from './RegisterPsico.module.css'
 
 export default function RegisterPsico() {
   

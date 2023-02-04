@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { userLogin } from "../../features/apiPetitions";
 import { validate } from "./validate";
-import style from "./index.module.css";
+import style from "./LoginUser.module.css";
 
 export default function LoginUser({set}) {
   const [errors, setErrors] = useState({

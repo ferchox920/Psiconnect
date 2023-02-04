@@ -24,7 +24,6 @@ export default function AreaSliderFilter() {
         <>
           <div className={style.ondas}>
             {" "}
-            {/*Se necesita saber como hacer que el svg abarque todo el ancho de pagina*/}
             <img src="" alt="" />
           </div>
 

@@ -20,7 +20,7 @@ export default function Hero(){
                 <div className={style.left}>
                     <h2>Registrate!</h2>
                     <h4>y Pide tu hora ya!! <br /> Nuestros profesionales te atenderan 100% Online. </h4>
-                    <button onClick={openModal}>
+                    <button className={style.button} onClick={openModal}>
                         Agendar
                     </button> 
                 </div>

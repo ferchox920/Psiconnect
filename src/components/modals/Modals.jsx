@@ -1,7 +1,7 @@
 import React from "react";
 import LoginUser from "../LoginUser/LoginUser";
 import User from "./User";
-import style from "./modal.module.css";
+import style from "./Modals.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
