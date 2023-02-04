@@ -27,7 +27,7 @@ export default function User({set}) {
               Para mantenerse conectado con nosotros por favor inicie sesión con
               su información personal
             </p>
-            <button id={style.iniciarSesion} onClick={click}>Iniciar sesión</button>
+            <button className = {style.button} id={style.iniciarSesion} onClick={click}>Iniciar sesión</button>
           </div>
           <div className={style.overlayD}>
             <div className={style.ContainerText}>
@@ -37,7 +37,7 @@ export default function User({set}) {
               nosotros
             </p>
             </div>
-            <button id={style.registrarse} onClick={click}>Registrarse</button>
+            <button className= {style.button}id={style.registrarse} onClick={click}>Registrarse</button>
           </div>
         </div>
       </div>
