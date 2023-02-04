@@ -40,6 +40,9 @@
   transition: transform 80ms ease-in;
   cursor: pointer;
 }
+.button img{
+  width: 30px;
+}
 .cardContainer {
   width: 100%;
   margin: 0;
