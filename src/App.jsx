@@ -9,18 +9,18 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserByJWT } from './features/apiPetitions';
 
-import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
+// import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from './views/registerProfesional/RegisterProfesional';
 import Asistencia from './views/Asistencia/Asistencia';
 
 function App() {
-  // const dispacht = useDispatch();
-  // useEffect(() =>{
-  //   getUserByJWT({
-  //     state:dispacht,
-  //     type:'global'
-  //   })}
-  //   ,[])
+  const dispacht = useDispatch();
+  useEffect(() =>{
+    getUserByJWT({
+      state:dispacht,
+      type:'global'
+    })}
+    ,[])
   return (
     <>
     <NavBar />

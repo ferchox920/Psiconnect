@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./AreaSliderFilter.module.css";
+import ondas from '../../assets/areas/Ondas.svg'
 
 export default function AreaSliderFilter() {
   const [areas, setAreas] = useState();
@@ -24,7 +25,6 @@ export default function AreaSliderFilter() {
         <>
           <div className={style.ondas}>
             {" "}
-            <img src="" alt="" />
           </div>
 
           <h1 className={style.titulo}>Areas</h1>
