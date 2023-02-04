@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LoginUser from "../../LoginUser/LoginUser";
 import RegisterUser from "../../RegisterUser/RegisterUser";
-import "./UserModal.css";
+import style from "./UserModal.module.css";
 
 export default function User({set}) {
     const [switcher, setSwitcher] = useState(false);
@@ -10,32 +10,34 @@ export default function User({set}) {
         setSwitcher(!switcher)
     }
   return (
-    <div className= {` User-modal ${
-        switcher ? "container-derecho-activo" : null
+    <div className= {`${style.Usermodal} ${
+        switcher ? style.containerDerechoActivo : null
       }`}>
-         <div className="registrarse">
+         <div className={style.registrarse}>
             <RegisterUser />
         </div>
-        <div className="iniciar-sesion">
+        <div className={style.iniciarSesion}>
             <LoginUser set={set} />
         </div>
-      <div className="overlay-container">
-        <div className="overlay">
-          <div className="overlay-izq">
-            <h1>Bienvenido/a de nuevo</h1>
-            <p>
+      <div className={style.overlayContainer}>
+        <div className={style.overlay}>
+          <div className={style.overlayIzq}>
+            <h1 className={style.text}>Bienvenido/a de nuevo</h1>
+            <p className={style.text}>
               Para mantenerse conectado con nosotros por favor inicie sesión con
               su información personal
             </p>
-            <button id="iniciar-s" onClick={click}>Iniciar sesión</button>
+            <button id={style.iniciarSesion} onClick={click}>Iniciar sesión</button>
           </div>
-          <div className="overlay-der">
-            <h1>!Hola!</h1>
-            <p>
+          <div className={style.overlayD}>
+            <div className={style.ContainerText}>
+            <h1 className={style.text} >!Hola!</h1>
+            <p className={style.text}>
               Ingresa tus datos personales y vive esta nueva aventura con
               nosotros
             </p>
-            <button id="registrar-s" onClick={click}>Registrarse</button>
+            </div>
+            <button id={style.registrarse} onClick={click}>Registrarse</button>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { userLogin } from "../../features/apiPetitions";
 import { validate } from "./validate";
+import style from "./LoginUser.module.css";
 
 export default function LoginUser({set}) {
   const [errors, setErrors] = useState({
@@ -17,7 +18,7 @@ export default function LoginUser({set}) {
     const dataUser = jwtDecode(response.credential);
     const body = {
       email: dataUser.email,
-      password: `${dataUser.email}${dataUser.sub}A`,
+      password: `TestPS1234`,
     };
     userLogin(body);
   }
@@ -49,7 +50,6 @@ export default function LoginUser({set}) {
   return (
     <form onSubmit={submitHandler}>
       <h1>Iniciar sesión</h1>
-      <div className="red-social"></div>
       <p>Use su cuenta</p>
       <div id="SignInDiv" />
       <input
