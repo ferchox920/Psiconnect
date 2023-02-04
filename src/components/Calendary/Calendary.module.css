@@ -1,0 +1,88 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  padding: 10px;
+}
+
+.week {
+  display: flex;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.weekDay {
+  font-weight: bold;
+  position: relative;
+  top: 10px;
+}
+
+.date {
+  font-size: 1.4em;
+}
+.weekday_Date {
+  background-color: var(--oyster);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  border-radius: 45%;
+}
+.workingHours {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 110%;
+  gap: 10px;
+}
+
+.hour {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: var(--cream);
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10%;
+}
+
+.hour:hover {
+  background-color: lightgray;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: lightgray;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
