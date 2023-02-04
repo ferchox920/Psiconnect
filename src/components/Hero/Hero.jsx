@@ -7,7 +7,7 @@ import FormModal from "../modals/Modals";
 export default function Hero(){
     const [modal, setModal] = useState(null);
     const openModal = () => {
-        setModal(true);
+        setModal(!modal);
       };
     return(
         //navbar
@@ -26,14 +26,9 @@ export default function Hero(){
                 </div>
             </div>
         </div>
-        <div className={style.imgContainer}>
-          <img className={style.img} src={img} alt="Hero img" />
-        </div>
-      <div className={style.lastBox}>
-        <h2>¿Qué es psiconnect?</h2>
-        <h3>Psiconnect es una plataforma online que presta servicios de atencion psicologica....</h3>
-        <span>Contactanos</span>
-      </div>
+        {
+          modal && <FormModal name={'User'} />
+        }
       </div>
   );
 }
