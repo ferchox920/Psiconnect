@@ -43,7 +43,7 @@ export default function Details() {
               </div>
 
               <div className={style.moreInfo}>
-              <button className = {style.readMore}>Leer+</button>
+              <button >Leer+</button>
              </div>
             </div>
 
