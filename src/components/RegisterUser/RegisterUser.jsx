@@ -1,41 +1,9 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { userRegister } from "../../features/apiPetitions";
+import  validationsForm  from './validator.js';
+import style from './RegisterUser.module.css'
 
-
-const validationsForm = (form) => {
-  let errors = {};
-
-  if (
-    form.name.trim().length < 2 ||
-    !form.name.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)
-  ) {
-    errors.name =
-      "El nombre debe tener al menos 2 letras y no puede tener carateres especiales";
-  }
-
-  if (
-    form.lastName.trim().length < 4 ||
-    !form.lastName.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)
-  ) {
-    errors.lastName =
-      "El apellido debe tener al menos 4 letras y no puede contener caracteres especiales";
-  }
-
-  if (!form.email || !form.email.match(/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/)) {
-    errors.email = "Debe introducir un formato de e-mail válido";
-  }
-
-  if (
-    form.password.trim().length < 8 ||
-    !form.password.match(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)
-  ) {
-    errors.password =
-      "La contraseña debe tener al menos 8 caracteres, una mayuscula, una minúscula y un número";
-  }
-
-  return errors;
-};
 
 export default function RegisterUser() {
   const [form, setForm] = useState({
@@ -43,10 +11,12 @@ export default function RegisterUser() {
     lastName: "",
     email: "",
     password: "",
+    confirmPassword: ""
   });
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+
   function handleCredentialResponse(response) {
     
     const dataUser = jwtDecode(response.credential);
@@ -76,78 +46,89 @@ export default function RegisterUser() {
 
 
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  }
+  const handleInputChange = (e) => {
+    setErrors(
+        validationsForm[e.target.name](
+            {   ...errors,
+                [e.target.name] : e.target.value,
+            }
+    ))
+    setForm({
+        ...form,
+        [e.target.name] : e.target.value,
+    })
+}
 
-  function handleBlur() {
-    setErrors(validationsForm(form));
-  }
+const handleOnSubmit = async (e) => {
+  e.preventDefault()
+  verifyRepeatPassword()
+  if(!Object.keys(errors).at(0)){
+      const registerProfessional = await professionalRegister(form)
+      if(registerProfessional.data.errors || registerProfessional.status === 400){
+          alert(registerProfessional.data.errors?registerProfessional.data.errors : registerProfessional.data)
+      }else alert('El formulario fue enviado')
+  }else alert('quedan errores')
+}
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setErrors(validationsForm(form));
-    if (Object.keys(errors).length === 0 && Object.values(form)[0] !== "") {
-      userRegister(form);
-      setSuccess(true);
-    }
-  }
+const verifyRepeatPassword = () => {
+  let repeatPassword = validationsForm.confirmPassword(form)
+  setErrors({
+      ...errors, 
+      ...repeatPassword
+  })
+}
 
-  function handleConfirmPassword(e) {
-    const { name, value } = e.target;
-    if (value !== form.password) {
-      setErrors(validationsForm(form));
-      setErrors({ ...errors, [name]: "Las contraseñas son distintas" });
-    }
-    if (value === form.password) {
-      setErrors(validationsForm(form));
-    }
-  }
+
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={(e)=>handleOnSubmit(e)}
       style={{ display: "flex", flexDirection: "column" }}
     >
       <h1>Crea una cuenta</h1>
       <input
+        className={errors.name ? style.inputError : null}
         type="text"
         name="name"
         placeholder="Nombres"
-        onBlur={handleBlur}
-        onChange={handleChange}
+        value={form.name}
+        onChange={(e)=>handleInputChange(e)}
       />
 
       <input
+        className={errors.lastName ? style.inputError : null}
         type="text"
         name="lastName"
         placeholder="Apellidos"
-        onBlur={handleBlur}
-        onChange={handleChange}
+        value={form.lastName}
+        onChange={(e)=>handleInputChange(e)}
       />
 
       <input
+        className={errors.email ? style.inputError : null}
         type="text"
         name="email"
         placeholder="Correo electrónico"
-        onBlur={handleBlur}
-        onChange={handleChange}
+        value={form.email}
+        onChange={(e)=>handleInputChange(e)}
       />
 
       <input
+        className={errors.password ? style.inputError : null}
         type="password"
         name="password"
         placeholder="Contraseña"
-        onBlur={handleBlur}
-        onChange={handleChange}
+        value={form.password}
+        onChange={(e)=>handleInputChange(e)}
       />
 
       <input
+        className={errors.confirmPassword ? style.inputError : null}
         type="password"
         name="confirmPassword"
         placeholder="Contraseña"
-        onChange={handleConfirmPassword}
+        value={form.confirmPassword}
+        onChange={(e)=>handleInputChange(e)}
       />
 
       <input type="submit" value="Crear cuenta" />

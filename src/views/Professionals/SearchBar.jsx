@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProfessionalsByName } from "../../features/apiPetitions";
-import style from './index.module.css'
-import lupa from '../../assets/hero/lupa.svg'
-export default function SearchBar(props) {
+import { getProfessionalsFilters } from "../../features/apiPetitions";
+import style from "./index.module.css";
+import lupa from "../../assets/hero/lupa.svg";
+export default function SearchBar({ area }) {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
@@ -13,9 +13,10 @@ export default function SearchBar(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getProfessionalsByName({
+    getProfessionalsFilters({
       type: "global",
       state: dispatch,
+      area: area ? area : null,
       name: input,
       lastName: input.split(" ")[1] || null,
     });
@@ -31,7 +32,7 @@ export default function SearchBar(props) {
         onChange={(e) => handleChange(e)}
       ></input>
       <button className={style.button} onClick={(e) => handleSubmit(e)}>
-      <img src={lupa} alt="lupa" />
+        <img src={lupa} alt="lupa" />
       </button>
     </div>
   );
