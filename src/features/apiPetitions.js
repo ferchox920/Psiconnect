@@ -74,7 +74,8 @@ export async function getUserByJWT({ state, type}) {
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/${id}`);
+    const peticion = await axios.get(`/professional/details/${id}`);
+
     return state(peticion?.data);
   } catch (error) {
     return error.response;

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
  AllProfessional:[],
- FilterProfessional:[]
+ FilterProfessional:[],
 };
 
 const professionalSlice = createSlice({
@@ -16,10 +16,11 @@ const professionalSlice = createSlice({
     setFilterProfessional(state, { payload }) {
         state.FilterProfessional = payload;
       },
+    
   },
 });
 export const {
     setAllProfessional,
-    setFilterProfessional
+    setFilterProfessional,
 } = professionalSlice.actions;
 export default professionalSlice.reducer;
