@@ -19,7 +19,7 @@ export default function NavBar() {
             <Link to={"/"}>
               <img src={logo} alt="logo" />
               <div>
-                <h3>PSICONNECT</h3>
+                <h3 className={style.titlelogo}>psiconnect</h3>
               </div>
             </Link>
           </div>
