@@ -26,8 +26,14 @@ export default function Hero(){
                 </div>
             </div>
         </div>
-        {modal && <FormModal name="User" set={setModal} />}
-        </div>      
-        //footer
-    )
+        <div className={style.imgContainer}>
+          <img className={style.img} src={img} alt="Hero img" />
+        </div>
+      <div className={style.lastBox}>
+        <h2>¿Qué es psiconnect?</h2>
+        <h3>Psiconnect es una plataforma online que presta servicios de atencion psicologica....</h3>
+        <span>Contactanos</span>
+      </div>
+      </div>
+  );
 }
