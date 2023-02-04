@@ -14,7 +14,7 @@ export default function Hero(){
         <div>
         <div className={style.container}>
             <div>
-            <h2>Registrate!</h2>
+            <h2>Registrate!</h2>-
             <img className={style.img} src={hero}  alt="" />
             <h4>y Pide tu hora ya!! </h4><h4>Nuestros profesionales te atenderan 100% Online.</h4>
                 <button onClick={openModal}>
