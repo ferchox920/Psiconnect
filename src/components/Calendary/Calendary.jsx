@@ -64,8 +64,9 @@ const Calendary = () => {
 
   return (
     <div className={style.calendar}>
+      <h2 className= {style.titlecalendar}>Agenda un cita</h2>
       <div className={style.header}>
-        <button
+        <button className={style.right}
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() - 7))
@@ -75,7 +76,7 @@ const Calendary = () => {
           &larr;
         </button>
         <div>{currentDate.toLocaleString("default", { month: "long" })} </div>
-        <button
+        <button className={style.left}
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() + 7))

@@ -1,5 +1,7 @@
 .container{
     font-family: 'Poppins';
+ 
+   
 }
 
 .detailproffesional{
@@ -71,11 +73,12 @@
 
 .agendacita{
     width: 600px;
+   
     height: 100vh;
     position: absolute;
-    margin-left: 700px;
+    margin-left: 1400px;
     font-size: 10px;
-    margin-top: -605px;
+    margin-top: 40px;
     align-content: center;
     display: flex;
     align-content: center;
