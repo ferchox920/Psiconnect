@@ -17,6 +17,7 @@ export default function NavBar() {
         <div className={style.nav}>
           <div className={style.logo}>
             <Link to={"/"}>
+
               <div className={style.navLogo}>
                 <img src={logo} alt="logo" />
                 <h3>psiconnect</h3>
