@@ -1,4 +1,7 @@
 import style from "./Details.module.css";
+import {Link}  from 'react-router-dom'
+import zoom from '../../assets/Zoom.svg'
+import meet from '../../assets/Meet.svg'
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProfessionalById } from "../../features/apiPetitions";
@@ -100,18 +103,30 @@ export default function Details() {
               <AiOutlineStar className={style.stars}></AiOutlineStar>
 
               </div>
-
             </div>
-          
-          </div>
-
-
           </div>
         </div>
       </div>
-      <div>
+    </div>
+
+      <div classNem = {style.containerbootom}>
+        <div className = {style.calenderybootom}>
         <Calendary />
+        <div className = {style.pagar}>
+          <h1>Precio</h1>
+          <h1 className={style.precio}>50 Usd</h1>
+          <button className={style.buttonpagar}>Reservar Cita</button>
+          
+             <div>
+              <img className = {style.zoom}src={zoom} alt="" />
+            </div>
+            <div className={style.meet}></div>
+            <img className = {style.meet}src={meet} alt="" />
+        </div>
+        </div>
       </div>
+      
+      
     </div>
   );
 }
