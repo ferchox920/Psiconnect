@@ -8,9 +8,8 @@ import Footer from './components/Footer/Footer.jsx';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserByJWT } from './features/apiPetitions';
-
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
-import RegisterProfesional from './views/RegisterProfesional/RegisterProfesional';
+import RegisterProfesional from './views/RegisterProfesional/RegisterProfesional.jsx'
 import Asistencia from './views/Asistencia/Asistencia';
 
 function App() {

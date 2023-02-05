@@ -3,7 +3,7 @@ import style from "./RegisterProfesional.module.css";
 import psicologia from "../../assets/Areas/LogoPsicologia.svg";
 import RegisterPsico from "../../components/RegisterPsico/RegisterPsico";
 
-const RegisterProfesional = () => {
+export default function RegisterProfesional(){
   return (
     <>
       <div className={style.countainer}>
@@ -49,4 +49,4 @@ const RegisterProfesional = () => {
   );
 };
 
-export default RegisterProfesional;
+
