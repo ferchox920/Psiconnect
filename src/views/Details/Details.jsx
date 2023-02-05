@@ -1,8 +1,14 @@
 import style from "./Details.module.css";
+import {Link}  from 'react-router-dom'
+import zoom from '../../assets/Zoom.svg'
+import meet from '../../assets/Meet.svg'
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProfessionalById } from "../../features/apiPetitions";
+import { BsCalendar2Date } from 'react-icons/bs'
+import { AiOutlineStar } from 'react-icons/ai'
 import Calendary from "../../components/Calendary/Calendary";
+
 
 export default function Details() {
   const [profesional, setProfessional] = useState({});
@@ -24,11 +30,10 @@ export default function Details() {
             />
           </div>
 
+            <div className = {style.name}>
+              <h1>{profesional.name}{` ${profesional.lastName}`}</h1>
           <div>
-            <h1>
-              {profesional.name}
-              {` ${profesional.lastName}`}
-            </h1>
+            
           </div>
 
           <div className={style.subtitulo}>
@@ -52,16 +57,77 @@ export default function Details() {
                 netus et malesuada fames ac turpis egestas.'
               </p>
             </div>
+            
+      </div>
 
-            <div className={style.moreInfo}>
-              <button>Leer+</button>
+ 
+
+    </div>
+    <div className = {style.agendacita}>
+          <h1 className = {style.citas}>Agenda tu cita</h1>
+          <div className = {style.calendario}>
+            <button className={style.reservahoy}>Reserva hoy</button>
+            <BsCalendar2Date className = {style.iconocalendary}></BsCalendar2Date>
+
+          </div>
+
+          <div className = {style.reviews}>
+            <div className = {style.comentary}>
+              <h1>Puntualidad</h1>
+              <h1>Buen trato</h1>
+              <h1>Recomendacion</h1>
+            </div>
+
+            <div className = {style.calification}>
+              <div className = {style.starline1}>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+             <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+
+              </div>
+              <div className = {style.starline2}>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+             <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+
+              </div>
+              <div className = {style.starline3}>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+             <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+              <AiOutlineStar className={style.stars}></AiOutlineStar>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
+    </div>
+
+      <div classNem = {style.containerbootom}>
+        <div className = {style.calenderybootom}>
         <Calendary />
+        <div className = {style.pagar}>
+          <h1>Precio</h1>
+          <h1 className={style.precio}>50 Usd</h1>
+          <button className={style.buttonpagar}>Reservar Cita</button>
+          
+             <div>
+              <img className = {style.zoom}src={zoom} alt="" />
+            </div>
+            <div className={style.meet}></div>
+            <img className = {style.meet}src={meet} alt="" />
+        </div>
+        </div>
       </div>
+      
+      
     </div>
   );
 }
+
