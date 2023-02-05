@@ -84,6 +84,8 @@
 
 .img_avatar{
   width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .navLogo{
@@ -93,6 +95,15 @@
 
 @media (max-width: 1419px) {
   .container{
-    height: auto;
+    height: 90px;
+  }
+  .nav_list h3{
+   font-size: 15px;
+  }.logo img {
+    width: 2rem;
+  }
+  .navLogo h3{
+    font: normal 30px myAdeston;
+    letter-spacing: 1px;
   }
 }
