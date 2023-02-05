@@ -34,7 +34,7 @@
 }
 
 .navLogo h3{
-  font: var(--logoTitle);
+  font: normal 35px myAdeston;
   letter-spacing: 1px;
 }
 .navItem{
@@ -89,8 +89,6 @@
 .navLogo{
   display: flex;
   flex-direction: row;
-  font: normal 35px myAdeston;
-  letter-spacing: 1px;
 }
 
 @media (max-width: 1419px) {
