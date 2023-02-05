@@ -5,6 +5,8 @@
     flex-direction: column;
     text-align: center;
     padding: 50px;
+    font: var(--hTitle);
+    font-size: 150%
 }
 .img{
     border-radius: 50%;
@@ -25,5 +27,10 @@
     display: flex;
     justify-content: space-evenly;
     margin: 1%;
+}
+
+.description{
+    font: var(--paragraph);
+    font-size: 90%;
 }
 

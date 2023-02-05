@@ -1,1 +1,1 @@
-import style from "./index.module.css";
+import style from "./LoginPsico.module.css";

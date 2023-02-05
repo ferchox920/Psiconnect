@@ -2,6 +2,12 @@
 
 :root{
     font-family: 'Poppins', sans-serif;
+    
+    /* Variables de Fuente */
+    --h1Title: 600 48px Poppins;
+    --hTitle: 500 48px Poppins;
+    --paragraph: 400 48px Poppins;
+    --lightParagrah: 300 48px Poppins;
 
     /* Paleta de Colores */
     --yellow: #fff87f;
