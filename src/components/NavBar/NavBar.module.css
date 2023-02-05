@@ -1,3 +1,8 @@
+@font-face {
+  font-family: myAdeston;
+  src: url('../../assets/fonts/Adeston-BW9B8.ttf');
+} 
+
 * {
   text-decoration: none;
 }
@@ -26,7 +31,11 @@
 .logo h3 {
   margin-left: 9px;
   display: flex;
-  font-size:200%;
+}
+
+.navLogo h3{
+  font: normal 35px myAdeston;
+  letter-spacing: 1px;
 }
 .navItem{
   font: var(--hTitle);
@@ -43,7 +52,7 @@
 }
 
 .logo img {
-  width: 10%;
+  width: 3.5rem;
 }
 
 .nav {
@@ -77,8 +86,13 @@
   width: 30px;
 }
 
-@media (max-width: 1400px) {
+.navLogo{
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 1419px) {
   .container{
-    background-color: cadetblue;
+    height: auto;
   }
 }
