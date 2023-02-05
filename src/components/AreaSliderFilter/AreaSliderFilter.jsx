@@ -10,7 +10,6 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./AreaSliderFilter.module.css";
 
-
 export default function AreaSliderFilter() {
   const [areas, setAreas] = useState();
   const { pathname } = useLocation();
