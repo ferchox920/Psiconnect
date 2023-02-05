@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink , useNavigate} from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { userLogin } from "../../features/apiPetitions";
-import { validationsForm } from "./validate";
+import { userLogin } from "../../features/apiPetitions.js";
+import { validationsForm } from "./validate.js";
 import {spanError,inputError, submitError, submitSuccess} from './LoginUser.module.css'
 
 export default function LoginUser({ set }) {
