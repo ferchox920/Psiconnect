@@ -1,5 +1,5 @@
 import logo from "../../assets/Whatsapp.svg";
-import style from "./index.module.css"
+import style from "./whatsapp.module.css"
 
 const Whatsapp = () => {
 

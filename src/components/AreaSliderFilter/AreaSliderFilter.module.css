@@ -9,15 +9,14 @@
 .areas {
     background-color: white;
     justify-content: center;
-    height: 100%;
     width: 100%;    
 }
 
 .ondas{
     background-image:url('../../assets/Areas/Ondas.svg');
     background-repeat: no-repeat;
-    height: 55em;
-        margin-bottom: -800px;
+    height: 28em;
+    margin-bottom: -30%;
 }
 
 .titulo{
@@ -30,7 +29,8 @@
 .parrafo{
     display: flex;
     justify-content: center;
-    font-family: 'Poppins';
+    font: var(--paragraph);
+    font-size: 150%;
     font-style: italic;
 }
 

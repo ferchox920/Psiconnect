@@ -6,7 +6,7 @@ import RegisterPsico from "../../components/RegisterPsico/RegisterPsico";
 const RegisterProfesional = () => {
   return (
     <>
-      <div className={style.countainer}>
+<div className={style.countainer}>
         <h3>¿Quieres Trabajar con nosotros?</h3>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
