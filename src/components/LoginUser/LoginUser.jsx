@@ -13,13 +13,18 @@ export default function LoginUser({ set }) {
     email: "",
     password: "",
   });
-  function handleCredentialResponse(response) {
+ async  function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);
     const body = {
       email: dataUser.email,
       password: `TestPS1234`,
     };
-    userLogin(body);
+    const loginUser= await userLogin(body);
+    if ( loginUser.response && loginUser.response.status === 400) {
+      setSuccess({submit: false, message: loginUser.response.data})
+    } else {
+      setSuccess({submit: true, message: 'Acceso correcto'})
+      navigate('/')}
   }
   useEffect(() => {
     google.accounts.id.initialize({
@@ -47,16 +52,12 @@ export default function LoginUser({ set }) {
     e.preventDefault();
     if (!Object.keys(errors).at(0)) {
       const loginUser = await userLogin(form);
-      console.log(Object.keys(errors).at(0))
       if ( loginUser.response && loginUser.response.status === 400) {
         setSuccess({submit: false, message: loginUser.response.data})
-       // alert( loginUser.response.data);
       } else {
-        console.log('success true')
         setSuccess({submit: true, message: 'Acceso correcto'})
         navigate('/')} //alert("El formulario fue enviado");
     } else {
-      console.log(Object.keys(errors).at(0))
       setSuccess({submit: false, message: 'Corrobore los campos requeridos'})//alert("quedan errores");
   }};
   return (
