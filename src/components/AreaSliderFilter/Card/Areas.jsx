@@ -12,7 +12,7 @@ export default function Areas(props){
                 <img  src={props.img} alt={props.area} />   
                 </div>
                 </Link>
-                <div classname = {style.titulo}>
+                <div className = {style.titulo}>
                 <h2 className= {style.titulo}>{props.area}</h2>
                 </div>
         </div>

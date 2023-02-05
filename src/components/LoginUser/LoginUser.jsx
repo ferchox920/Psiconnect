@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink , useNavigate} from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { userLogin } from "../../features/apiPetitions";
-import { validate } from "./validate";
-import style from "./LoginUser.module.css";
+import { userLogin } from "../../features/apiPetitions.js";
+import { validationsForm } from "./validate.js";
+import {spanError,inputError, submitError, submitSuccess} from './LoginUser.module.css'
 
-export default function LoginUser({set}) {
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+export default function LoginUser({ set }) {
+  const navigate= useNavigate()
+  const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState({})
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  function handleCredentialResponse(response) {
+ async  function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);
     const body = {
       email: dataUser.email,
       password: `TestPS1234`,
     };
-    userLogin(body);
+    const loginUser= await userLogin(body);
+    if ( loginUser.response && loginUser.response.status === 400) {
+      setSuccess({submit: false, message: loginUser.response.data})
+    } else {
+      setSuccess({submit: true, message: 'Acceso correcto'})
+      navigate('/')}
   }
   useEffect(() => {
     google.accounts.id.initialize({
@@ -36,49 +40,61 @@ export default function LoginUser({set}) {
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrors(validate({ ...form, [e.target.name]: e.target.value }));
+    setErrors(
+      validationsForm[e.target.name]({
+        ...errors,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setErrors(validate(form));
-    if (!Object.keys(errors).length) 
-      return userLogin(form).then(e => set(false));
-    
-    return window.alert( Object.values(errors)[0])
-  };
+    if (!Object.keys(errors).at(0)) {
+      const loginUser = await userLogin(form);
+      if ( loginUser.response && loginUser.response.status === 400) {
+        setSuccess({submit: false, message: loginUser.response.data})
+      } else {
+        setSuccess({submit: true, message: 'Acceso correcto'})
+        navigate('/')} //alert("El formulario fue enviado");
+    } else {
+      setSuccess({submit: false, message: 'Corrobore los campos requeridos'})//alert("quedan errores");
+  }};
   return (
     <form onSubmit={submitHandler}>
       <h1>Iniciar sesión</h1>
       <p>Use su cuenta</p>
       <div id="SignInDiv" />
+      
       <input
         type="text"
         value={form.email}
         name="email"
         placeholder="Correo electrónico"
         onChange={changeHandler}
-        style={errors.email? {border:"1px solid red"}:null}
-      />
+        className={errors.email ? inputError : null}
+      /><span className={spanError}>{errors.email}</span>
+      
       <input
         type="password"
         value={form.password}
         name="password"
         placeholder="Contraseña"
         onChange={changeHandler}
-        style={errors.password? {border:"1px solid red"}:null}
+        className={errors.password ? inputError : null}
       />
-
-      <button
-        type="submit"
-        onSubmit={submitHandler}
-      >
+<span className={spanError}>{errors.password}</span>
+      <button type="submit"  onSubmit={submitHandler}>
         Iniciar Sesión
       </button>
+{Object.keys(success).at(0) && success.submit === false ?
+  <span className={submitError}>⚠{success.message}⚠</span> : <span className={submitSuccess}>{success.message}</span>
 
+}
       <NavLink to="/forgotpassword">
         <h5>Olvidé mi contraseña</h5>
       </NavLink>
     </form>
   );
 }
+//disabled={Object.keys(errors).at(0) ? true : false}

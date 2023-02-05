@@ -26,7 +26,6 @@ export async function userLogin(body) {
     localStorage.setItem("tkn", peticion?.data);
     return peticion;
   } catch (error) {
-    window.alert(error.response.data);
     return error;
   }
 }
