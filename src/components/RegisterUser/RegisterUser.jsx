@@ -71,10 +71,10 @@ const handleOnSubmit = async (e) => {
 }
 
 const verifyRepeatPassword = () => {
-  let repeatPassword = validationsForm.confirmPassword(form)
+  let confirmPassword = validationsForm.validateConfirmPassword(form)
   setErrors({
       ...errors, 
-      ...repeatPassword
+      ...confirmPassword
   })
 }
 

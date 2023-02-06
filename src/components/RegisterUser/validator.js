@@ -45,33 +45,33 @@ const validationsForm = {
             validationsForm.errors.password = 'La contraseña debe tener al menos un largo de 10 caracteres'
         }else if(form.password.length>25){
             validationsForm.errors.password = 'La contraseña debe tener un largo menor a 25 caracteres'
-        }else if(!/^(?=.*[0-9])(?=.*[!@#$%^&*_.-])(?=.*[A-Z]+)[a-zA-Z0-9!@#$%^&*]/.test(form.password)){
-            validationsForm.errors.password = `El repetir contraseña debe tener al menos 1 de los siguientes caracteres especiales ( !@#$%^&*_.- ), 1 numero y 1 letra Mayúscula`
+        }else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(form.password)){
+            validationsForm.errors.password = `La contraseña debe tener al menos 1 numero, 1 letra minúscula y 1 letra Mayúscula`
         }else{
             delete validationsForm.errors.password
         }
         return validationsForm.errors
     },
-    repeatPassword: (form) => {
+    confirmPassword: (form) => {
         console.log(form)
-        if(!form.repeatPassword){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña no debe estar vacio'
-        }else if(form.repeatPassword.length<10){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña debe tener al menos un largo de 10 caracteres'
-        }else if(form.repeatPassword.length>25){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña debe tener un largo menor a 25 caracteres'
-        }else if(!form.repeatPassword.match(/^(?=.*[0-9])(?=.*[!@#$%^&*_.-])(?=.*[A-Z]+)[a-zA-Z0-9!@#$%^&*]/)){
-            validationsForm.errors.repeatPassword = `El repetir contraseña debe tener al menos 1 de los siguientes caracteres especiales ( !@#$%^&*_.- ), 1 numero y 1 letra Mayúscula`
+        if(!form.confirmPassword){
+            validationsForm.errors.confirmPassword = 'El repetir contraseña no debe estar vacio'
+        }else if(form.confirmPassword.length<10){
+            validationsForm.errors.confirmPassword = 'El repetir contraseña debe tener al menos un largo de 10 caracteres'
+        }else if(form.confirmPassword.length>25){
+            validationsForm.errors.confirmPassword = 'El repetir contraseña debe tener un largo menor a 25 caracteres'
+        }else if(!form.confirmPassword.match(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)){
+            validationsForm.errors.confirmPassword = `El repetir contraseña debe tener al menos 1 numero, 1 letra minúscula y 1 letra Mayúscula`
         }else{
-            delete validationsForm.errors.repeatPassword
+            delete validationsForm.errors.confirmPassword
         }
         return validationsForm.errors
     },
-    confirmPassword: (form) => {
-        if(form.repeatPassword !== form.password){
-            validationsForm.errors.repeatPassword = 'La contraseña y el repetir contraseña no son las mismas'
+    validateConfirmPassword: (form) => {
+        if(form.confirmPassword !== form.password){
+            validationsForm.errors.confirmPassword = 'La contraseña y el repetir contraseña no son las mismas'
         }else{
-            delete validationsForm.errors.repeatPassword
+            delete validationsForm.errors.confirmPassword
         }
         return validationsForm.errors
     }
