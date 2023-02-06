@@ -43,7 +43,8 @@ export default function RegisterUser({ closeModal }) {
           icon: "success",
         })
       )
-      .then(() => closeModal(null)).catch(e => console.log('error'))
+      .then(() => closeModal(null))
+      .catch(e => console.log('error'))
   }
 
   useEffect(() => {
@@ -71,6 +72,7 @@ export default function RegisterUser({ closeModal }) {
         ...errors,
         [e.target.name]: e.target.value,
       })
+  
     );
     setForm({
       ...form,
@@ -96,7 +98,8 @@ export default function RegisterUser({ closeModal }) {
           icon: "success",
         })
       )
-      .then(() => closeModal(null));
+      .then(() => closeModal(null))
+      .catch(e => console.log('error'))
     } else   swal({
       title: "Error!",
       text: Object.values(errors)[0],

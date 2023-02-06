@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { NavLink,  } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { getUserByJWT, userLogin } from "../../features/apiPetitions.js";
 import { validationsForm } from "./validate.js";
-import {
-  spanError,
-  inputError,
-  
-} from "./LoginUser.module.css";
+import { spanError, inputError } from "./LoginUser.module.css";
 import swal from "sweetalert";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function LoginUser({ closeModal }) {
-  const [errors, setErrors] = useState({
-    hola: 'rellene todos los campos'
+  const user = useSelector((state) => state.user.user);
+  const dispacht = useDispatch();
 
+  const [errors, setErrors] = useState({
+    hola: "rellene todos los campos",
   });
   const [form, setForm] = useState({
     email: "",
@@ -26,20 +25,21 @@ export default function LoginUser({ closeModal }) {
       password: `TestPS1234`,
     };
     userLogin(body)
-    .then((e) => {
-      getUserByJWT({
-        state: dispacht,
-        type: "global",
-      });
-    })
-    .then(() =>
-      swal({
-        title: "Good job!",
-        text: `Bienvenido ${body.name}`,
-        icon: "success",
+      .then((e) => {
+        getUserByJWT({
+          state: dispacht,
+          type: "global",
+        })
+          .then(() =>
+            swal({
+              title: "Good job!",
+              text: `Bienvenido ${user.name}`,
+              icon: "success",
+            })
+          )
+          .then(() => closeModal(null));
       })
-    )
-    .then(() => closeModal(null));
+      .catch((e) => console.log("error"));
   }
   useEffect(() => {
     google.accounts.id.initialize({
@@ -66,26 +66,26 @@ export default function LoginUser({ closeModal }) {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!Object.keys(errors).at(0)) {
-      userLogin(form)
-      .then((e) => {
+      await userLogin(form).then((e) => {
         getUserByJWT({
           state: dispacht,
           type: "global",
         });
-      })
-      .then(() =>
+
         swal({
           title: "Good job!",
-          text: `Bienvenido ${form.name}`,
+          text: `Bienvenido ${user.name}`,
           icon: "success",
         })
-      )
-      .then(() => closeModal(null));
-    } else   swal({
-      title: "Error!",
-      text: Object.values(errors)[0],
-      icon: "error",
-    })
+          .then(() => closeModal(null))
+          .catch((e) => console.log("error"));
+      });
+    } else
+      swal({
+        title: "Error!",
+        text: Object.values(errors)[0],
+        icon: "error",
+      });
   };
   return (
     <form onSubmit={submitHandler}>
