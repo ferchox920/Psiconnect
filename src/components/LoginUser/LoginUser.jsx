@@ -5,10 +5,9 @@ import { getUserByJWT, userLogin } from "../../features/apiPetitions.js";
 import { validationsForm } from "./validate.js";
 import { spanError, inputError } from "./LoginUser.module.css";
 import swal from "sweetalert";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 
 export default function LoginUser({ closeModal }) {
-  const user = useSelector((state) => state.user.user);
   const dispacht = useDispatch();
 
   const [errors, setErrors] = useState({
@@ -25,20 +24,20 @@ export default function LoginUser({ closeModal }) {
       password: `TestPS1234`,
     };
     userLogin(body)
-      .then((e) => {
-        getUserByJWT({
+      .then(async (e) => {
+        await getUserByJWT({
           state: dispacht,
           type: "global",
-        })
-          .then(() =>
-            swal({
-              title: "Good job!",
-              text: `Bienvenido ${user.name}`,
-              icon: "success",
-            })
-          )
-          .then(() => closeModal(null));
+        });
       })
+      .then(() =>
+        swal({
+          title: "Good job!",
+          text: `Bienvenido`,
+          icon: "success",
+        })
+      )
+      .then(() => closeModal(null))
       .catch((e) => console.log("error"));
   }
   useEffect(() => {
@@ -74,7 +73,7 @@ export default function LoginUser({ closeModal }) {
 
         swal({
           title: "Good job!",
-          text: `Bienvenido ${user.name}`,
+          text: `Bienvenido `,
           icon: "success",
         })
           .then(() => closeModal(null))
