@@ -34,10 +34,15 @@ export default function Professionals() {
 
   return (
     <div className={style.container}>
+      <div className={style.ContainerAreaSliderFilter}>
+        <div className={style.filter}>
+
+      <AreaSliderFilter />
+        </div>
+      </div>
       <div className={style.containerSearchBar}>
         <SearchBar area={area}/>
       </div>
-      <AreaSliderFilter />
       {/*  
         // filtros por areas (reciclar componente) 
 */}

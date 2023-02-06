@@ -30,7 +30,17 @@ const handleOnSubmit = async (e) => {
         const registerProfessional = await professionalRegister(register)
         if(registerProfessional.data.errors || registerProfessional.status === 400){
             alert(registerProfessional.data.errors?registerProfessional.data.errors : registerProfessional.data)
-        }else alert('El formulario fue enviado')
+        }else{
+          setRegister({
+              name:'',
+              lastName:'',
+              email:'',
+              DNI:'',
+              password:'',
+              repeatPassword:''
+          })
+          alert('El formulario fue enviado')
+        }
     }else alert('quedan errores')
 }
 

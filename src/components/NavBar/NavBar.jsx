@@ -17,9 +17,10 @@ export default function NavBar() {
         <div className={style.nav}>
           <div className={style.logo}>
             <Link to={"/"}>
-              <img src={logo} alt="logo" />
-              <div>
-                <h3>PSICONNECT</h3>
+
+              <div className={style.navLogo}>
+                <img src={logo} alt="logo" />
+                <h3>psiconnect</h3>
               </div>
             </Link>
           </div>
@@ -46,7 +47,7 @@ export default function NavBar() {
               </Link>
             </div>
             {user ? (<div style={{display:'flex'}}>
-              <h4 className={style.navItem}>{user.name}</h4>
+              {/* <h3 className={style.navItem}>{user.name}</h3> */}
               <img className={style.img_avatar} src={user.avatar || 'https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1'} alt={user.name} />
             </div>
             ) : (
