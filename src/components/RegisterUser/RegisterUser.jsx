@@ -58,6 +58,7 @@ export default function RegisterUser({ closeModal }) {
       size: "large",
     });
   }, []);
+
   const verifyRepeatPassword = async () => {
     let repeatPassword = await validationsForm.confirmPassword(form);
     setErrors({
@@ -106,27 +107,6 @@ export default function RegisterUser({ closeModal }) {
       icon: "error",
     })
 }
-
-const handleOnSubmit = async (e) => {
-  e.preventDefault()
-  verifyRepeatPassword()
-  if(!Object.keys(errors).at(0)){
-      const registerProfessional = await professionalRegister(form)
-      if(registerProfessional.data.errors || registerProfessional.status === 400){
-          alert(registerProfessional.data.errors?registerProfessional.data.errors : registerProfessional.data)
-      }else alert('El formulario fue enviado')
-  }else alert('quedan errores')
-}
-
-const verifyRepeatPassword = () => {
-  let confirmPassword = validationsForm.validateConfirmPassword(form)
-  setErrors({
-      ...errors, 
-      ...confirmPassword
-  })
-}
-
-
   
 
   return (
