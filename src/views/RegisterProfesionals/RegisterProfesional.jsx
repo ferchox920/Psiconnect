@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./RegisterProfesional.module.css";
-import psicologia from "../../assets/Areas/LogoPsicologia.svg";
+import psicologia from "../../assets/Asistencia/LogoPsicologia.svg";
 import RegisterPsico from "../../components/RegisterPsico/RegisterPsico";
 
 const RegisterProfesional = () => {
