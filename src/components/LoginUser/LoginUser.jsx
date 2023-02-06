@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink,  } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { getUserByJWT, userLogin } from "../../features/apiPetitions.js";
 import { validationsForm } from "./validate.js";
@@ -11,7 +11,6 @@ import {
 import swal from "sweetalert";
 
 export default function LoginUser({ closeModal }) {
-  const navigate = useNavigate();
   const [errors, setErrors] = useState({
     hola: 'rellene todos los campos'
 
@@ -67,7 +66,7 @@ export default function LoginUser({ closeModal }) {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!Object.keys(errors).at(0)) {
-      userRegister(form)
+      userLogin(form)
       .then((e) => {
         getUserByJWT({
           state: dispacht,

@@ -57,6 +57,13 @@ export default function RegisterUser({ closeModal }) {
       size: "large",
     });
   }, []);
+  const verifyRepeatPassword = async () => {
+    let repeatPassword = await validationsForm.confirmPassword(form);
+    setErrors({
+      ...errors,
+      ...repeatPassword,
+    });
+  };
 
   const handleInputChange = (e) => {
     setErrors(
@@ -73,7 +80,7 @@ export default function RegisterUser({ closeModal }) {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    verifyRepeatPassword();
+    await verifyRepeatPassword();
     if (!Object.keys(errors).at(0)) {
       userRegister(form)
       .then((e) => {
@@ -97,13 +104,7 @@ export default function RegisterUser({ closeModal }) {
     })
   };
 
-  const verifyRepeatPassword = () => {
-    let repeatPassword = validationsForm.confirmPassword(form);
-    setErrors({
-      ...errors,
-      ...repeatPassword,
-    });
-  };
+  
 
   return (
     <form
