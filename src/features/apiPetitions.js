@@ -52,16 +52,24 @@ export async function getAreas(state) {
     return error.response;
   }
 }
- export async function getProfessionalByAreas({ state, type, area }) {
+export async function getOnlyAreas(state) {
   try {
-    const peticion = await axios.get(`professional/${area}`);
-    type === "local"
-      ? state(peticion?.data)
-      : state(setFilterProfessional(peticion?.data));
+    const peticion = await axios.get("/onlyAreas");
+    state(peticion.data);
   } catch (error) {
     return error.response;
   }
-} 
+}
+// export async function getProfessionalByAreas({ state, type, area }) {
+//   try {
+//     const peticion = await axios.get(`professional/${area}`);
+//     type === "local"
+//       ? state(peticion?.data)
+//       : state(setFilterProfessional(peticion?.data));
+//   } catch (error) {
+//     return error.response;
+//   }
+// } 
 export async function getUserByJWT({ state, type }) {
   console.log(localStorage.getItem("tkn"));
   try {
