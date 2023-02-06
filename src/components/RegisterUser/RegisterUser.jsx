@@ -70,7 +70,7 @@ export default function RegisterUser({ closeModal }) {
   const handleInputChange = (e) => {
     setErrors(
       validationsForm[e.target.name]({
-        ...errors,
+        ...form,
         [e.target.name]: e.target.value,
       })
   
@@ -83,7 +83,6 @@ export default function RegisterUser({ closeModal }) {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    await verifyRepeatPassword();
     if (!Object.keys(errors).at(0)) {
       userRegister(form)
       .then((e) => {
