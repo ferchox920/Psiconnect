@@ -1,10 +1,11 @@
+@font-face {
+  font-family: myAdeston;
+  src: url('../../assets/fonts/Adeston-BW9B8.ttf');
+} 
+
 * {
   text-decoration: none;
 }
-
-
-
-
 
 .container {
   width: 100%;
@@ -26,16 +27,32 @@
   justify-content: center;
   align-content: center;
   color: black;
-  font-family: 'Poppins';
-  font-size: 15px;
 }
 .logo h3 {
   margin-left: 9px;
-  font: normal 400 100% 'Poppins';
   display: flex;
 }
+
+.navLogo h3{
+  font: normal 35px myAdeston;
+  letter-spacing: 1px;
+}
+.navItem{
+  font: var(--hTitle);
+  font-size: 125%;
+}
+.loginDiv{
+  font: var(--hTitle);
+  font-size: 110%;
+}
+
+.nav_list :hover{
+  color: var(--chalk);
+  cursor: pointer;
+}
+
 .logo img {
-  width: 30px;
+  width: 3.5rem;
 }
 
 .nav {
@@ -50,12 +67,8 @@
 }
 
 .nav_list div {
-  font: 'Poppins';
-  font-family: 'Poppins';
-  font-style: 'Medium';
-  font-size: 15px;
   display: inline-block;
-  padding: 0 40px;
+  padding: 0 10px;
   color: rgb(138, 21, 21);
 }
 
@@ -63,22 +76,34 @@
   color: rgb(221, 19, 19);
   font-family: 'Poppins';
   font-style: 'Light';
-  
 }
 
 .nav_list h3{
   color:rgb(253, 253, 253);
-  font: 'Poppins';
-  font-style: 'Light';
-
 }
 
 .img_avatar{
   width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
-@media (max-width: 1400px) {
+.navLogo{
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 1419px) {
   .container{
-    background-color: cadetblue;
+    height: 90px;
+  }
+  .nav_list h3{
+   font-size: 15px;
+  }.logo img {
+    width: 2rem;
+  }
+  .navLogo h3{
+    font: normal 30px myAdeston;
+    letter-spacing: 1px;
   }
 }

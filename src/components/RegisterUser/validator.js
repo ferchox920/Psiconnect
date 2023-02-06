@@ -38,18 +38,6 @@ const validationsForm = {
         }
         return validationsForm.errors
     },
-    DNI:(form)=>{
-        if(!form.DNI){
-            validationsForm.errors.DNI = 'El DNI no puede estar vacio'
-        }if(form.DNI.length<8){
-            validationsForm.errors.DNI = 'El DNI debe tener al menos un largo de 8 caracteres'
-        }else if(form.DNI.length>10){
-            validationsForm.errors.DNI  ='La DNI debe tener un largo menor a 10 caracteres'
-        }else{
-            delete validationsForm.errors.DNI
-        }
-        return validationsForm.errors
-    },
     password: (form) => {
         if(!form.password){
             validationsForm.errors.password = 'La contraseña no puede estar vacio'
@@ -79,7 +67,8 @@ const validationsForm = {
         return validationsForm.errors
     },
     confirmPassword: (form) => {
-        if(form.repeatPassword !== form.password){
+      
+        if(form.confirmPassword == form.password){
             validationsForm.errors.repeatPassword = 'La contraseña y el repetir contraseña no son las mismas'
         }else{
             delete validationsForm.errors.repeatPassword
