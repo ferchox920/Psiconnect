@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { professionalRegister } from '../../features/apiPetitions';
 import  validationsForm  from './validator.js';
-import { classPsicoRegister,spanError, inputError} from './index.module.css'
+import { classPsicoRegister,spanError, inputError} from './RegisterPsico.module.css'
 
 export default function RegisterPsico() {
   
@@ -30,7 +30,17 @@ const handleOnSubmit = async (e) => {
         const registerProfessional = await professionalRegister(register)
         if(registerProfessional.data.errors || registerProfessional.status === 400){
             alert(registerProfessional.data.errors?registerProfessional.data.errors : registerProfessional.data)
-        }else alert('El formulario fue enviado')
+        }else{
+          setRegister({
+              name:'',
+              lastName:'',
+              email:'',
+              DNI:'',
+              password:'',
+              repeatPassword:''
+          })
+          alert('El formulario fue enviado')
+        }
     }else alert('quedan errores')
 }
 

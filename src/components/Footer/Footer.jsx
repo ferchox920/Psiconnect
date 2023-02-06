@@ -1,4 +1,4 @@
-import style from "./index.module.css";
+import style from "./Footer.module.css";
 import logo from  "../../assets/LogoCerebro.svg";
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
       <div className={style.brand}>
         <div className={style.h5}>
           Psiconnect</div>
-        <p>Queres saber mas? Seguinos!</p>
+        <p className={style.info}>Queres saber mas? Seguinos!</p>
         <div className={style.social}>
           <a href="#twitter" className={style.socialicon}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="none" viewBox="0 0 20 16">
@@ -30,9 +30,9 @@ const Footer = () => {
       </div>
       <div className={style.about}>
         <div className={style.h5}>CONOCENOS</div>
-        <a href="#">¿Necesitas ayuda?</a>
-        <a href="#">¿Eres médico?</a>
-        <a href="#">Contactanos</a>
+        <a href="#" className={style.info}>¿Necesitas ayuda?</a>
+        <a href="#" className={style.info}>¿Eres médico?</a>
+        <a href="#" className={style.info}>Contactanos</a>
       </div>
     </section>
   </footer>

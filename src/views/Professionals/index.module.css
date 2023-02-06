@@ -1,5 +1,8 @@
 .container {
-  margin-top: 110px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .containerSearchBar {
   display: flex;
@@ -9,6 +12,7 @@
 .inputCointer {
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -36,9 +40,13 @@
   box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
   outline: none;
   letter-spacing: 1px;
+  border: none;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   cursor: pointer;
+}
+.button img{
+  width: 30px;
 }
 .cardContainer {
   width: 100%;
@@ -97,4 +105,17 @@
 .disabled:hover {
   background-color: transprent;
   cursor: default;
+}
+.ContainerAreaSliderFilter{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+.filter{
+  width: 70%;
+  padding: 0;
+  margin: 0;
 }
