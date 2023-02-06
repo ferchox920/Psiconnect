@@ -53,7 +53,6 @@ const validationsForm = {
         return validationsForm.errors
     },
     repeatPassword: (form) => {
-        console.log(form)
         if(!form.repeatPassword){
             validationsForm.errors.repeatPassword = 'El repetir contraseña no debe estar vacio'
         }else if(form.repeatPassword.length<10){
