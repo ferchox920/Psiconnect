@@ -98,3 +98,6 @@
   background-color: transprent;
   cursor: default;
 }
+.button img{
+  width: 30px;
+}

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getProfessionalsFilters } from "../../features/apiPetitions";
 import style from './index.module.css'
 import lupa from '../../assets/hero/lupa.svg'
+
 export default function SearchBar({area}) {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ area: area ? area : null,
 name: input, 
 lastName: input.split(' ')[1] || null
 })
+setInput('')
 }
   return (
     <div className={style.inputCointer}>

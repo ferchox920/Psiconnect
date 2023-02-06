@@ -1,0 +1,64 @@
+.divContainer{
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+    width: 100%;
+    margin-top:120px; 
+    margin-bottom:80px
+}
+.divContainer .formProfessionalRegister{
+    width: 100%;
+}
+.divContainer .avatar{
+    width:13rem;
+    height: 12rem;
+    border-radius: 50%;
+}
+.divContainer .divSkills{ 
+    margin-top: 1rem;
+    width: 50%;
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+}
+.divContainer .divSkills .skillsDivSpan{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0rem 0rem 0rem 0.5rem;
+    margin:1rem;
+    height: 1.5rem;
+    border-radius: 0.5rem 1rem 1rem 1.3rem;
+}
+.divContainer .divSkills .skillsDivSpan .skillsSpanX{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    width: 1.2rem;
+    height: 80%;
+    margin:0rem 0.1rem 0rem 0.5rem;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: color .3s border .3s background-color .3s;
+    color:red;
+    border: 1px solid red;
+    background-color: white;
+}
+.divContainer .divSkills .skillsDivSpan .skillsSpanX:hover{
+    color:white;
+    border: 1px solid red;
+    background-color: red;
+}
+
+.divContainer .description{
+    width: 50%;
+    height: 10rem;
+    overflow-y: auto;
+}
