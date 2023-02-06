@@ -111,7 +111,7 @@ export default function LoginUser({ closeModal }) {
         className={errors.password ? inputError : null}
       />
       <span className={spanError}>{errors.password}</span>
-      <input type="submit" value="Crear cuenta" />
+      <input type="submit" value="Iniciar sesion" />
 
       <NavLink to="/forgotpassword">
         <h5>Olvidé mi contraseña</h5>
