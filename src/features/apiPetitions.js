@@ -52,15 +52,7 @@ export async function getAreas(state) {
     return error.response;
   }
 }
-export async function getOnlyAreas(state) {
-  try {
-    const peticion = await axios.get("/onlyAreas");
-    state(peticion.data);
-  } catch (error) {
-    return error.response;
-  }
-}
-/* export async function getProfessionalByAreas({ state, type, area }) {
+ export async function getProfessionalByAreas({ state, type, area }) {
   try {
     const peticion = await axios.get(`professional/${area}`);
     type === "local"
@@ -69,7 +61,7 @@ export async function getOnlyAreas(state) {
   } catch (error) {
     return error.response;
   }
-} */
+} 
 export async function getUserByJWT({ state, type }) {
   console.log(localStorage.getItem("tkn"));
   try {
@@ -114,5 +106,14 @@ export async function getProfessionalsFilters({
       : state(setFilterProfessional(peticion?.data));
   } catch (error) {
     return error.response;
+  }
+}
+
+export async function getSkills({state, type}){
+  try{
+    const request = await axios.get('/skills')
+    type === 'local'? state(request?.data) : null;
+  }catch(error){
+    return error.response
   }
 }
