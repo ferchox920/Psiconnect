@@ -3,7 +3,7 @@ import LoginUser from "../../LoginUser/LoginUser";
 import RegisterUser from "../../RegisterUser/RegisterUser";
 import style from "./UserModal.module.css";
 
-export default function User({set}) {
+export default function User({set, closeModal}) {
     const [switcher, setSwitcher] = useState(false);
 
     const click = ()=>{
@@ -14,10 +14,10 @@ export default function User({set}) {
         switcher ? style.containerDerechoActivo : null
       }`}>
          <div className={style.registrarse}>
-            <RegisterUser />
+            <RegisterUser closeModal={closeModal} />
         </div>
         <div className={style.iniciarSesion}>
-            <LoginUser set={set} />
+            <LoginUser set={set} closeModal={closeModal} />
         </div>
       <div className={style.overlayContainer}>
         <div className={style.overlay}>
