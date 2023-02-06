@@ -1,35 +1,49 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
-import { userRegister } from "../../features/apiPetitions";
-import  validationsForm  from './validator.js';
-import style from './RegisterUser.module.css'
+import { getUserByJWT, userRegister } from "../../features/apiPetitions";
+import validationsForm from "./validator.js";
+import style from "./RegisterUser.module.css";
+import { useDispatch } from "react-redux";
+import swal from "sweetalert";
 
-
-export default function RegisterUser() {
+export default function RegisterUser({ closeModal }) {
+  const dispacht = useDispatch();
   const [form, setForm] = useState({
     name: "",
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState({
+    hola: 'rellene todos los campos'
+  });
 
   function handleCredentialResponse(response) {
-    
     const dataUser = jwtDecode(response.credential);
-    console.log(dataUser)
     const googleRegister = {
       name: dataUser.given_name,
       lastName: dataUser.family_name ? dataUser.family_name : "    ",
       email: dataUser.email,
       password: `TestPS1234`,
-      avatar:dataUser.picture
+      avatar: dataUser.picture,
     };
-    userRegister(googleRegister);
-    setSuccess(true);
+    userRegister(googleRegister)
+      .then((e) => {
+        getUserByJWT({
+          state: dispacht,
+          type: "global",
+        });
+      })
+      .then(() =>
+        swal({
+          title: "Good job!",
+          text: `Bienvenido ${googleRegister.name}`,
+          icon: "success",
+        })
+      )
+      .then(() => closeModal(null)).catch(e => console.log('error'))
   }
 
   useEffect(() => {
@@ -44,45 +58,56 @@ export default function RegisterUser() {
     });
   }, []);
 
-
-
   const handleInputChange = (e) => {
     setErrors(
-        validationsForm[e.target.name](
-            {   ...errors,
-                [e.target.name] : e.target.value,
-            }
-    ))
+      validationsForm[e.target.name]({
+        ...errors,
+        [e.target.name]: e.target.value,
+      })
+    );
     setForm({
-        ...form,
-        [e.target.name] : e.target.value,
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    verifyRepeatPassword();
+    if (!Object.keys(errors).at(0)) {
+      userRegister(form)
+      .then((e) => {
+        getUserByJWT({
+          state: dispacht,
+          type: "global",
+        });
+      })
+      .then(() =>
+        swal({
+          title: "Good job!",
+          text: `Bienvenido ${form.name}`,
+          icon: "success",
+        })
+      )
+      .then(() => closeModal(null));
+    } else   swal({
+      title: "Error!",
+      text: Object.values(errors)[0],
+      icon: "error",
     })
-}
+  };
 
-const handleOnSubmit = async (e) => {
-  e.preventDefault()
-  verifyRepeatPassword()
-  if(!Object.keys(errors).at(0)){
-      const registerProfessional = await professionalRegister(form)
-      if(registerProfessional.data.errors || registerProfessional.status === 400){
-          alert(registerProfessional.data.errors?registerProfessional.data.errors : registerProfessional.data)
-      }else alert('El formulario fue enviado')
-  }else alert('quedan errores')
-}
-
-const verifyRepeatPassword = () => {
-  let repeatPassword = validationsForm.confirmPassword(form)
-  setErrors({
-      ...errors, 
-      ...repeatPassword
-  })
-}
-
-
+  const verifyRepeatPassword = () => {
+    let repeatPassword = validationsForm.confirmPassword(form);
+    setErrors({
+      ...errors,
+      ...repeatPassword,
+    });
+  };
 
   return (
     <form
-      onSubmit={(e)=>handleOnSubmit(e)}
+      onSubmit={(e) => handleOnSubmit(e)}
       style={{ display: "flex", flexDirection: "column" }}
     >
       <h1>Crea una cuenta</h1>
@@ -92,7 +117,7 @@ const verifyRepeatPassword = () => {
         name="name"
         placeholder="Nombres"
         value={form.name}
-        onChange={(e)=>handleInputChange(e)}
+        onChange={(e) => handleInputChange(e)}
       />
 
       <input
@@ -101,7 +126,7 @@ const verifyRepeatPassword = () => {
         name="lastName"
         placeholder="Apellidos"
         value={form.lastName}
-        onChange={(e)=>handleInputChange(e)}
+        onChange={(e) => handleInputChange(e)}
       />
 
       <input
@@ -110,7 +135,7 @@ const verifyRepeatPassword = () => {
         name="email"
         placeholder="Correo electrónico"
         value={form.email}
-        onChange={(e)=>handleInputChange(e)}
+        onChange={(e) => handleInputChange(e)}
       />
 
       <input
@@ -119,7 +144,7 @@ const verifyRepeatPassword = () => {
         name="password"
         placeholder="Contraseña"
         value={form.password}
-        onChange={(e)=>handleInputChange(e)}
+        onChange={(e) => handleInputChange(e)}
       />
 
       <input
@@ -128,7 +153,7 @@ const verifyRepeatPassword = () => {
         name="confirmPassword"
         placeholder="Contraseña"
         value={form.confirmPassword}
-        onChange={(e)=>handleInputChange(e)}
+        onChange={(e) => handleInputChange(e)}
       />
 
       <input type="submit" value="Crear cuenta" />

@@ -1,30 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { NavLink , useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { userLogin } from "../../features/apiPetitions.js";
+import { getUserByJWT, userLogin } from "../../features/apiPetitions.js";
 import { validationsForm } from "./validate.js";
-import {spanError,inputError, submitError, submitSuccess} from './LoginUser.module.css'
+import {
+  spanError,
+  inputError,
+  
+} from "./LoginUser.module.css";
+import swal from "sweetalert";
 
-export default function LoginUser({ set }) {
-  const navigate= useNavigate()
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState({})
+export default function LoginUser({ closeModal }) {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({
+    hola: 'rellene todos los campos'
+
+  });
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
- async  function handleCredentialResponse(response) {
+  async function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);
     const body = {
       email: dataUser.email,
       password: `TestPS1234`,
     };
-    const loginUser= await userLogin(body);
-    if ( loginUser.response && loginUser.response.status === 400) {
-      setSuccess({submit: false, message: loginUser.response.data})
-    } else {
-      setSuccess({submit: true, message: 'Acceso correcto'})
-      navigate('/')}
+    userLogin(body)
+    .then((e) => {
+      getUserByJWT({
+        state: dispacht,
+        type: "global",
+      });
+    })
+    .then(() =>
+      swal({
+        title: "Good job!",
+        text: `Bienvenido ${body.name}`,
+        icon: "success",
+      })
+    )
+    .then(() => closeModal(null));
   }
   useEffect(() => {
     google.accounts.id.initialize({
@@ -51,21 +67,33 @@ export default function LoginUser({ set }) {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!Object.keys(errors).at(0)) {
-      const loginUser = await userLogin(form);
-      if ( loginUser.response && loginUser.response.status === 400) {
-        setSuccess({submit: false, message: loginUser.response.data})
-      } else {
-        setSuccess({submit: true, message: 'Acceso correcto'})
-        navigate('/')} //alert("El formulario fue enviado");
-    } else {
-      setSuccess({submit: false, message: 'Corrobore los campos requeridos'})//alert("quedan errores");
-  }};
+      userRegister(form)
+      .then((e) => {
+        getUserByJWT({
+          state: dispacht,
+          type: "global",
+        });
+      })
+      .then(() =>
+        swal({
+          title: "Good job!",
+          text: `Bienvenido ${form.name}`,
+          icon: "success",
+        })
+      )
+      .then(() => closeModal(null));
+    } else   swal({
+      title: "Error!",
+      text: Object.values(errors)[0],
+      icon: "error",
+    })
+  };
   return (
     <form onSubmit={submitHandler}>
       <h1>Iniciar sesión</h1>
       <p>Use su cuenta</p>
       <div id="SignInDiv" />
-      
+
       <input
         type="text"
         value={form.email}
@@ -73,8 +101,8 @@ export default function LoginUser({ set }) {
         placeholder="Correo electrónico"
         onChange={changeHandler}
         className={errors.email ? inputError : null}
-      /><span className={spanError}>{errors.email}</span>
-      
+      />
+
       <input
         type="password"
         value={form.password}
@@ -83,18 +111,12 @@ export default function LoginUser({ set }) {
         onChange={changeHandler}
         className={errors.password ? inputError : null}
       />
-<span className={spanError}>{errors.password}</span>
-      <button type="submit"  onSubmit={submitHandler}>
-        Iniciar Sesión
-      </button>
-{Object.keys(success).at(0) && success.submit === false ?
-  <span className={submitError}>⚠{success.message}⚠</span> : <span className={submitSuccess}>{success.message}</span>
+      <span className={spanError}>{errors.password}</span>
+      <input type="submit" value="Crear cuenta" />
 
-}
       <NavLink to="/forgotpassword">
         <h5>Olvidé mi contraseña</h5>
       </NavLink>
     </form>
   );
 }
-//disabled={Object.keys(errors).at(0) ? true : false}
