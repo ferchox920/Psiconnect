@@ -13,10 +13,10 @@ import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
 import Chat from "./components/Chat/Chat";
-import { getAllChatsOfUser } from "./features/firebase/chatsFeatures";
+
 
 function App() {
-  const user = useSelector((state = state.user.user));
+  const user = useSelector((state => state.user.user));
   const dispacht = useDispatch();
   useEffect(() => {
     localStorage.getItem("tkn")
@@ -31,8 +31,6 @@ function App() {
           type: "global",
         })
       : null;
-
-    user ? getAllChatsOfUser({ user: user.id, state: dispacht }) : null;
   }, []);
   return (
     <>
@@ -47,7 +45,7 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
       </Routes>
       <Footer />
-      {/* <Chat /> */}
+      <Chat />
     </>
   );
 }

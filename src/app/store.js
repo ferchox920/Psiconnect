@@ -7,6 +7,6 @@ export default configureStore({
     reducer: {
         professionals:professionalSlice,
         user:userSlice,
-        chat:chatSlice
+        chats:chatSlice
     }
 })
