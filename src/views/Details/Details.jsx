@@ -9,7 +9,12 @@ import { AiOutlineStar } from "react-icons/ai";
 import Calendary from "../../components/Calendary/Calendary";
 import { useSelector } from "react-redux";
 import FormModal from "../../components/modals/Modals";
-import { createChat,  getAllChatsOfUser } from "../../features/firebase/chatsFeatures";
+import {
+  createChat,
+  getAllChatsOfUser,
+  getMessageOfChat,
+  sendMessage,
+} from "../../features/firebase/chatsFeatures";
 
 export default function Details() {
   const [profesional, setProfessional] = useState({});
@@ -19,17 +24,24 @@ export default function Details() {
     setModal(true);
   };
   const startChat = () => {
-
-    createChat(user.name,profesional.name)
-
+    createChat(user.name, profesional.name);
   };
 
   const user = useSelector((state) => state.user.user);
   const { id } = useParams();
   useEffect(() => {
     getProfessionalById(id, setProfessional);
-    getAllChatsOfUser(user?.name)
-  }, []);
+    // getAllChatsOfUser(user?.name);
+    getMessageOfChat({
+      from: user?.name,
+      to: profesional?.name,
+    });
+    sendMessage({
+      from: user?.name,
+      to: profesional?.name,
+      message:'holaa'
+    });
+  }, [user]);
 
   return (
     <div className={style.container}>
