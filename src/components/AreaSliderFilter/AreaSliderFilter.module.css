@@ -7,16 +7,15 @@
 }
 
 .areas {
-    background-color: white;
     justify-content: center;
     width: 100%;    
 }
 
 .ondas{
-    background-image:url('../../assets/Areas/Ondas.svg');
-    background-repeat: no-repeat;
-    height: 28em;
-    margin-bottom: -30%;
+    height: auto;
+}
+.ondas img{
+    width: 100%;
 }
 
 .titulo{

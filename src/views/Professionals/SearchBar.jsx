@@ -22,7 +22,7 @@ export default function SearchBar({ area }) {
     });
   };
   return (
-    <div className={style.inputCointer}>
+    <form className={style.inputCointer} onSubmit={(e) => handleSubmit(e)}>
       <input
         className={style.input}
         type={"text"}
@@ -30,10 +30,10 @@ export default function SearchBar({ area }) {
         placeholder="busca un profesional por nombre o apellido"
         value={input}
         onChange={(e) => handleChange(e)}
-      ></input>
-      <button className={style.button} onClick={(e) => handleSubmit(e)}>
+      />
+      <button className={style.button} type="submit">
         <img src={lupa} alt="lupa" />
       </button>
-    </div>
+    </form>
   );
 }
