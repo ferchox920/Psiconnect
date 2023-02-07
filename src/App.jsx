@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUserByJWT } from "./features/apiPetitions";
+import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
@@ -16,21 +16,18 @@ import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 
 function App() {
   const dispacht = useDispatch();
-  // useEffect(() => {
-  //   localStorage.getItem("tkn")
-  //     ? getUserByJWT({
-  //         state: dispacht,
-  //         type: "global",
-  //       })
-  //     : null;
-  // }, []);
-  useEffect(()=>{
-    async function hola(){
-      await createChat('moo5')
-      getAllChats('momo')
-    }
-    // hola();
-  },[])
+  useEffect(() => {
+    localStorage.getItem("tkn")
+      ? getUserByJWT({
+          state: dispacht,
+          type: "global",
+        })
+      : (localStorage.getItem('profTkn') 
+          ? getProfByJWT({
+              state: dispacht,
+              type: "global",
+          }): null) ;
+  }, []);
   return (
     <>
       <NavBar />
