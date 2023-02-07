@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 import { errorMenssage } from "./errorsModals.js";
-import { setFilterProfessional } from "./professionalSlice.js";
+import { setFilterProfessional} from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
@@ -45,7 +45,6 @@ export async function profLogin(body) {
 }
 
 export async function getProfByJWT({ state, type }) {
-  console.log(localStorage.getItem("profTkn"));
   try {
     const peticion = await axios.get("/professional/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
