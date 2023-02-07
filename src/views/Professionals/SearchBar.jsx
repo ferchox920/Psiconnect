@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProfessionalsFilters } from "../../features/apiPetitions";
-<<<<<<< HEAD
-import style from './index.module.css'
-import lupa from '../../assets/hero/lupa.svg'
-
-export default function SearchBar({area}) {
-=======
 import style from "./index.module.css";
 import lupa from "../../assets/hero/lupa.svg";
 export default function SearchBar({ area }) {
->>>>>>> main
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
@@ -18,19 +11,6 @@ export default function SearchBar({ area }) {
     setInput(e.target.value);
   };
 
-<<<<<<< HEAD
-const handleSubmit=(e)=>{
-e.preventDefault()
-getProfessionalsFilters({
-    type: 'global',
-    state: dispatch,
-area: area ? area : null,
-name: input, 
-lastName: input.split(' ')[1] || null
-})
-setInput('')
-}
-=======
   const handleSubmit = (e) => {
     e.preventDefault();
     getProfessionalsFilters({
@@ -41,7 +21,6 @@ setInput('')
       lastName: input.split(" ")[1] || null,
     });
   };
->>>>>>> main
   return (
     <form className={style.inputCointer} onSubmit={(e) => handleSubmit(e)}>
       <input

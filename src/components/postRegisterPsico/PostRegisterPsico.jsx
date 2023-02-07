@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAreas, getSkills } from '../../features/apiPetitions';
+import { getOnlyAreas, getSkills } from '../../features/apiPetitions';
 import style from './PostRegisterPsico.module.css'
 
 const PostRegisterPsico = () => {
@@ -26,7 +25,7 @@ useEffect(()=>{
   }, [register.avatar]);
 
 useEffect(()=>{
-    getAreas(setAreas)
+    getOnlyAreas(setAreas)
     getSkills({
         state:setSkills,
         type:'local'
@@ -120,7 +119,7 @@ console.log(register)
                         {   
                             areas.map(el=>{
                                 return(
-                                    <option key={el.area} value={el.area} >{el.area}</option>
+                                    <option key={el.area} value={el} >{el}</option>
                                 )
                             })
                         }

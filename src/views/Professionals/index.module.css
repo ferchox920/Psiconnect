@@ -106,10 +106,6 @@
   background-color: transprent;
   cursor: default;
 }
-<<<<<<< HEAD
-.button img{
-  width: 30px;
-=======
 .ContainerAreaSliderFilter{
   width: 100%;
   padding: 0;
@@ -122,5 +118,4 @@
   width: 70%;
   padding: 0;
   margin: 0;
->>>>>>> main
 }
