@@ -40,7 +40,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
-        <Route path='/user/profile' element={<ProfileProfessional/>}></Route>
+        <Route path='/user/profile/:section' element={<ProfileProfessional/>}></Route>
       </Routes>
       <Footer />
     </>
