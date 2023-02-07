@@ -13,6 +13,7 @@ import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
 import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
+import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 
 function App() {
   const dispacht = useDispatch();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
+        <Route path='/user/profile' element={<ProfileProfessional/>}></Route>
       </Routes>
       <Footer />
     </>
