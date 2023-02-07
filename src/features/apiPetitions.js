@@ -91,6 +91,15 @@ export async function getProfessionalById(id, state) {
   }
 }
 
+export async function getAreasOnly(){
+  try {
+    const peticion = await axios.get(`areas/onlyAreas`)
+    return state(peticion?.data);
+  } catch (error) {
+    return error.response;
+  }
+}
+
 export async function getProfessionalsFilters({
   state,
   type,
@@ -108,7 +117,6 @@ export async function getProfessionalsFilters({
           : ""
       }`
     );
-    console.log(peticion.data);
     type === "local"
       ? state(peticion?.data)
       : state(setFilterProfessional(peticion?.data));
