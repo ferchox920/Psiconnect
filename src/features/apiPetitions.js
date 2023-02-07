@@ -32,6 +32,30 @@ export async function userLogin(body) {
     throw new Error(error.response.data);
   }
 }
+
+export async function profLogin(body) {
+  try {
+    const peticion = await axios.post(`/professional/login`, body);
+    localStorage.setItem("profTkn", peticion?.data);
+    return peticion;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+
+export async function getProfByJWT({ state, type }) {
+  console.log(localStorage.getItem("profTkn"));
+  try {
+    const peticion = await axios.get("/professional/id", {
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+    });
+    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
+  } catch (error) {
+    console.log(error.response.data);
+  }
+}
+
 export async function changePassword(body) {
   try {
     const peticion = await axios.post(`/user/login`, body, {
@@ -109,7 +133,7 @@ export async function getProfessionalsFilters({
 }) {
   try {
     const peticion = await axios.get(
-      `/professional${area ? `/${area}` : ""}${
+      `/professional${area ? `/area/${area}` : ""}${
         name
           ? `?${
               !lastName ? `name=${name}` : `name=${name}&lastName=${lastName}`
