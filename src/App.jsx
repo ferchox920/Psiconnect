@@ -12,6 +12,7 @@ import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
+import Chat from "./components/Chat/Chat";
 
 function App() {
   const dispacht = useDispatch();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
       </Routes>
       <Footer />
+      <Chat />
     </>
   );
 }
