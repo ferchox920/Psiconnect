@@ -1,11 +1,17 @@
 .container{
+    display: flex;
     position: fixed;
     bottom: 10px;
     right: 30px;
-    background-color: red;
+    background-color: rgb(26, 167, 206);
+    color: white;
     width: 500px;
-    z-index: 100;
+    z-index: 0;
     height: 300px;
+    height: 68vh;
+
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* .container {
@@ -78,7 +84,6 @@
   }
   
   .formContainer input {
-    padding: 0 1rem;
     width: 100%;
   }
   
