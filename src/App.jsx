@@ -12,17 +12,25 @@ import { getUserByJWT } from "./features/apiPetitions";
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
+import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 
 function App() {
   const dispacht = useDispatch();
-  useEffect(() => {
-    localStorage.getItem("tkn")
-      ? getUserByJWT({
-          state: dispacht,
-          type: "global",
-        })
-      : null;
-  }, []);
+  // useEffect(() => {
+  //   localStorage.getItem("tkn")
+  //     ? getUserByJWT({
+  //         state: dispacht,
+  //         type: "global",
+  //       })
+  //     : null;
+  // }, []);
+  useEffect(()=>{
+    async function hola(){
+      await createChat('moo5')
+      getAllChats('momo')
+    }
+    // hola();
+  },[])
   return (
     <>
       <NavBar />
