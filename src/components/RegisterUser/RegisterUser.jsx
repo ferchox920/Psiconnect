@@ -58,13 +58,7 @@ export default function RegisterUser({ closeModal }) {
       size: "large",
     });
   }, []);
-  const verifyRepeatPassword = async () => {
-    let repeatPassword = await validationsForm.confirmPassword(form);
-    setErrors({
-      ...errors,
-      ...repeatPassword,
-    });
-  };
+
 
   const handleInputChange = (e) => {
     setErrors(
@@ -151,12 +145,12 @@ export default function RegisterUser({ closeModal }) {
       />
 
       <input
-        className={errors.confirmPassword ? style.inputError : null}
+        className={(errors.repeatPassword || errors.confirmPassword )? style.inputError : null}
         type="password"
         name="confirmPassword"
         placeholder="Contraseña"
         value={form.confirmPassword}
-        onChange={(e) => handleInputChange(e)}
+        onChange={(e) => {handleInputChange(e)}}
       />
 
       <input type="submit" value="Crear cuenta" />
