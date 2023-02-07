@@ -57,7 +57,7 @@ const validationsForm = {
         if(form.confirmPassword !== form.password){
             validationsForm.errors.repeatPassword = 'La contraseña y el repetir contraseña no son las mismas'
         }else{
-            delete validationsForm.errors.repeatPassword
+            delete validationsForm.errors.confirmPassword
         }
         return validationsForm.errors
     }

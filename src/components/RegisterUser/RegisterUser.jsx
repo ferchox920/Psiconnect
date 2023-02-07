@@ -98,8 +98,7 @@ export default function RegisterUser({ closeModal }) {
       text: Object.values(errors)[0],
       icon: "error",
     })
-  };
-
+}
   
 
   return (
