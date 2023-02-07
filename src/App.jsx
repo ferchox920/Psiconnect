@@ -12,6 +12,7 @@ import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
+import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 
 function App() {
   const dispacht = useDispatch();

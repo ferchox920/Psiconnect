@@ -17,11 +17,13 @@ const professionalSlice = createSlice({
     setFilterProfessional(state, { payload }) {
         state.FilterProfessional = payload;
       },
+  
+    
   },
 });
 export const {
     setAllProfessional,
     setFilterProfessional,
-    
+    setProfessional
 } = professionalSlice.actions;
 export default professionalSlice.reducer;
