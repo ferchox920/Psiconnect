@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 import { errorMenssage } from "./errorsModals.js";
-import { setFilterProfessional, setProfessional } from "./professionalSlice.js";
+import { setFilterProfessional } from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
