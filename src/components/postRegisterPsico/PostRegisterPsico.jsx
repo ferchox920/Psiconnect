@@ -8,18 +8,26 @@ const [ register, setRegister ] = useState({
     linkedin:'',
     description:'',
     profesion:'',
-    area:'',
+    areasObjects:[],
+    areas:[],
     avatar:'',
     avatarIMG:'',
+    skillsObjects:[],
     skills:[]
 })
 const [ areas, setAreas ] = useState([])
 const [ skills, setSkills ] = useState([])
+const [ imageDisabled , setImageDisabled] = useState(false)
 
 useEffect(()=>{
     let img = document.querySelector('#deleteImageAvatar')
-    if(register.avatar === '') img.disabled = true
-    else img.disabled = false;
+    if(!imageDisabled){
+        img.disabled = true
+        setImageDisabled(true)
+    }else{
+        img.disabled = false
+        setImageDisabled(false)
+    }
  },[register.avatar])
 
 useEffect(()=>{
@@ -28,6 +36,7 @@ useEffect(()=>{
         state:setSkills,
         type:'local'
     })
+    console.log(areas)
 },[])
 
 const handleInputDeletedAvatar = () => {
@@ -38,7 +47,7 @@ const handleInputDeletedAvatar = () => {
             avatarIMG:''
     })
     let img = document.querySelector('#imageAvatar')
-   img.value = '';
+    img.value = '';
 }
 const handleInputChangeAvatar = (e) =>{
     if(!e.target.files[0]) return
@@ -57,13 +66,12 @@ const handleInputChange = (e) => {
     console.log(register)
 }
 const handleInputSkillsChange = (e) =>{
-
     let optionSkills = document.querySelector(`#${e.target.value}`)
 
     if(!register.skills.some((el)=> el === e.target.value)){
         setRegister({
         ...register,
-        skills : register.skills.concat(e.target.value)
+        skills : register.skills.concat(e.target.value),
         })
         optionSkills.disabled = true;
     }else{
@@ -74,57 +82,99 @@ const handleInputSkillsChange = (e) =>{
         optionSkills.disabled = false;
     }
 } 
+const handleInputAreasChange = (e) => {
+    let optionAreas = document.querySelector(`#${e.target.value}`)
+
+    if(!register.areas.some((el)=> el === e.target.value)){
+        setRegister({
+        ...register,
+        areas : register.areas.concat(e.target.value)
+        })
+        optionAreas.disabled = true;
+    }else{
+        setRegister({
+            ...register,
+            areas : register.areas.filter(el=> el !== e.target.value)
+        })
+        optionAreas.disabled = false;
+    }
+}
 console.log(register)
     return(
-        <div className={style.divContainer}>
-            <form className={style.formProfessionalRegister}>
-
-                <label>Avatar</label>
-                        <img 
-                        className={style.avatar}
-                        src={register.avatarIMG}
-                        alt='imgAvatar'
-                        />
-                    <div>
-                    <input
-                        id='imageAvatar'
-                        type="file" 
-                        accept="image/*"
-                        name="avatar"
-                        onChange={ (e) => handleInputChangeAvatar(e) }
-                        />
-                        <input
-                        id='deleteImageAvatar'
-                        type='button'
-                        name='avatar'
-                        value='Borrar imagen'
-                        onClick={handleInputDeletedAvatar}
-                        />
+            <form className={style.divContainer} onSubmit={(e)=>{console.log('se subio'); e.preventDefault()}}>
+                <label className={style.label} >Avatar</label>
+                    <div className={style.divContainerImg}>
+                        <div className={style.divAvatar}>
+                            <img 
+                            className={style.avatar}
+                            src={register.avatarIMG}
+                            alt='imgAvatar'
+                            />
+                        </div>
+                        <div className={style.divInputsImage}>
+                            <input
+                            className={style.inputImage}
+                            id='imageAvatar'
+                            type="file" 
+                            accept="image/*"
+                            name="avatar"
+                            onChange={ (e) => handleInputChangeAvatar(e) }
+                            />
+                            <input
+                            className={imageDisabled? style.inputImageDisabled: style.inputImage}
+                            id='deleteImageAvatar'
+                            type='button'
+                            name='avatar'
+                            value='Borrar imagen'
+                            onClick={handleInputDeletedAvatar}
+                            />
+                        </div>
                     </div>
-                    <br/>
 
-                    <label>Area</label>
+                    <label className={style.label}>Areas</label>
                     <select 
-                    name="area" 
-                    onChange={(e)=>handleInputChange(e)} 
+                    className={style.select}
+                    name="areas" 
+                    onChange={(e)=>handleInputAreasChange(e)}  
                     required>
                         <option
                         key='defaultSelect' 
                         value='defaultSelect'
                         selected 
                         disabled
-                        >seleccionar</option>
+                        >Areas</option>
                         {   
                             areas.map(el=>{
                                 return(
-                                    <option key={el.area} value={el.area} >{el.area}</option>
+                                    <option
+                                    key={el} 
+                                    value={el}
+                                    id={el}>
+                                    {el}
+                                    </option>
                                 )
                             })
                         }
                     </select>
-                    <br/>
+                    <div className={style.divSkills}>
+                        { 
+                            register.areas.map(el=>{
+                                return(
+                                    <div className={style.skillsDivSpan}>
+                                    <span>{el}</span>
+                                    <span 
+                                    className={style.skillsSpanX} 
+                                    onClick={()=>handleInputAreasChange({target:{value:el}})}>
+                                    x
+                                    </span> 
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
 
-                    <label>Description</label>
+                    <label className={style.label}>Descripcion</label>
+                    <div className={style.containerDescription}>
                     <input 
                     type="text" 
                     name='description'
@@ -133,14 +183,17 @@ console.log(register)
                     className={style.description}
                     onChange={handleInputChange}
                     />
+                    </div>
                     <input
+                    className={style.inputs}
                     type="text" 
                     name='profesion'
-                    value={'desactivado'||register.profesion}
+                    value={register.profesion}
                     placeholder='Profesión'
                     onChange={handleInputChange}
                     />
                     <input
+                    className={style.inputs}
                     type="text" 
                     name='linkedin'
                     value={register.linkedin}
@@ -148,8 +201,9 @@ console.log(register)
                     onChange={handleInputChange}
                     />
 
-                    <label>Habilidades</label>
+                    <label className={style.label} >Habilidades</label>
                     <select 
+                    className={style.select}
                     name="area" 
                     onChange={(e)=>handleInputSkillsChange(e)} 
                     required>
@@ -189,8 +243,12 @@ console.log(register)
                             })
                         }
                     </div>
+                    <input 
+                    className={style.inputSubmit}
+                    type='submit' 
+                    value='Actualizar' 
+                    />
             </form>
-        </div>
     )
 }
 export default PostRegisterPsico;

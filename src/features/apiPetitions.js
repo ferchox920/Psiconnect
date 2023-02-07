@@ -54,7 +54,7 @@ export async function getAreas(state) {
 }
 export async function getOnlyAreas(state) {
   try {
-    const peticion = await axios.get("/onlyAreas");
+    const peticion = await axios.get("/areas/onlyAreas");
     state(peticion.data);
   } catch (error) {
     return error.response;
