@@ -12,9 +12,8 @@ export default function Chat() {
   const dispacht = useDispatch();
   const user = useSelector((state) => state.user.user);
 
-  const [to, setTo] = useState(null);
+  const [to, setTo] = useState('');
   const handleSubmit = async (e) => {
-    console.log('asd')
     e.preventDefault();
     if (!message) return;
     await sendMessage({ from: user.id, to, message, state: dispacht });
@@ -25,7 +24,7 @@ export default function Chat() {
   return (
     <div className={style.container}>
       <div className={style.allChatsContainer}>
-        <AllChats setTo={setTo} />
+        <AllChats setTo={setTo} to={to}/>
       </div>
       <div className={style.InfoContaner}>
         <div className={style.msgContainer}>

@@ -10,6 +10,8 @@ import { setAllChats, setChat } from "../chatSlice";
 
 const firestore = getFirestore(firebaseApp);
 
+export default firestore;
+
 export async function getAllChatsOfUser({ user, state }) {
   const collectionRef = collection(firestore, `chats/${user}/chat`);
   const chatsCifrados = await getDocs(collectionRef);
