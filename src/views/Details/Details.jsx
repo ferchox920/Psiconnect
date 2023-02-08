@@ -14,6 +14,7 @@ import {
   getMessageOfChat,
   sendMessage,
 } from "../../features/firebase/chatsFeatures";
+import Chat from "../../components/Chat/Chat";
 
 export default function Details() {
   const [professional, setProfessional] = useState({});

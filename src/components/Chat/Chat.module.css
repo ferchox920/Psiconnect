@@ -1,10 +1,8 @@
 .container {
   position: fixed;
   z-index: 20;
-  right: 4rem;
-  bottom: 6rem;
   overflow: hidden;
-
+  transition: 800ms all ease-in-out;
   bottom: 10px;
   right: 30px;
   border-radius: 10px;
@@ -13,6 +11,40 @@
   width: 450px;
   height: 450px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
+.containerChatFloat{
+  position: fixed;
+  z-index: 20;
+  bottom: 35px;
+  right: 55px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  background-color: var(--oyster);
+  display: flex;
+  justify-content: center;
+  width: 6em;
+  height: 6em;
+  cursor: pointer;
+  transition: 300ms all ease;
+}
+.closeIcon{
+  position: relative;
+  background-color:none;
+  width: 70px;
+  overflow: hidden;
+  height: 70px;
+  left: -55px;
+  bottom: -5px;
+  cursor: pointer;
+}
+.closeIcon:hover{
+ transform: scale(1.1);
+}
+.containerChatFloat:hover{
+  transform: scale(1.06)
+}
+.containerChatFloat img{
+  scale: 75%;
 }
 .containerImage {
   width: 100%;

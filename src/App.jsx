@@ -45,7 +45,7 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
       </Routes>
       <Footer />
-      <Chat />
+    { user? <Chat /> : null}
     </>
   );
 }

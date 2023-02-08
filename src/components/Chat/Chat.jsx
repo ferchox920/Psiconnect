@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../features/firebase/chatsFeatures";
 import AllChats from "./AllChats";
 import style from "./Chat.module.css";
+import chat from '../../assets/chat.svg'
 
-export default function Chat() {
+export default function Chat({}) {
   const [message, setMessage] = useState("");
   const messages = useSelector((state) => state.chats.chat);
   const anchor = useRef();
+  const [open, setOpen] = useState(null)
+
 
   const dispacht = useDispatch();
   const user = useSelector((state) => state.user.user);
@@ -21,10 +24,18 @@ export default function Chat() {
     anchor.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  if(!open){
+    return(
+      <div className={style.containerChatFloat} onClick={()=>setOpen(true)}>
+        <img src={chat} alt="chat" />
+      </div>
+    )
+  }
+
   return (
     <div className={style.container}>
       <div className={style.allChatsContainer}>
-        <AllChats setTo={setTo} to={to}/>
+        <AllChats setTo={setTo} to={to} setOpen={setOpen}/>
       </div>
       <div className={style.InfoContaner}>
         <div className={style.msgContainer}>
