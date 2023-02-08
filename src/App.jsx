@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 
 import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
-import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
+import RegisterProfesional from "./views/RegisterProfesionals/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
 import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 
