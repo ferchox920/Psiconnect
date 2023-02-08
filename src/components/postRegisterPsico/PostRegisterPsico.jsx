@@ -3,6 +3,8 @@ import { getOnlyAreas, getSkills } from '../../features/apiPetitions';
 import style from './PostRegisterPsico.module.css'
 
 const PostRegisterPsico = () => {
+  
+
 
 const [ register, setRegister ] = useState({
     linkedin:'',

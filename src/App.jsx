@@ -7,10 +7,12 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUserByJWT } from "./features/apiPetitions";
+import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
+
 import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
-import RegisterProfesional from "./views/RegisterProfesionals/RegisterProfesional";
+import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
+import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 
 function App() {
   const dispacht = useDispatch();
@@ -20,13 +22,17 @@ function App() {
           state: dispacht,
           type: "global",
         })
-      : null;
+      : (localStorage.getItem('profTkn') 
+          ? getProfByJWT({
+              state: dispacht,
+              type: "global",
+          }): null) ;
   }, []);
   return (
     <>
       <NavBar />
       <Routes>
-        <Route path='/profesional/postRegister' element={<PostRegisterPsico />} />
+        <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
         <Route path="/registerProfesional" element={<RegisterProfesional />} />
