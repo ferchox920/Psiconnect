@@ -157,3 +157,12 @@ export async function getSkills({state, type}){
     return error.response
   }
 }
+
+export async function verifyToken({ type }){
+  try {
+    const request = await axios.get(`/professional/details/${id}`);
+    type === 'local'? request?.data : null
+  } catch (error) {
+    return error.response;
+  }
+}

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getOnlyAreas, getSkills } from '../../features/apiPetitions';
 import style from './PostRegisterPsico.module.css'
 
 const PostRegisterPsico = () => {
   
-
+const token = useParams();
 
 const [ register, setRegister ] = useState({
     linkedin:'',
@@ -19,9 +20,13 @@ const [ register, setRegister ] = useState({
 const [ areas, setAreas ] = useState([])
 const [ skills, setSkills ] = useState([])
 const [ imageDisabled , setImageDisabled] = useState(false)
+const [ tokenVerify, setTokenVerify ] = useState(null)
 
 useEffect(()=>{
+    if(tokenVerify === null || tokenVerify === false) return
+    
     let img = document.querySelector('#deleteImageAvatar')
+
     if(!imageDisabled){
         img.disabled = true
         setImageDisabled(true)
@@ -32,12 +37,12 @@ useEffect(()=>{
  },[register.avatar])
 
 useEffect(()=>{
+    /*endPoint*/
     getOnlyAreas(setAreas)
     getSkills({
         state:setSkills,
         type:'local'
     })
-    console.log(areas)
 },[])
 
 const handleInputDeletedAvatar = () => {
@@ -101,6 +106,10 @@ const handleInputAreasChange = (e) => {
     }
 }
 console.log(register)
+
+if(tokenVerify === null){
+    return (<h1>Hola</h1>)
+}
     return(
             <form className={style.divContainer} onSubmit={(e)=>{console.log('se subio'); e.preventDefault()}}>
                 <label className={style.label} >Avatar</label>

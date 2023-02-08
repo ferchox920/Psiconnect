@@ -32,7 +32,7 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> 
+        <Route path='/profesional/postRegister/:token' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
         <Route path="/registerProfesional" element={<RegisterProfesional />} />
