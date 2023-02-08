@@ -28,8 +28,8 @@ useEffect(()=>{
     if(tokenVerify === null || tokenVerify === false) return
 
     let img = document.querySelector('#deleteImageAvatar')
-    console.log(imageDisabled)
-    if(!imageDisabled){
+
+    if(register.avatar === '' && !imageDisabled){
         img.disabled = true
         setImageDisabled(true)
     }else{
