@@ -12,20 +12,22 @@ export default function Chat() {
 
   return (
     <div className={style.container}>
-        <div className={style.allChatsContainer}>
-            <AllChats />
-        </div>
-      <div className={style.msgContainer}>
-        <p className={style.msg}>Welcome {/*username */}!</p>
+      <div className={style.allChatsContainer}>
+        <AllChats />
       </div>
-      <form className={style.formContainer}>
-        <input
-          placeholder="Write here..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button className={style.btn}>Send</button>
-      </form>
+      <div className={style.InfoContainer}>
+        <div className={style.msgContainer}>
+          <p className={style.msg}>Welcome {/*username */}!</p>
+        </div>
+        <form className={style.formContainer}>
+          <input
+            placeholder="Write here..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <button className={style.btn}>Send</button>
+        </form>
+      </div>
     </div>
   );
 }
