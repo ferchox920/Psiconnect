@@ -15,7 +15,7 @@ export default function Chat() {
       <div className={style.allChatsContainer}>
         <AllChats />
       </div>
-      <div className={style.InfoContainer}>
+
         <div className={style.msgContainer}>
           <p className={style.msg}>Welcome {/*username */}!</p>
         </div>
@@ -27,7 +27,8 @@ export default function Chat() {
           />
           <button className={style.btn}>Send</button>
         </form>
-      </div>
+        
+     
     </div>
   );
 }
