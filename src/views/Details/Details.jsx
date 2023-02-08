@@ -12,6 +12,7 @@ import Calendary from "../../components/Calendary/Calendary";
 
 export default function Details() {
   const [profesional, setProfessional] = useState({});
+  console.log(profesional, 'aqui')
   const { id } = useParams();
 
   useEffect(() => {
