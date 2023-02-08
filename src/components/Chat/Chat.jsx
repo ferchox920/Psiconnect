@@ -14,7 +14,7 @@ export default function Chat() {
   const [to, setTo] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!form) return;
+    if (!form) return;
     sendMessage({ from: user.id, to, message, state: dispacht });
   };
 
@@ -23,21 +23,18 @@ export default function Chat() {
       <div className={style.allChatsContainer}>
         <AllChats setTo={setTo} />
       </div>
-      <div className={style.InfoContainer}>
-        <div className={style.msgContainer}>
-          <p className={style.msg}>Welcome {/*username */}!</p>
-        </div>
-        <form className={style.formContainer} onSubmit={handleSubmit}>
-          <input
-            placeholder="Write here..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button className={style.btn}>Send</button>
-        </form>
-      </div>{
-        messages && console.log(messages)
-      }
+
+      <div className={style.msgContainer}>
+        <p className={style.msg}>Welcome {/*username */}!</p>
+      </div>
+      <form className={style.formContainer} onSubmit={handleSubmit}>
+        <input
+          placeholder="Write here..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button className={style.btn}>Send</button>
+      </form>
     </div>
   );
 }
