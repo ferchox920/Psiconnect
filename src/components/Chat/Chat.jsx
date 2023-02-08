@@ -38,7 +38,7 @@ export default function Chat() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button className={style.btn}>Send</button>
+          <button type="submit" className={style.btn}>Send</button>
         </form>
       </div>
     </div>
