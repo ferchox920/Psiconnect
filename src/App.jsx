@@ -5,6 +5,7 @@ import Details from './views/Details/Details';
 import Professionals from './views/Professionals/Professionals';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer.jsx';
+import Formreview from './views/FormReview/Formreview.jsx'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserByJWT } from './features/apiPetitions';
@@ -31,6 +32,7 @@ function App() {
       <Route path="/details/:id" element={<Details />} />
       <Route path="/Professionals" element={<Professionals />} />
       <Route path="/Professionals/:area" element={<Professionals />} />
+      <Route path='/Formreview/:professionalId' element={<Formreview />} />
       
     </Routes>
     <Footer />
