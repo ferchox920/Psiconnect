@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css";
 import { Route, Routes } from "react-router";
 import Home from "./views/Home/Home";
 import Details from './views/Details/Details';
@@ -10,17 +10,24 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserByJWT } from './features/apiPetitions';
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
-// import RegisterProfesional from './views/RegisterProfesional/RegisterProfesional';
-import Asistencia from './views/Asistencia/Asistencia';
+import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
+import Asistencia from "./views/Asistencia/Asistencia";
+import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 
 function App() {
   const dispacht = useDispatch();
-  useEffect(() =>{
-    getUserByJWT({
-      state:dispacht,
-      type:'global'
-    })}
-    ,[])
+  useEffect(() => {
+    localStorage.getItem("tkn")
+      ? getUserByJWT({
+          state: dispacht,
+          type: "global",
+        })
+      : (localStorage.getItem('profTkn') 
+          ? getProfByJWT({
+              state: dispacht,
+              type: "global",
+          }): null) ;
+  }, []);
   return (
     <>
     <NavBar />

@@ -2,12 +2,9 @@
 .swiperContainer{
     width: 100%;
     height: 300px;
-    background-color: white;
 }
 
-.areas {
-    background-color: white;
-}
+
 
 .ondas{
     background-image:url('../../assets/Areas/Ondas.svg');

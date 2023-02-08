@@ -4,22 +4,33 @@ import logo from "../../assets/LogoCerebro.svg";
 import FormModal from "../modals/Modals";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import {Menu, MenuItem} from '@mui/material'
+
 
 export default function NavBar() {
   const [modal, setModal] = useState(null);
+  const [menu, setMenu] = useState(false)
+  const [anchorEl, setAnchorEl] = useState(null);
   const user = useSelector((state) => state.user.user);
   const openModal = () => {
     setModal(true);
   };
+
+  const openMenu = (e) =>{
+    setAnchorEl(e.currentTarget)
+    setMenu(!menu)
+  }
+
   return (
     <>
       <div className={style.container}>
         <div className={style.nav}>
           <div className={style.logo}>
             <Link to={"/"}>
-              <img src={logo} alt="logo" />
-              <div>
-                <h3 className={style.titlelogo}>psiconnect</h3>
+
+              <div className={style.navLogo}>
+                <img src={logo} alt="logo" />
+                <h3>psiconnect</h3>
               </div>
             </Link>
           </div>
@@ -45,9 +56,24 @@ export default function NavBar() {
                 <h3 className={style.navItem}>¿Cómo te ayudamos?</h3>
               </Link>
             </div>
-            {user ? (<div style={{display:'flex'}}>
-              <h4 className={style.navItem}>{user.name}</h4>
+            {user ? (<div onClick={openMenu}>
+              {/* <h3 className={style.navItem}>{user.name}</h3> */}
               <img className={style.img_avatar} src={user.avatar || 'https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1'} alt={user.name} />
+              {menu ? 
+              <Menu 
+                anchorEl={anchorEl} open={Boolean(anchorEl)}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+              > 
+              <MenuItem>Mi Perfil</MenuItem>
+              <MenuItem onClick={() => {localStorage.setItem('tkn', ''), window.location.reload()}}> Cerrar Sesión </MenuItem> 
+              </Menu> : null}
             </div>
             ) : (
               <div className={style.loginDiv}>
