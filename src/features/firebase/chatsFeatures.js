@@ -57,6 +57,7 @@ export async function createChat({ user, professional, state }) {
     id: new Date().getTime(),
     name: `${user.id}_${professional.id}`,
     to:professional.name,
+    idOfTo:professional.id,
   });
 
   const docuRefPsicoChat = await doc(
@@ -66,7 +67,8 @@ export async function createChat({ user, professional, state }) {
   await setDoc(docuRefPsicoChat, {
     id: new Date().getTime(),
     name: `${professional}_${user}`,
-    to: user.name
+    to: user.name,
+    idOfTo:user.idOfTo
   });
   getAllChatsOfUser({ user:user.id, state });
 }
