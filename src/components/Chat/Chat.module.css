@@ -1,19 +1,29 @@
 .container{
-    display: flex;
+    /* display: flex;
     position: fixed;
     bottom: 10px;
     right: 30px;
     background-color: rgb(26, 167, 206);
-    color: white;
     width: 500px;
     z-index: 0;
     height: 300px;
     overflow-y: auto;
 
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    position: fixed;
+    display: flex;
+    z-index: 0;
+    right: 4rem;
+    bottom: 6rem;
+
+    bottom: 10px;
+    right: 30px;
+    flex-direction: column;
     justify-content: space-between;
-    display: grid;
-    grid-template-columns: 20% 80%;
+    height: 300px;
+
 }
 
 /* .container {
