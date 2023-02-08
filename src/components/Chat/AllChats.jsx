@@ -5,6 +5,7 @@ import {
   getMessageOfChat,
 } from "../../features/firebase/chatsFeatures";
 import style from "./Chat.module.css";
+// import ForumIcon from '@mui/icons-material/Forum';
 
 export default function AllChats({setTo}) {
   const dispacht = useDispatch();
@@ -19,12 +20,18 @@ export default function AllChats({setTo}) {
   }, [user]);
 
   return (
-    <div className={style.container}>
+    <div className={style.allChatsContainer}>
+      <section className={style.containerImage}>
+        <img src={user?.avatar} alt={user?.name} />
+        <h2>{user?.name} {user?.lastName}</h2>
+      </section>
+      <div className={style.itemChats}>
       {chats?.map((chat, i) => (
         <button key={i} value={chat.idOfTo} onClick={getAllMessage}>
           {chat.to}
         </button>
       ))}
+      </div>
     </div>
   );
 }

@@ -34,14 +34,7 @@ export default function Details() {
   const { id } = useParams();
   useEffect(() => {
     getProfessionalById(id, setProfessional);
-
-    sendMessage({
-      from: user?.id,
-      to: professional?.id,
-      message: "holaa",
-      state: dispacht,
-    });
-  }, [user]);
+  }, [id]);
 
   return (
     <div className={style.container}>
