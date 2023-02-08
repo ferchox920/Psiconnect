@@ -7,7 +7,6 @@ const PostRegisterPsico = () => {
 const [ register, setRegister ] = useState({
     linkedin:'',
     description:'',
-    profesion:'',
     areasObjects:[],
     areas:[],
     avatar:'',
@@ -184,14 +183,6 @@ console.log(register)
                     onChange={handleInputChange}
                     />
                     </div>
-                    <input
-                    className={style.inputs}
-                    type="text" 
-                    name='profesion'
-                    value={register.profesion}
-                    placeholder='Profesión'
-                    onChange={handleInputChange}
-                    />
                     <input
                     className={style.inputs}
                     type="text" 
