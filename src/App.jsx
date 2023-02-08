@@ -6,15 +6,17 @@ import Professionals from "./views/Professionals/Professionals";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
-import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
+import Chat from "./components/Chat/Chat";
+
 
 function App() {
+  const user = useSelector((state => state.user.user));
   const dispacht = useDispatch();
   useEffect(() => {
     localStorage.getItem("tkn")
@@ -22,11 +24,13 @@ function App() {
           state: dispacht,
           type: "global",
         })
-      : (localStorage.getItem('profTkn') 
-          ? getProfByJWT({
-              state: dispacht,
-              type: "global",
-          }): null) ;
+      : null;
+    localStorage.getItem("profTkn")
+      ? getProfByJWT({
+          state: dispacht,
+          type: "global",
+        })
+      : null;
   }, []);
   return (
     <>
@@ -41,6 +45,7 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
       </Routes>
       <Footer />
+    { user? <Chat /> : null}
     </>
   );
 }
