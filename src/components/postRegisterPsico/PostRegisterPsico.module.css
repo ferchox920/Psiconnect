@@ -63,6 +63,7 @@ width: 20rem;
 }
 
 .divContainer .divContainerImg .divAvatar .avatar{
+    object-fit: fill;
     width:16rem;
     height: 15rem;
     border-radius: 100%;

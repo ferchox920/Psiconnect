@@ -158,11 +158,13 @@ export async function getSkills({state, type}){
   }
 }
 
-export async function verifyToken({ type }){
+export async function verifyToken({ type , token, state}){
   try {
-    const request = await axios.get(`/professional/details/${id}`);
-    type === 'local'? request?.data : null
+    const request = await axios.get(`/professional/token`,{
+      headers: { authorization: `Bearer ${token}` },
+    });
+    type === 'local'? state(request) : null
   } catch (error) {
-    return error.response;
+    state(error);
   }
 }

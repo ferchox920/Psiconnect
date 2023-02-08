@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getOnlyAreas, getSkills } from '../../features/apiPetitions';
+import { Navigate, useLocation } from 'react-router-dom';
+import { getOnlyAreas, getSkills, verifyToken } from '../../features/apiPetitions';
 import style from './PostRegisterPsico.module.css'
 
 const PostRegisterPsico = () => {
   
-const token = useParams();
+const query = new URLSearchParams(useLocation().search);
+const token = query.get('tkn')
 
 const [ register, setRegister ] = useState({
     linkedin:'',
@@ -21,12 +22,13 @@ const [ areas, setAreas ] = useState([])
 const [ skills, setSkills ] = useState([])
 const [ imageDisabled , setImageDisabled] = useState(false)
 const [ tokenVerify, setTokenVerify ] = useState(null)
+const [ verification, setVerification ] = useState(null)
 
 useEffect(()=>{
     if(tokenVerify === null || tokenVerify === false) return
-    
-    let img = document.querySelector('#deleteImageAvatar')
 
+    let img = document.querySelector('#deleteImageAvatar')
+    console.log(imageDisabled)
     if(!imageDisabled){
         img.disabled = true
         setImageDisabled(true)
@@ -34,16 +36,25 @@ useEffect(()=>{
         img.disabled = false
         setImageDisabled(false)
     }
- },[register.avatar])
+ },[register.avatar,tokenVerify])
 
 useEffect(()=>{
-    /*endPoint*/
     getOnlyAreas(setAreas)
     getSkills({
         state:setSkills,
         type:'local'
     })
+    verifyToken({
+        state: setVerification,
+        token:token,
+        type:'local'
+    })
 },[])
+
+useEffect(()=>{
+    if(verification?.status === 204) setTokenVerify(true)
+    else if(verification !== null) setTokenVerify(false)
+},[verification])
 
 const handleInputDeletedAvatar = () => {
     if(!register.avatar && !register.avatarIMG) return
@@ -105,12 +116,14 @@ const handleInputAreasChange = (e) => {
         optionAreas.disabled = false;
     }
 }
-console.log(register)
 
-if(tokenVerify === null){
-    return (<h1>Hola</h1>)
+if(tokenVerify === null ){
+    return (<h1>Loading</h1>)
 }
-    return(
+else if(tokenVerify === false){
+    return <Navigate to='/'/>
+}
+else return(
             <form className={style.divContainer} onSubmit={(e)=>{console.log('se subio'); e.preventDefault()}}>
                 <label className={style.label} >Avatar</label>
                     <div className={style.divContainerImg}>
