@@ -105,12 +105,6 @@ export async function getProfessionalById(id, state) {
   }
 }
 
-
-
-
-
-
-
 export async function getProfessionalsFilters({
   state,
   type,
@@ -137,11 +131,24 @@ export async function getProfessionalsFilters({
   }
 }
 
-export async function createReview ({comments, userId, professionalId, score}){
-  // try {
-  //   const peticion = await axios.post("/review", (body, params) )
-    
 
-
-  // }
+export async function getProfessionalReview(id, state){
+  try {
+    const peticion = await axios.get(`/review/${id}`)
+    return state(peticion?.data)
+  }catch(error) {
+    return error.response
+  }
 }
+
+export async function createProfessionalReview (id, body){
+    
+  try {
+      const createReview = await axios.post(`/review/${id}`, body)
+      return createReview
+
+  }catch (error){
+    console.log(error.response.data)
+  }
+}
+
