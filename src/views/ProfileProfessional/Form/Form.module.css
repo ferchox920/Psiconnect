@@ -1,0 +1,19 @@
+.container{
+    width: 86%;
+    margin-right: 0%;
+    
+}
+
+.box{
+    padding: 5%;
+  
+
+}
+.avatar{
+    width: 10%;
+    height: 10%;
+}
+.avatar:hover{
+    cursor: pointer;
+
+}
