@@ -28,6 +28,7 @@ const Calendary = () => {
       day.setDate(day.getDate() + i);
 
       days.push(
+
         <div key={i} className={style.day}>
           <div className={style.weekday_Date}>
             <div className={style.weekDay}>{weekDays[day.getDay()]}</div>
@@ -35,10 +36,12 @@ const Calendary = () => {
           </div>
           <div className={style.workingHours}>{renderWorkingHours(day)}</div>
         </div>
+        
       );
     }
 
     return (
+    
       <div className={style.week} style={{ display: "flex", flexWrap: "wrap" }}>
         {days}
       </div>
@@ -63,6 +66,7 @@ const Calendary = () => {
   };
 
   return (
+  
     <div className={style.calendar}>
       <h2 className= {style.titlecalendar}>Agenda un cita</h2>
       <div className={style.header}>
@@ -70,9 +74,9 @@ const Calendary = () => {
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() - 7))
-            )
-          }
-        >
+              )
+            }
+            >
           &larr;
         </button>
         <div>{currentDate.toLocaleString("default", { month: "long" })} </div>
@@ -80,9 +84,9 @@ const Calendary = () => {
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() + 7))
-            )
-          }
-        >
+              )
+            }
+            >
           &rarr;
         </button>
       </div>
@@ -97,12 +101,13 @@ const Calendary = () => {
           <button
             className={style.button}
             onClick={() => setSelectedHour(null)}
-          >
+            >
             Close
           </button>
         </div>
       )}
     </div>
+   
   );
 };
 export default Calendary;
