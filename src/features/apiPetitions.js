@@ -49,7 +49,7 @@ export async function getProfByJWT({ state, type }) {
     const peticion = await axios.get("/professional/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
+    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'professional'}));
   } catch (error) {
     console.log(error.response.data);
   }
@@ -60,7 +60,6 @@ export async function changePassword(body) {
     const peticion = await axios.post(`/user/login`, body, {
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
-    console.log(peticion?.data.data);
     localStorage.setItem("tkn", peticion?.data.data);
     return peticion;
   } catch (error) {
@@ -86,7 +85,6 @@ export async function getAreas(state) {
   }
 } */
 export async function getUserByJWT({ state, type }) {
-  console.log(localStorage.getItem("tkn"));
   try {
     const peticion = await axios.get("/user/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
