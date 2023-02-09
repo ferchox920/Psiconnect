@@ -134,9 +134,11 @@ export default function Details() {
           <Calendary params={professional.id} />
         </div>
         <div className={style.pagar}>
-          <h1>Precio</h1>
-          <h1 className={style.precio}>50 Usd</h1>
-          <button className={style.buttonpagar}>Reservar Cita</button>
+        
+            <h1>Precio</h1>
+            <h1 className={style.precio}>50 Usd</h1>
+            <button className={style.buttonpagar}>Reservar Cita</button>
+     
 
           <div>
             <img className={style.zoom} src={zoom} alt="" />
