@@ -165,6 +165,6 @@ export async function verifyToken({ type , token, state}){
     });
     type === 'local'? state(request) : null
   } catch (error) {
-    state(error);
+    return error.response
   }
 }
