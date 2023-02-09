@@ -29,7 +29,7 @@ export default function AllChats({ setTo, to, setOpen }) {
       onSnapshot(
         collection(
           firestore,
-          `chats/${user?.id}/chat/${user?.id}_${to}/message/`
+          `chats/${user?.id}/chat/${user?.id}_${to.idOfTo}/message/`
         ),
         (snapshot) => {
           dispacht(setChat(snapshot.docs.map((doc) => doc.data())));

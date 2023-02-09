@@ -40,7 +40,7 @@ export default function Chat({}) {
       </div>
       <div className={style.InfoContaner}>
         <div className={style.msgContainer}>
-          {messages?.map((e)=> <Menssage  user={user} message={e}/>)}
+          {messages?.map((e)=> <Message key={e.id} user={user} message={e} other={to} />)}
           <div ref={anchor} style={{ marginBottom: "65px" }}></div>
         </div>
         <form  className={style.formContainer} onSubmit={handleSubmit}>

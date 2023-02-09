@@ -111,6 +111,9 @@
   position: sticky;
   z-index: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   font-size: 1.2rem;
   padding-bottom: 80px;
   overflow-y: auto;
@@ -161,6 +164,41 @@
 }
 .btnChat img{
   width: 20%;
+}
+
+.messageOfMe{
+ background-color:var(--oyster); 
+ border-radius: 20px;
+ justify-content: end;
+ gap: 10px;
+ align-items: center;
+ display: flex;
+}
+
+
+.msg{
+   font: var(--paragraph);
+   font-size: 15px;
+   width: 60%;
+   display: block;
+ 
+}
+
+.img{
+  width: 2em;
+  height: 2em;
+  margin: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 50%;
+}
+.messageOfOther{
+  background-color:var(--pink); 
+  border-radius: 20px;
+  justify-content: start;
+  gap: 10px;
+  align-items: center;
+  display: flex;
+
 }
 /* 
   .msgContainer {

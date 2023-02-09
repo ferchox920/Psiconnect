@@ -16,7 +16,6 @@ export async function getAllChatsOfUser({ user, state }) {
   const collectionRef = collection(firestore, `chats/${user}/chat`);
   const chatsCifrados = await getDocs(collectionRef);
   const chats = chatsCifrados.docs.map((chatCifrado) => chatCifrado.data());
-  console.log(chats)
   state(setAllChats(chats));
   return chats;
 }
@@ -38,8 +37,8 @@ export async function sendMessage({ from, to, message, state }) {
   );
   setDoc(docuRefProfessional, {
     id: new Date().getTime(),
-    from: to,
-    to: from,
+    from: from,
+    to: to,
     message,
   });
   getMessageOfChat({ from, to, state });
@@ -83,7 +82,7 @@ export async function createChat({ user, professional, state }) {
     name: `${professional.id}_${user.id}`,
     to: user.name,
     idOfTo:user.id,
-    avatarOfTo:professional.avatar,
+    avatarOfTo:user.avatar,
 
   });
   getAllChatsOfUser({ user:user.id, state });
