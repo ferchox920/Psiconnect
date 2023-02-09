@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../features/firebase/chatsFeatures";
 import AllChats from "./AllChats";
@@ -24,6 +24,9 @@ export default function Chat({}) {
     setMessage('');
     anchor.current.scrollIntoView({ behavior: "smooth" });
   };
+  useEffect(()=>{
+    anchor.current.scrollIntoView({ behavior: "smooth" });
+  },[])
 
   if(!open){
     return(
