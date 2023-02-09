@@ -158,13 +158,24 @@ export async function getSkills({state, type}){
   }
 }
 
-export async function verifyToken({ type , token, state}){
+export async function verifyTokenPostRegister({ type , token, state}){
   try {
-    const request = await axios.get(`/professional/token`,{
-      headers: { authorization: `Bearer ${token}` },
+    const request = await axios.get(`/token/postRegister`,{
+      headers: { post: `Bearer ${token}` },
     });
     type === 'local'? state(request) : null
   } catch (error) {
-    state(error);
+    state(error.response);
+  }
+}
+
+export async function confirmEmailClient({ type , token, state, userType}){
+  try {
+    const request = await axios.put(`/${userType}/confirmationEmail`,{},{
+      headers: { confirm: `Bearer ${token}`}
+    });
+    type === 'local'? state(request) : null
+  } catch (error) {
+    state(error.response);
   }
 }
