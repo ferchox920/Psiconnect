@@ -13,7 +13,6 @@ import { ProSidebarProvider } from 'react-pro-sidebar'
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
-import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 import Chat from "./components/Chat/Chat";
 
