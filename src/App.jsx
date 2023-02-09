@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import Home from "./views/Home/Home";
 import Details from "./views/Details/Details";
 import Professionals from "./views/Professionals/Professionals";
@@ -8,14 +8,17 @@ import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
+import { ProSidebarProvider } from 'react-pro-sidebar'
 
 // import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
 import { createChat, getAllChats } from "./features/firebase/chatsFeatures";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
+import SideBar from "./views/ProfileProfessional/SideBar";
 
 function App() {
+  const {pathname} = useLocation()
   const dispacht = useDispatch();
   useEffect(() => {
     localStorage.getItem("tkn")
@@ -40,9 +43,11 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
-        <Route path='/user/profile/:section' element={<ProfileProfessional/>}></Route>
+        
+        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}></Route>
       </Routes>
-      <Footer />
+      {pathname.split('/')[1] !== 'professionalProfile' && <Footer />}
+      
     </>
   );
 }
