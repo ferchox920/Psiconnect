@@ -129,3 +129,15 @@ export async function getProfessionalsFilters({
     return error.response;
   }
 }
+
+export async function requestConsultation(body){
+  try {
+    const peticion = await axios.post(`/payment/create-payment`, body);
+    console.log(peticion.data.data.links[1].href);
+    return peticion.data.data.links[1].href
+
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+} 
