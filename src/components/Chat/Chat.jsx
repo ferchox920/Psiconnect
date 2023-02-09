@@ -24,9 +24,9 @@ export default function Chat({}) {
     setMessage('');
     anchor.current.scrollIntoView({ behavior: "smooth" });
   };
-  useEffect(()=>{
-    anchor.current.scrollIntoView({ behavior: "smooth" });
-  },[])
+  // useEffect(()=>{    Se me rompio :(
+  //   anchor.current.scrollIntoView({ behavior: "smooth" });
+  // },[])
 
   if(!open){
     return(
