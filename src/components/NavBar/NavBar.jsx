@@ -1,8 +1,8 @@
 import style from "./NavBar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/LogoCerebro.svg";
 import FormModal from "../modals/Modals";
-import { useState } from "react";
+import { useState} from "react";
 import { useSelector } from "react-redux";
 import {Menu, MenuItem} from '@mui/material'
 
@@ -12,6 +12,7 @@ export default function NavBar() {
   const [menu, setMenu] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
   const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate()
   const openModal = () => {
     setModal(true);
   };
@@ -71,8 +72,8 @@ export default function NavBar() {
                   horizontal: 'center',
                 }}
               > 
-              <MenuItem>Mi Perfil</MenuItem>
-              <MenuItem onClick={() => {localStorage.setItem('tkn', ''), window.location.reload()}}> Cerrar Sesión </MenuItem> 
+              <MenuItem onClick={() => navigate('/professionalProfile/profile')}>Mi Perfil</MenuItem>
+              <MenuItem onClick={() => {localStorage.setItem('tkn', ''),localStorage.setItem('profTkn', ''),navigate('/'),window.location.reload()}}> Cerrar Sesión </MenuItem> 
               </Menu> : null}
             </div>
             ) : (
