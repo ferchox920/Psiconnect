@@ -39,17 +39,11 @@ export default function Formreview  () {
            type= 'email'
            placeholder= 'Score'
            name = 'score'
-           value = {'useremail'}
+           value = ''
             >
            </input>
 
-           <input 
-           type= 'email'
-           placeholder= 'Score'
-           name = 'score'
-           value = {profesional.email}
-            >
-           </input>
+          
            <input 
            type = 'text'
            placeholder= 'Deja tu comentario'
@@ -60,7 +54,7 @@ export default function Formreview  () {
 
            <input 
            type= 'number'
-           placeholder= 'Score'
+           placeholder= 'userId'
            name = 'score'
            value = ''
             >
