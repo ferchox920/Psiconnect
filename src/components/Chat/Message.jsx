@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Avatar } from "@material-ui/core";
-
-function Mensaje({ mensajeFirebase }) {
+function Message({ message, user }) {
   return (
     <div className="message">
       <Avatar src={mensajeFirebase.foto} />
@@ -21,4 +19,4 @@ function Mensaje({ mensajeFirebase }) {
   );
 }
 
-export default Mensaje;
+export default Message;

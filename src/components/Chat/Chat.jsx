@@ -4,6 +4,7 @@ import { sendMessage } from "../../features/firebase/chatsFeatures";
 import AllChats from "./AllChats";
 import style from "./Chat.module.css";
 import chat from '../../assets/chat.svg'
+import Message from "./Message";
 
 export default function Chat({}) {
   const [message, setMessage] = useState("");
@@ -19,7 +20,7 @@ export default function Chat({}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message) return;
-    await sendMessage({ from: user.id, to, message, state: dispacht });
+    await sendMessage({ from: user.id, to:to.idOfTo, message, state: dispacht });
     setMessage('');
     anchor.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -39,7 +40,7 @@ export default function Chat({}) {
       </div>
       <div className={style.InfoContaner}>
         <div className={style.msgContainer}>
-          {messages?.map((e)=> <p>{e.message}</p>)}
+          {messages?.map((e)=> <Menssage  user={user} message={e}/>)}
           <div ref={anchor} style={{ marginBottom: "65px" }}></div>
         </div>
         <form  className={style.formContainer} onSubmit={handleSubmit}>

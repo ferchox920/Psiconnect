@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./AreaSliderFilter.module.css";
-// import ondas from "../../assets/Areas/Ondas.svg";
+import ondas from "../../assets/Areas/Ondas.svg";
 export default function AreaSliderFilter() {
   const [areas, setAreas] = useState();
   const { pathname } = useLocation();
@@ -22,9 +22,9 @@ export default function AreaSliderFilter() {
     <div className={style.areas}>
       {pathname === "/" ? (
         <>
-          {/* <div className={style.ondas}>
+          <div className={style.ondas}>
             <img src={ondas} alt="ondas" />
-          </div> */}
+          </div>
 
           <h1 className={style.titulo}>Areas</h1>
           <p className={style.parrafo}>

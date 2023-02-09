@@ -25,7 +25,7 @@
   width: 6em;
   height: 6em;
   cursor: pointer;
-  transition: 300ms all ease;
+  transition: 400ms all ease;
 }
 .closeIcon{
   position: relative;
@@ -146,7 +146,22 @@
   justify-content: center;
   gap: 10px;
 }
-
+.btnChat{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border: none;
+	font: var(--paragraph);
+  font-size: 15px;
+  overflow: hidden;
+	cursor: pointer;
+  gap: 5px;
+  background-color: var(--oyster);
+}
+.btnChat img{
+  width: 20%;
+}
 /* 
   .msgContainer {
     height: 100%;

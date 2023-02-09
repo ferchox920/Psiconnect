@@ -7,17 +7,22 @@ import firestore, {
   getMessageOfChat,
 } from "../../features/firebase/chatsFeatures";
 import style from "./Chat.module.css";
-import closeIcon from '../../assets/close.svg'
+import closeIcon from "../../assets/close.svg";
 
 // import ForumIcon from '@mui/icons-material/Forum';
 
-export default function AllChats({ setTo, to,setOpen }) {
+export default function AllChats({ setTo, to, setOpen }) {
   const dispacht = useDispatch();
   const user = useSelector((state) => state.user.user);
   const chats = useSelector((state) => state.chats.allChats);
   const getAllMessage = (e) => {
-    setTo(e.target.value);
-    getMessageOfChat({ from: user.id, to: e.target.value, state: dispacht });
+    const obj = JSON.parse(e.target.value)
+    setTo(obj);
+    getMessageOfChat({
+      from: user.id,
+      to: obj.idOfTo,
+      state: dispacht,
+    });
   };
   useEffect(
     () =>
@@ -27,7 +32,7 @@ export default function AllChats({ setTo, to,setOpen }) {
           `chats/${user?.id}/chat/${user?.id}_${to}/message/`
         ),
         (snapshot) => {
-         dispacht(setChat(snapshot.docs.map(doc => doc.data()))) 
+          dispacht(setChat(snapshot.docs.map((doc) => doc.data())));
         }
       ),
     [to]
@@ -38,17 +43,27 @@ export default function AllChats({ setTo, to,setOpen }) {
 
   return (
     <div className={style.allChatsContainer}>
-
       <section className={style.containerImage}>
-        <img src={closeIcon} alt='closeIcon' onClick={()=>setOpen(false)} className={style.closeIcon} />
-        <img src={user?.avatar} alt={user?.avatar} />
+        <img
+          src={closeIcon}
+          alt="closeIcon"
+          onClick={() => setOpen(false)}
+          className={style.closeIcon}
+        />
+        <img src={to?.avatarOfTo || user?.avatar} alt={to?.to || user?.name} />
         <h2>
-          {user?.name} {user?.lastName}
+          {to?.to || 'tu'} 
         </h2>
       </section>
       <div className={style.itemChats}>
         {chats?.map((chat, i) => (
-          <button key={i} value={chat.idOfTo} onClick={getAllMessage}>
+          <button
+            key={i}
+            value={JSON.stringify(chat)}
+            onClick={getAllMessage}
+            className={style.btnChat}
+          >
+            <img src={chat.avatarOfTo} alt={chat.to} />
             {chat.to}
           </button>
         ))}
