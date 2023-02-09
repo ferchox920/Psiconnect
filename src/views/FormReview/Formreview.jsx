@@ -3,85 +3,77 @@ import style from './Formreview.module.css'
 import { getProfessionalById } from "../../features/apiPetitions";
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import { CheckCircle, InputRounded, Label } from '@mui/icons-material';
 
 export default function Formreview  () {
-    const [profesional, setProfessional] = useState({});
-    const { id } = useParams();
-    console.log(profesional, 'profesional')
 
 
+    const scaleScore = [
+      {label : 'Puntualidad',
+       deficiente : 1,
+       regular : 2,
+       bueno: 3
+      },
+
+      // gi
+
+      
+    ]
 
 
-    const scaleScore = {
-      Deficiente : 1,
-      Regular : 2,
-      Bueno : 3,
-      muyBueno : 4,
-      Excelente : 5
-    }
+    
 
-
-    useEffect(() => {
-      getProfessionalById(id, setProfessional);
-    }, []);
-
+    
+  
 
 
 
   return (
-    <div className = {style.formreview}>
+   
+      <form className = { style.formReview}>
 
         <div className = {style.indications}>
           <p className = {style.parrafoindications}>
-            En psiconnect estamos comprometidos a prestar un servicio de entera calidad con los mejores profesionales, por lo que su opinión es muy importante para nosotros. Por favor califique a su especialista de acuerdo al servicio que recibio.
-
+            En psiconnect estamos comprometidos a prestar un servicio de entera calidad con los mejores profesionales, por lo que su opinión es muy importante para nosotros. Por favor califique al especialista de acuerdo al servicio que recibió.
           </p>
         </div>
 
-        <div className = {style.escala}>
+      
+          <div className={style.itemScore}>
+              {
+                scaleScore.map( el => (
+                  <div >
+                    <label htmlFor={el.label}>{el.label}</label>
+                    <div>
+                      <label htmlFor="">{el.deficiente}</label>
+                    <input type="checkbox"  />
+                    </div>
+                    <input type="checkbox" />
+                    <input type="checkbox" />
+                    <input type="checkbox" />
+                    <input type="checkbox" />
+                  </div>
+                ))
 
-        </div>
+              }
 
-        <form className = { style.formReview}>
-
-        <div className = {style.comments}>
-
-        <input 
-           type= 'email'
-           placeholder= 'Score'
-           name = 'score'
-           value = ''
-            >
-           </input>
-
-          
-           <input 
-           type = 'text'
-           placeholder= 'Deja tu comentario'
-           name = 'comments'
-           value = ''
-            >
-           </input>
-
-           <input 
-           type= 'number'
-           placeholder= 'userId'
-           name = 'score'
-           value = ''
-            >
-           </input>
+     
+           
+          </div>
 
 
 
 
 
-        </div>
-        <div className = {style.comments}></div>
+
+
+
+       
 
         </form>
         
 
-    </div>
+   
 
   )
 }
