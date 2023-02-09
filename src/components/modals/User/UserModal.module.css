@@ -55,7 +55,7 @@ p {
   margin: 15px 0 20px;
 }
 
-/* input {
+input {
   padding: 12px 15px;
   margin: 8px 15px;
   width: 100%;
@@ -63,7 +63,7 @@ p {
   border: none;
   outline: none;
   box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
-} */
+}
 
 input:focus,
 input:hover {

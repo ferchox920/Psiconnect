@@ -10,6 +10,17 @@ export default function Formreview  () {
     console.log(profesional, 'profesional')
 
 
+
+
+    const scaleScore = {
+      Deficiente : 1,
+      Regular : 2,
+      Bueno : 3,
+      muyBueno : 4,
+      Excelente : 5
+    }
+
+
     useEffect(() => {
       getProfessionalById(id, setProfessional);
     }, []);
