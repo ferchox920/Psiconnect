@@ -4,6 +4,7 @@ import Home from "./views/Home/Home";
 import Details from "./views/Details/Details";
 import Professionals from "./views/Professionals/Professionals";
 import NavBar from "./components/NavBar/NavBar";
+import ProfileUser  from "./views/ProfileUser/ProfileUser.jsx";
 import Formreview from './views/FormReview/Formreview.jsx'
 import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
@@ -49,10 +50,11 @@ function App() {
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path='/Formreview/:id' element={<Formreview />} />
-        
-        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}></Route>
+        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
+        <Route path='/userprofile' element={<ProfileUser/>}/>
+      
       </Routes>
-      {pathname.split('/')[1] !== 'professionalProfile' && <Footer />}
+      {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
       
       
     { user? <Chat /> : null}
