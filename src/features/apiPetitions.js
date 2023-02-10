@@ -61,7 +61,7 @@ export async function getProfByJWT({ state, type }) {
     const peticion = await axios.get("/professional/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'professional'}));
+    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
   } catch (error) {
     console.log(error.response.data);
   }
@@ -100,7 +100,7 @@ export async function getUserByJWT({ state, type }) {
     const peticion = await axios.get("/user/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
+    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol:"user"}));
   } catch (error) {
     console.log(error.response.data);
   }

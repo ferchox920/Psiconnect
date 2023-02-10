@@ -16,7 +16,7 @@ export default function ProfileUser () {
     <div className = {style.container}>
         <div className={style.sidebar}>
           <div className = {style.avatar}><img alt = ''/></div>
-            <h1 className = {style.username}>{`${users.name} ${users.lastName}`}</h1>
+            <h1 className = {style.username}>{`${users?.name} ${users?.lastName}`}</h1>
             <div className={style.menusideBar}>
             <div className={style.itemssidebar}><button className={style.buttonitems}>Perfil</button></div>
             <div className={style.itemssidebar}><button className={style.buttonitems}>Historia de consultas</button></div>
