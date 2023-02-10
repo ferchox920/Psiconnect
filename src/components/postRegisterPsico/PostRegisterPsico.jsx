@@ -26,7 +26,7 @@ const [ tokenVerify, setTokenVerify ] = useState(null)
 const [ verification, setVerification ] = useState(null)
 
 useEffect(()=>{
-    if(tokenVerify === null || tokenVerify === false) return window.location.pathname = '/'; 
+    if(tokenVerify === null || tokenVerify === false) return
 
     let img = document.querySelector('#deleteImageAvatar')
 
@@ -121,9 +121,9 @@ const handleInputAreasChange = (e) => {
 if(tokenVerify === null ){
     return (<h1>Loading</h1>)
 }
-else if(tokenVerify === false){
-    return <Navigate to='/'/>
-}
+// else if(tokenVerify === false){
+//     return <Navigate to='/'/>
+// }
 else return(
         <div className={style.divContainer}>
             <form className={style.form} onSubmit={(e)=>{console.log('se subio'); e.preventDefault()}}>
