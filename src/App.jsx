@@ -14,6 +14,7 @@ import RegisterProfesional from "./views/RegisterProfesionals/RegisterProfesiona
 import Asistencia from "./views/Asistencia/Asistencia";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 import Chat from "./components/Chat/Chat";
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 
 function App() {
@@ -38,7 +39,6 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route path='/profesional/postRegister/:newToken' element={<PostRegisterPsico />} /> 
         <Route path="/confirmationEmail" element={<ConfirmEmail />}/>
         <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />

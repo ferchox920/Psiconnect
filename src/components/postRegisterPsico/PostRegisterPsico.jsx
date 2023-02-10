@@ -26,7 +26,7 @@ const [ tokenVerify, setTokenVerify ] = useState(null)
 const [ verification, setVerification ] = useState(null)
 
 useEffect(()=>{
-    if(tokenVerify === null || tokenVerify === false) return
+    if(tokenVerify === null || tokenVerify === false) return window.location.pathname = '/'; 
 
     let img = document.querySelector('#deleteImageAvatar')
 
