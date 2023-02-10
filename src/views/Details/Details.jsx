@@ -11,10 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import FormModal from "../../components/modals/Modals";
 import {
   createChat,
-  getMessageOfChat,
-  sendMessage,
+
 } from "../../features/firebase/chatsFeatures";
-import Chat from "../../components/Chat/Chat";
 
 export default function Details() {
   const [professional, setProfessional] = useState({});
