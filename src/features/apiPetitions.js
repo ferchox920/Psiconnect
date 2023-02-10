@@ -44,6 +44,18 @@ export async function profLogin(body) {
   }
 }
 
+export async function profUpdate(body){
+  try {
+    const petition= await axios.put('/professional/descriptionProfesional', body);
+    localStorage.setItem("profTkn", petition?.data);
+    return petition
+
+  } catch (error) {
+     errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+
 export async function getProfByJWT({ state, type }) {
   try {
     const peticion = await axios.get("/professional/id", {
@@ -72,6 +84,14 @@ export async function getAreas(state) {
     state(peticion.data);
   } catch (error) {
     return error.response;
+  }
+}
+export async function getSkills({state, type}){
+  try{
+    const request = await axios.get('/skills')
+    type === 'local'? state(request?.data) : null;
+  }catch(error){
+    return error.response
   }
 }
 /* export async function getProfessionalByAreas({ state, type, area }) {
@@ -130,6 +150,7 @@ export async function getProfessionalsFilters({
 }
 
 
+
 export async function getProfessionalReview(id, state){
   try {
     const peticion = await axios.get(`/review/${id}`)
@@ -150,3 +171,15 @@ export async function createProfessionalReview (id, body){
   }
 }
 
+
+export async function requestConsultation(body){
+  try {
+    const peticion = await axios.post(`/payment/create-payment`, body);
+    console.log(peticion.data.data.links[1].href);
+    return peticion.data.data.links[1].href
+
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+} 

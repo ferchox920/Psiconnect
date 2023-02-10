@@ -131,7 +131,7 @@ export default function Details() {
 
       <div classNem={style.containerbootom}>
         <div className={style.calenderybootom}>
-          <Calendary />
+          <Calendary professionalId={professional.id} />
           <div className={style.pagar}>
             <h1>Precio</h1>
             <h1 className={style.precio}>50 Usd</h1>
