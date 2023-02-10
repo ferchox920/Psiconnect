@@ -2,13 +2,12 @@
 .swiperContainer{
     width: 100%;
     height: 100px;
-    background-color: white;
 
 }
-
 .areas {
     justify-content: center;
     width: 100%;    
+    padding-bottom: 60px;
 }
 
 .ondas{
@@ -17,7 +16,7 @@
 .ondas img{
     position: absolute;
     width: 100%;
-    z-index: -1;
+    z-index: 0;
 }
 
 .titulo{
@@ -25,14 +24,18 @@
     justify-content: center;
     align-content: center;
     font-size: 60px;
+    position: relative;
+    z-index: 1;
 }
 
 .parrafo{
     display: flex;
     justify-content: center;
     font: var(--paragraph);
-    font-size: 150%;
+    font-size: 26px;
     font-style: italic;
+    position: relative;
+    z-index: 1;
 }
 
 .card{
