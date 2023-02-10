@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { requestConsultation } from "../../features/apiPetitions";
 import style from "./Calendary.module.css";
-const Calendary = () => {
+const Calendary = ({ professionalId }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  // const [workingHours, setWorkingHours] = useState({
-  //   start: 9,
-  //   end: 17,
-  // });
+  const user = useSelector((state) => state.user.user);
+  const goToPayment = (body) => {
+    requestConsultation({ ...body, userId: user.id, professionalId }).then(
+      (e) => (window.location.href = e)
+    );
+  };
+
   const [workingHours, setWorkingHours] = useState([
     "9:00 am",
     "10:00 am",
@@ -64,9 +69,10 @@ const Calendary = () => {
 
   return (
     <div className={style.calendar}>
-      <h2 className= {style.titlecalendar}>Agenda un cita</h2>
+      <h2 className={style.titlecalendar}>Agenda un cita</h2>
       <div className={style.header}>
-        <button className={style.right}
+        <button
+          className={style.right}
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() - 7))
@@ -76,7 +82,8 @@ const Calendary = () => {
           &larr;
         </button>
         <div>{currentDate.toLocaleString("default", { month: "long" })} </div>
-        <button className={style.left}
+        <button
+          className={style.left}
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() + 7))
@@ -99,6 +106,23 @@ const Calendary = () => {
             onClick={() => setSelectedHour(null)}
           >
             Close
+          </button>
+          <button
+            className={style.button}
+            onClick={() =>
+              goToPayment({
+                date: `${selectedHour.day.toLocaleString("default", {
+                  weekday: "long",
+                })}
+                ${selectedHour.day.toLocaleString("default", {
+                  month: "long",
+                })} 
+                ${selectedHour.day.getDate()}, ${selectedHour.hour}`,
+                price: "200",
+              })
+            }
+          >
+            Reserva
           </button>
         </div>
       )}
