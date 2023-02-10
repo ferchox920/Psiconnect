@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title{
+    font-family: var(--h1Title);
+    padding: 30px;
+}
+
+.box{
+    height: 400px;
+    width: 100vh;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: gray;
+    overflow-y: scroll;
+}

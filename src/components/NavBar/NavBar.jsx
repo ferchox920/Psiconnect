@@ -72,7 +72,7 @@ export default function NavBar() {
                   horizontal: 'center',
                 }}
               > 
-              <MenuItem onClick={() => navigate('/professionalProfile/profile')}>Mi Perfil</MenuItem>
+              <MenuItem onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate('/userProfile/profile') }}>Mi Perfil</MenuItem>
               <MenuItem onClick={() => {localStorage.setItem('tkn', ''),localStorage.setItem('profTkn', ''),navigate('/'),window.location.reload()}}> Cerrar Sesión </MenuItem> 
               </Menu> : null}
             </div>
