@@ -157,13 +157,6 @@ export async function getProfessionalsFilters({
   }
 }
 
-<<<<<<< HEAD
-export async function getSkills({state, type}){
-  try{
-    const request = await axios.get('/skills')
-    type === 'local'? state(request?.data) : null;
-  }catch(error){
-=======
 
 
 export async function getProfessionalReview(id, state){
@@ -171,12 +164,10 @@ export async function getProfessionalReview(id, state){
     const peticion = await axios.get(`/review/${id}`)
     return state(peticion?.data)
   }catch(error) {
->>>>>>> 6e3847562c6f79eab6a55b4c22aeef72b516b6bb
     return error.response
   }
 }
 
-<<<<<<< HEAD
 export async function verifyTokenPostRegister({ type , token, state}){
   try {
     const request = await axios.get(`/token/postRegister`,{
@@ -198,7 +189,6 @@ export async function confirmEmailClient({ type , token, state, userType}){
     state(error.response);
   }
 }
-=======
 export async function createProfessionalReview (id, body){
     
   try {
@@ -210,7 +200,6 @@ export async function createProfessionalReview (id, body){
   }
 }
 
->>>>>>> 6e3847562c6f79eab6a55b4c22aeef72b516b6bb
 
 export async function requestConsultation(body){
   try {
