@@ -120,3 +120,25 @@
   padding: 0;
   margin: 0;
 }
+
+.disabled {
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.43);
+}
+.disabled:hover {
+  background-color: transprent;
+  cursor: default;
+}
+.ContainerAreaSliderFilter{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+.filter{
+  width: 70%;
+  padding: 0;
+  margin: 0;
+}
