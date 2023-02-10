@@ -8,9 +8,8 @@ const Asistencia = () => {
     //navBar
     <>
     <div className={style.countainer}>
-
-      <h3>Como te ayudamos </h3>
-      <p>
+      <h3 className={style.titulo}>Como te ayudamos </h3>
+      <p className={style.parrafo}>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
         rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
         incidunt!
@@ -19,21 +18,21 @@ const Asistencia = () => {
       <AreaSliderFilter/>
 
       <br />
-      <h3>Elige el profesional de tu preferencia</h3>
-      <p>
+      <h3 className={style.titulo}>Elige el profesional de tu preferencia</h3>
+      <p className={style.parrafo}>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
         rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
         incidunt!
       </p>
       <img src="" alt="Equipo profesional" />
       <br />
-      <h3>Decide que horario es de tu convenencia</h3>
-      <p>
+      <h3 className={style.titulo}>Decide que horario es de tu convenencia</h3>
+      <p className={style.parrafo}>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
         rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
         incidunt!
       </p>
-      <h3>
+      <h3 className={style.titulo}>
         <Link to={"/registerUser"}>Confia en nosotros</Link>
       </h3>
     </div>

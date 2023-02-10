@@ -9,3 +9,8 @@
 .inputError{
     border: 1.5px solid rgb(227, 67, 67)
 }
+
+.boton{
+    color: white;
+    background-color: cadetblue;
+}
