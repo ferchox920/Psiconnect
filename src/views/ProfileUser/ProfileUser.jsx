@@ -19,15 +19,14 @@ export default function ProfileUser () {
           <div className = {style.avatar}><img alt = ''/></div>
             <h1 className = {style.username}>{`${users.name} ${users.lastName}`}</h1>
             <div className={style.menusideBar}>
-                <div className={style.perfil}><h1>Perfil</h1></div>
-
-                <div className={style.consulthistory}><h1>Historial consultas</h1></div>
-
-                <div className={style.payhistory}><h1></h1>Historial de pago</div>
-
-                <div className={style.security}><h1></h1>Seguridad</div>
-            </div>
+            <div className={style.itemssidebar}><button className={style.buttonitems}>Perfil</button></div>
+            <div className={style.itemssidebar}><button className={style.buttonitems}>Historia de consultas</button></div>
+            <div className={style.itemssidebar}><button className={style.buttonitems}>Historia de pagos</button></div>
+            <div className={style.itemssidebar}><button className={style.buttonitems}>Seguridad</button></div>
+          </div>
         </div>
+
+        <div className={style.formuser}>Form</div>
         
 
     </div>

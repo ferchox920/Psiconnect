@@ -2,17 +2,18 @@
     width: 86%;
     height: 100vh;
   
+  
 }
 
 
 .sidebar{
-    width: 14%;
+    width: 18%;
     height: 100vh;
     background: #afcecf;
     margin-top: 90px;
     border-top: 7px solid white;
     border-radius: 0px 10px 0px 10px;
-    padding: 10px;
+    
     box-shadow: 5px 5px 10px #5e5b5b;
 }
 
@@ -34,9 +35,8 @@
 }
 
 .menusideBar{
-    width:90%px;
+    width:100%;
     height: 50vh;
-    background: violet;
     display: flex;
     flex-direction: column;
     align-content: space-around;
@@ -44,31 +44,43 @@
     
 }
 
-.perfil{
+.itemssidebar{
     width: 100%;
     height: 50px;
-    background: red;
-    cursor: pointer;
-    font-size: 8px;
+    font-size: 16px;
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;  
+    border: none;
 }
 
-.consulthistory{
+.buttonitems{
     width: 100%;
     height: 50px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    outline-style: none;
+}
+
+.buttonitems:hover{
+   border: 3px solid #436E70;
+   background: #5F9EA0;
+   cursor:pointer;
+}
+
+.buttonitems:focus{
+    border: 3px solid #436E70;
+    background: #5F9EA0;
+    outline-style: none;
+    
+ }
+
+ .formuser{
+    width: 70%;
+    height: 100vh;
     background: green;
-    cursor: pointer;
-}
+    position: absolute;
+    /* margin-top: -630px;
+    margin-left: 300px; */
 
-.payhistory{
-    width: 100%;
-    height: 50px;
-    background: black;
-    cursor: pointer;
-}
-
-.security{
-    width: 100%;
-    height: 50px;
-    background: wheat;
-    cursor: pointer;
-}
+ }
