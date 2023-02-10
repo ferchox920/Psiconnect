@@ -1,0 +1,36 @@
+.container{
+    /* width: 100%;*/
+    background: linear-gradient(180deg, #5AE8E0 0%, #F4F1BB 100%);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 50px;
+    font: var(--hTitle);
+    font-size: 150%
+}
+.img{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-items: auto;
+    font-family: 'Poppins';
+    font-style: normal;
+}
+.cardscontainer{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1%;
+}
+
+.description{
+    font: var(--paragraph);
+    font-size: 90%;
+}
+

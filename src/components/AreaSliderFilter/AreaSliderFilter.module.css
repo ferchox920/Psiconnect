@@ -1,0 +1,62 @@
+
+.swiperContainer{
+    width: 100%;
+    height: 100px;
+    background-color: white;
+
+}
+
+.areas {
+    justify-content: center;
+    width: 100%;    
+}
+
+.ondas{
+    background-image:url('../../assets/Areas/Ondas.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 7em;
+    margin-bottom: 10px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 60px;
+}
+
+.parrafo{
+    display: flex;
+    justify-content: center;
+    font: var(--paragraph);
+    font-size: 150%;
+    font-style: italic;
+}
+
+.card{
+    justify-content: center;
+    scale: auto;
+    
+}
+
+.container .titulo{
+    align-items: center;
+}
+
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+
+
+.swiper-button-prev .swiper-button-disabled{
+    scale: 10%;
+}
+
+
+

@@ -1,0 +1,11 @@
+/* css basico para componente*/
+.classPsicoRegister{
+    display: flex;
+    flex-direction: column;
+}
+.spanError{
+    color:#ff5050;
+}
+.inputError{
+    border: 1.5px solid rgb(227, 67, 67)
+}
