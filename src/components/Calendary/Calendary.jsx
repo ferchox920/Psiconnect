@@ -134,3 +134,4 @@ const Calendary = ({ professionalId }) => {
    
   );
 };
+export default Calendary;
