@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 import { errorMenssage } from "./errorsModals.js";
-import { setFilterProfessional} from "./professionalSlice.js";
+import { setAllProfessional, setFilterProfessional} from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
@@ -225,5 +225,17 @@ export async function requestConsultation(body){
     return error.response;
   }
 } 
+
+
+// export async function getAllProfessional(state){
+//   try {
+//     const peticion = await axios.get(`/professional`);
+//     console.log(peticion);
+//     type === "local" ? state(peticion?.data) : state(setAllProfessional(peticion?.data));
+
+//   } catch (error) {
+//     return error.response;
+//   }
+// } 
 
 
