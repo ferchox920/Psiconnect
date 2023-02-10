@@ -75,13 +75,7 @@ export default function NavBar() {
                     }}
                   >
                     <MenuItem
-                      onClick={() => 
-                        user.rol="prof" ? navigate("/professionalProfile/profile"): navigate("/userprofile")
-
-                        if (user.rol="prof"){
-                          
-                        }
-                      }
+                      onClick={() => user.rol="prof" ? navigate("/professionalProfile/profile"): navigate("/userprofile")}
                     >
                       Mi Perfil
                     </MenuItem>
