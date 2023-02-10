@@ -13,6 +13,7 @@
 }
 
 .container__top {
+
   width: 100%;
   height: 50vh;
   display: grid;
@@ -24,14 +25,18 @@
 .detailproffesional {
 
   height: 100%;
-  padding-left: 200px;
+  padding-left: 20rem;
 }
 .agendacita {
 
-  height: 600px;
+  border-radius: 5px;
+  box-shadow: 5px 10px 10px #888888;
+  height:50%;
   width: 90%;
+  padding-top: 20px;
+  margin-top: 180px;
   margin-right: 90px;
-  padding-top: 80px;
+ 
   font-size: 10px;
   align-content: center;
   display: flex;
@@ -61,6 +66,7 @@
   height: 170px;
   border-radius: 100px;
   margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .subtitulo {
@@ -68,8 +74,9 @@
 }
 
 .description {
-  width: 500px;
-  max-height: 150px;
+ 
+  width: 40rem;
+  max-height: 30rem;
   padding: 10px;
   border: 1px solid gray;
   border-radius: 10px 10px 20px 20px;
