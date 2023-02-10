@@ -13,7 +13,7 @@ export default function Home(){
           { user? null : <Hero />}
             <AreaSliderFilter />
             <HomeInformations />
-            <Users/>
+            {/* <Users/> */}
         </div>
     )
 }
