@@ -117,7 +117,6 @@ export async function getUserByJWT({ state, type }) {
 export async function getProfessionalById(id, state) {
   try {
     const peticion = await axios.get(`/professional/details/${id}`);
-
     return state(peticion?.data);
   } catch (error) {
     return error.response;
@@ -149,6 +148,29 @@ export async function getProfessionalsFilters({
     return error.response;
   }
 }
+
+
+
+export async function getProfessionalReview(id, state){
+  try {
+    const peticion = await axios.get(`/review/${id}`)
+    return state(peticion?.data)
+  }catch(error) {
+    return error.response
+  }
+}
+
+export async function createProfessionalReview (id, body){
+    
+  try {
+      const createReview = await axios.post(`/review/${id}`, body)
+      return createReview
+
+  }catch (error){
+    console.log(error.response.data)
+  }
+}
+
 
 export async function requestConsultation(body){
   try {
