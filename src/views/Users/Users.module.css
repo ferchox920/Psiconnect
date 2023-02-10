@@ -1,0 +1,114 @@
+.container {
+    margin-top: 110px;
+  }
+  .containerSearchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .inputCointer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .input {
+    padding: 12px 15px;
+    margin: 8px 15px;
+    width: 35%;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: white;
+    box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
+  }
+  .button {
+    color: #000000;
+    background:var(--oyster);
+    font-weight: bold;
+    font-size: 12px;
+    height: 60px;
+    width: 60px;
+    padding: 12px 15px;
+    margin: 5px;
+    border-radius: 60%;
+    box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
+    outline: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  }
+  .cardContainer {
+    width: 100%;
+    margin: 0;
+    margin-top: 15px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    column-gap: 1em;
+  }
+  
+  .paginated {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 0;
+  }
+  .paginated li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 65px;
+    width: 40px;
+    cursor: pointer;
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-principal);
+    background-color: var(--yellow);
+    color: black;
+  }
+  
+  .paginated .active {
+    background: var(--withe);
+    color: black;
+  }
+  
+  .paginated p {
+    font-family: "Sono";
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  
+  .disabled {
+    pointer-events: none;
+    color: rgba(0, 0, 0, 0.43);
+  }
+  .disabled:hover {
+    background-color: transprent;
+    cursor: default;
+  }
+  
+  .titulo{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 60px;
+}
+
+.parrafo{
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins';
+    font-style: italic;
+}

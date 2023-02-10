@@ -94,16 +94,6 @@ export async function getAreas(state) {
     return error.response;
   }
 }
-// export async function getProfessionalByAreas({ state, type, area }) {
-//   try {
-//     const peticion = await axios.get(`professional/${area}`);
-//     type === "local"
-//       ? state(peticion?.data)
-//       : state(setFilterProfessional(peticion?.data));
-//   } catch (error) {
-//     return error.response;
-//   }
-// } 
 export async function getUserByJWT({ state, type }) {
   try {
     const peticion = await axios.get("/user/id", {
@@ -157,6 +147,7 @@ export async function getProfessionalsFilters({
   }
 }
 
+<<<<<<<<< Temporary merge branch 1
 export async function getSkills({state, type}){
   try{
     const request = await axios.get('/skills')
@@ -173,10 +164,7 @@ export async function verifyToken({ type , token, state}){
     });
     type === 'local'? state(request) : null
   } catch (error) {
-    return error.response
-  }
-}
-
+=========
 
 
 export async function getProfessionalReview(id, state){
@@ -188,6 +176,27 @@ export async function getProfessionalReview(id, state){
   }
 }
 
+export async function verifyTokenPostRegister({ type , token, state}){
+  try {
+    const request = await axios.get(`/token/postRegister`,{
+      headers: { post: `Bearer ${token}` },
+    });
+    type === 'local'? state(request) : null
+  } catch (error) {
+    state(error.response);
+  }
+}
+
+export async function confirmEmailClient({ type , token, state, userType}){
+  try {
+    const request = await axios.put(`/${userType}/confirmationEmail`,{},{
+      headers: { confirm: `Bearer ${token}`}
+    });
+    type === 'local'? state(request) : null
+  } catch (error) {
+    state(error.response);
+  }
+}
 export async function createProfessionalReview (id, body){
     
   try {
@@ -211,3 +220,5 @@ export async function requestConsultation(body){
     return error.response;
   }
 } 
+
+
