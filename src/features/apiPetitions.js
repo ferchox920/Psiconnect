@@ -147,7 +147,7 @@ export async function getProfessionalsFilters({
   }
 }
 
-<<<<<<<<< Temporary merge branch 1
+
 export async function getSkills({state, type}){
   try{
     const request = await axios.get('/skills')
@@ -157,14 +157,7 @@ export async function getSkills({state, type}){
   }
 }
 
-export async function verifyToken({ type , token, state}){
-  try {
-    const request = await axios.get(`/professional/token`,{
-      headers: { authorization: `Bearer ${token}` },
-    });
-    type === 'local'? state(request) : null
-  } catch (error) {
-=========
+
 
 
 export async function getProfessionalReview(id, state){
