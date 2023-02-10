@@ -53,10 +53,7 @@ function App() {
         <Route path='/Formreview/:id' element={<Formreview />}></Route>
         <Route path='/userprofile/' element={<ProfileUser/>}/>
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}></Route>
-       
         
-        
-      
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
       

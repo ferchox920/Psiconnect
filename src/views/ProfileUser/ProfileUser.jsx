@@ -1,7 +1,6 @@
 import React from 'react'
 import style from './ProfileUser.module.css'
-import { Link } from 'react-router-dom'
-
+import UsersForm from './UsersForm.jsx'
 import { useSelector } from 'react-redux'
 
 
@@ -26,7 +25,14 @@ export default function ProfileUser () {
           </div>
         </div>
 
-        <div className={style.formuser}>Form</div>
+        <div className={style.formuser}>
+          <div className={style.formcontainer}>
+              <div className = {style.form}>
+              <UsersForm/>
+              </div>
+          </div>
+          
+        </div>
         
 
     </div>

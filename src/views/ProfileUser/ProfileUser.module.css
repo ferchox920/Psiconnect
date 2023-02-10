@@ -76,11 +76,31 @@
  }
 
  .formuser{
-    width: 70%;
+    width: 90%;
     height: 100vh;
     background: green;
     position: absolute;
-    /* margin-top: -630px;
-    margin-left: 300px; */
+    margin-top: -630px;
+    margin-left: 210px;
+ }
+
+ .formcontainer{
+    width: 80%;
+    height: 500px;
+    margin-top: 40px;
+    margin-left: 80px;
+    background: black;
+ }
+
+ .form{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+   
+   
+
+
 
  }
+
+ 
