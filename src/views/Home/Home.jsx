@@ -1,7 +1,8 @@
 import AreaSliderFilter from "../../components/AreaSliderFilter/AreaSliderFilter";
 import Hero from "../../components/Hero/Hero";
 import HomeInformations from "../../components/HomeIformations/HomeInformations";
-import {  useSelector } from "react-redux";
+import Whatsapp from "../../components/whatsapp/whatsapp";
+import Users from "../Users/Users";
 
 
 export default function Home(){
@@ -12,6 +13,7 @@ export default function Home(){
           { user? null : <Hero />}
             <AreaSliderFilter />
             <HomeInformations />
+            <Users/>
         </div>
     )
 }
