@@ -42,7 +42,7 @@ const RegisterProfesional = () => {
           incidunt!
         </p>
         <br/>
-        <div className={style.form}>
+        <div className={style.form__psico}>
           <RegisterPsico />
         </div>
       </div>
