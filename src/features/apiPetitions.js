@@ -183,7 +183,7 @@ export async function getProfessionalReview(id, state){
 
 export async function verifyTokenPostRegister({ type , token, state}){
   try {
-    const request = await axios.get(`/token/postRegister`,{
+    const request = await axios.get(`/professional/token/postRegister`,{
       headers: { post: `Bearer ${token}` },
     });
     type === 'local'? state(request) : null
