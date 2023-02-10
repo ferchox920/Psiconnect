@@ -58,8 +58,8 @@ const handleInputChange = (e) => {
 }
 
 return (
-    <div >
-    <form onSubmit={(e)=>handleOnSubmit(e)} className={classPsicoRegister}>
+
+    <form onSubmit={(e)=>handleOnSubmit(e)} className={style.classPsicoRegister}>
         <br/>
             <span className={style.spanError}>{errors.name}</span>
             <input
@@ -130,6 +130,6 @@ return (
             disabled={Object.keys(errors).at(0)? true: false}
             />
     </form>
-    </div>
+   
   )
 }
