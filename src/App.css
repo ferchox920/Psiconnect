@@ -1,30 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-:root{
-    font-family: 'Poppins', sans-serif;
-    
-    /* Variables de Fuente */
-    --h1Title: 600 48px Poppins;
-    --hTitle: 500 48px Poppins;
-    --paragraph: 400 48px Poppins;
-    --lightParagrah: 300 48px Poppins;
+:root {
+  font-family: "Poppins", sans-serif;
 
-    /* Paleta de Colores */
-    --yellow: #fff87f;
-    --oyster: #eaf2e3;
-    --aquamarine: #66d7d1;
-    --pink: #ffa8b6;
-    --cream: #f4f1bb;
-    --white: #fff;
+  /* Variables de Fuente */
+  --h1Title: 600 48px Poppins;
+  --hTitle: 500 48px Poppins;
+  --paragraph: 400 48px Poppins;
+  --lightParagrah: 300 48px Poppins;
 
-    /* Paleta de Colores Fuente */
-    --black: #000;
-    --gray: #5e5b5b;
-    --chalk: #d9d9d9;
+  /* Paleta de Colores */
+  --yellow: #fff87f;
+  --oyster: #eaf2e3;
+  --aquamarine: #66d7d1;
+  --pink: #ffa8b6;
+  --cream: #f4f1bb;
+  --white: #fff;
+  --cadetblue: cadetblue;
+  /* Paleta de Colores Fuente */
+  --black: #000;
+  --gray: #5e5b5b;
+  --chalk: #d9d9d9;
 }
 
-body{
-    padding: 0;
-    margin: 0;
-    background-color: var(--white);
+body {
+  padding: 0;
+  margin: 0;
+  margin-top: 90px;
+  background: linear-gradient(
+    254deg,
+    rgba(255, 255, 255, 1) 9%,
+    rgba(234, 242, 227, 1) 96%,
+    rgba(217, 217, 217, 1) 100%
+  );
 }

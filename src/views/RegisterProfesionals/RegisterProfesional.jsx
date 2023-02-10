@@ -1,20 +1,20 @@
 import React from "react";
 import style from "./RegisterProfesional.module.css";
-import psicologia from "../../assets/Areas/LogoPsicologia.svg";
+import psicologia from "../../assets/Asistencia/LogoPsicologia.svg";
 import RegisterPsico from "../../components/RegisterPsico/RegisterPsico";
 
-export default function RegisterProfesional(){
+const RegisterProfesional = () => {
   return (
     <>
-<div className={style.countainer}>
-        <h3>¿Quieres Trabajar con nosotros?</h3>
-        <p>
+<div className={style.container}>
+        <h3 className={style.titulo}>¿Quieres Trabajar con nosotros?</h3>
+        <p className={style.parrafo}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
           rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
           incidunt!
         </p>
 
-        <p>
+        <p className={style.parrafo}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Non unde
           voluptate maiores ipsum iure ea dolores magnam assumenda eligendi
           aspernatur excepturi dolore repellat quam similique quod sequi quos
@@ -28,20 +28,21 @@ export default function RegisterProfesional(){
           <img src={psicologia} alt="Psicologia" />
         </div>
 
-        <h3>Para registrarte necesitamos:</h3>
-        <p>
+        <h3 className={style.titulo}>Para registrarte necesitamos:</h3>
+        <p className={style.parrafo}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
           rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
           incidunt!
         </p>
         <br />
-        <h3>Espera nuestra confirmacion</h3>
-        <p>
+        <h3 className={style.titulo}>Espera nuestra confirmacion</h3>
+        <p className={style.parrafo}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
           rerum. Molestiae deleniti illo aut error ipsam ullam quis veritatis
           incidunt!
         </p>
-        <div className={style.form}>
+        <br/>
+        <div className={style.form__psico}>
           <RegisterPsico />
         </div>
       </div>
@@ -49,4 +50,4 @@ export default function RegisterProfesional(){
   );
 };
 
-
+export default RegisterProfesional;

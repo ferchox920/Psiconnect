@@ -44,6 +44,18 @@ export async function profLogin(body) {
   }
 }
 
+export async function profUpdate(body){
+  try {
+    const petition= await axios.put('/professional/descriptionProfesional', body);
+    localStorage.setItem("profTkn", petition?.data);
+    return petition
+
+  } catch (error) {
+     errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+
 export async function getProfByJWT({ state, type }) {
   try {
     const peticion = await axios.get("/professional/id", {
@@ -74,16 +86,15 @@ export async function getAreas(state) {
     return error.response;
   }
 }
-/* export async function getProfessionalByAreas({ state, type, area }) {
+
+ export async function getProfessionalByAreas({ state, type, area }) {
   try {
-    const peticion = await axios.get(`professional/${area}`);
-    type === "local"
-      ? state(peticion?.data)
-      : state(setFilterProfessional(peticion?.data));
+    const peticion = await axios.get("/areas/onlyAreas");
+    state(peticion.data);
   } catch (error) {
     return error.response;
   }
-} */
+}
 export async function getUserByJWT({ state, type }) {
   try {
     const peticion = await axios.get("/user/id", {
@@ -97,7 +108,15 @@ export async function getUserByJWT({ state, type }) {
 export async function getProfessionalById(id, state) {
   try {
     const peticion = await axios.get(`/professional/details/${id}`);
+    return state(peticion?.data);
+  } catch (error) {
+    return error.response;
+  }
+}
 
+export async function getOnlyAreas(){
+  try {
+    const peticion = await axios.get(`areas/onlyAreas`)
     return state(peticion?.data);
   } catch (error) {
     return error.response;
@@ -121,7 +140,6 @@ export async function getProfessionalsFilters({
           : ""
       }`
     );
-    console.log(peticion.data);
     type === "local"
       ? state(peticion?.data)
       : state(setFilterProfessional(peticion?.data));
@@ -129,6 +147,61 @@ export async function getProfessionalsFilters({
     return error.response;
   }
 }
+
+
+export async function getSkills({state, type}){
+  try{
+    const request = await axios.get('/skills')
+    type === 'local'? state(request?.data) : null;
+  }catch(error){
+    return error.response
+  }
+}
+
+
+
+
+export async function getProfessionalReview(id, state){
+  try {
+    const peticion = await axios.get(`/review/${id}`)
+    return state(peticion?.data)
+  }catch(error) {
+    return error.response
+  }
+}
+
+export async function verifyTokenPostRegister({ type , token, state}){
+  try {
+    const request = await axios.get(`/token/postRegister`,{
+      headers: { post: `Bearer ${token}` },
+    });
+    type === 'local'? state(request) : null
+  } catch (error) {
+    state(error.response);
+  }
+}
+
+export async function confirmEmailClient({ type , token, state, userType}){
+  try {
+    const request = await axios.put(`/${userType}/confirmationEmail`,{},{
+      headers: { confirm: `Bearer ${token}`}
+    });
+    type === 'local'? state(request) : null
+  } catch (error) {
+    state(error.response);
+  }
+}
+export async function createProfessionalReview (id, body){
+    
+  try {
+      const createReview = await axios.post(`/review/${id}`, body)
+      return createReview
+
+  }catch (error){
+    console.log(error.response.data)
+  }
+}
+
 
 export async function requestConsultation(body){
   try {
@@ -141,3 +214,5 @@ export async function requestConsultation(body){
     return error.response;
   }
 } 
+
+

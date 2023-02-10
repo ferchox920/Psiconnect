@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from './Form/Form'
+import ProfileForm from './Form/Form'
 import Incomes from './Incomes/Incomes'
 import Arrangements from './Arrangements/Arrangements'
 import Security from './Security/Security'
@@ -18,7 +18,7 @@ export default function ProfileProfessional() {
             <SideBar/>
           </div>
           <div className={style.component}>
-            <Form/>
+            <ProfileForm/>
           </div>
             
         </div>

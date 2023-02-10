@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./index.module.css";
+
 export default function ProfessionalsCard({
   id,
   name,
@@ -18,8 +19,10 @@ export default function ProfessionalsCard({
           <div className={style.data}>
             <h3>{name}</h3>
             <h3>{lastName}</h3>
-            <h3>C{email}</h3>
-            <h3></h3>
+            <h3>{email}</h3>  
+            <Link to = {`/Formreview/${id}`} className={style.Link}>
+            <h3>Calificar</h3>
+            </Link>  
           </div>
         </div>
       </div>

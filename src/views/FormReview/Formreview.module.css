@@ -1,0 +1,50 @@
+.formReview{
+   
+    width: 80%;
+    height: 100vh;
+    margin-top: 100px;
+    margin-left: 120px;
+    padding: 10px;
+    position: relative; 
+}
+
+.indications{
+    width: 80%;
+    height: 100px;
+    position: absolute;
+    background:#eaf2e3;
+    margin-top: -550px;
+    opacity: 0.8;    
+    border-radius: 20px;
+    box-shadow: 2px 10px 8px #5e5b5b;  
+}
+
+.parrafoindications{
+    color: black;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.score{
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    background: green;
+    margin-top: -110px;
+    margin-left: -700px;
+}
+
+.itemScore{
+    width: 100%;
+    height: 110px;
+    background: red;
+}
+
+.label{
+    color: black;
+    font-size: 30px;
+    background-color: aqua;
+    margin-top: auto;
+    position: absolute;
+}
+

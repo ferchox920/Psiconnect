@@ -12,14 +12,19 @@
   background-color: cadetblue;
   height: 90px;
   position: fixed;
+  display: grid;
+  grid-template-columns: 25% 75%;
   top: 0;
   z-index: 2;
 }
 
 .logo {
   display: flex;
+  justify-content: center;
+  align-items: center;
   justify-content: space-around;
   font-family: 'Poppins';
+  max-height: 90px;
   font-style: 'Poppins';
 }
 .logo a {
@@ -28,31 +33,14 @@
   align-content: center;
   color: black;
 }
-.logo h3 {
+.logo a h3 {
   margin-left: 9px;
   display: flex;
-}
-
-.navLogo h3{
   font: normal 35px myAdeston;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
 }
-.navItem{
-  font: var(--hTitle);
-  font-size: 125%;
-}
-.loginDiv{
-  font: var(--hTitle);
-  font-size: 110%;
-}
-
-.nav_list :hover{
-  color: var(--chalk);
-  cursor: pointer;
-}
-
 .logo img {
-  width: 3.5rem;
+  width: 3.5em;
 }
 
 .nav {
@@ -62,18 +50,51 @@
   padding: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content:space-between;
   color: black;
+}
+
+.loginDiv{
+  flex-direction: column;
+  display: -webkit-box;
+  color: rgb(253, 253, 253);
+  margin-right: 20px;
+
+}
+
+.loginDiv div{
+  padding: 15px;
+}
+.loginDiv div a h3{
+  font: var(--hTitle);
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.loginDiv div :hover{
+  color: var(--chalk);
+  cursor: pointer;
+  transform: scale(1.01);
+}
+.navItem{
+  font: var(--hTitle);
+
+}
+.nav_list div a h3{
+  font-size: 17px;
+}
+
+.nav_list :hover{
+  color: var(--chalk);
+  cursor: pointer;
 }
 
 .nav_list div {
   display: inline-block;
   padding: 0 10px;
-  color: rgb(138, 21, 21);
 }
 
 .nav_list a{
-  color: rgb(221, 19, 19);
   font-family: 'Poppins';
   font-style: 'Light';
 }
@@ -81,17 +102,24 @@
 .nav_list h3{
   color:rgb(253, 253, 253);
 }
+.avatarContainer{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
 
+}
 .img_avatar{
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  cursor: pointer;
+  height: 60px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   border-radius: 50%;
 }
-
-.navLogo{
-  display: flex;
-  flex-direction: row;
+.img_avatar:hover{
+  transform: scale(1.01);
 }
+
 
 @media (max-width: 1419px) {
   .container{
