@@ -44,6 +44,18 @@ export async function profLogin(body) {
   }
 }
 
+export async function profUpdate(body){
+  try {
+    const petition= await axios.put('/professional/descriptionProfesional', body);
+    localStorage.setItem("profTkn", petition?.data);
+    return petition
+
+  } catch (error) {
+     errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+
 export async function getProfByJWT({ state, type }) {
   try {
     const peticion = await axios.get("/professional/id", {
@@ -72,6 +84,14 @@ export async function getAreas(state) {
     state(peticion.data);
   } catch (error) {
     return error.response;
+  }
+}
+export async function getSkills({state, type}){
+  try{
+    const request = await axios.get('/skills')
+    type === 'local'? state(request?.data) : null;
+  }catch(error){
+    return error.response
   }
 }
 /* export async function getProfessionalByAreas({ state, type, area }) {

@@ -1,185 +1,305 @@
-import React, { useState, useEffect } from "react";
-import style from "./Form.module.css";
-import {
-  Box,
-  TextField,
-  Avatar,
-  FormControl,
-  FormGroup,
-  Checkbox,
-  FormControlLabel,
-  FormHelperText,
-  FormLabel,
-  Button,
-} from "@mui/material";
-import array from "./arrayareas.js";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getAreas } from "../../../features/apiPetitions";
+import validationsForm from "./validator.js";
+import { getAreas, getSkills } from "../../../features/apiPetitions.js";
+import style from "./Form.module.css";
+import swal from "sweetalert";
 
-export default function Profile() {
-  //const user = useSelector((state) => state.user.user);
-  const user = {
-    id: "4f5e763c-6a80-44f6-9b20-d7787da3acf1",
-    DNI: "66666666",
-    lastName: "conAnteojos",
-    name: "doctorchapatin",
-    email: "rabadum@asd.com",
-    avatar:
-      "https://res.cloudinary.com/dhkfa798t/image/upload/v1675414590/Smonkey/heroimg_qv9zgi.png",
-    description: null,
-    linkedin: null,
-    password: "$2b$10$YzEUKqxq0DwNOWwZH7soN./nK84X1f/UCczST5BEg8/pSxJzwBTSe",
-    state: true,
-    areas: [
-      {
-        id: "62420af7-655d-4be5-b873-d3e14b48703b",
-        area: "Depresion",
-        image:
-          "https://res.cloudinary.com/dcdywqotf/image/upload/v1675267920/areas/Depresion_gud0dp.svg",
-        PROFESSIONAL_AREA: {
-          professionalId: "4f5e763c-6a80-44f6-9b20-d7787da3acf1",
-          areaId: "62420af7-655d-4be5-b873-d3e14b48703b",
-        },
-      },
-      {
-        id: "62420af7-655d-4be5-b873-d3e14b48703b",
-        area: "Ansiedad",
-        image:
-          "https://res.cloudinary.com/dcdywqotf/image/upload/v1675267920/areas/Depresion_gud0dp.svg",
-        PROFESSIONAL_AREA: {
-          professionalId: "4f5e763c-6a80-44f6-9b20-d7787da3acf1",
-          areaId: "62420af7-655d-4be5-b873-d3e14b48703b",
-        },
-      },
-    ],
-  };
+const ProfileForm = () => {
+  const user = useSelector((state) => state.user.user);
+  const [errors, setErrors] = useState({});
   const [areas, setAreas] = useState();
-  const [areasChecked, setAreasChecked] = useState({});
-  const [mapeoUser, setMapeoUser] = useState(user.areas?.map((e) => e.area));
-
-  //const mapeoUser=  // ['Depresion']
-
-  console.log(areasChecked);
+  const [skills, setSkills] = useState();
+  const [imageDisabled, setImageDisabled] = useState(false);
+const [form, setForm] = useState({
+    name: user?.name,
+    lastName: user?.lastName,
+    linkedin: user?.linkedin ,
+    description: user?.description ,
+    areas: user?.areas?.map(a=> a.area),
+    avatar: user?.avatar,
+    avatarIMG: user?.avatar,
+    skills: user?.skills?.map(s=> s.skill),
+  });
 
   useEffect(() => {
-    setAreas(array);
-    setAreasChecked(
-      mapeoUser?.reduce((acc, area) => {
-        acc[area] = true;
-        return acc;
-      }, {})
-    );
+    let img = document.querySelector("#deleteImageAvatar");
+
+    if (form.avatar === "" && !imageDisabled) {
+      img.disabled = true;
+      setImageDisabled(true);
+    } else {
+      img.disabled = false;
+      setImageDisabled(false);
+    }
+  }, [form.avatar]);
+
+  useEffect(() => {
+    getAreas(setAreas);
+    getSkills({
+      state: setSkills,
+      type: "local",
+    });
+
   }, []);
+  
 
-  const handleChange = (e) => {
-    e.preventDefault();
-
-    setAreasChecked({
-      ...areasChecked,
-      [e.target.name]: e.target.checked,
+  const handleInputDeletedAvatar = () => {
+    if (!form.avatar && !form.avatarIMG) return;
+    setForm({
+      ...form,
+      avatar: "",
+      avatarIMG: "",
+    });
+    let img = document.querySelector("#imageAvatar");
+    img.value = "";
+  };
+  const handleInputChangeAvatar = (e) => {
+    if (!e.target.files[0]) return;
+    setForm({
+      ...form,
+      [e.target.name]: e.target.files[0],
+      avatarIMG: URL.createObjectURL(e.target.files[0]),
     });
   };
-
-  // useEffect(() => {
-  //   getAreas(setAreas);
-  // }, []);
-
-  const handleSubmit = () => {
-    let areasSubmit = [];
-    for (let area in areasChecked) {
-      if (areasChecked[area] === true) {
-        areasSubmit.push(area);
-      }
-    }
-    console.log(areasSubmit);
+  const handleInputChange = (e) => {
+   
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(validationsForm[e.target.name]({
+        ...errors,
+        [e.target.name]: e.target.value,
+      }))
+   
   };
+  const handleInputSkillsChange = (e) => {
+    let optionSkills = document.querySelector(`#${e.target.value}`);
 
-  const error = areas?.filter((v) => v).length < 1;
+    if (!form.skills.some((el) => el === e.target.value)) {
+      setForm({
+        ...form,
+        skills: form.skills.concat(e.target.value),
+      });
+      optionSkills.disabled = true;
+    } else {
+      setForm({
+        ...form,
+        skills: form.skills.filter((el) => el !== e.target.value),
+      });
+      optionSkills.disabled = false;
+    }
+  };
+  const handleInputAreasChange = (e) => {
+    let optionAreas = document.querySelector(`#${e.target.value}`);
+console.log(optionAreas)
+    if (!form.areas.some((el) => el === e.target.value)) {
+      setForm({
+        ...form,
+        areas: form.areas.concat(e.target.value),
+      });
+      optionAreas.disabled = true;
+    } else {
+      setForm({
+        ...form,
+        areas: form.areas.filter((el) => el !== e.target.value),
+      });
+      optionAreas.disabled = false;
+    }
+    
+  };
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    if (!Object.keys(errors).at(0)) {
+        updateProfessional(form).then((e) => {
+          getProfByJWT({
+            state: dispatch,
+            type: "global",
+          })})
+        .then(() =>
+        swal({
+          title: "Cambios guardados!",
+          text: `Sus datos fueron actualizados correctamente`,
+          icon: "success",
+        })
+      )
+    } else   swal({
+        title: "Error!",
+        text: Object.values(errors)[0],
+        icon: "error",
+      })
+  }
 
   return (
-    <div className={style.container}>
-      <Box className={style.box}>
-        <div onClick={() => handleClick(e)} >
-          <Avatar classes={{ root: style.avatar}} src={user.avatar} alt={user.name}></Avatar>
-        </div>
-        <div style={{display: 'grid' ,gap:'10px'}}>
-          <div  style={{display: 'grid', gap:'10px', gridTemplateColumns:'repeat(2, 1fr)'}}>
-          <TextField
-          sx={{gridColumn: '1'}}
-            id="outlined-required"
-            label="Nombre"
-            defaultValue={user.name}
-          />
-          <TextField
-          sx={{gridColumn: '2'}}
-            id="outlined-required"
-            label="Apellido"
-            defaultValue={user.lastName}
-          />
+    <div className={style.divContainer}>
+      <form
+        className={style.form}
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <label className={style.labelInicio}>Avatar</label>
+        <p className={style.p}>*selecciona un imagen para tu foto de perfil</p>
+        <div className={style.divContainerImg}>
+          <div className={style.divAvatar}>
+            <img
+              className={style.avatar}
+              src={form.avatarIMG}
+              alt="imgAvatar"
+            />
           </div>
-          <div style={{display: 'grid' , gridAutoRows: 'minmax(50px, 50px)'}}>
-          <TextField
-          sx={{gridColumn: 'span 4', gridRow:'1'}}
-            id="outlined-required"
-            label="Descripción"
-            defaultValue={user.description}
-          />
-          </div>
-          <div style={{display:'flex'}}>
-            <div style={{display:'flex', flexDirection:'column'}}>
-          <TextField
-            id="outlined-required"
-            label="Email"
-            defaultValue={user.email}
-          />
-          
-          <TextField
-            id="outlined-required"
-            label="LinkedIn"
-            defaultValue={user.linkedin}
-          />
-          </div>
-          {areas ? (
-            <FormControl
-              required
-              error={error}
-              component="fieldset"
-              variant="standard"
-            >
-              <FormLabel component="legend">Areas</FormLabel>
-              <FormGroup>
-                {areas.map((e) => {
-                  return (
-                    <FormControlLabel
-                      key={e.id}
-                      control={
-                        <Checkbox
-                          value={areasChecked[e.area]}
-                          checked={areasChecked[e.area]}
-                          onChange={(e) => handleChange(e)}
-                          name={e.area}
-                        />
-                      }
-                      label={e.area}
-                    />
-                  );
-                })}
-              </FormGroup>
-              <FormHelperText>Elija al menos una</FormHelperText>
-            </FormControl>
-          ) : null}
+          <div className={style.divInputsImage}>
+            <input
+              className={style.inputImage}
+              id="imageAvatar"
+              type="file"
+              accept="image/*"
+              name="avatar"
+              onChange={(e) => handleInputChangeAvatar(e)}
+            />
+            <input
+              className={
+                imageDisabled ? style.inputImageDisabled : style.inputImage
+              }
+              id="deleteImageAvatar"
+              type="button"
+              name="avatar"
+              value="Borrar imagen"
+              onClick={()=>handleInputDeletedAvatar()}
+            />
           </div>
         </div>
-        <div>
-          <Button
-            type="submit"
-            onClick={(e) => handleSubmit(e)}
-            variant="outlined"
-          >
-            Guardar cambios
-          </Button>
+        <label className={style.label}>Nombre</label>
+        <p className={style.spanErrors}>{errors.name}</p>
+        <input
+          className={errors.name ? style.inputsErrors : style.primaryInputs}
+          type="text"
+          name="name"
+          value={form.name }
+          placeholder="Su nombre..."
+          onChange={handleInputChange}
+        />
+        <label className={style.label}>Apellido</label>
+        <p className={style.spanErrors}>{errors.lastName}</p>
+        <input
+          className={errors.lastName ? style.inputsErrors : style.primaryInputs}
+          type="text"
+          name="lastName"
+          value={form.lastName}
+          placeholder="Su apellido..."
+          onChange={handleInputChange}
+        />
+
+        <label className={style.label}>Descripción</label>
+        <p className={style.p}>
+          *escribe una breve descripción de tu perfil como profesional si aún no la tienes
+          <br />
+          *CONSEJO* trata de añadir datos que creas importantes y relevantes de
+          tu perfil
+        </p>
+        <div className={style.containerDescription}>
+          <textarea
+            name="description"
+            value={form.description || ''}
+            placeholder="Descripcion"
+            className={style.description}
+            onChange={handleInputChange}
+          ></textarea>
         </div>
-      </Box>
+
+        <label className={style.label}>Areas</label>
+        <p className={style.p}>*selecciona las areas en las que trbajas</p>
+        <select
+          className={style.select}
+          name="areas"
+          onChange={(e) => handleInputAreasChange(e)}
+          required
+          key='areas'
+        >
+          <option key="defaultSelect" value="defaultSelect" selected disabled>
+            Areas
+          </option>
+          {areas?.map((el) => {
+            return (
+              <option key={el.area}  value={el.area} id={el.area}>
+                {el.area}
+              </option>
+            );
+          })}
+        </select>
+        <div className={style.divSkills}>
+          {form.areas?.map((el) => {
+            return (
+                 <div key={el} className={style.skillsDivSpan}>
+                <span id='areaid' value={el}>{el}</span>
+                <span
+                  className={style.skillsSpanX}
+                  onClick={() =>
+                    handleInputAreasChange({ target: { value: el } })
+                  }
+                >
+                  x
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        <label className={style.label}>Habilidades</label>
+        <p className={style.p}>
+          *selecciona las habilidades que consideras tener
+        </p>
+        <select
+          className={style.select}
+          name="area"
+          onChange={(e) => handleInputSkillsChange(e)}
+          required
+          key='skills'
+        >
+          <option key="defaultSelect" value="defaultSelect" selected disabled>
+            Habilidades
+          </option>
+          {skills?.map((el) => {
+            return (
+              <option key={el.skill} id={el.skill} value={el.skill}>
+                {el.skill}
+              </option>
+            );
+          })}
+        </select>
+        <div className={style.divSkills}>
+          {form.skills?.map((el) => {
+            return (
+              <div className={style.skillsDivSpan}>
+                <span>{el}</span>
+                <span
+                  className={style.skillsSpanX}
+                  onClick={() =>
+                    handleInputSkillsChange({ target: { value: el } })
+                  }
+                >
+                  x
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        <label className={style.label}>Linkedin</label>
+        <p className={style.p}>
+          *copie y pega el link de tu perfil de Linkedin
+        </p>
+        <input
+          //className={errors.linkedin ? style.inputsErrors : style.inputs}
+          type="text"
+          name="linkedin"
+          value={form.linkedin }
+          placeholder="https://www.linkedin.com/in/..."
+          onChange={handleInputChange}
+        />
+
+        <input className={style.inputSubmit} type="submit" value="Actualizar" />
+      </form>
     </div>
   );
-}
+};
+export default ProfileForm;
