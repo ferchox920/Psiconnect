@@ -78,7 +78,7 @@
  .formuser{
     width: 90%;
     height: 100vh;
-    background: green;
+    /* background: green; */
     position: absolute;
     margin-top: -630px;
     margin-left: 210px;

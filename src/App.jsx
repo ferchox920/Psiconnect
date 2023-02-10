@@ -4,7 +4,7 @@ import Home from "./views/Home/Home";
 import Details from "./views/Details/Details";
 import Professionals from "./views/Professionals/Professionals";
 import NavBar from "./components/NavBar/NavBar";
-import ProfileUser  from "./views/ProfileUser/ProfileUser.jsx";
+
 import Formreview from './views/FormReview/Formreview.jsx'
 import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
@@ -17,6 +17,7 @@ import Asistencia from "./views/Asistencia/Asistencia";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import ProfileUser from "./views/ProfileUser/ProfileUser";
 
 
 function App() {
@@ -51,9 +52,9 @@ function App() {
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path='/Formreview/:id' element={<Formreview />}></Route>
-        <Route path='/userprofile/' element={<ProfileUser/>}/>
-        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}></Route>
         
+        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}></Route>
+        <Route path='/userprofile/' element={<ProfileUser/>}/>
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
       
