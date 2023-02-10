@@ -11,6 +11,7 @@
 }
 .inputCointer {
   width: 100%;
+  background: transparent ;
   display: flex;
   flex-direction: row;
   justify-content: center;

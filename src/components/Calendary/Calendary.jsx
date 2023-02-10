@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { requestConsultation } from "../../features/apiPetitions";
 import style from "./Calendary.module.css";
-const Calendary = () => {
+const Calendary = ({ professionalId }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  // const [workingHours, setWorkingHours] = useState({
-  //   start: 9,
-  //   end: 17,
-  // });
+  const user = useSelector((state) => state.user.user);
+  const goToPayment = (body) => {
+    requestConsultation({ ...body, userId: user.id, professionalId }).then(
+      (e) => (window.location.href = e)
+    );
+  };
+
   const [workingHours, setWorkingHours] = useState([
     "9:00 am",
     "10:00 am",
@@ -28,6 +33,7 @@ const Calendary = () => {
       day.setDate(day.getDate() + i);
 
       days.push(
+
         <div key={i} className={style.day}>
           <div className={style.weekday_Date}>
             <div className={style.weekDay}>{weekDays[day.getDay()]}</div>
@@ -35,10 +41,12 @@ const Calendary = () => {
           </div>
           <div className={style.workingHours}>{renderWorkingHours(day)}</div>
         </div>
+        
       );
     }
 
     return (
+    
       <div className={style.week} style={{ display: "flex", flexWrap: "wrap" }}>
         {days}
       </div>
@@ -63,26 +71,29 @@ const Calendary = () => {
   };
 
   return (
+  
     <div className={style.calendar}>
-      <h2 className= {style.titlecalendar}>Agenda un cita</h2>
+      <h2 className={style.titlecalendar}>Agenda un cita</h2>
       <div className={style.header}>
-        <button className={style.right}
+        <button
+          className={style.right}
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() - 7))
-            )
-          }
-        >
+              )
+            }
+            >
           &larr;
         </button>
         <div>{currentDate.toLocaleString("default", { month: "long" })} </div>
-        <button className={style.left}
+        <button
+          className={style.left}
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() + 7))
-            )
-          }
-        >
+              )
+            }
+            >
           &rarr;
         </button>
       </div>
@@ -97,12 +108,30 @@ const Calendary = () => {
           <button
             className={style.button}
             onClick={() => setSelectedHour(null)}
-          >
+            >
             Close
+          </button>
+          <button
+            className={style.button}
+            onClick={() =>
+              goToPayment({
+                date: `${selectedHour.day.toLocaleString("default", {
+                  weekday: "long",
+                })}
+                ${selectedHour.day.toLocaleString("default", {
+                  month: "long",
+                })} 
+                ${selectedHour.day.getDate()}, ${selectedHour.hour}`,
+                price: "200",
+              })
+            }
+          >
+            Reserva
           </button>
         </div>
       )}
     </div>
+   
   );
 };
 export default Calendary;

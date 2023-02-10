@@ -1,7 +1,7 @@
 import {  useState } from 'react';
 import { professionalRegister } from '../../features/apiPetitions';
 import  validationsForm  from './validator.js';
-import { classPsicoRegister,spanError, inputError} from './RegisterPsico.module.css'
+import style from './RegisterPsico.module.css'
 
 export default function RegisterPsico() {
   
@@ -58,12 +58,12 @@ const handleInputChange = (e) => {
 }
 
 return (
-    <div >
-    <form onSubmit={(e)=>handleOnSubmit(e)} className={classPsicoRegister}>
+
+    <form onSubmit={(e)=>handleOnSubmit(e)} className={style.classPsicoRegister}>
         <br/>
-            <span className={spanError}>{errors.name}</span>
+            <span className={style.spanError}>{errors.name}</span>
             <input
-            className={errors.name? inputError:null} 
+            className={errors.name? style.inputError:null} 
             type="text"
             name="name" 
             placeholder='Nombres' 
@@ -72,9 +72,9 @@ return (
             required/>
         <br/>
             <span 
-            className={spanError}>{errors.lastName}</span>
+            className={style.spanError}>{errors.lastName}</span>
             <input 
-            className={errors.lastName? inputError:null} 
+            className={errors.lastName? style.inputError:null} 
             type="text"
             name="lastName" 
             placeholder='Apellidos' 
@@ -82,9 +82,9 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>
-            <span className={spanError}>{errors.email}</span>
+            <span className={style.spanError}>{errors.email}</span>
             <input 
-            className={errors.email? inputError:null} 
+            className={errors.email? style.inputError:null} 
             type="email" 
             name="email"
             placeholder='Correo@email.com' 
@@ -92,9 +92,9 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>
-            <span className={spanError}>{errors.DNI}</span>
+            <span className={style.spanError}>{errors.DNI}</span>
             <input 
-            className={errors.DNI? inputError:null} 
+            className={errors.DNI? style.inputError:null} 
             type="text"
             name="DNI" 
             placeholder="numero de DNI/Pasaporte" 
@@ -102,9 +102,9 @@ return (
             onChange={(e)=>handleInputChange(e)}  
             required />
         <br/>
-            <span className={spanError}>{errors.password}</span>  
+            <span className={style.spanError}>{errors.password}</span>  
             <input
-            className={errors.repeatPassword? inputError:null} 
+            className={errors.repeatPassword? style.inputError:null} 
             type="password"
             name="password"
             value={register.password}
@@ -112,10 +112,10 @@ return (
             onChange={(e)=>handleInputChange(e)}
             required />
         <br/>
-            <span className={spanError} >{errors.repeatPassword}</span>    
-            <span className={spanError} >{errors.confirmPassword}</span>
+            <span className={style.spanError} >{errors.repeatPassword}</span>    
+            <span className={style.spanError} >{errors.confirmPassword}</span>
             <input 
-            className={errors.password? inputError:null} 
+            className={errors.password? style.inputError:null} 
             type="password"
             name="repeatPassword"
             value={register.repeatPassword}
@@ -123,13 +123,13 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>    
-            <input
+            <input className={style.boton}
             id='idSubmitRegister' 
             type="submit" 
             value="Enviar"
             disabled={Object.keys(errors).at(0)? true: false}
             />
     </form>
-    </div>
+   
   )
 }
