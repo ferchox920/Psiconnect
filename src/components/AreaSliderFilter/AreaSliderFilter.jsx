@@ -10,6 +10,7 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./AreaSliderFilter.module.css";
 
+
 export default function AreaSliderFilter() {
   const [areas, setAreas] = useState();
   const { pathname } = useLocation();
@@ -23,7 +24,7 @@ export default function AreaSliderFilter() {
       {pathname === "/" ? (
         <>
           <div className={style.ondas}>
-            {" "}
+            <img src={'https://res.cloudinary.com/dcdywqotf/image/upload/v1675267920/areas/Ondas_jha0ta.svg'} alt="ondas" />
           </div>
 
           <h1 className={style.titulo}>Areas</h1>
@@ -36,23 +37,35 @@ export default function AreaSliderFilter() {
         <Swiper
           modules={[Pagination, Autoplay, Navigation]}
           autoplay={{
-            delay: 4000,
-            disableOnInteraction: true,
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+              dynamicBullets: true,
           }}
           navigation
-          pagination={{
-            el: ".pagination",
-            clickable: true,
+          infinityLoop={true}
+          loop={true}
+          breakpoints={{
+            1400: {
+              slidesPerView: 4,
+            },
+            // when window width is <= 768px
+            768: {
+              slidesPerView: 3,
+            },
+            20: {
+              slidesPerView: 2,
+            },
           }}
-          slidesPerView={3}
         >
           {areas?.map((e) => {
             return (
               <SwiperSlide key={e.id}>
                 <div className={style.card}>
-                  {/* <Link to = {`/Professionals/${e.area}`}> */}
+                  <Link to = {`/Professionals/${e.area}`}>
                   <Areas img={e.image} area={e.area} />
-                  {/* </Link> */}
+                  </Link>
                 </div>
               </SwiperSlide>
             );

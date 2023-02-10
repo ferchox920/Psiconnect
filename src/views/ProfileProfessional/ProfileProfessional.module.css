@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    padding-top: 90px;
+    height: 100vh;
+}
+
+.sideBar{
+    width:14%;
+    display: flex;
+    text-align: center;
+    align-content: center;
+}
+
+.component{
+    width: 86%;
+    background-color: whitesmoke;
+}

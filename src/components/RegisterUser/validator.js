@@ -41,37 +41,23 @@ const validationsForm = {
     password: (form) => {
         if(!form.password){
             validationsForm.errors.password = 'La contraseña no puede estar vacio'
-        }if(form.password.length<10){
-            validationsForm.errors.password = 'La contraseña debe tener al menos un largo de 10 caracteres'
+        }if(form.password.length<8){
+            validationsForm.errors.password = 'La contraseña debe tener al menos un largo de 8 caracteres'
         }else if(form.password.length>25){
             validationsForm.errors.password = 'La contraseña debe tener un largo menor a 25 caracteres'
-        }else if(!/^(?=.*[0-9])(?=.*[!@#$%^&*_.-])(?=.*[A-Z]+)[a-zA-Z0-9!@#$%^&*]/.test(form.password)){
-            validationsForm.errors.password = `El repetir contraseña debe tener al menos 1 de los siguientes caracteres especiales ( !@#$%^&*_.- ), 1 numero y 1 letra Mayúscula`
+        }else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,26}$/.test(form.password)){
+            validationsForm.errors.password = `El repetir contraseña debe tener al menos 1 letra minúscula, 1 numero y 1 letra Mayúscula`
         }else{
             delete validationsForm.errors.password
         }
         return validationsForm.errors
     },
-    repeatPassword: (form) => {
-        if(!form.repeatPassword){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña no debe estar vacio'
-        }else if(form.repeatPassword.length<10){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña debe tener al menos un largo de 10 caracteres'
-        }else if(form.repeatPassword.length>25){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña debe tener un largo menor a 25 caracteres'
-        }else if(!form.repeatPassword.match(/^(?=.*[0-9])(?=.*[!@#$%^&*_.-])(?=.*[A-Z]+)[a-zA-Z0-9!@#$%^&*]/)){
-            validationsForm.errors.repeatPassword = `El repetir contraseña debe tener al menos 1 de los siguientes caracteres especiales ( !@#$%^&*_.- ), 1 numero y 1 letra Mayúscula`
-        }else{
-            delete validationsForm.errors.repeatPassword
-        }
-        return validationsForm.errors
-    },
     confirmPassword: (form) => {
       
-        if(form.confirmPassword == form.password){
-            validationsForm.errors.repeatPassword = 'La contraseña y el repetir contraseña no son las mismas'
+        if(form.confirmPassword !== form.password){
+            validationsForm.errors.confirmPassword = 'La contraseña y el repetir contraseña no son las mismas'
         }else{
-            delete validationsForm.errors.repeatPassword
+            delete validationsForm.errors.confirmPassword
         }
         return validationsForm.errors
     }

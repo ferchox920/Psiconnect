@@ -1,0 +1,251 @@
+/* .container{
+    width: 86%;
+    margin-right: 0%;
+    
+}
+
+.box{
+    padding: 5%;
+  
+
+}
+.avatar{
+    width: 10%;
+    height: 10%;
+}
+.avatar:hover{
+    cursor: pointer;
+
+} */
+
+.divContainer{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    padding-top:2rem;
+    padding-bottom:8rem;
+    background-color: #f4f1bb;
+   
+}
+.form{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    border-left: 2px solid rgb(109, 155, 157);
+    border-right: 2px solid rgb(109, 155, 157);
+    border-top:0px;
+    border-bottom: 0px;
+    border-style: dotted;
+    background-color:#f4f1bb;
+}
+.form .inputs{
+    font-size: medium;
+    font-family: 'Poppins', sans-serif;
+    width: 25rem;
+}
+.form .primaryInputs{
+    font-size: medium;
+    font-family: 'Poppins', sans-serif;
+    width: 35%;
+    height: 5%;
+}
+.form .inputsErrors{
+    font-size: medium;
+    font-family: 'Poppins', sans-serif;
+    width: 35%;
+    height: 5%;
+    border: 1px solid red;
+    box-shadow: none;
+    margin-top: 0%;
+}
+.form .spanErrors{
+    font-size: x-small;
+    color: red;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    margin-bottom: 0%;
+}
+
+.divContainer .form .p{
+    color:cadetblue;
+    font-weight: 500;
+    max-width: 55%;
+    text-align: center;
+}
+.form .label{
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin: 2.5rem 0px 0rem 0px;
+}
+.divContainer .form .labelInicio{
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+.form .inputImage{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    color: cadetblue;
+    background-color: white;
+    border: 2px solid rgb(95, 158, 160);
+    border-style: dotted;
+    box-shadow: none;
+    transition: transform .5s, color .5s, background-color .5s, border .5s ;
+    width: auto;
+    max-width: max-content;
+}
+.form .inputImage:hover{
+    transform: translate(0px, -10px);
+    color: white;
+    background-color: cadetblue;
+    border:2.2px solid white;
+    border-style: dotted;
+}
+.form .inputImageDisabled{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: gray;
+    background-color: white;
+    border: 2px solid gray;
+    border-style: dotted;
+    box-shadow: none;
+    width: auto;
+}
+.form .divContainerImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50rem;
+    height: 16rem;
+}
+.form .divInputsImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.form .divContainerImg .divAvatar .avatar{
+    object-fit: fill;
+    width:16rem;
+    height: 15rem;
+    border-radius: 100%;
+    border: 4px solid cadetblue;
+    border-style: dotted;
+}
+
+.form .divContainerImg .divAvatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.form .divSkills{ 
+    margin-top: 1rem;
+    width: auto;
+    height: auto;
+    max-width: 60%;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: solid #ffa8b6;
+    outline: none;
+    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+}
+.form .divSkills .skillsDivSpan{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0rem 0rem 0rem 0.5rem;
+    margin:1rem;
+    height: 1.5rem;
+    border-radius: 0.5rem 1rem 1rem 1.3rem;
+    transition: transform .5s;
+}
+.form .divSkills .skillsDivSpan .skillsSpanX{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+    width: 1.2rem;
+    height: 80%;
+    margin:0rem 0.1rem 0rem 0.5rem;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: color .3s, border .3s, background-color .3s;
+    color:red;
+    border: 1px solid red;
+    background-color: white;
+}
+.form .divSkills .skillsDivSpan .skillsSpanX:hover{
+    color:white;
+    border: 1px solid red;
+    background-color: red;
+}
+.form .containerDescription{
+    width: 65%;
+    height: 19rem;
+    border-radius: 1rem;
+    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+    overflow: hidden;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form .containerDescription .description{
+    object-fit: contain;
+    min-width: 99%;
+    max-width: 99%;
+    min-height: 100%;
+    max-height: 100%; 
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size:medium;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+    padding: 1rem;
+    margin: 1rem;
+}
+.form .select{
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+}
+.form .inputSubmit{
+margin-top: 5%;
+width: 8rem;
+font-size: medium;
+font-weight: 500;
+font-family: 'Poppins', sans-serif;
+cursor: pointer;
+color: cadetblue;
+background-color: white;
+border:2px solid rgb(95, 158, 160);
+border-style: dotted;
+box-shadow: none;
+transition: transform .5s, color .5s, background-color .5s, border .5s ;
+}
+.form .inputSubmit:hover{
+    transform: translate(0px, -10px);
+    color: white;
+    background-color: cadetblue;
+    border:2.2px solid white;
+    border-style: dotted;
+}

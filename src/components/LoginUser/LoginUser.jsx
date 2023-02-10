@@ -6,9 +6,11 @@ import { validationsForm } from "./validate.js";
 import { spanError, inputError } from "./LoginUser.module.css";
 import swal from "sweetalert";
 import { useDispatch} from "react-redux";
+import {ToggleButton, ToggleButtonGroup} from '@mui/material'
+import { submitHandler, submitHandlerProf } from "./submits.js";
 
 export default function LoginUser({ closeModal }) {
-  const dispacht = useDispatch();
+  const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({
     hola: "rellene todos los campos",
@@ -17,6 +19,9 @@ export default function LoginUser({ closeModal }) {
     email: "",
     password: "",
   });
+
+  const [loginProf, setloginProf] = useState(false)
+
   async function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);
     const body = {
@@ -26,7 +31,7 @@ export default function LoginUser({ closeModal }) {
     userLogin(body)
       .then(async (e) => {
         await getUserByJWT({
-          state: dispacht,
+          state: dispatch,
           type: "global",
         });
       })
@@ -50,7 +55,8 @@ export default function LoginUser({ closeModal }) {
       thema: "inline",
       size: "large",
     });
-  }, []);
+  }, [loginProf]);
+  
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -62,36 +68,28 @@ export default function LoginUser({ closeModal }) {
     );
   };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    if (!Object.keys(errors).at(0)) {
-      await userLogin(form).then((e) => {
-        getUserByJWT({
-          state: dispacht,
-          type: "global",
-        });
-
-        swal({
-          title: "Good job!",
-          text: `Bienvenido `,
-          icon: "success",
-        })
-          .then(() => closeModal(null))
-          .catch((e) => console.log("error"));
-      });
-    } else
-      swal({
-        title: "Error!",
-        text: Object.values(errors)[0],
-        icon: "error",
-      });
+  const handleChange = (e, value)=> {
+    setloginProf(value);
+    
   };
-  return (
-    <form onSubmit={submitHandler}>
-      <h1>Iniciar sesión</h1>
-      <p>Use su cuenta</p>
-      <div id="SignInDiv" />
 
+
+  return (
+    <form onSubmit={loginProf ? (e) => submitHandlerProf(e, errors, form, dispatch) : (e) => submitHandler(e, errors, form, dispatch)}>
+      <ToggleButtonGroup
+      color="primary"
+      value={loginProf}
+      exclusive
+      onChange={handleChange}
+      aria-label="Platform"
+      >
+        <ToggleButton value={false}>Usuario</ToggleButton>
+        <ToggleButton value={true}>Profesional</ToggleButton>
+      </ToggleButtonGroup>
+      <h1>Iniciar sesión</h1>
+      <p>Use su cuenta {loginProf ? 'de profesional' : 'de usuario'}</p>
+      {!loginProf && <div id="SignInDiv"/>}
+  
       <input
         type="text"
         value={form.email}
