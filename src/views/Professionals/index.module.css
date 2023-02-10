@@ -106,7 +106,6 @@
   background-color: transprent;
   cursor: default;
 }
-<<<<<<< HEAD
 .ContainerAreaSliderFilter{
   width: 100%;
   padding: 0;
@@ -120,21 +119,3 @@
   padding: 0;
   margin: 0;
 }
-=======
-
-.button2 {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 1  00;
-  font-size: 30px;
-  line-height: 120%;
-  box-sizing: border-box;
-  width: 330px;
-  height: 70px;
-  /* Color/ColorFont/Negro */
-
-  background: #000000;
-  border: 3px solid #000000;
-  border-radius: 20px;
-}
->>>>>>> 13359c79a250fc3cc2f2b7c2f511313f937e828d
