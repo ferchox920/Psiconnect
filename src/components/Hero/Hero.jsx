@@ -11,7 +11,7 @@ export default function Hero(){
       };
     return(
         //navbar
-        <div>
+        <>
         <div className={style.container}>
             <div className={style.heroContainer}>
                 <div>
@@ -29,6 +29,6 @@ export default function Hero(){
         {
           modal && <FormModal name={'User'} />
         }
-      </div>
+      </>
   );
 }

@@ -15,7 +15,9 @@
     height: auto;
 }
 .ondas img{
+    position: absolute;
     width: 100%;
+    z-index: -1;
 }
 
 .titulo{
@@ -37,6 +39,7 @@
     justify-content: center;
     scale: auto;
     
+    
 }
 
 .container .titulo{
@@ -47,10 +50,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
     width: 100%;
     
 }
-
+h2{
+    color: black;
+}
 
 
 .swiper-button-prev .swiper-button-disabled{
