@@ -1,21 +1,55 @@
 .divContainer{
     display: flex;
     justify-content: center;
-    width: 93.3%;
-    margin-top:6rem; 
-    margin-bottom:80px;
+    align-items: start;
+    width: 100%;
+    margin-top:10rem; 
+    margin-bottom:8rem;
 }
-.divContainer .inputs{
-width: 20rem;
+.form{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    border-left: 2px solid rgb(109, 155, 157);
+    border-right: 2px solid rgb(109, 155, 157);
+    border-top:0px;
+    border-bottom: 0px;
+    border-style: dotted;
 }
-.divContainer .label{
+.form .inputs{
+    font-size: medium;
+    font-family: 'Poppins', sans-serif;
+    width: 25rem;
+}
+.form .inputsErrors{
+    font-size: medium;
+    font-family: 'Poppins', sans-serif;
+    width: 25rem;
+    border: 1px solid red;
+    box-shadow: none;
+}
+
+.divContainer .form .p{
+    color:cadetblue;
+    font-weight: 500;
+    max-width: 55%;
+    text-align: center;
+}
+.form .label{
     text-align: center;
     width: 100%;
     font-weight: 500;
     font-size: 1.4rem;
-    margin: 2.5rem 0px 2rem 0px;
+    margin: 2.5rem 0px 0rem 0px;
 }
-.divContainer .inputImage{
+.divContainer .form .labelInicio{
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+.form .inputImage{
     font-size: 1rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
@@ -29,14 +63,14 @@ width: 20rem;
     width: auto;
     max-width: max-content;
 }
-.divContainer .inputImage:hover{
+.form .inputImage:hover{
     transform: translate(0px, -10px);
     color: white;
     background-color: cadetblue;
     border:2.2px solid white;
     border-style: dotted;
 }
-.divContainer .inputImageDisabled{
+.form .inputImageDisabled{
     font-size: 1rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
@@ -47,14 +81,14 @@ width: 20rem;
     box-shadow: none;
     width: auto;
 }
-.divContainer .divContainerImg{
+.form .divContainerImg{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50rem;
     height: 16rem;
 }
-.divContainer .divInputsImage{
+.form .divInputsImage{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +96,7 @@ width: 20rem;
     width: 50%;
 }
 
-.divContainer .divContainerImg .divAvatar .avatar{
+.form .divContainerImg .divAvatar .avatar{
     object-fit: fill;
     width:16rem;
     height: 15rem;
@@ -71,7 +105,7 @@ width: 20rem;
     border-style: dotted;
 }
 
-.divContainer .divContainerImg .divAvatar{
+.form .divContainerImg .divAvatar{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,7 +113,7 @@ width: 20rem;
     height: 100%;
 }
 
-.divContainer .divSkills{ 
+.form .divSkills{ 
     margin-top: 1rem;
     width: auto;
     height: auto;
@@ -92,7 +126,7 @@ width: 20rem;
     outline: none;
     box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
 }
-.divContainer .divSkills .skillsDivSpan{
+.form .divSkills .skillsDivSpan{
     display: flex;
     align-items: center;
     border: 1px solid black;
@@ -100,8 +134,9 @@ width: 20rem;
     margin:1rem;
     height: 1.5rem;
     border-radius: 0.5rem 1rem 1rem 1.3rem;
+    transition: transform .5s;
 }
-.divContainer .divSkills .skillsDivSpan .skillsSpanX{
+.form .divSkills .skillsDivSpan .skillsSpanX{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,28 +146,51 @@ width: 20rem;
     margin:0rem 0.1rem 0rem 0.5rem;
     border-radius: 100%;
     cursor: pointer;
-    transition: color .3s border .3s background-color .3s;
+    transition: color .3s, border .3s, background-color .3s;
     color:red;
     border: 1px solid red;
     background-color: white;
 }
-.divContainer .divSkills .skillsDivSpan .skillsSpanX:hover{
+.form .divSkills .skillsDivSpan .skillsSpanX:hover{
     color:white;
     border: 1px solid red;
     background-color: red;
 }
-.divContainer .containerDescription .description{
-    width: auto;
-    overflow: auto;
+.form .containerDescription{
+    width: 65%;
+    height: 19rem;
+    border-radius: 1rem;
+    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+    overflow: hidden;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.divContainer .select{
+.form .containerDescription .description{
+    object-fit: contain;
+    min-width: 99%;
+    max-width: 99%;
+    min-height: 100%;
+    max-height: 100%; 
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size:medium;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+    padding: 1rem;
+    margin: 1rem;
+}
+.form .select{
     border-radius: 1rem;
     font-family: 'Poppins', sans-serif;
     width: auto;
     text-align: center;
     cursor: pointer;
 }
-.divContainer .inputSubmit{
+.form .inputSubmit{
 margin-top: 5%;
 width: 8rem;
 font-size: medium;
@@ -146,16 +204,10 @@ border-style: dotted;
 box-shadow: none;
 transition: transform .5s, color .5s, background-color .5s, border .5s ;
 }
-.divContainer .inputSubmit:hover{
+.form .inputSubmit:hover{
     transform: translate(0px, -10px);
     color: white;
     background-color: cadetblue;
     border:2.2px solid white;
     border-style: dotted;
-}
-
-.divContainer .containerDescription{
-width: 50%;
-height: 10rem;
-border: 1px solid red;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { getOnlyAreas, getSkills, verifyToken } from '../../features/apiPetitions';
+import { getOnlyAreas, getSkills, verifyTokenPostRegister } from '../../features/apiPetitions';
 import style from './PostRegisterPsico.module.css'
 
 const PostRegisterPsico = () => {
@@ -18,6 +18,7 @@ const [ register, setRegister ] = useState({
     skillsObjects:[],
     skills:[]
 })
+const [errors, setErros ] = useState({})
 const [ areas, setAreas ] = useState([])
 const [ skills, setSkills ] = useState([])
 const [ imageDisabled , setImageDisabled] = useState(false)
@@ -28,8 +29,8 @@ useEffect(()=>{
     if(tokenVerify === null || tokenVerify === false) return
 
     let img = document.querySelector('#deleteImageAvatar')
-    console.log(imageDisabled)
-    if(!imageDisabled){
+
+    if(register.avatar === '' && !imageDisabled){
         img.disabled = true
         setImageDisabled(true)
     }else{
@@ -44,7 +45,7 @@ useEffect(()=>{
         state:setSkills,
         type:'local'
     })
-    verifyToken({
+    verifyTokenPostRegister({
         state: setVerification,
         token:token,
         type:'local'
@@ -124,8 +125,10 @@ else if(tokenVerify === false){
     return <Navigate to='/'/>
 }
 else return(
-            <form className={style.divContainer} onSubmit={(e)=>{console.log('se subio'); e.preventDefault()}}>
-                <label className={style.label} >Avatar</label>
+        <div className={style.divContainer}>
+            <form className={style.form} onSubmit={(e)=>{console.log('se subio'); e.preventDefault()}}>
+                <label className={style.labelInicio} >Avatar</label>
+                    <p className={style.p}>*selecciona un imagen para tu foto de perfil</p>
                     <div className={style.divContainerImg}>
                         <div className={style.divAvatar}>
                             <img 
@@ -154,7 +157,24 @@ else return(
                         </div>
                     </div>
 
+                    <label className={style.label}>Descripcion</label>
+                    <p className={style.p}>
+                        *escribe una breve descripción de tu perfil como profesional
+                        <br/>
+                        *CONSEJO* trata de añadir datos que creas importantes y relevantes de tu perfil
+                    </p>
+                    <div className={style.containerDescription}>
+                    <textarea 
+                    name="description"
+                    value={register.description} 
+                    placeholder='Descripcion'
+                    className={style.description}
+                    onChange={handleInputChange}>
+                    </textarea>
+                    </div>
+
                     <label className={style.label}>Areas</label>
+                    <p className={style.p}>*selecciona las areas en las que trbajas</p>
                     <select 
                     className={style.select}
                     name="areas" 
@@ -196,27 +216,8 @@ else return(
                         }
                     </div>
 
-                    <label className={style.label}>Descripcion</label>
-                    <div className={style.containerDescription}>
-                    <input 
-                    type="text" 
-                    name='description'
-                    value={register.description}
-                    placeholder='Description'
-                    className={style.description}
-                    onChange={handleInputChange}
-                    />
-                    </div>
-                    <input
-                    className={style.inputs}
-                    type="text" 
-                    name='linkedin'
-                    value={register.linkedin}
-                    placeholder='https://www.linkedin.com/in/'
-                    onChange={handleInputChange}
-                    />
-
                     <label className={style.label} >Habilidades</label>
+                    <p className={style.p}>*selecciona las habilidades que consideras tener</p>
                     <select 
                     className={style.select}
                     name="area" 
@@ -258,12 +259,25 @@ else return(
                             })
                         }
                     </div>
+
+                    <label className={style.label} >Linkedin</label>
+                    <p className={style.p}>*copie y pega el link de tu perfil de Linkedin</p>
+                    <input
+                    className={errors.linkedin? style.inputsErrors :style.inputs}
+                    type="text" 
+                    name='linkedin'
+                    value={register.linkedin}
+                    placeholder='https://www.linkedin.com/in/...'
+                    onChange={handleInputChange}
+                    />
+
                     <input 
                     className={style.inputSubmit}
                     type='submit' 
                     value='Actualizar' 
                     />
             </form>
+        </div>
     )
 }
 export default PostRegisterPsico;
