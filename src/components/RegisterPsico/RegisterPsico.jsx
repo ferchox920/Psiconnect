@@ -1,7 +1,7 @@
 import {  useState } from 'react';
 import { professionalRegister } from '../../features/apiPetitions';
 import  validationsForm  from './validator.js';
-import { classPsicoRegister,spanError, inputError} from './RegisterPsico.module.css'
+import { classPsicoRegister,spanError, inputError, boton} from './RegisterPsico.module.css'
 
 export default function RegisterPsico() {
   
@@ -123,7 +123,7 @@ return (
             onChange={(e)=>handleInputChange(e)} 
             required/>
         <br/>    
-            <input
+            <input className={boton}
             id='idSubmitRegister' 
             type="submit" 
             value="Enviar"

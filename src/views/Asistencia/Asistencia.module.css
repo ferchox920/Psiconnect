@@ -1,6 +1,6 @@
 .countainer {
-    height: 100vh;
-    background-color: rgb(253, 253, 253);
+   
+    background: linear-gradient(180deg, #e26981 0%, #F4F1BB 100%);
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -11,4 +11,17 @@
     width: 180px;
   }
   
+  .titulo{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 40px;
+  }
   
+  .parrafo{
+    display: flex;
+    justify-content: center;
+    font: var(--paragraph);
+    font-size: 120%;
+    font-style: italic;
+  }
