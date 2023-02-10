@@ -32,6 +32,17 @@ export async function userLogin(body) {
     throw new Error(error.response.data);
   }
 }
+export async function userLoginByGoogle(body) {
+  try {
+    const peticion = await axios.post(`/user/google`, body);
+    localStorage.setItem("tkn", peticion?.data);
+    return peticion;
+  } catch (error) {
+    console.log(error);
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
 
 export async function profLogin(body) {
   try {

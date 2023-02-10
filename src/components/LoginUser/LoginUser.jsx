@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { getUserByJWT, userLogin } from "../../features/apiPetitions.js";
+import { getUserByJWT, userLogin, userLoginByGoogle } from "../../features/apiPetitions.js";
 import { validationsForm } from "./validate.js";
 import { spanError, inputError } from "./LoginUser.module.css";
 import swal from "sweetalert";
@@ -25,10 +25,13 @@ export default function LoginUser({ closeModal }) {
   async function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);
     const body = {
+      name: dataUser.given_name,
+      lastName: dataUser.family_name ? dataUser.family_name : "    ",
       email: dataUser.email,
       password: `TestPS1234`,
+      avatar: dataUser.picture,
     };
-    userLogin(body)
+    userLoginByGoogle(body)
       .then(async (e) => {
         await getUserByJWT({
           state: dispatch,
