@@ -112,7 +112,11 @@ console.log(optionAreas)
   const handleSubmit = (e)=>{
     e.preventDefault();
     if (!Object.keys(errors).at(0)) {
-        updateProfessional(form)
+        updateProfessional(form).then((e) => {
+          getProfByJWT({
+            state: dispatch,
+            type: "global",
+          })})
         .then(() =>
         swal({
           title: "Cambios guardados!",
