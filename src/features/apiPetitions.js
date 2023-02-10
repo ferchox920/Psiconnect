@@ -75,6 +75,14 @@ export async function getAreas(state) {
     return error.response;
   }
 }
+export async function getSkills({state, type}){
+  try{
+    const request = await axios.get('/skills')
+    type === 'local'? state(request?.data) : null;
+  }catch(error){
+    return error.response
+  }
+}
 /* export async function getProfessionalByAreas({ state, type, area }) {
   try {
     const peticion = await axios.get(`professional/${area}`);
