@@ -52,7 +52,7 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path='/Formreview/:id' element={<Formreview />} />
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
-        <Route path='/userprofile' element={<ProfileUser/>}/>
+        <Route path='/userProfile/profile' element={<ProfileUser/>}/>
       
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
