@@ -33,6 +33,7 @@ const Calendary = ({ professionalId }) => {
       day.setDate(day.getDate() + i);
 
       days.push(
+
         <div key={i} className={style.day}>
           <div className={style.weekday_Date}>
             <div className={style.weekDay}>{weekDays[day.getDay()]}</div>
@@ -40,10 +41,12 @@ const Calendary = ({ professionalId }) => {
           </div>
           <div className={style.workingHours}>{renderWorkingHours(day)}</div>
         </div>
+        
       );
     }
 
     return (
+    
       <div className={style.week} style={{ display: "flex", flexWrap: "wrap" }}>
         {days}
       </div>
@@ -68,6 +71,7 @@ const Calendary = ({ professionalId }) => {
   };
 
   return (
+  
     <div className={style.calendar}>
       <h2 className={style.titlecalendar}>Agenda un cita</h2>
       <div className={style.header}>
@@ -76,9 +80,9 @@ const Calendary = ({ professionalId }) => {
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() - 7))
-            )
-          }
-        >
+              )
+            }
+            >
           &larr;
         </button>
         <div>{currentDate.toLocaleString("default", { month: "long" })} </div>
@@ -87,9 +91,9 @@ const Calendary = ({ professionalId }) => {
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() + 7))
-            )
-          }
-        >
+              )
+            }
+            >
           &rarr;
         </button>
       </div>
@@ -104,7 +108,7 @@ const Calendary = ({ professionalId }) => {
           <button
             className={style.button}
             onClick={() => setSelectedHour(null)}
-          >
+            >
             Close
           </button>
           <button
@@ -127,6 +131,7 @@ const Calendary = ({ professionalId }) => {
         </div>
       )}
     </div>
+   
   );
 };
 export default Calendary;

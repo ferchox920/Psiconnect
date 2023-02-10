@@ -1,9 +1,9 @@
 import React from "react";
 import style from "./RegisterProfesional.module.css";
-import psicologia from "../../assets/Areas/LogoPsicologia.svg";
+import psicologia from "../../assets/Asistencia/LogoPsicologia.svg";
 import RegisterPsico from "../../components/RegisterPsico/RegisterPsico";
 
-export default function RegisterProfesional(){
+const RegisterProfesional = () => {
   return (
     <>
 <div className={style.container}>
@@ -50,4 +50,4 @@ export default function RegisterProfesional(){
   );
 };
 
-
+export default RegisterProfesional;

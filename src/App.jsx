@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
 import { ProSidebarProvider } from 'react-pro-sidebar'
 
-// import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
-import RegisterProfesional from "./views/RegisterProfesional/RegisterProfesional";
+import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
+import RegisterProfesional from "./views/RegisterProfesionals/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 import Chat from "./components/Chat/Chat";
@@ -39,7 +39,7 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        {/* <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> */}
+        <Route path='/profesional/postRegister/:newToken' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
         <Route path="/registerProfesional" element={<RegisterProfesional />} />
