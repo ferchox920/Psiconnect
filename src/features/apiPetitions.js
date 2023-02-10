@@ -86,7 +86,7 @@ export async function getAreas(state) {
     return error.response;
   }
 }
-/* export async function getProfessionalByAreas({ state, type, area }) {
+ export async function getProfessionalByAreas({ state, type, area }) {
   try {
     const peticion = await axios.get("/areas/onlyAreas");
     state(peticion.data);
@@ -124,7 +124,7 @@ export async function getProfessionalById(id, state) {
   }
 }
 
-export async function getAreasOnly(){
+export async function getOnlyAreas(){
   try {
     const peticion = await axios.get(`areas/onlyAreas`)
     return state(peticion?.data);
