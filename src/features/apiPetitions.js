@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 import { errorMenssage } from "./errorsModals.js";
-import { setFilterProfessional} from "./professionalSlice.js";
+import { setAllProfessional, setFilterProfessional} from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
@@ -28,6 +28,17 @@ export async function userLogin(body) {
     localStorage.setItem("tkn", peticion?.data);
     return peticion;
   } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function userLoginByGoogle(body) {
+  try {
+    const peticion = await axios.post(`/user/google`, body);
+    localStorage.setItem("tkn", peticion?.data);
+    return peticion;
+  } catch (error) {
+    console.log(error);
     errorMenssage(error.response.data);
     throw new Error(error.response.data);
   }
@@ -61,6 +72,7 @@ export async function getProfByJWT({ state, type }) {
     const peticion = await axios.get("/professional/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
+    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
     type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
   } catch (error) {
     console.log(error.response.data);
@@ -172,7 +184,7 @@ export async function getProfessionalReview(id, state){
 
 export async function verifyTokenPostRegister({ type , token, state}){
   try {
-    const request = await axios.get(`/token/postRegister`,{
+    const request = await axios.get(`/professional/token/postRegister`,{
       headers: { post: `Bearer ${token}` },
     });
     type === 'local'? state(request) : null
@@ -214,6 +226,26 @@ export async function requestConsultation(body){
     return error.response;
   }
 } 
+
+export async function getProfessionalConsults(professionalId, state){
+  try {
+    const response = await axios.get(`/consult/professional/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// export async function getAllProfessional(state){
+//   try {
+//     const peticion = await axios.get(`/professional`);
+//     console.log(peticion);
+//     type === "local" ? state(peticion?.data) : state(setAllProfessional(peticion?.data));
+
+//   } catch (error) {
+//     return error.response;
+//   }
+// } 
 
 export async function getProfessionalConsults(professionalId, state){
   try {

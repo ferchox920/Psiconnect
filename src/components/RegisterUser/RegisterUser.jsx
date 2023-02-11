@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
-import { getUserByJWT, userRegister } from "../../features/apiPetitions";
+import { getUserByJWT, userLoginByGoogle, userRegister } from "../../features/apiPetitions";
 import validationsForm from "./validator.js";
 import style from "./RegisterUser.module.css";
 import { useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ export default function RegisterUser({ closeModal }) {
       password: `TestPS1234`,
       avatar: dataUser.picture,
     };
-    userRegister(googleRegister)
+    userLoginByGoogle(googleRegister)
       .then((e) => {
         getUserByJWT({
           state: dispacht,

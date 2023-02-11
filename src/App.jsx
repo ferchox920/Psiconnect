@@ -36,7 +36,7 @@ function App() {
           type: "global",
         })
       : null;
-  }, []);
+  }, [user]);
   return (
     <>
 

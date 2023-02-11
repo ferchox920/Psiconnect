@@ -83,8 +83,7 @@ export default function NavBar() {
                       onClick={() => {
                         localStorage.setItem("tkn", ""),
                           localStorage.setItem("profTkn", ""),
-                          navigate("/"),
-                          window.location.reload();
+                          navigate("/")
                       }}
                     >
                       {" "}

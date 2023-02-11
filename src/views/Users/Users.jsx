@@ -5,13 +5,24 @@ import ProfessionalsCard from "../Professionals/Card/ProfessionalsCard";
 import { useEffect, useState } from "react";
 import style from "./Users.module.css";
 import SearchBar from "../Professionals/SearchBar.jsx";
+import { getProfessionalsFilters } from "../../features/apiPetitions.js";
 
 
 export default function Users() {
     const professionals = useSelector(
         (state) => state.professionals.FilterProfessional
       );
+  const dispatch = useDispatch();
 
+      useEffect(()=>{
+        getProfessionalsFilters({
+          type: "global",
+          state: dispatch,
+          area: null,
+          name: '',
+          lastName: null,
+        });
+      },[])
     const [currentPage, setCurrentPage] = useState(1);
     const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
     const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
@@ -21,11 +32,7 @@ export default function Users() {
 
     return(
     <div className={style.container}>
-        <h1 className={style.titulo}>Usuarios</h1>
-          <p className={style.parrafo}>
-            Busca al professional que mas te guste:
-          </p>
-    
+     
         <div className={style.containerSearchBar}>
           <SearchBar />
         </div>
