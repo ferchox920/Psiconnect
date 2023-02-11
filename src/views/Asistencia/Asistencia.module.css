@@ -1,6 +1,7 @@
 .countainer {
+  background: linear-gradient(180deg, #f4f1bba9 0%, #f5f3d47d 90%);
    
-    background: linear-gradient(180deg, #e26981 0%, #F4F1BB 100%);
+    
     display: flex;
     flex-direction: column;
     text-align: center;

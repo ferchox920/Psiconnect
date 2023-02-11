@@ -1,10 +1,8 @@
 .container{
-    /* width: 100%;*/
-    background: linear-gradient(180deg, #969897 0%, #F4F1BB 100%);
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 100px;
+    padding: 20px 100px;
     font: var(--hTitle);
     font-size: 150%
 }
@@ -12,11 +10,56 @@
   width: 180px;
 }
 
+.info{
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.logo__psicologia{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo__psicologia img{
+  scale: 210%;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+
+
+}
 .titulo{
   display: flex;
   justify-content: center;
+  position: relative;
+  cursor: pointer;
   align-content: center;
-  font-size: 40px;
+  font-size: 30px;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  align-content: center;
+  font-size: 50px;
+}
+.title::before {
+  background-color: #7ed0e9;
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 4px;
+  border-radius: 4px;
+  bottom: 0;
+  left: 20%;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s ease-in-out;
+}
+
+.title:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
 }
 
 
@@ -25,5 +68,9 @@
   justify-content: center;
   font: var(--paragraph);
   font-size: 120%;
-  font-style: italic;
+}
+
+.secondInfo{
+  display: grid;
+  grid-template-columns: 40% 60%;
 }

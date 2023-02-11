@@ -31,7 +31,7 @@ const Footer = () => {
       <div className={style.about}>
         <div className={style.h5}>CONOCENOS</div>
         <a href="#" className={style.info}>¿Necesitas ayuda?</a>
-        <a href="#" className={style.info}>¿Eres médico?</a>
+        <a href="/registerProfesional" className={style.info}>¿Eres médico?</a>
         <a href="#" className={style.info}>Contactanos</a>
       </div>
     </section>

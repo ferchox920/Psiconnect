@@ -75,7 +75,7 @@ export default function NavBar() {
                     }}
                   >
                     <MenuItem
-                      onClick={() => navigate("/professionalProfile/profile")}
+                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate('/userProfile/profile') }}
                     >
                       Mi Perfil
                     </MenuItem>
@@ -83,8 +83,7 @@ export default function NavBar() {
                       onClick={() => {
                         localStorage.setItem("tkn", ""),
                           localStorage.setItem("profTkn", ""),
-                          navigate("/"),
-                          window.location.reload();
+                          navigate("/")
                       }}
                     >
                       {" "}

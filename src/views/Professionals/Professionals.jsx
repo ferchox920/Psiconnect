@@ -34,6 +34,7 @@ export default function Professionals() {
 
   return (
     <div className={style.container}>
+      <h2 className={style.title}>{area}</h2>
       <div className={style.ContainerAreaSliderFilter}>
         <div className={style.filter}>
 

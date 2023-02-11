@@ -10,14 +10,11 @@
  */
 
 
-body{
-    margin-bottom: -30px;
-}
 
 footer {
     display: flex;
     flex-direction: column;
-    background-color: black;
+    background-color:var(--cadetblue)
   }
   .footer {
     display: flex;

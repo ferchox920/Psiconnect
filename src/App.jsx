@@ -10,13 +10,13 @@ import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
-import ConfirmEmail from "./components/ConfirmEmail/ConfirmEmail.jsx";
 import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesionals/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
 
 
 function App() {
@@ -42,7 +42,6 @@ function App() {
 
       <NavBar />
       <Routes>
-        <Route path="/confirmationEmail" element={<ConfirmEmail />}/>
         <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
@@ -52,7 +51,8 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path='/Formreview/:id' element={<Formreview />} />
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
-        <Route path='/userprofile' element={<ProfileUser/>}/>
+        <Route path='/userProfile/profile' element={<ProfileUser/>}/>
+        <Route path='*' element={<ErrorPage/>}/>
       
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}

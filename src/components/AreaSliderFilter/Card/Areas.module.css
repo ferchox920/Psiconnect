@@ -5,12 +5,22 @@
     flex-wrap: nowrap;
     width: 300px;
     height: 300px;
+    border-radius: 70px;
     justify-content: center;
+    transition: 2s all ease;
+}
+.image :hover{
+   transform: scale(1.1);
+   border-radius: 50px;
+   cursor: pointer;
+    box-shadow: #f4f1bb3c 0px 60px 40px -7px;
+
 }
 
 .image{
     display: flex;
-    width: 130px;
+    width: 190px;
+
     height: 190px;
     align-items: center;
     justify-content: center;
