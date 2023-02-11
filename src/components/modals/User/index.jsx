@@ -5,6 +5,7 @@ import style from "./UserModal.module.css";
 
 export default function User({set, closeModal}) {
     const [switcher, setSwitcher] = useState(false);
+    const [loginProf, setloginProf] = useState(false);
 
     const click = ()=>{
         setSwitcher(!switcher)
@@ -17,10 +18,10 @@ export default function User({set, closeModal}) {
             <RegisterUser closeModal={closeModal} />
         </div>
         <div className={style.iniciarSesion}>
-            <LoginUser set={set} closeModal={closeModal} />
+            <LoginUser set={set} closeModal={closeModal} loginProf={loginProf} setloginProf={setloginProf} />
         </div>
       <div className={style.overlayContainer}>
-        <div className={style.overlay}>
+        <div className={`${style.overlay} ${loginProf?style.loginProf:null}`}>
           <div className={style.overlayIzq}>
             <h1 className={style.text}>Bienvenido/a de nuevo</h1>
             <p className={style.text}>

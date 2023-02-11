@@ -35,9 +35,9 @@ export default function AreaSliderFilter() {
       ) : null}
       <div className={style.container}>
         <Swiper
-          modules={[Pagination, Autoplay, Navigation]}
+          modules={[ Autoplay, Navigation]}
           autoplay={{
-            delay: 3000,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -71,7 +71,6 @@ export default function AreaSliderFilter() {
           })}
         </Swiper>
       </div>
-      <div className={style.pagination}></div>
     </div>
   );
 }

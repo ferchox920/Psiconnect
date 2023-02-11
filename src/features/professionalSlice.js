@@ -12,7 +12,6 @@ const professionalSlice = createSlice({
   reducers: {
     setAllProfessional(state, { payload }) {
         state.AllProfessional = payload;
-        state.FilterProfessional = payload;
       },
     setFilterProfessional(state, { payload }) {
         state.FilterProfessional = payload;

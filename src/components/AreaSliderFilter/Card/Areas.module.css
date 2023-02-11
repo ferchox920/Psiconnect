@@ -5,7 +5,6 @@
     flex-wrap: nowrap;
     width: 300px;
     height: 300px;
-    box-shadow: rgb(255, 168, 182,.3) 0px 60px 40px -7px;
     border-radius: 70px;
     justify-content: center;
     transition: 2s all ease;
@@ -14,7 +13,7 @@
    transform: scale(1.1);
    border-radius: 50px;
    cursor: pointer;
-    box-shadow: rgb(255, 168, 182,.1) 0px 60px 40px -7px;
+    box-shadow: #f4f1bb3c 0px 60px 40px -7px;
 
 }
 
