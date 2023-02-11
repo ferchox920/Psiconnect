@@ -247,14 +247,6 @@ export async function getProfessionalConsults(professionalId, state){
 //   }
 // } 
 
-export async function getProfessionalConsults(professionalId, state){
-  try {
-    const response = await axios.get(`/consult/professional/${professionalId}`)
-    return state(response?.data)
-  } catch (error) {
-    console.log(error)
-  }
-}
 
 
 export async function getUserById(userID, state){
