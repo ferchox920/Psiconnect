@@ -13,7 +13,7 @@ export const submitHandler = async (e, errors, form, dispatch) => {
         });
 
         swal({
-          title: "Good job!",
+          title: "Se inició sesión correctamente!",
           text: `Bienvenido `,
           icon: "success",
         })
@@ -38,7 +38,7 @@ export const submitHandler = async (e, errors, form, dispatch) => {
         });
 
         swal({
-          title: "Good job!",
+          title: "Se inició sesión correctamente!",
           text: `Bienvenido `,
           icon: "success",
         })

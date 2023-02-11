@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import validationsForm from "./validator.js";
-import { getAreas, getSkills } from "../../../features/apiPetitions.js";
+import { useDispatch, useSelector } from "react-redux";
+//import validationsForm from "./validator.js";
+import {
+  getAreas,
+  getSkills,
+  profUpdate,
+  getProfByJWT
+} from "../../../features/apiPetitions.js";
 import style from "./Form.module.css";
 import swal from "sweetalert";
 
 const ProfileForm = () => {
   const user = useSelector((state) => state.user.user);
+  const dispatch= useDispatch()
   const [errors, setErrors] = useState({});
   const [areas, setAreas] = useState();
   const [skills, setSkills] = useState();
+  const [, setImg]= useState({})
   const [imageDisabled, setImageDisabled] = useState(false);
-const [form, setForm] = useState({
+  const [form, setForm] = useState({
     name: user?.name,
     lastName: user?.lastName,
-    linkedin: user?.linkedin ,
-    description: user?.description ,
-    areas: user?.areas?.map(a=> a.area),
+    linkedin: user?.linkedin,
+    description: user?.description,
+    areas: user?.areas?.map((a) => a.area),
     avatar: user?.avatar,
     avatarIMG: user?.avatar,
-    skills: user?.skills?.map(s=> s.skill),
+    skills: user?.skills?.map((s) => s.skill),
   });
 
   useEffect(() => {
@@ -40,39 +47,57 @@ const [form, setForm] = useState({
       state: setSkills,
       type: "local",
     });
-
   }, []);
-  
 
   const handleInputDeletedAvatar = () => {
-    if (!form.avatar && !form.avatarIMG) return;
+    if (!form.avatar ) return;
     setForm({
       ...form,
       avatar: "",
-      avatarIMG: "",
     });
     let img = document.querySelector("#imageAvatar");
     img.value = "";
   };
-  const handleInputChangeAvatar = (e) => {
+  const handleInputChangeAvatar = async (e) => {
     if (!e.target.files[0]) return;
     setForm({
       ...form,
       [e.target.name]: e.target.files[0],
       avatarIMG: URL.createObjectURL(e.target.files[0]),
     });
-  };
-  const handleInputChange = (e) => {
+    setImg({
+      src: URL.createObjectURL(e.target.files[0]),
+      alt: e.target.files[0].name
+    })
    
+    
+  };
+const uploadImage= async (file)=>{
+  let formData = new FormData();
+    formData?.append("file", file);
+    formData?.append('upload_preset',"psiconnectpreset");
+    formData.append('api_key', 652951616386787);
+    
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://api.cloudinary.com/v1_1/dcdywqotf/image/upload', false);
+    console.log(formData)
+    xhr.send(formData);
+    const imageResponse = JSON.parse(xhr.responseText);
+    console.log(imageResponse.secure_url)
+    setForm({...form, avatar: imageResponse.secure_url})
+}
+
+  const handleInputChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
-    setErrors(validationsForm[e.target.name]({
-        ...errors,
-        [e.target.name]: e.target.value,
-      }))
-   
+    // setErrors(
+    //   validationsForm[e.target.name]({
+    //     ...errors,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
   };
   const handleInputSkillsChange = (e) => {
     let optionSkills = document.querySelector(`#${e.target.value}`);
@@ -93,7 +118,7 @@ const [form, setForm] = useState({
   };
   const handleInputAreasChange = (e) => {
     let optionAreas = document.querySelector(`#${e.target.value}`);
-console.log(optionAreas)
+    console.log(optionAreas);
     if (!form.areas.some((el) => el === e.target.value)) {
       setForm({
         ...form,
@@ -107,37 +132,40 @@ console.log(optionAreas)
       });
       optionAreas.disabled = false;
     }
-    
   };
-  const handleSubmit = (e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
+await uploadImage(form.avatar)
     if (!Object.keys(errors).at(0)) {
-        updateProfessional(form).then((e) => {
-          getProfByJWT({
-            state: dispatch,
-            type: "global",
-          })})
-        .then(() =>
-        swal({
-          title: "Cambios guardados!",
-          text: `Sus datos fueron actualizados correctamente`,
-          icon: "success",
+      profUpdate({
+        state: dispatch,
+        type: 'global',
+        payload: form})
+        .then((e) => {
+          
+          swal({
+            title: "Cambios guardados!",
+            text: `Sus datos fueron actualizados correctamente`,
+            icon: "success",
+          })
         })
-      )
-    } else   swal({
+    } else{
+      swal({
         title: "Error!",
         text: Object.values(errors)[0],
         icon: "error",
-      })
-  }
+      });
+    }
+    console.log(form)
+  };
 
   return (
     <div className={style.divContainer}>
-      <form
-        className={style.form}
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <label className={style.labelInicio}>Avatar</label>
+      <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
+        <label className={style.labelInicio}>
+          {user.name} {user.lastName}
+        </label> <br />
+        <label className={style.label}>Avatar</label>
         <p className={style.p}>*selecciona un imagen para tu foto de perfil</p>
         <div className={style.divContainerImg}>
           <div className={style.divAvatar}>
@@ -164,34 +192,15 @@ console.log(optionAreas)
               type="button"
               name="avatar"
               value="Borrar imagen"
-              onClick={()=>handleInputDeletedAvatar()}
+              onClick={() => handleInputDeletedAvatar()}
             />
           </div>
         </div>
-        <label className={style.label}>Nombre</label>
-        <p className={style.spanErrors}>{errors.name}</p>
-        <input
-          className={errors.name ? style.inputsErrors : style.primaryInputs}
-          type="text"
-          name="name"
-          value={form.name }
-          placeholder="Su nombre..."
-          onChange={handleInputChange}
-        />
-        <label className={style.label}>Apellido</label>
-        <p className={style.spanErrors}>{errors.lastName}</p>
-        <input
-          className={errors.lastName ? style.inputsErrors : style.primaryInputs}
-          type="text"
-          name="lastName"
-          value={form.lastName}
-          placeholder="Su apellido..."
-          onChange={handleInputChange}
-        />
 
         <label className={style.label}>Descripción</label>
         <p className={style.p}>
-          *escribe una breve descripción de tu perfil como profesional si aún no la tienes
+          *escribe una breve descripción de tu perfil como profesional si aún no
+          la tienes
           <br />
           *CONSEJO* trata de añadir datos que creas importantes y relevantes de
           tu perfil
@@ -199,7 +208,7 @@ console.log(optionAreas)
         <div className={style.containerDescription}>
           <textarea
             name="description"
-            value={form.description || ''}
+            value={form.description || ""}
             placeholder="Descripcion"
             className={style.description}
             onChange={handleInputChange}
@@ -213,14 +222,14 @@ console.log(optionAreas)
           name="areas"
           onChange={(e) => handleInputAreasChange(e)}
           required
-          key='areas'
+          key="areas"
         >
           <option key="defaultSelect" value="defaultSelect" selected disabled>
             Areas
           </option>
           {areas?.map((el) => {
             return (
-              <option key={el.area}  value={el.area} id={el.area}>
+              <option key={el.area} value={el.area} id={el.area}>
                 {el.area}
               </option>
             );
@@ -229,8 +238,10 @@ console.log(optionAreas)
         <div className={style.divSkills}>
           {form.areas?.map((el) => {
             return (
-                 <div key={el} className={style.skillsDivSpan}>
-                <span id='areaid' value={el}>{el}</span>
+              <div key={el} className={style.skillsDivSpan}>
+                <span id="areaid" value={el}>
+                  {el}
+                </span>
                 <span
                   className={style.skillsSpanX}
                   onClick={() =>
@@ -253,7 +264,7 @@ console.log(optionAreas)
           name="area"
           onChange={(e) => handleInputSkillsChange(e)}
           required
-          key='skills'
+          key="skills"
         >
           <option key="defaultSelect" value="defaultSelect" selected disabled>
             Habilidades
@@ -292,7 +303,7 @@ console.log(optionAreas)
           //className={errors.linkedin ? style.inputsErrors : style.inputs}
           type="text"
           name="linkedin"
-          value={form.linkedin }
+          value={form.linkedin}
           placeholder="https://www.linkedin.com/in/..."
           onChange={handleInputChange}
         />
