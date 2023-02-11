@@ -13,7 +13,7 @@ import swal from "sweetalert";
 import { useDispatch } from "react-redux";
 import { submitHandler, submitHandlerProf } from "./submits.js";
 
-export default function LoginUser({ closeModal }) {
+export default function LoginUser({ closeModal, loginProf, setloginProf }) {
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({
@@ -24,7 +24,7 @@ export default function LoginUser({ closeModal }) {
     password: "",
   });
 
-  const [loginProf, setloginProf] = useState(false);
+ 
 
   async function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);

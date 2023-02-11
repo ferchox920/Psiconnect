@@ -5,7 +5,6 @@
     flex-wrap: nowrap;
     width: 300px;
     height: 300px;
-    box-shadow: rgba(0, 0, 0, 0.03) 0px 60px 40px -7px;
     border-radius: 70px;
     justify-content: center;
     transition: 2s all ease;

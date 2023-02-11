@@ -21,13 +21,12 @@ export default function Hero() {
       <div className={style.container}>
         <div className={style.heroContainer}>
           <div>
-            <img className={style.img} src={hero} alt="" />
+            <img className={style.img} src={'https://w7.pngwing.com/pngs/427/179/png-transparent-brain-character-illustration-brain-learning-cognitive-training-mind-color-creative-mind-thinking-color-splash-orange-people.png'} alt="" />
           </div>
           <div className={style.left}>
             <h2>{!user ? "Registrate!" : "Agenda!"}</h2>
             <h4>
-              y Pide tu hora ya!! <br /> Nuestros profesionales te atenderan
-              100% Online.{" "}
+              Estamos para ayudarte <br /> Nuestros profesionales se conectan del todo el mundo para vos
             </h4>
             <button className={style.button} onClick={openModal}>
               Agendar

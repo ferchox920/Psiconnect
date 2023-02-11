@@ -1,5 +1,5 @@
 import axios from "./axios.js";
-import { errorMenssage } from "./errorsModals.js";
+import { errorMenssage, successMessage } from "./errorsModals.js";
 import { setAllProfessional, setFilterProfessional} from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
@@ -16,6 +16,7 @@ export async function userRegister(body) {
 export async function professionalRegister(body) {
   try {
     const request = await axios.post("/professional/register", body);
+    successMessage('En breves le llegara un mail')
     return request;
   } catch (error) {
     errorMenssage(error.response.data);

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { professionalRegister } from "../../features/apiPetitions";
 import validationsForm from "./validator.js";
 import style from "./RegisterPsico.module.css";
+import { errorMenssage } from "../../features/errorsModals";
 
 export default function RegisterPsico() {
   const [register, setRegister] = useState({
@@ -22,32 +23,12 @@ export default function RegisterPsico() {
     });
   };
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
     verifyRepeatPassword();
-    if (!Object.keys(errors).at(0)) {
-      const registerProfessional = await professionalRegister(register);
-      if (
-        registerProfessional.data.errors ||
-        registerProfessional.status === 400
-      ) {
-        alert(
-          registerProfessional.data.errors
-            ? registerProfessional.data.errors
-            : registerProfessional.data
-        );
-      } else {
-        setRegister({
-          name: "",
-          lastName: "",
-          email: "",
-          DNI: "",
-          password: "",
-          repeatPassword: "",
-        });
-        alert("El formulario fue enviado");
-      }
-    } else alert("quedan errores");
+    if (!Object.keys(errors).length) {
+      professionalRegister(register)
+    } else errorMenssage(Object.values(errors)[0]);
   };
 
   const handleInputChange = (e) => {
@@ -133,7 +114,6 @@ export default function RegisterPsico() {
         className={style.boton}
         id="idSubmitRegister"
         type="submit"
-        disabled={Object.keys(errors).at(0) ? true : false}
       >Enviar</button>
     </form>
   );
