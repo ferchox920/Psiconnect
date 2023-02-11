@@ -73,6 +73,7 @@ export async function getProfByJWT({ state, type }) {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
     type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
+    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
   } catch (error) {
     console.log(error.response.data);
   }
@@ -111,7 +112,7 @@ export async function getUserByJWT({ state, type }) {
     const peticion = await axios.get("/user/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol:"user"}));
+    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'user'}));
   } catch (error) {
     console.log(error.response.data);
   }
@@ -226,6 +227,14 @@ export async function requestConsultation(body){
   }
 } 
 
+export async function getProfessionalConsults(professionalId, state){
+  try {
+    const response = await axios.get(`/consult/professional/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 // export async function getAllProfessional(state){
 //   try {
@@ -239,3 +248,12 @@ export async function requestConsultation(body){
 // } 
 
 
+
+export async function getUserById(userID, state){
+  try {
+    const response = await axios.get(`/user/${userID}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}

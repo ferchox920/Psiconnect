@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { requestConsultation } from "../../features/apiPetitions";
 import style from "./Calendary.module.css";
-const Calendary = ({ professionalId }) => {
+const Calendary = ( {professionalId} ) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
