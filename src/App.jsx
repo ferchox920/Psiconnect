@@ -16,6 +16,7 @@ import Asistencia from "./views/Asistencia/Asistencia";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
           type: "global",
         })
       : null;
-  }, [user]);
+  }, []);
   return (
     <>
 
@@ -51,6 +52,7 @@ function App() {
         <Route path='/Formreview/:id' element={<Formreview />} />
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
         <Route path='/userProfile/profile' element={<ProfileUser/>}/>
+        <Route path='*' element={<ErrorPage/>}/>
       
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}

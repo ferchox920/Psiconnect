@@ -51,7 +51,7 @@ h2 {
   margin: 0;
 }
 
-h4 {
+.heroH4 {
   font: var(--paragraph);
   font-size: 200%;
   margin: 5%;

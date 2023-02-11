@@ -25,7 +25,7 @@ export default function Hero() {
           </div>
           <div className={style.left}>
             <h2>{!user ? "Registrate!" : "Agenda!"}</h2>
-            <h4>
+            <h4 className={style.heroH4}>
               Estamos para ayudarte <br /> Nuestros profesionales se conectan del todo el mundo para vos
             </h4>
             <button className={style.button} onClick={openModal}>

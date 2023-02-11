@@ -1,0 +1,20 @@
+.errorContainer{
+    display: flex;
+    justify-content: space-around;
+    padding: 20rem 10rem 25rem 10rem;
+    background: linear-gradient(var(--cadetblue) 0%, rgba(244, 241, 187, 0.576) 100%);
+}
+
+.errorTextSide{
+    display: flex;
+    flex-direction: column;
+}
+
+.errorTitle{
+    font: var(--h1Title);
+}
+
+.errorText{
+    font: var(--hTitle);
+    font-size: 175%;
+}
