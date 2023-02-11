@@ -110,10 +110,12 @@ export async function getAreas(state) {
 }
 export async function getUserByJWT({ state, type }) {
   try {
-    const peticion = await axios.get("/user/id", {
+    const peticion = await axios.get(`/user/id`, {
+    
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
     type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'user'}));
+
   } catch (error) {
     console.log(error.response.data);
   }

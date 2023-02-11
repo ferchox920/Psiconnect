@@ -7,6 +7,7 @@ import swal from "sweetalert";
 
 const ProfileForm = () => {
   const user = useSelector((state) => state.user.user);
+  console.log(user, 'aqui2')
   const [errors, setErrors] = useState({});
   const [areas, setAreas] = useState();
   const [skills, setSkills] = useState();

@@ -6,7 +6,7 @@ import style from './UsersForm.module.css'
 
 export default function UsersForm (){
 
-    const users = useSelector((store) => store.user.user)
+    const users = useSelector((state) => state.user.user)
     const [inputs, setInputs] = useState({
       name : users?.name,
       lastName: users?.lastname,
@@ -17,10 +17,14 @@ export default function UsersForm (){
 
   return (
       <div className={style.usersForm}>
+        <p className={style.p}>*Por favor complete los datos  de su perfil</p>
         
-        <form >
+        <form className= {style.form}>
         <label className={style.labelInicio}>Avatar</label>
-        <p className={style.p}>*Es necesario completar los datos de su perfil</p>
+        <div className = {style.imgperfil}></div>
+        <div className={style.inputfile}>
+          <input type= 'file' />
+        </div>
 
 
 

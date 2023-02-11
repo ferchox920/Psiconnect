@@ -125,6 +125,7 @@
     align-items: center;
     width: 50rem;
     height: 16rem;
+    background: green;
 }
 .form .divInputsImage{
     display: flex;

@@ -1,20 +1,28 @@
 .container{
-    width: 86%;
+    width: 100%;
     height: 100vh;
-  
-  
+    background: #F4F1BB;
+    position: relative;
+}
+
+.sidebarcontainer{
+    width: 16%;
+    height: 100vh;
+    background: violet;
+    position: fixed;
+    z-index: 1;
+
 }
 
 
 .sidebar{
-    width: 18%;
+    width: 100%;
     height: 100vh;
     background: #afcecf;
-    margin-top: 90px;
     border-top: 7px solid white;
     border-radius: 0px 10px 0px 10px;
-    
     box-shadow: 5px 5px 10px #5e5b5b;
+    position: absolute;
 }
 
 .avatar{
@@ -78,10 +86,11 @@
  .formuser{
     width: 90%;
     height: 100vh;
-    /* background: green; */
     position: absolute;
-    margin-top: -630px;
+ 
     margin-left: 210px;
+    position: absolute;
+    
  }
 
  .formcontainer{
@@ -90,6 +99,7 @@
     margin-top: 40px;
     margin-left: 80px;
     background: black;
+    position: absolute;
  }
 
  .form{

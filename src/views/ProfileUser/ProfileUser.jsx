@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 
 export default function ProfileUser () {
-    const users = useSelector((store) => store.user.user)
+    const users = useSelector((state) => state.user.user)
     console.log(users, 'aqui')
 
    
@@ -14,6 +14,7 @@ export default function ProfileUser () {
 
   return (
     <div className = {style.container}>
+        <div className = {style.sidebarcontainer}>
         <div className={style.sidebar}>
           <div className = {style.avatar}><img alt = ''/></div>
             <h1 className = {style.username}>{`${users?.name} ${users?.lastName}`}</h1>
@@ -24,6 +25,9 @@ export default function ProfileUser () {
             <div className={style.itemssidebar}><button className={style.buttonitems}>Seguridad</button></div>
           </div>
         </div>
+
+        </div>
+        
 
         <div className={style.formuser}>
           <div className={style.formcontainer}>
