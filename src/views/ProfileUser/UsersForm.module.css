@@ -5,3 +5,12 @@
     position: absolute;
 }
 
+.labelInicio{
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-top: -400px;
+    position: absolute;
+}
+
