@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { Menu, MenuItem } from "@mui/material";
 
 export default function NavBar() {
+ 
   const [modal, setModal] = useState(null);
   const [menu, setMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -75,7 +76,7 @@ export default function NavBar() {
                     }}
                   >
                     <MenuItem
-                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate('/userProfile/profile') }}
+                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate(`/userProfile/profile/${user?.id}`) }}
                     >
                       Mi Perfil
                     </MenuItem>
