@@ -7,3 +7,11 @@ export async function errorMenssage(text){
         icon: "error",
       })
 }
+
+export async function successMessage(text){
+  return swal({
+    title: "genial!",
+    text: text,
+    icon: "success",
+  })
+}

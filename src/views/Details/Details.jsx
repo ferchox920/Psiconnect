@@ -129,7 +129,7 @@ export default function Details() {
 
       <div className={style.container__botttom}>
         <div className={style.calendary__box}>
-          <Calendary params={professional.id} />
+          <Calendary professionalId={professional.id} />
         </div>
         <div className={style.pagar}>
         

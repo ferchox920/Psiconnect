@@ -25,8 +25,8 @@ export default function AreaSliderFilter() {
         <>
           <div className={style.ondas}>
             <img src={'https://res.cloudinary.com/dcdywqotf/image/upload/v1675267920/areas/Ondas_jha0ta.svg'} alt="ondas" />
-          </div>
 
+          </div>
           <h1 className={style.titulo}>Areas</h1>
           <p className={style.parrafo}>
             Trabajamos para ayudarte con retos personales como los siguientes:
@@ -35,16 +35,15 @@ export default function AreaSliderFilter() {
       ) : null}
       <div className={style.container}>
         <Swiper
-          modules={[Pagination, Autoplay, Navigation]}
+          modules={[ Autoplay, Navigation]}
           autoplay={{
-            delay: 3000,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           pagination={{
               dynamicBullets: true,
           }}
           navigation
-          infinityLoop={true}
           loop={true}
           breakpoints={{
             1400: {
@@ -72,7 +71,6 @@ export default function AreaSliderFilter() {
           })}
         </Swiper>
       </div>
-      <div className={style.pagination}></div>
     </div>
   );
 }

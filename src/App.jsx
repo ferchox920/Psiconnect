@@ -10,7 +10,6 @@ import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
-import ConfirmEmail from "./components/ConfirmEmail/ConfirmEmail.jsx";
 import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesionals/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
@@ -37,13 +36,12 @@ function App() {
           type: "global",
         })
       : null;
-  }, []);
+  }, [user]);
   return (
     <>
 
       <NavBar />
       <Routes>
-        <Route path="/confirmationEmail" element={<ConfirmEmail />}/>
         <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
@@ -51,10 +49,10 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
-        <Route path='/Formreview/:id' element={<Formreview />}></Route>
-        
-        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}></Route>
-        <Route path='/userprofile/' element={<ProfileUser/>}/>
+        <Route path='/Formreview/:id' element={<Formreview />} />
+        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
+        <Route path='/userProfile/profile' element={<ProfileUser/>}/>
+      
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
       
