@@ -1,0 +1,27 @@
+
+.swiperContainer{
+    width: 100%;
+    height: 300px;
+}
+
+
+
+.ondas{
+    background-image:url('../../assets/Areas/Ondas.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.titulo{
+    margin-top: -30px;
+    margin-left: 300px;
+}
+
+.parrafo{
+    margin-left: 200px;
+}
+
+
+
+
+

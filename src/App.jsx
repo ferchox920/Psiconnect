@@ -10,7 +10,6 @@ import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfByJWT, getUserByJWT } from "./features/apiPetitions";
-import ConfirmEmail from "./components/ConfirmEmail/ConfirmEmail.jsx";
 import PostRegisterPsico from './components/postRegisterPsico/PostRegisterPsico';
 import RegisterProfesional from "./views/RegisterProfesionals/RegisterProfesional";
 import Asistencia from "./views/Asistencia/Asistencia";
@@ -42,7 +41,6 @@ function App() {
 
       <NavBar />
       <Routes>
-        <Route path="/confirmationEmail" element={<ConfirmEmail />}/>
         <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
