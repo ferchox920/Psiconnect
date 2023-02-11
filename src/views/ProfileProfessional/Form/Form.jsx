@@ -16,7 +16,6 @@ const ProfileForm = () => {
   const [errors, setErrors] = useState({});
   const [areas, setAreas] = useState();
   const [skills, setSkills] = useState();
-  const [, setImg]= useState({})
   const [imageDisabled, setImageDisabled] = useState(false);
   const [form, setForm] = useState({
     name: user?.name,
@@ -65,10 +64,6 @@ const ProfileForm = () => {
       [e.target.name]: e.target.files[0],
       avatarIMG: URL.createObjectURL(e.target.files[0]),
     });
-    setImg({
-      src: URL.createObjectURL(e.target.files[0]),
-      alt: e.target.files[0].name
-    })
    
     
   };
@@ -80,11 +75,11 @@ const uploadImage= async (file)=>{
     
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://api.cloudinary.com/v1_1/dcdywqotf/image/upload', false);
-    console.log(formData)
+
     xhr.send(formData);
     const imageResponse = JSON.parse(xhr.responseText);
-    console.log(imageResponse.secure_url)
-    setForm({...form, avatar: imageResponse.secure_url})
+    
+    return imageResponse.secure_url
 }
 
   const handleInputChange = (e) => {
@@ -118,7 +113,7 @@ const uploadImage= async (file)=>{
   };
   const handleInputAreasChange = (e) => {
     let optionAreas = document.querySelector(`#${e.target.value}`);
-    console.log(optionAreas);
+   
     if (!form.areas.some((el) => el === e.target.value)) {
       setForm({
         ...form,
@@ -135,12 +130,15 @@ const uploadImage= async (file)=>{
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-await uploadImage(form.avatar)
+    const newImage= await uploadImage(form.avatar)
     if (!Object.keys(errors).at(0)) {
       profUpdate({
         state: dispatch,
         type: 'global',
-        payload: form})
+        payload: {
+          ...form,
+          avatar: newImage
+        }})
         .then((e) => {
           
           swal({

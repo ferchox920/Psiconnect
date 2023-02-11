@@ -77,8 +77,8 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
     <form
       onSubmit={
         loginProf
-          ? (e) => submitHandlerProf(e, errors, form, dispatch)
-          : (e) => submitHandler(e, errors, form, dispatch)
+          ? (e) => submitHandlerProf(e, errors, form, dispatch, closeModal)
+          : (e) => submitHandler(e, errors, form, dispatch, closeModal)
       }
     >
   
