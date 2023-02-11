@@ -6,6 +6,12 @@ import style from './UsersForm.module.css'
 export default function UsersForm (){
 
     const users = useSelector((store) => store.user.user)
+    const [inputs, setInputs] = useState({
+      name : users?.name,
+      lastName: users?.lastname,
+      phone: users?.phone,
+      image: users?.image
+    })
 
 
   return (
