@@ -20,15 +20,19 @@ export default function UsersForm (){
         <p className={style.p}>*Por favor complete los datos  de su perfil</p>
         
         <form className= {style.form}>
-        <label className={style.labelInicio}>Avatar</label>
-        <div className = {style.imgperfil}></div>
-        <div className={style.inputfile}>
-          <input type= 'file' />
-        </div>
+          <label className={style.labelInicio}>Avatar</label>
+          <div className = {style.imgperfil}></div>
+          <div className={style.inputfile}>
+            <input type= 'file' className={style.fileSelect}/>                        
+          </div>
 
-
-
-
+          <div className={style.userInfo}>
+            <input type="text" placeholder='Nombres' />
+            <input type="text" placeholder='Apellidos'/>
+            <input type="text" placeholder='Telefono'/>
+            <input type="text" placeholder='URL de tu imagen en linea'/>
+          </div>
+          <input type="submit" placeholder='Enviar Cambios' className={style.formSubmit}/>
         </form>
       </div>
   )

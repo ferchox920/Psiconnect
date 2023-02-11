@@ -1,24 +1,21 @@
 .usersForm{
     width: 100%;
     height: 80vh;
-    background-color: #F4F1BB;
     position: absolute;
+    background-color: #f4f1bb;
 }
 
-.labelInicio{
-   
+.labelInicio{ 
     width: 100%;
     font-weight: 500;
     font-size: 1.4rem;
-    margin-top: -430px;
+    margin-top: -550px;
     position: absolute;
     margin-left: -600px;
 }
 
-/* .form{
-    
+/* .form{    
     background: aqua;
-
 } */
 
 .imgperfil{
@@ -26,16 +23,52 @@
     height: 215px; 
     position: absolute;
     margin-left: -600px;
-    margin-top: -150px;
+    margin-top: -250px;
     border: 4px solid cadetblue;
     border-style: dotted;
     border-radius: 200px ;
 
 }
 
-.inputfile {
-    margin-left: -200px;
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+    background-color: #f4f1bb;
 }
 
+.inputfile{
+    margin-left: -670px;
+    margin-top: 6%;
+}
 
+.userInfo{
+    margin-left: -150px;
+    margin-right: -450px;
+    margin-bottom: 20%;
+    position: absolute;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: space-around;
+}
 
+.formSubmit{
+    background-color: var(--aquamarine);
+    font: var(--h1Title);
+    font-size: 200%;
+    width: auto;
+    position: absolute;
+    margin-top: 25%;
+    margin-left: -5%;
+    border: dotted whitesmoke;
+}
+
+.fileSelect{
+    background-color: white;
+}
