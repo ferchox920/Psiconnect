@@ -36,7 +36,7 @@ function App() {
           type: "global",
         })
       : null;
-  }, [user]);
+  }, []);
   return (
     <>
 
@@ -50,6 +50,7 @@ function App() {
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path='/Formreview/:id' element={<Formreview />} />
+       
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
         <Route path='/userProfile/profile' element={<ProfileUser/>}/>
       
