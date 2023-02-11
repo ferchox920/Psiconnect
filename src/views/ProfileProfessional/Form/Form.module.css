@@ -44,16 +44,11 @@
     font-family: 'Poppins', sans-serif;
     width: 25rem;
 }
-.form .primaryInputs{
-    font-size: medium;
-    font-family: 'Poppins', sans-serif;
-    width: 35%;
-    height: 5%;
-}
+
 .form .inputsErrors{
     font-size: medium;
     font-family: 'Poppins', sans-serif;
-    width: 35%;
+    width: 25rem;
     height: 5%;
     border: 1px solid red;
     box-shadow: none;
