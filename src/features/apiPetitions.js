@@ -56,15 +56,18 @@ export async function profLogin(body) {
   }
 }
 
-export async function profUpdate(body){
+export async function profUpdate({state, type, payload}){
   try {
-    const petition= await axios.put('/professional/descriptionProfesional', body);
-    localStorage.setItem("profTkn", petition?.data);
+    const petition= await axios.put('/professional/update/id', payload,{
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+    } );
+    type === "local" ? state(petition?.data) : state(setUser({...petition?.data, rol: 'prof'}));
+    console.log(petition?.data)
     return petition
 
   } catch (error) {
      errorMenssage(error.response.data);
-    throw new Error(error.response.data);
+    //throw new Error(error.response.data);
   }
 }
 
