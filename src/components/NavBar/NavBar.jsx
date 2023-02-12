@@ -21,6 +21,7 @@ export default function NavBar() {
     setAnchorEl(e.currentTarget);
     setMenu(!menu);
   };
+  const closeNav =()=> setOpen(!open)
 
   return (
     <>
@@ -47,18 +48,18 @@ export default function NavBar() {
           <div className={style.nav_list}>
             <div>
               <Link to={"/"}>
-                <h3 className={style.navItem}>¿Qué es Psiconnect? </h3>
+                <h3 onClick={closeNav} className={style.navItem}>¿Qué es Psiconnect? </h3>
               </Link>
             </div>
             <div>
               <Link to={"/registerProfesional"}>
                 {" "}
-                <h3 className={style.navItem}>¿Eres medico? </h3>
+                <h3 onClick={closeNav} className={style.navItem}>¿Eres medico? </h3>
               </Link>
             </div>
             <div>
               <Link to={"/Asistencia"}>
-                <h3 className={style.navItem}>¿Cómo te ayudamos?</h3>
+                <h3 onClick={closeNav} className={style.navItem}>¿Cómo te ayudamos?</h3>
               </Link>
             </div>
             {user && window.screen.width < 1140 ? (
@@ -70,7 +71,7 @@ export default function NavBar() {
                       : navigate("/userProfile/profile");
                   }}
                 >
-                  <h3 className={style.navItem}>Mi perfil</h3>
+                  <h3 onClick={closeNav} className={style.navItem}>Mi perfil</h3>
                 </div>
                 <div
                   onClick={() => {
@@ -79,7 +80,7 @@ export default function NavBar() {
                       window.location.reload();
                   }}
                 >
-                  <h3 className={style.navItem}>Cerrar Sesión</h3>
+                  <h3 onClick={closeNav} className={style.navItem}>Cerrar Sesión</h3>
                 </div>
               </>
             ) : null}
