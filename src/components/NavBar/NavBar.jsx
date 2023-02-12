@@ -61,7 +61,7 @@ export default function NavBar() {
                 <h3 className={style.navItem}>¿Cómo te ayudamos?</h3>
               </Link>
             </div>
-            {user && open ? (
+            {user && window.screen.width < 1140 ? (
               <>
                 <div
                   onClick={() => {
