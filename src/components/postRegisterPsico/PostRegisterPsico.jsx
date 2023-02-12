@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getOnlyAreas, getSkills, verifyTokenPostRegister, postRegisterProfesional } from '../../features/apiPetitions';
-import { errorMenssage } from '../../features/errorsModals.js'
+import { errorMenssage, successMessage } from '../../features/errorsModals.js'
 import style from './PostRegisterPsico.module.css';
 import validationsForm from './validatorDatas.js';
 
@@ -74,6 +74,7 @@ const handleOnSubmit = (e) => {
     if(!errorsCheck() && submitAccepted){
         postRegisterProfesional(register)
         .then(request => {
+            successMessage(request.data)
             console.log(request)
         }).catch(error => {
             console.log(error)
