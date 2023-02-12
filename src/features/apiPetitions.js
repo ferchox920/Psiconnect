@@ -186,27 +186,17 @@ export async function getProfessionalReview(id, state){
   }
 }
 
-export async function verifyTokenPostRegister({ type , token, state}){
+export async function verifyTokenPostRegister(token){
   try {
     const request = await axios.get(`/professional/token/postRegister`,{
-      headers: { post: `Bearer ${token}` },
+      headers: { pos: `Bearer ${token}`,}
     });
-    type === 'local'? state(request) : null
+    return request;
   } catch (error) {
-    state(error.response);
+    return error.response;
   }
 }
 
-export async function confirmEmailClient({ type , token, state, userType}){
-  try {
-    const request = await axios.put(`/${userType}/confirmationEmail`,{},{
-      headers: { confirm: `Bearer ${token}`}
-    });
-    type === 'local'? state(request) : null
-  } catch (error) {
-    state(error.response);
-  }
-}
 export async function createProfessionalReview (id, body){
     
   try {
@@ -261,3 +251,14 @@ export async function getUserById(userID, state){
     console.log(error)
   }
 }
+
+export async function postRegisterProfesional(body){
+  try{
+    const request = await axios.put('/professional/descriptionProfesional', body,{
+        headers: { pos: `Bearer ${token}` },
+    });
+    return request.data
+  }catch(error){
+    return error.data
+  }
+};

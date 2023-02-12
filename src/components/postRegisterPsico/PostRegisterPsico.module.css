@@ -15,80 +15,85 @@
     border-top:0px;
     border-bottom: 0px;
     border-style: dotted;
+    background: linear-gradient( 254deg, rgba(255, 255, 255, 1) 9%, rgba(234, 242, 227, 1) 96%)
 }
-.form .inputs{
+.inputs{
     font-size: medium;
     font-family: 'Poppins', sans-serif;
     width: 25rem;
+    box-shadow: 0px 0px 10px #dbdbdb;
 }
-.form .inputsErrors{
+.inputsErrors{
     font-size: medium;
     font-family: 'Poppins', sans-serif;
     width: 25rem;
     border: 1px solid red;
     box-shadow: none;
+    margin: 0px;
 }
 
-.divContainer .form .p{
+.p{
     color:cadetblue;
     font-weight: 500;
     max-width: 55%;
     text-align: center;
 }
-.form .label{
+.label{
     text-align: center;
     width: 100%;
     font-weight: 500;
     font-size: 1.4rem;
     margin: 2.5rem 0px 0rem 0px;
 }
-.divContainer .form .labelInicio{
+.labelInicio{
     text-align: center;
     width: 100%;
+    border-radius: 5rem;
     font-weight: 500;
     font-size: 1.4rem;
     margin-top: 1rem;
 }
-.form .inputImage{
+.inputImage{
+    border:1px solid cadetblue;
     font-size: 1rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
     color: cadetblue;
     background-color: white;
-    border: 2px solid rgb(95, 158, 160);
-    border-style: dotted;
-    box-shadow: none;
+    box-shadow: 0px 0px 10px #dbdbdb;
+    border-radius: 10rem;
     transition: transform .5s, color .5s, background-color .5s, border .5s ;
     width: auto;
     max-width: max-content;
 }
-.form .inputImage:hover{
+.inputImage:hover{
     transform: translate(0px, -10px);
     color: white;
     background-color: cadetblue;
-    border:2.2px solid white;
-    border-style: dotted;
+    box-shadow: 0px 0px 10px #dbdbdb;
 }
-.form .inputImageDisabled{
+.inputImageDisabled{
     font-size: 1rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     color: gray;
     background-color: white;
-    border: 2px solid gray;
-    border-style: dotted;
+    border: 1px solid gray;
     box-shadow: none;
     width: auto;
 }
-.form .divContainerImg{
+.inputImageDisabled:hover{
+box-shadow: none;
+}
+.divContainerImg{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50rem;
     height: 16rem;
 }
-.form .divInputsImage{
+.divInputsImage{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,16 +101,22 @@
     width: 50%;
 }
 
-.form .divContainerImg .divAvatar .avatar{
-    object-fit: fill;
-    width:16rem;
-    height: 15rem;
+.avatar{
+    object-fit: cover;
+    object-position: center;
+    width:15rem;
+    height: 14.6rem;
     border-radius: 100%;
-    border: 4px solid cadetblue;
-    border-style: dotted;
+    border: 6px solid rgb(109, 176, 179);
+    border-style: solid;
+    box-shadow: 0px 0px 12px #dbdbdb;
+    background-image: url("https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1");
+    background-size: 108%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.form .divContainerImg .divAvatar{
+.divAvatar{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +124,7 @@
     height: 100%;
 }
 
-.form .divSkills{ 
+.divSkills{ 
     margin-top: 1rem;
     width: auto;
     height: auto;
@@ -124,9 +135,10 @@
     justify-content: center;
     border: none;
     outline: none;
-    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+    box-shadow: 0px 0px 12px #dedede;
 }
-.form .divSkills .skillsDivSpan{
+.skillsDivSpan{
+    background-color: white;
     display: flex;
     align-items: center;
     border: 1px solid black;
@@ -136,7 +148,7 @@
     border-radius: 0.5rem 1rem 1rem 1.3rem;
     transition: transform .5s;
 }
-.form .divSkills .skillsDivSpan .skillsSpanX{
+.skillsSpanX{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -151,23 +163,24 @@
     border: 1px solid red;
     background-color: white;
 }
-.form .divSkills .skillsDivSpan .skillsSpanX:hover{
+.skillsSpanX:hover{
     color:white;
     border: 1px solid red;
     background-color: red;
 }
-.form .containerDescription{
+.containerDescription{
+    padding: 1rem;
     width: 65%;
     height: 19rem;
     border-radius: 1rem;
-    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+    background-color: white;
+    box-shadow: 0px 0px 12px #dedede;
     overflow: hidden;
-    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.form .containerDescription .description{
+.description{
     object-fit: contain;
     min-width: 99%;
     max-width: 99%;
@@ -179,35 +192,101 @@
     font-family: 'Poppins', sans-serif;
     border: none;
     border-radius: 1rem;
-    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
     padding: 1rem;
     margin: 1rem;
 }
-.form .select{
+.select{
     border-radius: 1rem;
     font-family: 'Poppins', sans-serif;
     width: auto;
     text-align: center;
     cursor: pointer;
 }
-.form .inputSubmit{
-margin-top: 5%;
-width: 8rem;
-font-size: medium;
-font-weight: 500;
-font-family: 'Poppins', sans-serif;
-cursor: pointer;
-color: cadetblue;
-background-color: white;
-border:2px solid rgb(95, 158, 160);
-border-style: dotted;
-box-shadow: none;
-transition: transform .5s, color .5s, background-color .5s, border .5s ;
+.inputSubmit{
+    margin-top: 5%;
+    width: 8rem;
+    border-radius: 10rem;
+    font-size: medium;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    color: cadetblue;
+    border:1px solid cadetblue;
+    background-color: white;
+    box-shadow: 0px 0px 10px #dbdbdb;
+    transition: transform .5s, color .5s, background-color .5s, border .5s ;
 }
-.form .inputSubmit:hover{
+.inputSubmit:hover{
     transform: translate(0px, -10px);
     color: white;
     background-color: cadetblue;
-    border:2.2px solid white;
-    border-style: dotted;
+    box-shadow: none;
+}
+.errorsText{
+    text-align: start;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(223, 5, 5);
+    margin-bottom: 8px;
+}
+.inputAvatarError{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0px 0px 10px #dbdbdb;
+    border-radius: 10rem;
+    width: auto;
+    max-width: max-content;
+    font-size: medium;
+    font-family: 'Poppins', sans-serif;
+    width: 25rem;
+    border: 1px solid rgb(223, 5, 5);
+    color: rgb(223, 5, 5);
+    transition: transform .5s, color .5s, background-color .5s, border .5s ;
+}
+.inputAvatarError:hover{
+    transform: translate(0px, -10px);
+}
+.errorsDescription{
+    width: 65%;
+    text-align: start;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(223, 5, 5);
+}
+.errorsDescriptionContainer{
+    width: 65%;
+    height: 19rem;
+    border-radius: 1rem;
+    background-color: white;
+    box-shadow: 0px 0px 12px #dedede;
+    overflow: hidden;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(223, 5, 5);
+}
+.errorsSelect{
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+    border-color: rgb(223, 5, 5);
+}
+.inputSubmitDisabled{
+    margin-top: 5%;
+    width: 8rem;
+    border-radius: 10rem;
+    font-size: medium;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: gray;
+    border:1px solid gray;
+    background-color: white;
+    box-shadow: 0px 0px 10px #dbdbdb;
+}
+.inputSubmitDisabled:hover{
+    box-shadow: 0px 0px 10px #dbdbdb;
 }

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { getOnlyAreas, getSkills, verifyTokenPostRegister } from '../../features/apiPetitions';
-import style from './PostRegisterPsico.module.css'
+import { getOnlyAreas, getSkills, verifyTokenPostRegister, postRegisterProfesional } from '../../features/apiPetitions';
+import { errorMenssage } from '../../features/errorsModals.js'
+import style from './PostRegisterPsico.module.css';
+import validationsForm from './validatorDatas.js';
 
 const PostRegisterPsico = () => {
   
@@ -11,22 +13,21 @@ const token = query.get('tkn')
 const [ register, setRegister ] = useState({
     linkedin:'',
     description:'',
-    areasObjects:[],
     areas:[],
     avatar:'',
     avatarIMG:'',
-    skillsObjects:[],
+    altIMG:'',
     skills:[]
 })
-const [errors, setErros ] = useState({})
+const [ errors, setErrors ] = useState({})
 const [ areas, setAreas ] = useState([])
 const [ skills, setSkills ] = useState([])
 const [ imageDisabled , setImageDisabled] = useState(false)
 const [ tokenVerify, setTokenVerify ] = useState(null)
-const [ verification, setVerification ] = useState(null)
+const [ submitAccepted, setSubmitAccepted ] = useState(false)
 
 useEffect(()=>{
-    if(tokenVerify === null || tokenVerify === false) return
+    if(tokenVerify === null || tokenVerify === false) return  
 
     let img = document.querySelector('#deleteImageAvatar')
 
@@ -45,46 +46,85 @@ useEffect(()=>{
         state:setSkills,
         type:'local'
     })
-    verifyTokenPostRegister({
-        state: setVerification,
-        token:token,
-        type:'local'
+    verifyTokenPostRegister(token)
+    .then(response => {
+        if(response?.status === 204)  setTokenVerify(true)
+        if(response?.status !== 204)  setTokenVerify(false)
+    })
+    .catch(error => {
+        setTokenVerify(false)
     })
 },[])
 
-useEffect(()=>{
-    if(verification?.status === 204) setTokenVerify(true)
-    else if(verification !== null) setTokenVerify(false)
-},[verification])
+const datasErrorChecker = () => {
+    const inputsErrors =  validationsForm.inputs(register);
+    if(!errorsCheck()) setSubmitAccepted(true)
+    else setSubmitAccepted(false)
+    setErrors({
+        ...errors,
+        ...inputsErrors
+    })
 
+};
+const errorsCheck = () => {
+    Object.keys(errors).at(0)? true : false;
+};
+const handleOnSubmit = (e) => {
+    e.preventDefault();
+    datasErrorChecker();
+    if(!errorsCheck() && submitAccepted){
+        postRegisterProfesional(register)
+        .then(request => {
+            console.log(request)
+        }).catch(error => {
+            console.log(error)
+        })
+    }else{
+        console.log(errors, submitAccepted)
+        errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa los campos del formulario')
+    }    
+};
 const handleInputDeletedAvatar = () => {
     if(!register.avatar && !register.avatarIMG) return
     setRegister({
         ...register,
             avatar:'',
-            avatarIMG:''
+            avatarIMG:'',
+            altIMG:''
     })
     let img = document.querySelector('#imageAvatar')
     img.value = '';
-}
+};
 const handleInputChangeAvatar = (e) =>{
     if(!e.target.files[0]) return
+    if(errors.avatar) delete errors.avatar
     setRegister({
         ...register,
         [e.target.name] : e.target.files[0],
-        avatarIMG: URL.createObjectURL(e.target.files[0])
+        avatarIMG: URL.createObjectURL(e.target.files[0]),
+        altIMG: e.target.files[0].name
     })
-}
+    if(e.target.files[0].type.split('/')[0] !== 'image') setErrors({...errors, avatar : 'Seleccione una imagen valida'})  
+};
 const handleInputChange = (e) => {
-    console.log(register)
+    if(errors.linkedin) delete errors.linkedin
     setRegister({
         ...register,
         [e.target.name] : e.target.value,
     })
-    console.log(register)
-}
+    if(e.target.name === 'description'){
+        setErrors(
+            validationsForm.description(
+                {   ...errors,
+                    [e.target.name] : e.target.value,
+                }
+        ))
+    }
+};
 const handleInputSkillsChange = (e) =>{
     let optionSkills = document.querySelector(`#${e.target.value}`)
+    
+    if(errors.skills) delete errors.skills
 
     if(!register.skills.some((el)=> el === e.target.value)){
         setRegister({
@@ -99,9 +139,11 @@ const handleInputSkillsChange = (e) =>{
             })
         optionSkills.disabled = false;
     }
-} 
+};
 const handleInputAreasChange = (e) => {
     let optionAreas = document.querySelector(`#${e.target.value}`)
+
+    if(errors.areas) delete errors.areas
 
     if(!register.areas.some((el)=> el === e.target.value)){
         setRegister({
@@ -116,30 +158,34 @@ const handleInputAreasChange = (e) => {
         })
         optionAreas.disabled = false;
     }
-}
+};
 
-if(tokenVerify === null ){
-    return (<h1>Loading</h1>)
-}
+// if(tokenVerify === null ){
+//     return (<h1>Loading</h1>)
+// }
 // else if(tokenVerify === false){
 //     return <Navigate to='/'/>
 // }
-else return(
+// else
+ return(
         <div className={style.divContainer}>
-            <form className={style.form} onSubmit={(e)=>{console.log('se subio'); e.preventDefault()}}>
+            <form className={style.form} onSubmit={(e)=>{handleOnSubmit(e)}}>
                 <label className={style.labelInicio} >Avatar</label>
                     <p className={style.p}>*selecciona un imagen para tu foto de perfil</p>
+                    <span className={style.errorsText}>
+                        {errors.avatar}
+                    </span>
                     <div className={style.divContainerImg}>
                         <div className={style.divAvatar}>
                             <img 
                             className={style.avatar}
                             src={register.avatarIMG}
-                            alt='imgAvatar'
+                            alt={register.altIMG}
                             />
                         </div>
                         <div className={style.divInputsImage}>
                             <input
-                            className={style.inputImage}
+                            className={errors.avatar?style.inputAvatarError :style.inputImage}
                             id='imageAvatar'
                             type="file" 
                             accept="image/*"
@@ -147,7 +193,7 @@ else return(
                             onChange={ (e) => handleInputChangeAvatar(e) }
                             />
                             <input
-                            className={imageDisabled? style.inputImageDisabled: style.inputImage}
+                            className={imageDisabled? style.inputImageDisabled : style.inputImage}
                             id='deleteImageAvatar'
                             type='button'
                             name='avatar'
@@ -163,7 +209,8 @@ else return(
                         <br/>
                         *CONSEJO* trata de añadir datos que creas importantes y relevantes de tu perfil
                     </p>
-                    <div className={style.containerDescription}>
+                    <span className={style.errorsDescription}>{errors.description}</span>
+                    <div className={errors.description? style.errorsDescriptionContainer : style.containerDescription}>
                     <textarea 
                     name="description"
                     value={register.description} 
@@ -175,13 +222,14 @@ else return(
 
                     <label className={style.label}>Areas</label>
                     <p className={style.p}>*selecciona las areas en las que trbajas</p>
+                    <span className={style.errorsText}>{errors.areas}</span>
                     <select 
-                    className={style.select}
+                    className={errors.areas? style.errorsSelect : style.select}
                     name="areas" 
                     onChange={(e)=>handleInputAreasChange(e)}  
                     required>
                         <option
-                        key='defaultSelect' 
+                        key='areas' 
                         value='defaultSelect'
                         selected 
                         disabled
@@ -190,7 +238,7 @@ else return(
                             areas.map(el=>{
                                 return(
                                     <option
-                                    key={el} 
+                                    key={el+'1'} 
                                     value={el}
                                     id={el}>
                                     {el}
@@ -203,7 +251,7 @@ else return(
                         { 
                             register.areas.map(el=>{
                                 return(
-                                    <div className={style.skillsDivSpan}>
+                                    <div key={el} className={style.skillsDivSpan}>
                                     <span>{el}</span>
                                     <span 
                                     className={style.skillsSpanX} 
@@ -218,13 +266,16 @@ else return(
 
                     <label className={style.label} >Habilidades</label>
                     <p className={style.p}>*selecciona las habilidades que consideras tener</p>
+                    <span className={style.errorsText}>{errors.skills}</span>
                     <select 
-                    className={style.select}
+                    className={errors.skills? style.errorsSelect : style.select}
                     name="area" 
                     onChange={(e)=>handleInputSkillsChange(e)} 
-                    required>
+                    required
+                    defaultValue={'defaultSelect'}
+                    >
                         <option
-                        key='defaultSelect' 
+                        key='skills' 
                         value='defaultSelect'
                         selected 
                         disabled>
@@ -247,7 +298,7 @@ else return(
                         { 
                             register.skills.map(el=>{
                                 return(
-                                    <div className={style.skillsDivSpan}>
+                                    <div key={el} className={style.skillsDivSpan}>
                                     <span>{el}</span>
                                     <span 
                                     className={style.skillsSpanX} 
@@ -262,6 +313,7 @@ else return(
 
                     <label className={style.label} >Linkedin</label>
                     <p className={style.p}>*copie y pega el link de tu perfil de Linkedin</p>
+                    <span className={style.errorsText}>{errors.linkedin}</span>
                     <input
                     className={errors.linkedin? style.inputsErrors :style.inputs}
                     type="text" 
@@ -272,7 +324,8 @@ else return(
                     />
 
                     <input 
-                    className={style.inputSubmit}
+                    disabled={errorsCheck()? true : false}
+                    className={errorsCheck()? style.inputSubmitDisabled : style.inputSubmit }
                     type='submit' 
                     value='Actualizar' 
                     />
