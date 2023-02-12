@@ -61,7 +61,7 @@ export default function NavBar() {
                 <h3 className={style.navItem}>¿Cómo te ayudamos?</h3>
               </Link>
             </div>
-            {user ? (
+            {user && open ? (
               <>
                 <div
                   onClick={() => {
@@ -74,8 +74,8 @@ export default function NavBar() {
                 </div>
                 <div
                   onClick={() => {
-                    localStorage.setItem("tkn", ""),
-                      localStorage.setItem("profTkn", ""),
+                    localStorage.removeItem("tkn"),
+                      localStorage.removeItem("profTkn"),
                       window.location.reload();
                   }}
                 >
@@ -120,8 +120,8 @@ export default function NavBar() {
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      localStorage.setItem("tkn", ""),
-                        localStorage.setItem("profTkn", ""),
+                      localStorage.removeItem("tkn"),
+                        localStorage.removeItem("profTkn"),
                         window.location.reload();
                     }}
                   >
