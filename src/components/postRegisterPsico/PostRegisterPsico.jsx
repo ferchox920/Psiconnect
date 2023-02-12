@@ -64,10 +64,9 @@ const datasErrorChecker = () => {
         ...errors,
         ...inputsErrors
     })
-
 };
 const errorsCheck = () => {
-    Object.keys(errors).at(0)? true : false;
+    return Object.keys(errors).at(0)? true : false;
 };
 const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +80,7 @@ const handleOnSubmit = (e) => {
         })
     }else{
         console.log(errors, submitAccepted)
-        errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa los campos del formulario')
+        errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
     }    
 };
 const handleInputDeletedAvatar = () => {
@@ -160,14 +159,13 @@ const handleInputAreasChange = (e) => {
     }
 };
 
-// if(tokenVerify === null ){
-//     return (<h1>Loading</h1>)
-// }
-// else if(tokenVerify === false){
-//     return <Navigate to='/'/>
-// }
-// else
- return(
+if(tokenVerify === null ){
+    return (<h1>Loading</h1>)
+}
+else if(tokenVerify === false){
+    return <Navigate to='/'/>
+}
+else return(
         <div className={style.divContainer}>
             <form className={style.form} onSubmit={(e)=>{handleOnSubmit(e)}}>
                 <label className={style.labelInicio} >Avatar</label>
@@ -324,7 +322,7 @@ const handleInputAreasChange = (e) => {
                     />
 
                     <input 
-                    disabled={errorsCheck()? true : false}
+                    disabled={errorsCheck()}
                     className={errorsCheck()? style.inputSubmitDisabled : style.inputSubmit }
                     type='submit' 
                     value='Actualizar' 

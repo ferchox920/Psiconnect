@@ -113,10 +113,12 @@ export async function getAreas(state) {
 }
 export async function getUserByJWT({ state, type }) {
   try {
-    const peticion = await axios.get("/user/id", {
+    const peticion = await axios.get(`/user/id`, {
+    
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
     type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'user'}));
+
   } catch (error) {
     console.log(error.response.data);
   }
@@ -130,9 +132,9 @@ export async function getProfessionalById(id, state) {
   }
 }
 
-export async function getOnlyAreas(){
+export async function getOnlyAreas(state){
   try {
-    const peticion = await axios.get(`areas/onlyAreas`)
+    const peticion = await axios.get(`/areas/onlyAreas`)
     return state(peticion?.data);
   } catch (error) {
     return error.response;
@@ -241,8 +243,6 @@ export async function getProfessionalConsults(professionalId, state){
 //   }
 // } 
 
-
-
 export async function getUserById(userID, state){
   try {
     const response = await axios.get(`/user/${userID}`)
@@ -262,3 +262,23 @@ export async function postRegisterProfesional(body){
     return error.data
   }
 };
+export default async function putUserData(body) {
+  try {
+    const updateUser = await axios.put(`user/${id}`, body)
+      return(updateUser)
+  }catch(error){
+    console.log(error)
+  }
+}
+
+// export default async function postImageCloudinary(file, image) {
+
+//       try{
+//           const imageUpload = await axios.post('img/upload', (file, image) )
+//           return imageUpload
+//       }catch(error){
+//         console.log(error)
+//       }
+
+
+// }
