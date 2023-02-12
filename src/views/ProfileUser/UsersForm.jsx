@@ -39,12 +39,38 @@ export default function UsersForm (){
      
     };
 
+    const handleSubmitUpdate = (e) => {
+        e.preventDefault()
+        if(Object.entries(error).length == 0){
+          putUserData(input).then ()
+          swal({
+            title: "Cambios guardados!",
+            text: `Sus datos fueron actualizados correctamente`,
+            icon: "success",
+          })
+          
+        }else 
+        swal({
+          title: "Error!",
+          text: Object.values(error)[0],
+          icon: "error",
+        })
+
+        setInput({
+          name : '',
+          lastName: '',
+          phone: '',
+          image: ''
+        })
+        alert('Sus datos han sido actualizados')
+    }
+
 
   return (
       <div className={style.usersForm}>
         <p className={style.p}>*Por favor complete los datos  de su perfil</p>
         
-        <form className= {style.form}>
+        <form className= {style.form} onSubmit = {e => handleSubmitUpdate(e)}>
           <label className={style.labelInicio}>Avatar</label>
           <div className = {style.imgperfil}>
             <img src= {users?.avatar } alt="Avatar" className={style.userAvatar}/>
@@ -93,7 +119,12 @@ export default function UsersForm (){
 
           </div>
           
-          <button type="submit"  className={style.formSubmit}>Actualizar</button>
+          <button 
+           className={style.formSubmit}
+           type="submit" 
+           disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
+           onSubmit = {e => handleSubmitUpdate(e)}  >Actualizar</button>
+
           <button type="submit"  className={style.saveImg}>Guardar Imagen</button>
           <button type="submit"  className={style.changeImg}>Cambiar Imagen</button>
         
