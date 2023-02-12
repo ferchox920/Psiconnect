@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { Menu, MenuItem } from "@mui/material";
 
 export default function NavBar() {
+ 
   const [modal, setModal] = useState(null);
   const [menu, setMenu] = useState(false);
   const [open, setOpen] = useState(false);
@@ -87,64 +88,60 @@ export default function NavBar() {
           </div>
 
           {user ? (
-            <div onClick={openMenu} className={style.avatarContainer}>
-              {/* <h3 className={style.navItem}>{user.name}</h3> */}
-              <img
-                className={style.img_avatar}
-                src={
-                  user.avatar ||
-                  "https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1"
-                }
-                alt={user.name}
-              />
-              {menu ? (
-                <Menu
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "center",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "center",
-                  }}
-                >
-                  <MenuItem
-                    onClick={() => {
-                      user.rol !== "user"
-                        ? navigate("/professionalProfile/profile")
-                        : navigate("/userProfile/profile");
+              <div onClick={openMenu} className={style.avatarContainer}>
+                {/* <h3 className={style.navItem}>{user.name}</h3> */}
+                <img
+                  className={style.img_avatar}
+                  src={
+                    user.avatar ||
+                    "https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1"
+                  }
+                  alt={user.name}
+                />
+                {menu ? (
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "center",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "center",
                     }}
                   >
-                    Mi Perfil
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      localStorage.removeItem("tkn"),
-                        localStorage.removeItem("profTkn"),
-                        window.location.reload();
-                    }}
-                  >
-                    {" "}
-                    Cerrar Sesión{" "}
-                  </MenuItem>
-                </Menu>
-              ) : null}
-            </div>
-          ) : (
-            <div className={style.loginDiv}>
-              <div onClick={openModal}>
-                <h3>Iniciar sesion</h3>
+                    <MenuItem
+                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate(`/userProfile/profile/${user?.id}`) }}
+                    >
+                      Mi Perfil
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        localStorage.setItem("tkn", ""),
+                          localStorage.setItem("profTkn", ""),
+                          navigate("/")
+                      }}
+                    >
+                      {" "}
+                      Cerrar Sesión{" "}
+                    </MenuItem>
+                  </Menu>
+                ) : null}
               </div>
-              <div onClick={openModal}>
-                <h3>Registrate</h3>
+            ) : (
+              <div className={style.loginDiv}>
+                <div onClick={openModal}>
+                  <h3>Iniciar sesion</h3>
+                </div>
+                <div onClick={openModal}>
+                  <h3>Registrate</h3>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-
+   
       {modal && <FormModal name="User" set={setModal} />}
     </>
   );
