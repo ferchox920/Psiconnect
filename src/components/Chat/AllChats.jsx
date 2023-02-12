@@ -1,7 +1,7 @@
 import { collection, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setChat } from "../../features/chatSlice";
+import { setAllChats, setChat } from "../../features/chatSlice";
 import firestore, {
   getAllChatsOfUser,
   getMessageOfChat,
@@ -33,6 +33,19 @@ export default function AllChats({ setTo, to, setOpen }) {
         ),
         (snapshot) => {
           dispacht(setChat(snapshot.docs.map((doc) => doc.data())));
+        }
+      ),
+    [to]
+  );
+  useEffect(
+    () =>
+      onSnapshot(
+        collection(
+          firestore,
+          `chats/${user?.id}/chat`
+        ),
+        (snapshot) => {
+          dispacht(setAllChats(snapshot.docs.map((doc) => doc.data())));
         }
       ),
     [to]
