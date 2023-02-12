@@ -43,7 +43,7 @@ export default function NavBar() {
             <span></span>
           </div>
         </div>
-        <div className={`${style.nav} ${open ? style.navClose : null}`}>
+        <div className={`${style.nav} ${open ? null: style.navClose }`}>
           <div className={style.nav_list}>
             <div>
               <Link to={"/"}>
