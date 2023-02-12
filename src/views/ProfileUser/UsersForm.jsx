@@ -22,7 +22,7 @@ export default function UsersForm (){
         <form className= {style.form}>
           <label className={style.labelInicio}>Avatar</label>
           <div className = {style.imgperfil}>
-            <img src= {users?.avatar } alt="" />
+            <img src= {users?.avatar } alt="Avatar de Usuario" className={style.userAvatar}/>
 
           </div>
           <div className={style.inputfile}>
