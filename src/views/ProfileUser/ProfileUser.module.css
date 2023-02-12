@@ -30,9 +30,16 @@
     border-radius: 100px;
     padding: 10px;
     margin: auto;
-    background-image: url('../../assets/users/avatar.jpg') ;
+    /* background-image: url('../../assets/users/avatar.jpg') ; */
     background-size:cover;
+    overflow: hidden;
 
+}
+
+.userAvatar{
+    width: 100%;
+    height: auto;
+    border-radius: 100px;
 }
 
 .username{
