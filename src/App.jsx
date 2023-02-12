@@ -17,6 +17,7 @@ import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional
 import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
        
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
         <Route path='/userProfile/profile' element={<ProfileUser/>}/>
+        <Route path='*' element={<ErrorPage/>}/>
       
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
