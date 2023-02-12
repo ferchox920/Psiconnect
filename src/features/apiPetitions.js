@@ -250,13 +250,20 @@ export async function getProfessionalConsults(professionalId, state){
 //   }
 // } 
 
-
-
 export async function getUserById(userID, state){
   try {
     const response = await axios.get(`/user/${userID}`)
     return state(response?.data)
   } catch (error) {
+    console.log(error)
+  }
+}
+
+export default async function putUserData(id, body) {
+  try {
+    const updateUser = await axios.put(`user/${id}`, body)
+      return(updateUser)
+  }catch(error){
     console.log(error)
   }
 }

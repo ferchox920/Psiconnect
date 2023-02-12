@@ -61,18 +61,58 @@
 
 .formSubmit{
     background-color:  cadetblue;
-    font: var(--h1Title);
-    font-size: 150%;
-    width: auto;
+    height: 60px;
+    font-size: 125%;
+    width: 110px;
     position: absolute;
-    border-radius: 30px;
+    border-radius: 25px;
     margin-top: 35%;
-    margin-left: -5%;
+    margin-left: 35%;
     border: dotted white;
     
 }
 
 .formSubmit:hover{
+    background-color: white;
+    border: dotted cadetblue; 
+    cursor: pointer;
+}
+
+.saveImg{
+
+    background-color:  cadetblue;
+    height: 60px;
+    font-size: 105%;
+    width: 110px;
+    position: absolute;
+    border-radius: 25px;
+    margin-top: 35%;
+    margin-left: -800px;
+    border: dotted white;
+
+}
+
+.saveImg:hover{
+    background-color: white;
+    border: dotted cadetblue; 
+    cursor: pointer;
+}
+
+.changeImg{
+
+    background-color:  cadetblue;
+    height: 60px;
+    font-size: 105%;
+    width: 110px;
+    position: absolute;
+    border-radius: 25px;
+    margin-top: 35%;
+    margin-left: -400px;
+    border: dotted white;
+
+}
+
+.changeImg:hover{
     background-color: white;
     border: dotted cadetblue; 
     cursor: pointer;
