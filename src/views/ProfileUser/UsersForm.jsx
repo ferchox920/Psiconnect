@@ -9,26 +9,35 @@ import swal from "sweetalert";
 export default function UsersForm (){
 
     const users = useSelector((state) => state.user.user)
-    const [ error, setError ] = useState({})
+
+    const [ error, setError ] = useState({
+      name : '',
+      lastName: '',
+      phone: '',
+      image: ''
+
+    })
     const [input, setInput] = useState({
-      name : users?.name,
-      lastName: users?.lastname,
-      phone: users?.phone,
-      image: users?.image
+      name : '',
+      lastName: '',
+      phone: '',
+      image: ''
     })
 
-  const handleInputChanges = () => {
-    setInput({
-      ...input,
-      [e.target.name] : e.targe.value
-
-    })
-    setError (
-      validation({
+    const handleInputChanges = (e) => {
+   
+      setInput({
         ...input,
-        [e.target.name] : e.target.value
-      })
-    )}
+        [e.target.name]: e.target.value,
+        
+      });
+      
+      setError(validation({
+          ...input,
+          [e.target.name]: e.target.value,
+        }))
+     
+    };
 
 
   return (
@@ -38,7 +47,7 @@ export default function UsersForm (){
         <form className= {style.form}>
           <label className={style.labelInicio}>Avatar</label>
           <div className = {style.imgperfil}>
-            <img src= {users?.avatar } alt="Avatar de Usuario" className={style.userAvatar}/>
+            <img src= {users?.avatar } alt="Avatar" className={style.userAvatar}/>
 
           </div>
           <div className={style.inputfile}>
@@ -51,25 +60,27 @@ export default function UsersForm (){
               placeholder='Nombres' 
               name = 'name'
               value = {input.name}
-              onChange= {handleInputChanges}
-              
+              onChange= {e => handleInputChanges(e)}
               />
+              {error.name ? <p className = {style.inputerrorname}>{error.name}</p> : <></>}
+
             <input 
             type="text" 
             placeholder='Apellidos'
             name = 'lastName'
             value = {input.lastName}
-            onChange= {handleInputChanges}
-            
+            onChange= {handleInputChanges} 
             />
+            {error.lastName ? <p className = {style.inputerrorlastName}>{error.lastName}</p> : <></>}
             <input 
             type="text" 
             placeholder='Telefono'
             name = 'phone'
             value = {input.phone}
             onChange= {handleInputChanges}
-            
             />
+            {error.phone ? <p className = {style.inputerrorPhone}>{error.phone}</p> : <></>}
+            
             <input 
             type="text" 
             placeholder='URL de tu imagen en linea' 
@@ -94,13 +105,18 @@ export default function UsersForm (){
 
 const validation  = (input) => {
   let error = {}
-  const rgOnlyLetters = new RegExp(/^[a-zA-Z]+$/)
+  const onlyLetter = new RegExp('^[A-Z]+$', 'i');
   const rgOnlyNumbers = new RegExp(/^\d+$/)
   
 
-  if (!input.name) error.name = 'Name is required'
-  else if(!rgOnlyLetters.test(input.name)) error.name = "Only Letters" 
+  if (!input.name) error.name = 'El nombre es requerido'
+  else if(!onlyLetter.test(input.name)) error.name = "Solo letras" 
 
+  if (!input.lastName) error.lastName = 'El apellido es requerido'
+  else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras" 
+
+  if(!input.phone) error.phone = 'Nro tlf es requerido'
+  else if(!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros" 
   
-
+return error
 }

@@ -30,7 +30,7 @@
     border-radius: 100px;
     padding: 10px;
     margin: auto;
-    /* background-image: url('../../assets/users/avatar.jpg') ; */
+    background-image: url('../../assets/users/avatar.jpg') ; 
     background-size:cover;
     overflow: hidden;
 
@@ -44,7 +44,7 @@
 
 .username{
     font-size: 18px;
-    margin-left: 48px;
+    margin-left: 25px;
     padding: 5px;
 }
 

@@ -130,3 +130,36 @@
     background-color: white;
     
 }
+
+.inputerrorname{
+    display: block;
+    font-size: 12px;
+    font-weight: 3px;
+    position: absolute;
+    margin-top: -150px;
+     margin-left: 25px;
+    color:rgb(5, 5, 5);
+}
+
+.inputerrorlastName{
+
+    display: block;
+    font-size: 12px;
+    font-weight: 3px;
+    position: absolute;
+    margin-top: 2px;
+     margin-left: 25px;
+    color:rgb(5, 5, 5);
+
+}
+
+.inputerrorPhone{
+    display: block;
+    font-size: 12px;
+    font-weight: 3px;
+    position: absolute;
+    margin-top: 158px;
+     margin-left: 25px;
+    color:rgb(5, 5, 5);
+
+}
