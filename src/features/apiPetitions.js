@@ -264,7 +264,7 @@ export async function postRegisterProfesional(body){
 };
 export default async function putUserData(body) {
   try {
-    const updateUser = await axios.put(`user/${id}`, body)
+    const updateUser = await axios.put(`user/${body.id}`, body)
       return(updateUser)
   }catch(error){
     console.log(error)

@@ -45,7 +45,7 @@ export default function UsersForm (){
     const handleSubmitUpdate = (e) => {
         e.preventDefault()
         if(Object.entries(error).length == 0){
-          putUserData(input)
+          putUserData({...input , id: users.id})
           swal({
             title: "Cambios guardados!",
             text: `Sus datos fueron actualizados correctamente`,
@@ -129,7 +129,8 @@ export default function UsersForm (){
               type="text" 
               placeholder='Nombres' 
               name = 'name'
-              value = {input.name}
+              value = {users.name}
+              disabled
               onChange= {e => handleInputChanges(e)}
               />
               {error.name ? <p className = {style.inputerrorname}>{error.name}</p> : <></>}
@@ -138,7 +139,8 @@ export default function UsersForm (){
             type="text" 
             placeholder='Apellidos'
             name = 'lastName'
-            value = {input.lastName}
+            value = {users.lastName}
+            disabled
             onChange= {handleInputChanges} 
             />
             {error.lastName ? <p className = {style.inputerrorlastName}>{error.lastName}</p> : <></>}
