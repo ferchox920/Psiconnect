@@ -9,6 +9,9 @@ import swal from "sweetalert";
 export default function UsersForm (){
 
     const users = useSelector((state) => state.user.user)
+    const [ file, setFile ] = useState(null)
+    const [urlImage, setUrlImage] = useState(null)
+    
 
     const [ error, setError ] = useState({
       name : '',
@@ -24,8 +27,8 @@ export default function UsersForm (){
       image: ''
     })
 
+
     const handleInputChanges = (e) => {
-   
       setInput({
         ...input,
         [e.target.name]: e.target.value,
@@ -42,7 +45,7 @@ export default function UsersForm (){
     const handleSubmitUpdate = (e) => {
         e.preventDefault()
         if(Object.entries(error).length == 0){
-          putUserData(input).then ()
+          putUserData(input)
           swal({
             title: "Cambios guardados!",
             text: `Sus datos fueron actualizados correctamente`,
@@ -65,19 +68,60 @@ export default function UsersForm (){
         alert('Sus datos han sido actualizados')
     }
 
+    const handledImageProfile = (e) => {
+
+      if(!e.target.files[0])return
+      setInput({
+        ...input,
+        [e.target.name]: e.target.files[0],
+        image: URL.createObjectURL(e.target.files[0]),
+      })
+
+
+    const handledChangeImage = (e) => {
+      if(e.target.file[0]) return
+      setInput ({
+        ...input,
+        image : ''
+      })
+      let img = document.querySelector('#imageProfile')
+      img.value = ''
+    }
+
+      // const newForm = new FormData()
+      // formData.append('imageUser' , file) //recibe el nombre con el que se va a almacenar la imagen y el archivo
+
+      // const result = await axios.post('img/upload', formData)
+      // setUrlImage(result.data.urlImage) 
+
+      // return newForm
+
+    }
+
+    // const handleFileChange = (e) => {
+    //   setFile(e.target.files[0]);
+    // };
+
+
 
   return (
-      <div className={style.usersForm}>
+      <div className={style.usersForm} >
         <p className={style.p}>*Por favor complete los datos  de su perfil</p>
         
-        <form className= {style.form} onSubmit = {e => handleSubmitUpdate(e)}>
+        <form className= {style.form} onSubmit ={e => handleSubmitUpdate(e)}>
           <label className={style.labelInicio}>Avatar</label>
           <div className = {style.imgperfil}>
-            <img src= {users?.avatar } alt="Avatar" className={style.userAvatar}/>
+            <img src = {input.image} ></img>
 
           </div>
           <div className={style.inputfile}>
-            <input type= 'file' className={style.fileSelect}/>                        
+            <input 
+            className={style.fileSelect}
+            type= 'file' 
+            name = 'image'
+            id = '#imageProfile'
+            onChange = {e => handledImageProfile(e)}
+            />                        
           </div>
 
           <div className={style.userInfo}>
@@ -125,8 +169,19 @@ export default function UsersForm (){
            disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
            onSubmit = {e => handleSubmitUpdate(e)}  >Actualizar</button>
 
-          <button type="submit"  className={style.saveImg}>Guardar Imagen</button>
-          <button type="submit"  className={style.changeImg}>Cambiar Imagen</button>
+          <button 
+          type="submit"  
+          className={style.saveImg}
+          onClick = {e => handledImageProfile(e)}
+          disabled
+          >Guardar Imagen</button>
+          
+          
+          <button type="submit"  
+          className={style.changeImg}
+          onClick = {e => handledChangeImage(e)}
+          disabled
+          >Cambiar Imagen</button>
         
         </form>
       </div>

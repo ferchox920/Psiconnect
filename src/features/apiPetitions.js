@@ -262,7 +262,7 @@ export async function getUserById(userID, state){
   }
 }
 
-export default async function putUserData(id, body) {
+export default async function putUserData(body) {
   try {
     const updateUser = await axios.put(`user/${id}`, body)
       return(updateUser)
@@ -270,3 +270,15 @@ export default async function putUserData(id, body) {
     console.log(error)
   }
 }
+
+// export default async function postImageCloudinary(file, image) {
+
+//       try{
+//           const imageUpload = await axios.post('img/upload', (file, image) )
+//           return imageUpload
+//       }catch(error){
+//         console.log(error)
+//       }
+
+
+// }
