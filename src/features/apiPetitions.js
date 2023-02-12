@@ -259,7 +259,7 @@ export async function postRegisterProfesional(body){
     });
     return request.data
   }catch(error){
-    return error.data
+    return error
   }
 };
 export default async function putUserData(body) {
