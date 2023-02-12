@@ -30,7 +30,7 @@
     border-radius: 100px;
     padding: 10px;
     margin: auto;
-    background-image: url('../../assets/users/avatar.jpg') ; 
+    /* background-image: url('../../assets/users/avatar.jpg') ;  */
     background-size:cover;
     overflow: hidden;
 

@@ -22,7 +22,7 @@ export default function ProfileUser () {
     <div className = {style.container}>
         <div className = {style.sidebarcontainer}>
         <div className={style.sidebar}>
-          <div className = {style.avatar}><img src={users?.avatar} alt = '' /></div>
+          <div className = {style.avatar}><img src={users?.avatar} alt = '' className={style.userAvatar}/></div>
             <h1 className = {style.username}>{`${users?.name} ${users?.lastName}`}</h1>
             <div className={style.menusideBar}>
             
