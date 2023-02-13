@@ -71,7 +71,7 @@ const errorsCheck = () => {
 const handleOnSubmit = async (e) => {
     e.preventDefault();
     datasErrorChecker();
-    if(!errorsCheck() && submitAccepted){
+    if(!Object.values(register).some(el=> (el === '' || el.length === 0)) && !errorsCheck() ){
         const newImage = await uploadImage(register.avatar)
         const request = await postRegisterProfesional({
             ...register,
@@ -87,7 +87,6 @@ const handleOnSubmit = async (e) => {
         errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
     }    
 };
-
 const uploadImage= async (file)=>{
     let formData = new FormData();
       formData?.append("file", file);
@@ -101,7 +100,7 @@ const uploadImage= async (file)=>{
       const imageResponse = JSON.parse(xhr.responseText);
       
       return imageResponse.secure_url
-}
+};
 const handleInputDeletedAvatar = () => {
     if(!register.avatar && !register.avatarIMG) return
     setRegister({
@@ -114,8 +113,8 @@ const handleInputDeletedAvatar = () => {
     img.value = '';
 };
 const handleInputChangeAvatar = (e) =>{
-    if(!e.target.files[0]) return
     if(errors.avatar) delete errors.avatar
+    if(!e.target.files[0]) return
     setRegister({
         ...register,
         [e.target.name] : e.target.files[0],
@@ -125,7 +124,7 @@ const handleInputChangeAvatar = (e) =>{
     if(e.target.files[0].type.split('/')[0] !== 'image') setErrors({...errors, avatar : 'Seleccione una imagen valida'})  
 };
 const handleInputChange = (e) => {
-    if(errors.linkedin) delete errors.linkedin
+    if(e.target.name === 'linkedin' && errors.linkedin) delete errors.linkedin
     setRegister({
         ...register,
         [e.target.name] : e.target.value,
@@ -133,7 +132,7 @@ const handleInputChange = (e) => {
     if(e.target.name === 'description'){
         setErrors(
             validationsForm.description(
-                {   ...errors,
+                {   ...register,
                     [e.target.name] : e.target.value,
                 }
         ))
