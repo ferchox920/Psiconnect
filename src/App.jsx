@@ -4,7 +4,7 @@ import Home from "./views/Home/Home";
 import Details from "./views/Details/Details";
 import Professionals from "./views/Professionals/Professionals";
 import NavBar from "./components/NavBar/NavBar";
-import ProfileUser  from "./views/ProfileUser/ProfileUser.jsx";
+
 import Formreview from './views/FormReview/Formreview.jsx'
 import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
@@ -16,6 +16,7 @@ import Asistencia from "./views/Asistencia/Asistencia";
 import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional";
 import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import ProfileUser from "./views/ProfileUser/ProfileUser";
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
 
 
@@ -49,9 +50,10 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
-        <Route path='/Formreview/:id' element={<Formreview />} />
+        <Route path='/Formreview/:id' element={<Formreview />} /> 
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
-        <Route path='/userProfile/profile' element={<ProfileUser/>}/>
+        <Route path='/userProfile/profile/:id/:items' element={<ProfileUser/>}/>
+        <Route path='/userProfile/profile/:id/' element={<ProfileUser/>}/>
         <Route path='*' element={<ErrorPage/>}/>
       
       </Routes>

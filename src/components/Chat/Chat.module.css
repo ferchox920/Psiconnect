@@ -65,9 +65,13 @@
   font-size: 15px;
   border-radius: 50%;
 }
+.timeStamp{
+  font-size: 10px;
+  position: relative;
+}
 
 .allChatsContainer {
-  background-color: aqua;
+  background-color: var(--aquamarine);
   height: 100%;
   justify-content: center;
 }

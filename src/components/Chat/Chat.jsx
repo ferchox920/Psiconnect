@@ -24,9 +24,10 @@ export default function Chat({}) {
     setMessage('');
     anchor.current.scrollIntoView({ behavior: "smooth" });
   };
-  // useEffect(()=>{    Se me rompio :(
-  //   anchor.current.scrollIntoView({ behavior: "smooth" });
-  // },[])
+  useEffect(()=>{  
+    const msg = document.querySelector('#msg') 
+    msg?.scrollTo({ top: msg.scrollHeight, behavior: "smooth" });
+  },[to])
 
   if(!open){
     return(
@@ -42,7 +43,7 @@ export default function Chat({}) {
         <AllChats setTo={setTo} to={to} setOpen={setOpen}/>
       </div>
       <div className={style.InfoContaner}>
-        <div className={style.msgContainer}>
+        <div id="msg" className={style.msgContainer}>
           {messages?.map((e)=> <Message key={e.id} user={user} message={e} other={to} />)}
           <div ref={anchor} style={{ marginBottom: "65px" }}></div>
         </div>

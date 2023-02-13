@@ -54,13 +54,7 @@ export async function getMessageOfChat({ from, to, state }) {
 }
 
 export async function createChat({ user, professional, state }) {
-  // validamos que no exista este chat
-  const allChatsOfUser = await getAllChatsOfUser({ user:user.id, state });
-  const ExistingChat = await allChatsOfUser.find(
-    (chat) => chat.name === `${user.id}_${professional.id}`
-  );
-  if (ExistingChat) return null;
-  // si no existe creamos ambas tabla para ambos usuarios
+
   const docuRef = await doc(
     firestore,
     `chats/${user.id}/chat/${user.id}_${professional.id}`

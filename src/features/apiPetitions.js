@@ -56,15 +56,18 @@ export async function profLogin(body) {
   }
 }
 
-export async function profUpdate(body){
+export async function profUpdate({state, type, payload}){
   try {
-    const petition= await axios.put('/professional/descriptionProfesional', body);
-    localStorage.setItem("profTkn", petition?.data);
+    const petition= await axios.put('/professional/update/id', payload,{
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+    } );
+    type === "local" ? state(petition?.data) : state(setUser({...petition?.data, rol: 'prof'}));
+    console.log(petition?.data)
     return petition
 
   } catch (error) {
      errorMenssage(error.response.data);
-    throw new Error(error.response.data);
+    //throw new Error(error.response.data);
   }
 }
 
@@ -110,10 +113,12 @@ export async function getAreas(state) {
 }
 export async function getUserByJWT({ state, type }) {
   try {
-    const peticion = await axios.get("/user/id", {
+    const peticion = await axios.get(`/user/id`, {
+    
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
     type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'user'}));
+
   } catch (error) {
     console.log(error.response.data);
   }
@@ -127,9 +132,9 @@ export async function getProfessionalById(id, state) {
   }
 }
 
-export async function getOnlyAreas(){
+export async function getOnlyAreas(state){
   try {
-    const peticion = await axios.get(`areas/onlyAreas`)
+    const peticion = await axios.get(`/areas/onlyAreas`)
     return state(peticion?.data);
   } catch (error) {
     return error.response;
@@ -183,27 +188,17 @@ export async function getProfessionalReview(id, state){
   }
 }
 
-export async function verifyTokenPostRegister({ type , token, state}){
+export async function verifyTokenPostRegister(token){
   try {
     const request = await axios.get(`/professional/token/postRegister`,{
-      headers: { post: `Bearer ${token}` },
+      headers: { pos: `Bearer ${token}`,}
     });
-    type === 'local'? state(request) : null
+    return request;
   } catch (error) {
-    state(error.response);
+    return error.response;
   }
 }
 
-export async function confirmEmailClient({ type , token, state, userType}){
-  try {
-    const request = await axios.put(`/${userType}/confirmationEmail`,{},{
-      headers: { confirm: `Bearer ${token}`}
-    });
-    type === 'local'? state(request) : null
-  } catch (error) {
-    state(error.response);
-  }
-}
 export async function createProfessionalReview (id, body){
     
   try {
@@ -248,8 +243,6 @@ export async function getProfessionalConsults(professionalId, state){
 //   }
 // } 
 
-
-
 export async function getUserById(userID, state){
   try {
     const response = await axios.get(`/user/${userID}`)
@@ -258,3 +251,34 @@ export async function getUserById(userID, state){
     console.log(error)
   }
 }
+
+export async function postRegisterProfesional(body){
+  try{
+    const request = await axios.put('/professional/descriptionProfesional', body,{
+        headers: { pos: `Bearer ${token}` },
+    });
+    return request.data
+  }catch(error){
+    return error
+  }
+};
+export default async function putUserData(body) {
+  try {
+    const updateUser = await axios.put(`user/${body.id}`, body)
+      return(updateUser)
+  }catch(error){
+    console.log(error)
+  }
+}
+
+// export default async function postImageCloudinary(file, image) {
+
+//       try{
+//           const imageUpload = await axios.post('img/upload', (file, image) )
+//           return imageUpload
+//       }catch(error){
+//         console.log(error)
+//       }
+
+
+// }

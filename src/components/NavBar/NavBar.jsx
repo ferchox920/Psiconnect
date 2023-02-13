@@ -7,8 +7,10 @@ import { useSelector } from "react-redux";
 import { Menu, MenuItem } from "@mui/material";
 
 export default function NavBar() {
+ 
   const [modal, setModal] = useState(null);
   const [menu, setMenu] = useState(false);
+  const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
@@ -20,34 +22,69 @@ export default function NavBar() {
     setAnchorEl(e.currentTarget);
     setMenu(!menu);
   };
+  const closeNav =()=> setOpen(!open)
 
   return (
     <>
       <div className={style.container}>
         <div className={style.logo}>
-            <Link to={"/"}>
-                <img src={logo} alt="logo" />
-                <h3>psiconnect</h3>
-            </Link>
+          <Link to={"/"}>
+            <img src={logo} alt="logo" />
+            <h3>psiconnect</h3>
+          </Link>
         </div>
-        <div className={style.nav}>
+        <div className={style.hamburgerContainer}>
+          <div
+            className={`${style.hamburger} ${
+              open ? style.hamburgerOpen : null
+            }`}
+            onClick={() => setOpen(!open)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div className={`${style.nav} ${open ? null: style.navClose }`}>
           <div className={style.nav_list}>
             <div>
               <Link to={"/"}>
-                <h3 className={style.navItem}>¿Qué es Psiconnect? </h3>
+                <h3 onClick={closeNav} className={style.navItem}>¿Qué es Psiconnect? </h3>
               </Link>
             </div>
             <div>
               <Link to={"/registerProfesional"}>
                 {" "}
-                <h3 className={style.navItem}>¿Eres medico? </h3>
+                <h3 onClick={closeNav} className={style.navItem}>¿Eres medico? </h3>
               </Link>
             </div>
             <div>
               <Link to={"/Asistencia"}>
-                <h3 className={style.navItem}>¿Cómo te ayudamos?</h3>
+                <h3 onClick={closeNav} className={style.navItem}>¿Cómo te ayudamos?</h3>
               </Link>
             </div>
+            {user && window.screen.width < 1140 ? (
+              <>
+                <div
+                  onClick={() => {
+                    user.rol !== "user"
+                      ? navigate("/professionalProfile/profile")
+                      : navigate("/userProfile/profile");
+                  }}
+                >
+                  <h3 onClick={closeNav} className={style.navItem}>Mi perfil</h3>
+                </div>
+                <div
+                  onClick={() => {
+                    localStorage.removeItem("tkn"),
+                      localStorage.removeItem("profTkn"),
+                      window.location.reload();
+                  }}
+                >
+                  <h3 onClick={closeNav} className={style.navItem}>Cerrar Sesión</h3>
+                </div>
+              </>
+            ) : null}
           </div>
 
           {user ? (
@@ -75,7 +112,7 @@ export default function NavBar() {
                     }}
                   >
                     <MenuItem
-                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate('/userProfile/profile') }}
+                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate(`/userProfile/profile/${user?.id}`) }}
                     >
                       Mi Perfil
                     </MenuItem>
