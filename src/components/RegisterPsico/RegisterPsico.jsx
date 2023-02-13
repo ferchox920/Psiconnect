@@ -15,17 +15,9 @@ export default function RegisterPsico() {
   });
   const [errors, setErrors] = useState({});
 
-  const verifyRepeatPassword = () => {
-    let repeatPassword = validationsForm.confirmPassword(register);
-    setErrors({
-      ...errors,
-      ...repeatPassword,
-    });
-  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    verifyRepeatPassword();
     if (!Object.keys(errors).length) {
       professionalRegister(register)
     } else errorMenssage(Object.values(errors)[0]);
@@ -34,7 +26,7 @@ export default function RegisterPsico() {
   const handleInputChange = (e) => {
     setErrors(
       validationsForm[e.target.name]({
-        ...errors,
+        ...register,
         [e.target.name]: e.target.value,
       })
     );
@@ -96,7 +88,7 @@ export default function RegisterPsico() {
           type="password"
           name="password"
           value={register.password}
-          placeholder="Repetir contraseña"
+          placeholder="contraseña"
           onChange={(e) => handleInputChange(e)}
           required
         />
