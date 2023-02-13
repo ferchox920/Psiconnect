@@ -1,0 +1,121 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background: #F4F1BB;
+    position: relative;
+}
+
+.sidebarcontainer{
+    width: 16%;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+
+}
+
+
+.sidebar{
+    width: 100%;
+    height: 100vh;
+    background: #afcecf;
+    border-top: 7px solid white;
+    border-radius: 0px 10px 0px 10px;
+    box-shadow: 5px 5px 10px #5e5b5b;
+    position: absolute;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    padding: 10px;
+    margin: auto;
+    /* background-image: url('../../assets/users/avatar.jpg') ;  */
+    background-size:cover;
+    overflow: hidden;
+
+}
+
+.userAvatar{
+    width: 100%;
+    height: auto;
+    border-radius: 100px;
+}
+
+.username{
+    font-size: 18px;
+    margin-left: 25px;
+    padding: 5px;
+}
+
+.menusideBar{
+    width:100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-around;
+    
+}
+
+.itemssidebar{
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;  
+    border: none;
+}
+
+.buttonitems{
+    width: 100%;
+    height: 50px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    outline-style: none;
+}
+
+.buttonitems:hover{
+   border: 3px solid #436E70;
+   background: #5F9EA0;
+   cursor:pointer;
+}
+
+.buttonitems:focus{
+    border: 3px solid #436E70;
+    background: #5F9EA0;
+    outline-style: none;
+    
+ }
+
+ .formuser{
+    width: 90%;
+    height: 100vh;
+    position: absolute;
+ 
+    margin-left: 210px;
+    position: absolute;
+    
+ }
+
+ .formcontainer{
+    width: 80%;
+    height: 500px;
+    margin-top: 40px;
+    margin-left: 80px;
+   
+    position: absolute;
+ }
+
+ .form{
+    width: 100%;
+    height: 100vh;
+   margin-left: 30px;
+    position: absolute;
+ }
+ 
+ .message{
+    font: var(--hTitle);
+    margin-left: 300px;
+ }
