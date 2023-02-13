@@ -118,9 +118,9 @@ export default function NavBar() {
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        localStorage.setItem("tkn", ""),
-                          localStorage.setItem("profTkn", ""),
-                          navigate("/")
+                        localStorage.removeItem("tkn"),
+                        localStorage.removeItem("profTkn"),
+                        window.location.reload();
                       }}
                     >
                       {" "}

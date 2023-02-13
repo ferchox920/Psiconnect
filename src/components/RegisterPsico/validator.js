@@ -65,27 +65,13 @@ const validationsForm = {
         return validationsForm.errors
     },
     repeatPassword: (form) => {
-        if(!form.repeatPassword){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña no debe estar vacio'
-        }else if(form.repeatPassword.length<10){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña debe tener al menos un largo de 10 caracteres'
-        }else if(form.repeatPassword.length>25){
-            validationsForm.errors.repeatPassword = 'El repetir contraseña debe tener un largo menor a 25 caracteres'
-        }else if(!form.repeatPassword.match(/^(?=.*[0-9])(?=.*[!@#$%^&*_.-])(?=.*[A-Z]+)[a-zA-Z0-9!@#$%^&*]/)){
-            validationsForm.errors.repeatPassword = `El repetir contraseña debe tener al menos 1 de los siguientes caracteres especiales ( !@#$%^&*_.- ), 1 numero y 1 letra Mayúscula`
-        }else{
-            delete validationsForm.errors.repeatPassword
-        }
-        return validationsForm.errors
-    },
-    confirmPassword: (form) => {
         if(form.repeatPassword !== form.password){
             validationsForm.errors.repeatPassword = 'La contraseña y el repetir contraseña no son las mismas'
         }else{
             delete validationsForm.errors.repeatPassword
         }
         return validationsForm.errors
-    }
+    },
 };
 
   export default validationsForm;
