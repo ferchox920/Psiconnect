@@ -231,18 +231,6 @@ export async function getProfessionalConsults(professionalId, state){
     console.log(error)
   }
 }
-
-// export async function getAllProfessional(state){
-//   try {
-//     const peticion = await axios.get(`/professional`);
-//     console.log(peticion);
-//     type === "local" ? state(peticion?.data) : state(setAllProfessional(peticion?.data));
-
-//   } catch (error) {
-//     return error.response;
-//   }
-// } 
-
 export async function getUserById(userID, state){
   try {
     const response = await axios.get(`/user/${userID}`)
