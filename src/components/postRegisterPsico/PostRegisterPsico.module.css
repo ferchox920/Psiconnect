@@ -71,7 +71,7 @@
     transform: translate(0px, -10px);
     color: white;
     background-color: cadetblue;
-    box-shadow: 0px 0px 10px #dbdbdb;
+    box-shadow: 0px 0px 10px #dbdbdb, inset 0px 0px 0px #dbdbdb;
 }
 .inputImageDisabled{
     font-size: 1rem;
@@ -104,6 +104,7 @@ box-shadow: none;
 .avatar{
     object-fit: cover;
     object-position: center;
+    image-resolution: 720px;
     width:15rem;
     height: 14.6rem;
     border-radius: 100%;
