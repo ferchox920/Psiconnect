@@ -58,20 +58,22 @@ useEffect(()=>{
 
 const datasErrorChecker = () => {
     const inputsErrors =  validationsForm.inputs(register);
-    if(!errorsCheck()) setSubmitAccepted(true)
+    if(!inputErrorChecker()) setSubmitAccepted(true)
     else setSubmitAccepted(false)
     setErrors({
         ...errors,
         ...inputsErrors
     })
 };
-const errorsCheck = () => {
-    return Object.keys(errors).at(0)? true : false;
+const inputErrorChecker = () => {
+return  Object.values(register).some(el=> (el === '' || el.length === 0)) &&
+            Object.keys(errors).at(0) || Object.keys(errors).at(0)? 
+                true : false;
 };
 const handleOnSubmit = async (e) => {
     e.preventDefault();
     datasErrorChecker();
-    if(!Object.values(register).some(el=> (el === '' || el.length === 0)) && !errorsCheck() ){
+    if(inputErrorChecker()){
         const newImage = await uploadImage(register.avatar)
         const request = await postRegisterProfesional({
             ...register,
@@ -340,8 +342,8 @@ else return(
                     />
 
                     <input 
-                    disabled={errorsCheck()}
-                    className={errorsCheck()? style.inputSubmitDisabled : style.inputSubmit }
+                    disabled={inputErrorChecker()}
+                    className={inputErrorChecker()? style.inputSubmitDisabled : style.inputSubmit }
                     type='submit' 
                     value='Actualizar' 
                     />
