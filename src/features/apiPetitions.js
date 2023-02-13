@@ -252,12 +252,12 @@ export async function getUserById(userID, state){
   }
 }
 
-export async function postRegisterProfesional(body){
+export async function postRegisterProfesional(body,token){
   try{
     const request = await axios.put('/professional/descriptionProfesional', body,{
         headers: { pos: `Bearer ${token}` },
     });
-    return request.data
+    return request
   }catch(error){
     return error
   }
@@ -282,3 +282,7 @@ export default async function putUserData(body) {
 
 
 // }
+
+export async function autoLoginAfterPostRegister(token){
+   localStorage.setItem("profTkn", token);
+}
