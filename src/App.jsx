@@ -54,8 +54,8 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path='/Formreview/:id' element={<Formreview />} />
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
-        <Route path='/userProfile/profile/:id' element={<ProfileUser/>}/>
-        <Route path='/userProfile/profile' element={<ProfileUser/>}/>
+        <Route path='/userProfile/profile/:id/:items' element={<ProfileUser/>}/>
+        <Route path='/userProfile/profile/:id/' element={<ProfileUser/>}/>
         <Route path="/userProfile/profile/consultas" element={<ApptHistory/>}/>
         <Route path="/userProfile/profile/pagos" element={<PaymentHistory/>}/>
         <Route path="/userProfile/profile/seguridad" element={<UserSecurity/>}/>

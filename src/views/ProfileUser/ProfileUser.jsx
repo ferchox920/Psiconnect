@@ -2,13 +2,18 @@ import React from 'react'
 import style from './ProfileUser.module.css'
 import UsersForm from './UsersForm.jsx'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { AppHistory } from './AppHistory'
+import { useParams } from 'react-router-dom'
 
 
 
 export default function ProfileUser () {
     const users = useSelector((state) => state.user.user)
     console.log(users, 'aqui')
+
+    const navigate = useNavigate()
+    const {items} = useParams()
 
    
 
@@ -20,24 +25,26 @@ export default function ProfileUser () {
           <div className = {style.avatar}><img src={users?.avatar} alt = '' className={style.userAvatar}/></div>
             <h1 className = {style.username}>{`${users?.name} ${users?.lastName}`}</h1>
             <div className={style.menusideBar}>
+            
+            <div className={style.itemssidebar}> 
+              <button 
+              className={style.buttonitems}
+              name = 'perfil'
+              // onClick = {() => navigate()}active ={items === 'userProfile/Profile' ? true : false }>Historia de consultas
+              >Perfil</button>
+              
+              </div>
+            
             <div className={style.itemssidebar}>
-              <button className={style.buttonitems}>Perfil</button>
+              <button 
+              className={style.buttonitems}
+              name = 'Historial de Consultas'
+              onClick = {() => navigate()}active ={items === 'historialdeconsultas?' ? true : false }>Historia de consultas</button>
             </div>
-            <div className={style.itemssidebar}>
-              <NavLink to='/userProfile/profile/consultas'>
-                <button className={style.buttonitems}>Historial de consultas</button>
-              </NavLink>
-            </div>
-            <div className={style.itemssidebar}>
-              <NavLink to='/userProfile/profile/pagos'>
-                <button className={style.buttonitems}>Historial de pagos</button>
-              </NavLink>              
-            </div>
-            <div className={style.itemssidebar}>
-              <NavLink to='/userProfile/profile/seguridad'>
-                <button className={style.buttonitems}>Seguridad</button>
-              </NavLink>              
-            </div>
+
+
+            <div className={style.itemssidebar}><button className={style.buttonitems}>Historia de pagos</button></div>
+            <div className={style.itemssidebar}><button className={style.buttonitems}>Seguridad</button></div>
           </div>
         </div>
 

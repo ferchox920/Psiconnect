@@ -264,7 +264,7 @@ export async function getUserById(userID, state){
 
 export default async function putUserData(id, body) {
   try {
-    const updateUser = await axios.put(`user/${id}`, body)
+    const updateUser = await axios.put(`user/${body.id}`, body)
       return(updateUser)
   }catch(error){
     console.log(error)
