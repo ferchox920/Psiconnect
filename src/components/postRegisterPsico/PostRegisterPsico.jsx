@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { getOnlyAreas, getSkills, verifyTokenPostRegister, postRegisterProfesional } from '../../features/apiPetitions';
+import { getOnlyAreas, getSkills, verifyTokenPostRegister, postRegisterProfesional, autoLoginAfterPostRegister } from '../../features/apiPetitions';
 import { errorMenssage, successMessage } from '../../features/errorsModals.js'
 import style from './PostRegisterPsico.module.css';
 import validationsForm from './validatorDatas.js';
@@ -68,22 +68,40 @@ const datasErrorChecker = () => {
 const errorsCheck = () => {
     return Object.keys(errors).at(0)? true : false;
 };
-const handleOnSubmit = (e) => {
+const handleOnSubmit = async (e) => {
     e.preventDefault();
     datasErrorChecker();
     if(!errorsCheck() && submitAccepted){
-        postRegisterProfesional(register)
-        .then(request => {
-            successMessage(request.data)
-            console.log(request)
-        }).catch(error => {
-            console.log(error)
-        })
+        const newImage = await uploadImage(register.avatar)
+        const request = await postRegisterProfesional({
+            ...register,
+            avatar: newImage
+        },token)
+        if(request.status === 201) {
+            successMessage(request.data.message).then(()=>{
+                autoLoginAfterPostRegister(request.data.token)
+            })
+         }
+            else errorMenssage(request.response.data.data)
     }else{
-        console.log(errors, submitAccepted)
         errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
     }    
 };
+
+const uploadImage= async (file)=>{
+    let formData = new FormData();
+      formData?.append("file", file);
+      formData?.append('upload_preset',"psiconnectpreset");
+      formData.append('api_key', 652951616386787);
+      
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://api.cloudinary.com/v1_1/dcdywqotf/image/upload', false);
+  
+      xhr.send(formData);
+      const imageResponse = JSON.parse(xhr.responseText);
+      
+      return imageResponse.secure_url
+}
 const handleInputDeletedAvatar = () => {
     if(!register.avatar && !register.avatarIMG) return
     setRegister({
@@ -179,7 +197,7 @@ else return(
                             <img 
                             className={style.avatar}
                             src={register.avatarIMG}
-                            alt={register.altIMG}
+                            alt={register.altIMG || 'IMG'}
                             />
                         </div>
                         <div className={style.divInputsImage}>

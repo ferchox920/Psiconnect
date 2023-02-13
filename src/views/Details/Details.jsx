@@ -62,19 +62,20 @@ export default function Details() {
               <div className={style.description}>
                 <div>
                   <p className={style.paragraph}>
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Morbi in enim fringilla, auctor velit in, tempus massa.
-                    Aliquam id arcu ut est ullamcorper dapibus quis et felis.
-                    Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas. Proin dapibus erat
-                    malesuada tincidunt ultricies. Integer id leo at odio
-                    egestas blandit. Integer posuere consequat dapibus. Sed
-                    facilisis justo diam. Aliquam id arcu ut est ullamcorper
-                    dapibus quis et felis. Pellentesque habitant morbi tristique
-                    senectus et netus et malesuada fames ac turpis egestas.
-                    Aliquam id arcu ut est ullamcorper dapibus quis et felis.
-                    Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas.'
+                  <span>Descripcion:</span> {
+                    professional?.description
+                  }
+                  </p>
+                  <p className={style.paragraph}>
+                  <span> LinkedIn: </span>{
+                    professional?.linkedin
+                  }
+                  </p>
+                  <p className={style.paragraph}>
+                    <span>email: </span>
+                  {
+                    professional?.email
+                  }
                   </p>
                 </div>
               </div>
@@ -83,16 +84,15 @@ export default function Details() {
         </div>
         <div className={style.agendacita}>
           <h1 className={style.citas}>Agenda tu cita</h1>
-          <div className={style.calendario}>
+         <div className={style.calendario}>
             <button
               className={style.reservahoy}
               onClick={user ? startChat : openModal}
             >
               Reserva hoy
             </button>
-            <BsCalendar2Date className={style.iconocalendary}></BsCalendar2Date>
           </div>
-
+ 
           <div className={style.reviews}>
             <div className={style.comentary}>
               <h1>Puntualidad</h1>

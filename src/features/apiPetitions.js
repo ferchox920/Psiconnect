@@ -16,7 +16,8 @@ export async function userRegister(body) {
 export async function professionalRegister(body) {
   try {
     const request = await axios.post("/professional/register", body);
-    successMessage('En breves le llegara un mail')
+    successMessage('En breves le llegara un mail').then(e => window.location.pathname = '/');
+
     return request;
   } catch (error) {
     errorMenssage(error.response.data);
@@ -240,12 +241,12 @@ export async function getUserById(userID, state){
   }
 }
 
-export async function postRegisterProfesional(body){
+export async function postRegisterProfesional(body,token){
   try{
     const request = await axios.put('/professional/descriptionProfesional', body,{
         headers: { pos: `Bearer ${token}` },
     });
-    return request.data
+    return request
   }catch(error){
     return error
   }
@@ -270,3 +271,9 @@ export default async function putUserData(body) {
 
 
 // }
+
+export async function autoLoginAfterPostRegister(token){
+   localStorage.setItem("profTkn", token);
+   window.location.pathname='/';
+   window.location.reload();
+}
