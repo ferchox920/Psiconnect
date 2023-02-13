@@ -78,11 +78,10 @@ const handleOnSubmit = async (e) => {
             avatar: newImage
         },token)
         if(request.status === 201) {
-            successMessage(request.data.message)
-            autoLoginAfterPostRegister(request.data.token)
-            setTimeout(()=>{
-                window.location.pathname = '/';
-            },2000)}
+            successMessage(request.data.message).then(()=>{
+                autoLoginAfterPostRegister(request.data.token)
+            })
+         }
             else errorMenssage(request.response.data.data)
     }else{
         errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
