@@ -72,6 +72,7 @@ const handleOnSubmit = (e) => {
     e.preventDefault();
     datasErrorChecker();
     if(!errorsCheck() && submitAccepted){
+        uploadImage();
         postRegisterProfesional(register)
         .then(request => {
             successMessage(request.data)
@@ -84,6 +85,22 @@ const handleOnSubmit = (e) => {
         errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
     }    
 };
+const uploadImage= async ()=>{
+    let formData = new FormData();
+    formData?.append("file", avatar);
+    formData?.append('upload_preset',"psiconnectpreset");
+    formData.append('api_key', 652951616386787);
+      
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://api.cloudinary.com/v1_1/dcdywqotf/image/upload', false);
+    xhr.send(formData);
+
+    const imageResponse = JSON.parse(xhr.responseText);
+    setRegister({
+        ...register, 
+        avatar : imageResponse.secure_url
+    })
+}
 const handleInputDeletedAvatar = () => {
     if(!register.avatar && !register.avatarIMG) return
     setRegister({
