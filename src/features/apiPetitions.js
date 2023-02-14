@@ -104,14 +104,6 @@ export async function getAreas(state) {
   }
 }
 
- export async function getProfessionalByAreas({ state, type, area }) {
-  try {
-    const peticion = await axios.get("/areas/onlyAreas");
-    state(peticion.data);
-  } catch (error) {
-    return error.response;
-  }
-}
 export async function getUserByJWT({ state, type }) {
   try {
     const peticion = await axios.get(`/user/id`, {

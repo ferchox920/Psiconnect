@@ -22,22 +22,7 @@ const [ register, setRegister ] = useState({
 const [ errors, setErrors ] = useState({})
 const [ areas, setAreas ] = useState([])
 const [ skills, setSkills ] = useState([])
-const [ imageDisabled , setImageDisabled] = useState(false)
 const [ tokenVerify, setTokenVerify ] = useState(null)
-
-useEffect(()=>{
-    if(tokenVerify === null || tokenVerify === false) return  
-
-    let img = document.querySelector('#deleteImageAvatar')
-
-    if(register.avatar === '' && !imageDisabled){
-        img.disabled = true
-        setImageDisabled(true)
-    }else{
-        img.disabled = false
-        setImageDisabled(false)
-    }
- },[register.avatar,tokenVerify])
 
 useEffect(()=>{
     getOnlyAreas(setAreas)
@@ -67,25 +52,7 @@ return  Object.values(register).some(el=> (el === '' || el.length === 0)) &&
             Object.keys(errors).at(0) || Object.keys(errors).at(0)? 
                 true : false;
 };
-const handleOnSubmit = async (e) => {
-    e.preventDefault();
-    validatorForm();
-    if(!inputErrorChecker()){
-        const newImage = await uploadImage(register.avatar)
-        const request = await postRegisterProfesional({
-            ...register,
-            avatar: newImage
-        },token)
-        if(request.status === 201) {
-            successMessage(request.data.message).then(()=>{
-                autoLoginAfterPostRegister(request.data.token)
-            })
-         }
-            else errorMenssage(request.response.data.data)
-    }   else errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
-   
-};
-const uploadImage= async (file)=>{
+const uploadImage = async (file)=>{
     let formData = new FormData();
       formData?.append("file", file);
       formData?.append('upload_preset',"psiconnectpreset");
@@ -99,27 +66,44 @@ const uploadImage= async (file)=>{
       
       return imageResponse.secure_url
 };
+const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    validatorForm();
+    if(!inputErrorChecker()){
+        const newImage = await uploadImage(register.avatar)
+        const request = await postRegisterProfesional({
+            ...register,
+            avatar: newImage
+        },token)
+        if(request.status === 201) {
+            successMessage(request.data.message).then(()=>{
+                autoLoginAfterPostRegister(request.data.token)
+            })
+         }else if(request.status === 500){
+            errorMenssage('upss, Alparecer hubo problemas, intentalo mas tarde')
+         }else errorMenssage(request.response.data.data)
+    }   else errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
+};
 const handleInputDeletedAvatar = () => {
-    if(!register.avatar && !register.avatarIMG) return
-    setRegister({
-        ...register,
-            avatar:'',
-            avatarIMG:'',
-            altIMG:''
-    })
-    let img = document.querySelector('#imageAvatar')
-    img.value = '';
+    if(register.avatar && register.avatarIMG){ 
+        setRegister({
+            ...register,
+                avatar:'',
+                avatarIMG:'',
+                altIMG:''
+        })
+    }
 };
 const handleInputChangeAvatar = (e) =>{
     if(errors.avatar) delete errors.avatar
-    if(!e.target.files[0]) return
-    setRegister({
-        ...register,
-        [e.target.name] : e.target.files[0],
-        avatarIMG: URL.createObjectURL(e.target.files[0]),
-        altIMG: e.target.files[0].name
-    })
-    if(e.target.files[0].type.split('/')[0] !== 'image') setErrors({...errors, avatar : 'Seleccione una imagen valida'})  
+    if(e.target.files[0]){
+        setRegister({
+            ...register,
+            avatar : e.target.files[0],
+            avatarIMG : URL.createObjectURL(e.target.files[0]),
+            altIMG : e.target.files[0].name
+        })
+    }
 };
 const handleInputChange = (e) => {
     if(e.target.name === 'linkedin' && errors.linkedin) delete errors.linkedin
@@ -136,42 +120,28 @@ const handleInputChange = (e) => {
         ))
     }
 };
-const handleInputSkillsChange = (e) =>{
-    let optionSkills = document.querySelector(`#${e.target.value}`)
+const handleInputSelectChange = ( e, keyName ) =>{
+    const values =  e.target.value.split(",");
+
+    if(!areas.some(el => el.area === values[0]) && !skills.some(el => el.skill === values[0])) return
+
+    let option = document.querySelector(`#${values[0]}`)
+
+    if(errors[keyName]) delete errors[keyName]
+
     
-    if(errors.skills) delete errors.skills
-
-    if(!register.skills.some((el)=> el === e.target.value)){
+    if(!register[keyName].some((el)=> el.name === values[0])){
         setRegister({
         ...register,
-        skills : register.skills.concat(e.target.value),
+        [keyName] : register[keyName].concat({name : values[0], id: values[1]}),
         })
-        optionSkills.disabled = true;
+        option.disabled = true;
     }else{
         setRegister({
             ...register,
-            skills : register.skills.filter(el=> el !== e.target.value)
+            [keyName] : register[keyName].filter(el=> el.name !== values[0])
             })
-        optionSkills.disabled = false;
-    }
-};
-const handleInputAreasChange = (e) => {
-    let optionAreas = document.querySelector(`#${e.target.value}`)
-
-    if(errors.areas) delete errors.areas
-
-    if(!register.areas.some((el)=> el === e.target.value)){
-        setRegister({
-        ...register,
-        areas : register.areas.concat(e.target.value)
-        })
-        optionAreas.disabled = true;
-    }else{
-        setRegister({
-            ...register,
-            areas : register.areas.filter(el=> el !== e.target.value)
-        })
-        optionAreas.disabled = false;
+        option.disabled = false;
     }
 };
 
@@ -184,165 +154,168 @@ else if(tokenVerify === false){
 else return(
         <div className={style.divContainer}>
             <form className={style.form} onSubmit={(e)=>{handleOnSubmit(e)}}>
+
                 <label className={style.labelInicio} >Avatar</label>
-                    <p className={style.p}>*selecciona un imagen para tu foto de perfil</p>
-                    <span className={style.errorsText}>
-                        {errors.avatar}
-                    </span>
-                    <div className={style.divContainerImg}>
-                        <div className={style.divAvatar}>
-                            <img 
-                            className={style.avatar}
-                            src={register.avatarIMG}
-                            alt={register.altIMG || 'IMG'}
-                            />
-                        </div>
-                        <div className={style.divInputsImage}>
-                            <input
-                            className={errors.avatar?style.inputAvatarError :style.inputImage}
-                            id='imageAvatar'
-                            type="file" 
-                            accept="image/*"
-                            name="avatar"
-                            onChange={ (e) => handleInputChangeAvatar(e) }
-                            />
-                            <input
-                            className={imageDisabled? style.inputImageDisabled : style.inputImage}
-                            id='deleteImageAvatar'
-                            type='button'
-                            name='avatar'
-                            value='Borrar imagen'
-                            onClick={handleInputDeletedAvatar}
-                            />
-                        </div>
+                <p className={style.p}>*selecciona un imagen para tu foto de perfil</p>
+                <span className={style.errorsText}>
+                    {errors.avatar}
+                </span>
+                <div className={style.divContainerImg}>
+                    <div className={style.divAvatar}>
+                        <img 
+                        className={style.avatar}
+                        src={register.avatarIMG}
+                        alt={register.altIMG || 'IMG'}
+                        />
                     </div>
-
-                    <label className={style.label}>Descripcion</label>
-                    <p className={style.p}>
-                        *escribe una breve descripción de tu perfil como profesional
-                        <br/>
-                        *CONSEJO* trata de añadir datos que creas importantes y relevantes de tu perfil
-                    </p>
-                    <span className={style.errorsDescription}>{errors.description}</span>
-                    <div className={errors.description? style.errorsDescriptionContainer : style.containerDescription}>
-                    <textarea 
-                    name="description"
-                    value={register.description} 
-                    placeholder='Descripcion'
-                    className={style.description}
-                    onChange={handleInputChange}>
-                    </textarea>
+                    <div className={style.divInputsImage}>
+                        <input
+                        className={errors.avatar?style.inputAvatarError :style.inputImage}
+                        id='imageAvatar'
+                        type="file" 
+                        accept="image/*"
+                        name="avatar"
+                        value={register.avatar? register.avatarIMG.name : ''}
+                        onChange={ handleInputChangeAvatar }
+                        />
+                        <input
+                        className={register.avatar? style.inputImage : style.inputImageDisabled}
+                        id='deleteImageAvatar'
+                        type='button'
+                        name='avatar'
+                        value='Borrar imagen'
+                        disabled={register.avatar? false : true}
+                        onClick={handleInputDeletedAvatar}
+                        />
                     </div>
+                </div>
 
-                    <label className={style.label}>Areas</label>
-                    <p className={style.p}>*selecciona las areas en las que trbajas</p>
-                    <span className={style.errorsText}>{errors.areas}</span>
-                    <select 
-                    className={errors.areas? style.errorsSelect : style.select}
-                    name="areas" 
-                    onChange={(e)=>handleInputAreasChange(e)}  
-                    required>
-                        <option
-                        key='areas' 
-                        value='defaultSelect'
-                        selected 
-                        disabled
-                        >Areas</option>
-                        {   
-                            areas.map(el=>{
-                                return(
-                                    <option
-                                    key={el+'1'} 
-                                    value={el}
-                                    id={el}>
-                                    {el}
-                                    </option>
-                                )
-                            })
-                        }
-                    </select>
-                    <div className={style.divSkills}>
-                        { 
-                            register.areas.map(el=>{
-                                return(
-                                    <div key={el} className={style.skillsDivSpan}>
-                                    <span>{el}</span>
+                <label className={style.label}>Descripcion</label>
+                <p className={style.p}>
+                    *escribe una breve descripción de tu perfil como profesional
+                    <br/>
+                    *CONSEJO* trata de añadir datos que creas importantes y relevantes de tu perfil
+                </p>
+                <span className={style.errorsDescription}>{errors.description}</span>
+                <div className={errors.description? style.errorsDescriptionContainer : style.containerDescription}>
+                <textarea 
+                name="description"
+                value={register.description} 
+                placeholder='Descripcion'
+                className={style.description}
+                onChange={handleInputChange}>
+                </textarea>
+                </div>
+
+                <label className={style.label}>Areas</label>
+                <p className={style.p}>*selecciona las areas en las que trbajas</p>
+                <span className={style.errorsText}>{errors.areas}</span>
+                <select 
+                className={errors.areas? style.errorsSelect : style.select}
+                name="areas" 
+                onChange={(e)=>handleInputSelectChange(e, 'areas')}  
+                required>
+                    <option
+                    key='areas' 
+                    value='Areas'
+                    selected 
+                    disabled
+                    >Areas</option>
+                    {   
+                        areas.map(el=>{
+                            return(
+                                <option
+                                key={el.id} 
+                                value={[el.area, el.id]}
+                                id={el.area}>
+                                {el.area}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+                <div className={style.divSkills}>
+                    { 
+                        register.areas.map(el => {
+                            return(
+                                <div key={el.id} className={style.skillsDivSpan}>
+                                <span>{el.name}</span>
+                                <span 
+                                className={style.skillsSpanX} 
+                                onClick={()=>handleInputSelectChange( {target:{value:el.name}}, 'areas' ) }>
+                                x
+                                </span> 
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+                <label className={style.label} >Habilidades</label>
+                <p className={style.p}>*selecciona las habilidades que consideras tener</p>
+                <span className={style.errorsText}>{errors.skills}</span>
+                <select 
+                className={errors.skills? style.errorsSelect : style.select}
+                name="area" 
+                onChange={(e)=>handleInputSelectChange(e,'skills')} 
+                required
+                defaultValue={'defaultSelect'}
+                >
+                    <option
+                    key='skills' 
+                    value='Skills'
+                    selected 
+                    disabled>
+                    Habilidades
+                    </option>
+                    {   
+                        skills.map(el=>{
+                            return(
+                                <option 
+                                key={el.id} 
+                                id={el.skill} 
+                                value={[el.skill, el.id]}> 
+                                {el.skill}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+                <div className={style.divSkills}>
+                    { 
+                        register.skills.map(el=>{
+                            return(
+                                <div key={el.id} className={style.skillsDivSpan}>
+                                    <span>{el.name}</span>
                                     <span 
                                     className={style.skillsSpanX} 
-                                    onClick={()=>handleInputAreasChange({target:{value:el}})}>
-                                    x
+                                    onClick={ ()=>handleInputSelectChange( {target:{value:el.name}},'skills' ) }>
+                                        x
                                     </span> 
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
 
-                    <label className={style.label} >Habilidades</label>
-                    <p className={style.p}>*selecciona las habilidades que consideras tener</p>
-                    <span className={style.errorsText}>{errors.skills}</span>
-                    <select 
-                    className={errors.skills? style.errorsSelect : style.select}
-                    name="area" 
-                    onChange={(e)=>handleInputSkillsChange(e)} 
-                    required
-                    defaultValue={'defaultSelect'}
-                    >
-                        <option
-                        key='skills' 
-                        value='defaultSelect'
-                        selected 
-                        disabled>
-                        Habilidades
-                        </option>
-                        {   
-                            skills.map(el=>{
-                                return(
-                                    <option 
-                                    key={el.skill} 
-                                    id={el.skill} 
-                                    value={el.skill}>
-                                    {el.skill}
-                                    </option>
-                                )
-                            })
-                        }
-                    </select>
-                    <div className={style.divSkills}>
-                        { 
-                            register.skills.map(el=>{
-                                return(
-                                    <div key={el} className={style.skillsDivSpan}>
-                                    <span>{el}</span>
-                                    <span 
-                                    className={style.skillsSpanX} 
-                                    onClick={()=>handleInputSkillsChange({target:{value:el}})}>
-                                    x
-                                    </span> 
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+                <label className={style.label} >Linkedin</label>
+                    <p className={style.p}>*copie y pega el link de tu perfil de Linkedin</p>
+                    <span className={style.errorsText}>{errors.linkedin}</span>
+                <input
+                className={errors.linkedin? style.inputsErrors :style.inputs}
+                type="text" 
+                name='linkedin'
+                value={register.linkedin}
+                placeholder='https://www.linkedin.com/in/...'
+                onChange={handleInputChange}
+                />
+                <input 
+                disabled={inputErrorChecker()}
+                className={inputErrorChecker()? style.inputSubmitDisabled : style.inputSubmit }
+                type='submit' 
+                value='Actualizar' 
+                />
 
-                    <label className={style.label} >Linkedin</label>
-                        <p className={style.p}>*copie y pega el link de tu perfil de Linkedin</p>
-                        <span className={style.errorsText}>{errors.linkedin}</span>
-                    <input
-                    className={errors.linkedin? style.inputsErrors :style.inputs}
-                    type="text" 
-                    name='linkedin'
-                    value={register.linkedin}
-                    placeholder='https://www.linkedin.com/in/...'
-                    onChange={handleInputChange}
-                    />
-
-                    <input 
-                    disabled={inputErrorChecker()}
-                    className={inputErrorChecker()? style.inputSubmitDisabled : style.inputSubmit }
-                    type='submit' 
-                    value='Actualizar' 
-                    />
             </form>
         </div>
     )
