@@ -11,8 +11,7 @@ import CardConsult from './Card/CardConsult'
 export default function Arrangements() {
 
   const [consults, setConsults] = useState()
-  const professionalId = useSelector((store) => store.user.user.id)
-
+  const professionalId = useSelector((store) => store.user.user?.id)
   useEffect(() => {
     getProfessionalConsults(professionalId, setConsults)
   }, [])

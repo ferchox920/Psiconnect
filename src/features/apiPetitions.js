@@ -78,7 +78,7 @@ export async function getProfByJWT({ state, type }) {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
     type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
+    /* type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'})); */
   } catch (error) {
     console.log(error.response.data);
   }
