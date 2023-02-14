@@ -24,7 +24,6 @@ const [ areas, setAreas ] = useState([])
 const [ skills, setSkills ] = useState([])
 const [ imageDisabled , setImageDisabled] = useState(false)
 const [ tokenVerify, setTokenVerify ] = useState(null)
-const [ submitAccepted, setSubmitAccepted ] = useState(false)
 
 useEffect(()=>{
     if(tokenVerify === null || tokenVerify === false) return  
@@ -56,10 +55,8 @@ useEffect(()=>{
     })
 },[])
 
-const datasErrorChecker = () => {
+const validatorForm = () => {
     const inputsErrors =  validationsForm.inputs(register);
-    if(!inputErrorChecker()) setSubmitAccepted(true)
-    else setSubmitAccepted(false)
     setErrors({
         ...errors,
         ...inputsErrors
@@ -72,7 +69,7 @@ return  Object.values(register).some(el=> (el === '' || el.length === 0)) &&
 };
 const handleOnSubmit = async (e) => {
     e.preventDefault();
-    datasErrorChecker();
+    validatorForm();
     if(inputErrorChecker()){
         const newImage = await uploadImage(register.avatar)
         const request = await postRegisterProfesional({
@@ -85,9 +82,8 @@ const handleOnSubmit = async (e) => {
             })
          }
             else errorMenssage(request.response.data.data)
-    }else{
-        errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
-    }    
+    }   else errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
+   
 };
 const uploadImage= async (file)=>{
     let formData = new FormData();
@@ -330,8 +326,8 @@ else return(
                     </div>
 
                     <label className={style.label} >Linkedin</label>
-                    <p className={style.p}>*copie y pega el link de tu perfil de Linkedin</p>
-                    <span className={style.errorsText}>{errors.linkedin}</span>
+                        <p className={style.p}>*copie y pega el link de tu perfil de Linkedin</p>
+                        <span className={style.errorsText}>{errors.linkedin}</span>
                     <input
                     className={errors.linkedin? style.inputsErrors :style.inputs}
                     type="text" 
