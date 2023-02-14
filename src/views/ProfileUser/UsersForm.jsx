@@ -79,7 +79,6 @@ export default function UsersForm (){
 
 
     const handledChangeImage = (e) => {
-      if(e.target.file[0]) return
       setInput ({
         ...input,
         image : ''
@@ -88,19 +87,9 @@ export default function UsersForm (){
       img.value = ''
     }
 
-      // const newForm = new FormData()
-      // formData.append('imageUser' , file) //recibe el nombre con el que se va a almacenar la imagen y el archivo
-
-      // const result = await axios.post('img/upload', formData)
-      // setUrlImage(result.data.urlImage) 
-
-      // return newForm
-
     }
 
-    // const handleFileChange = (e) => {
-    //   setFile(e.target.files[0]);
-    // };
+   
 
 
 
@@ -130,7 +119,6 @@ export default function UsersForm (){
               placeholder='Nombres' 
               name = 'name'
               value = {users.name}
-              disabled
               onChange= {e => handleInputChanges(e)}
               />
               {error.name ? <p className = {style.inputerrorname}>{error.name}</p> : <></>}
@@ -140,7 +128,6 @@ export default function UsersForm (){
             placeholder='Apellidos'
             name = 'lastName'
             value = {users.lastName}
-            disabled
             onChange= {handleInputChanges} 
             />
             {error.lastName ? <p className = {style.inputerrorlastName}>{error.lastName}</p> : <></>}
