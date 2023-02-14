@@ -70,7 +70,7 @@ return  Object.values(register).some(el=> (el === '' || el.length === 0)) &&
 const handleOnSubmit = async (e) => {
     e.preventDefault();
     validatorForm();
-    if(inputErrorChecker()){
+    if(!inputErrorChecker()){
         const newImage = await uploadImage(register.avatar)
         const request = await postRegisterProfesional({
             ...register,
