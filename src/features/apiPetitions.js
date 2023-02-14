@@ -16,7 +16,8 @@ export async function userRegister(body) {
 export async function professionalRegister(body) {
   try {
     const request = await axios.post("/professional/register", body);
-    successMessage('En breves le llegara un mail')
+    successMessage('En breves le llegara un mail').then(e => window.location.pathname = '/');
+
     return request;
   } catch (error) {
     errorMenssage(error.response.data);
@@ -132,9 +133,9 @@ export async function getProfessionalById(id, state) {
   }
 }
 
-export async function getOnlyAreas(){
+export async function getOnlyAreas(state){
   try {
-    const peticion = await axios.get(`areas/onlyAreas`)
+    const peticion = await axios.get(`/areas/onlyAreas`)
     return state(peticion?.data);
   } catch (error) {
     return error.response;
@@ -188,27 +189,17 @@ export async function getProfessionalReview(id, state){
   }
 }
 
-export async function verifyTokenPostRegister({ type , token, state}){
+export async function verifyTokenPostRegister(token){
   try {
     const request = await axios.get(`/professional/token/postRegister`,{
-      headers: { post: `Bearer ${token}` },
+      headers: { pos: `Bearer ${token}`,}
     });
-    type === 'local'? state(request) : null
+    return request;
   } catch (error) {
-    state(error.response);
+    return error.response;
   }
 }
 
-export async function confirmEmailClient({ type , token, state, userType}){
-  try {
-    const request = await axios.put(`/${userType}/confirmationEmail`,{},{
-      headers: { confirm: `Bearer ${token}`}
-    });
-    type === 'local'? state(request) : null
-  } catch (error) {
-    state(error.response);
-  }
-}
 export async function createProfessionalReview (id, body){
     
   try {
@@ -241,18 +232,6 @@ export async function getProfessionalConsults(professionalId, state){
     console.log(error)
   }
 }
-
-// export async function getAllProfessional(state){
-//   try {
-//     const peticion = await axios.get(`/professional`);
-//     console.log(peticion);
-//     type === "local" ? state(peticion?.data) : state(setAllProfessional(peticion?.data));
-
-//   } catch (error) {
-//     return error.response;
-//   }
-// } 
-
 export async function getUserById(userID, state){
   try {
     const response = await axios.get(`/user/${userID}`)
@@ -262,6 +241,16 @@ export async function getUserById(userID, state){
   }
 }
 
+export async function postRegisterProfesional(body,token){
+  try{
+    const request = await axios.put('/professional/descriptionProfesional', body,{
+        headers: { pos: `Bearer ${token}` },
+    });
+    return request
+  }catch(error){
+    return error
+  }
+};
 export default async function putUserData(body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body)
@@ -282,3 +271,9 @@ export default async function putUserData(body) {
 
 
 // }
+
+export async function autoLoginAfterPostRegister(token){
+   localStorage.setItem("profTkn", token);
+   window.location.pathname='/';
+   window.location.reload();
+}
