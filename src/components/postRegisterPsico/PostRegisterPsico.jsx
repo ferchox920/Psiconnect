@@ -60,7 +60,6 @@ const uploadImage = async (file)=>{
       
       const xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://api.cloudinary.com/v1_1/dcdywqotf/image/upload', false);
-  
       xhr.send(formData);
       const imageResponse = JSON.parse(xhr.responseText);
       
@@ -79,7 +78,7 @@ const handleOnSubmit = async (e) => {
             successMessage(request.data.message).then(()=>{
                 autoLoginAfterPostRegister(request.data.token)
             })
-         }else if(request.status === 500){
+         }else if(request.response.status === 500){
             errorMenssage('upss, Alparecer hubo problemas, intentalo mas tarde')
          }else errorMenssage(request.response.data.data)
     }   else errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
@@ -123,7 +122,7 @@ const handleInputChange = (e) => {
 const handleInputSelectChange = ( e, keyName ) =>{
     const values =  e.target.value.split(",");
 
-    if(!areas.some(el => el.area === values[0]) && !skills.some(el => el.skill === values[0])) return
+    if(!areas.some(el => el.id === values[1]) && !skills.some(el => el.id === values[1])) return
 
     let option = document.querySelector(`#${values[0]}`)
 
