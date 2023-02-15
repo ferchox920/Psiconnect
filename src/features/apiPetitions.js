@@ -232,17 +232,7 @@ export async function getUserById(userID, state){
   }
 }
 
-export async function postRegisterProfesional(body,token){
-  try{
-    const request = await axios.put('/professional/descriptionProfesional', body,{
-        headers: { pos: `Bearer ${token}` },
-    });
-    return request
-  }catch(error){
-    return error
-  }
-};
-export default async function putUserData(body) {
+export default async function putUserData(id, body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body)
       return(updateUser)

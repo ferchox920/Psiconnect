@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux'
 import putUserData from '../../../features/apiPetitions.js'
 import style from './UsersForm.module.css'
 import swal from "sweetalert";
-
+import { useParams } from 'react-router-dom'
 
 export default function UsersForm (){
 
     const users = useSelector((state) => state.user.user)
     const [ file, setFile ] = useState(null)
     const [urlImage, setUrlImage] = useState(null)
+    const {id} = useParams()
     
 
     const [ error, setError ] = useState({
