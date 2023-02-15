@@ -44,7 +44,7 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
       })
       .then(() =>
         swal({
-          title: "Good job!",
+          title: "Se inició sesión correctamente!",
           text: `Bienvenido`,
           icon: "success",
         })
