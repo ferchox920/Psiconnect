@@ -19,6 +19,7 @@ import { ProSidebarProvider } from "react-pro-sidebar";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Admin from "./views/Admin";
 
 
 function App() {
@@ -65,6 +66,14 @@ function App() {
           element={
             <ProtectedRoute type={'prof'}>
           <ProSidebarProvider><ProfileUser/></ProSidebarProvider>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin*"
+          element={
+            <ProtectedRoute type={'admin'}>
+              <Admin />
             </ProtectedRoute>
           }
         />
