@@ -62,13 +62,13 @@ export async function profUpdate({state, type, payload}){
     const petition= await axios.put('/professional/update/id', payload,{
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     } );
-    type === "local" ? state(petition?.data) : state(setUser({...petition?.data, rol: 'prof'}));
+    type === "local" ? state(petition?.data) : state(setUser(petition?.data));
     console.log(petition?.data)
     return petition
 
   } catch (error) {
      errorMenssage(error.response.data);
-    //throw new Error(error.response.data);
+    throw new Error(error.response.data);
   }
 }
 
@@ -77,8 +77,7 @@ export async function getProfByJWT({ state, type }) {
     const peticion = await axios.get("/professional/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
+    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
     console.log(error.response.data);
   }
@@ -110,7 +109,7 @@ export async function getUserByJWT({ state, type }) {
     
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'user'}));
+    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
 
   } catch (error) {
     console.log(error.response.data);
@@ -268,4 +267,21 @@ export async function autoLoginAfterPostRegister(token){
    localStorage.setItem("profTkn", token);
    window.location.pathname='/';
    window.location.reload();
+}
+export async function getAllUser(state){
+  try {
+    const peticion = await axios.get('/user');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+export async function updateStatusToUsers(id){
+  try {
+    const peticion = await axios.put(`/admin/disable-user/${id}`);
+    successMessage(peticion.data)
+    return
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {useSelector} from 'react-redux'
-import {  Menu, MenuItem, Sidebar} from 'react-pro-sidebar'
+import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar'
 import { sidebarClasses, menuClasses } from 'react-pro-sidebar'
 import { Avatar } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -51,10 +51,10 @@ export default function SideBar() {
                 alt={user.name}>
               </Avatar>
             }
-            <MenuItem onClick={() => navigate('/professionalProfile/profile')} active={section === 'profile' ? true : false}> Perfil </MenuItem>
-            <MenuItem onClick={() => navigate('/professionalProfile/arrangements')} active={section === 'arrangements' ? true : false}> Citas </MenuItem>
-            <MenuItem onClick={() => navigate('/professionalProfile/incomes')} active={section === 'incomes' ? true : false}> Ingresos </MenuItem>
-            <MenuItem onClick={() => navigate('/professionalProfile/security')} active={section === 'security' ? true : false}> Seguridad </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/profile`)} active={section === 'profile' ? true : false}> Perfil </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/appointments`)} active={section === 'appointments' ? true : false}> Historial de Consultas </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/payments`)} active={section === 'payments' ? true : false}> Historial de Pagos </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/security`)} active={section === 'security' ? true : false}> Seguridad </MenuItem>
         </Menu>
     </Sidebar>
   )
