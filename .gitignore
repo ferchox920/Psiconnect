@@ -8,10 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 package-lock.json
 node_modules
-.package-lock.json
 package-lock.json
-/package-lock.json
-./package-lock.json
 /node_modules
 dist
 dist-ssr
