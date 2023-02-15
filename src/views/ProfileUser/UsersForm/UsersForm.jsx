@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import { useSelector } from 'react-redux'
-import putUserData from '../../features/apiPetitions.js'
+import putUserData from '../../../features/apiPetitions.js'
 import style from './UsersForm.module.css'
 import swal from "sweetalert";
 
