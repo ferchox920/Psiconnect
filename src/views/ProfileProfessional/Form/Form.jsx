@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import validationsForm from "./validator.js";
+import validationsForm from "./validate.js";
 import {
   getAreas,
   getSkills,
@@ -53,7 +53,9 @@ const ProfileForm = () => {
     setForm({
       ...form,
       avatar: "",
+      avatarIMG:''
     });
+    
     let img = document.querySelector("#imageAvatar");
     img.value = "";
   };
@@ -87,49 +89,48 @@ const uploadImage= async (file)=>{
       ...form,
       [e.target.name]: e.target.value,
     });
-    // setErrors(
-    //   validationsForm[e.target.name]({
-    //     ...errors,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
+    setErrors(
+      validationsForm[e.target.name]({
+        ...errors,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
-  const handleInputSkillsChange = (e) => {
-    let optionSkills = document.querySelector(`#${e.target.value}`);
 
-    if (!form.skills.some((el) => el === e.target.value)) {
+  const handleSelectChange= (e)=>{
+    let options = document.querySelector(`#${e.target.value}`);
+
+    if (!form[e.target.name].some((el) => el === e.target.value)) {
       setForm({
         ...form,
-        skills: form.skills.concat(e.target.value),
+        [e.target.name]: form[e.target.name].concat(e.target.value),
       });
-      optionSkills.disabled = true;
+      setErrors(
+        validationsForm[e.target.name]({
+          ...errors,
+          [e.target.name]: form[e.target.name].concat(e.target.value),
+        })
+      );
+      options.disabled = true;
     } else {
       setForm({
         ...form,
-        skills: form.skills.filter((el) => el !== e.target.value),
+        [e.target.name]: form[e.target.name].filter((el) => el !== e.target.value),
       });
-      optionSkills.disabled = false;
+       setErrors(
+      validationsForm[e.target.name]({
+        ...errors,
+        [e.target.name]: form[e.target.name].filter((el) => el !== e.target.value),
+      })
+    );
+    console.log(errors)
+      options.disabled = false;
     }
-  };
-  const handleInputAreasChange = (e) => {
-    let optionAreas = document.querySelector(`#${e.target.value}`);
-   
-    if (!form.areas.some((el) => el === e.target.value)) {
-      setForm({
-        ...form,
-        areas: form.areas.concat(e.target.value),
-      });
-      optionAreas.disabled = true;
-    } else {
-      setForm({
-        ...form,
-        areas: form.areas.filter((el) => el !== e.target.value),
-      });
-      optionAreas.disabled = false;
-    }
-  };
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors(validationsForm.avatar(form))
     const newImage= await uploadImage(form.avatar)
     if (!Object.keys(errors).at(0)) {
       profUpdate({
@@ -154,7 +155,7 @@ const uploadImage= async (file)=>{
         icon: "error",
       });
     }
-    console.log(form)
+    console.log(form, errors, form.skills.at(0))
   };
 
   return (
@@ -203,6 +204,7 @@ const uploadImage= async (file)=>{
           *CONSEJO* trata de añadir datos que creas importantes y relevantes de
           tu perfil
         </p>
+        <span className={style.spanError}>{errors.description}</span>
         <div className={style.containerDescription}>
           <textarea
             name="description"
@@ -215,10 +217,11 @@ const uploadImage= async (file)=>{
 
         <label className={style.label}>Areas</label>
         <p className={style.p}>*selecciona las areas en las que trbajas</p>
+        <span className={style.spanError}>{errors.areas}</span>
         <select
           className={style.select}
           name="areas"
-          onChange={(e) => handleInputAreasChange(e)}
+          onChange={(e) => handleSelectChange(e)}
           required
           key="areas"
         >
@@ -243,7 +246,7 @@ const uploadImage= async (file)=>{
                 <span
                   className={style.skillsSpanX}
                   onClick={() =>
-                    handleInputAreasChange({ target: { value: el } })
+                    handleSelectChange({ target: { value: el , name:'areas'} })
                   }
                 >
                   x
@@ -257,10 +260,11 @@ const uploadImage= async (file)=>{
         <p className={style.p}>
           *selecciona las habilidades que consideras tener
         </p>
+        <span className={style.spanError}>{errors.skills}</span>
         <select
           className={style.select}
-          name="area"
-          onChange={(e) => handleInputSkillsChange(e)}
+          name="skills"
+          onChange={(e) => handleSelectChange(e)}
           required
           key="skills"
         >
@@ -283,7 +287,7 @@ const uploadImage= async (file)=>{
                 <span
                   className={style.skillsSpanX}
                   onClick={() =>
-                    handleInputSkillsChange({ target: { value: el } })
+                    handleSelectChange({ target: { value: el , name: 'skills'} })
                   }
                 >
                   x
@@ -298,7 +302,7 @@ const uploadImage= async (file)=>{
           *copie y pega el link de tu perfil de Linkedin
         </p>
         <input
-          //className={errors.linkedin ? style.inputsErrors : style.inputs}
+          className={errors.linkedin ? style.inputError : style.inputs}
           type="text"
           name="linkedin"
           value={form.linkedin}
