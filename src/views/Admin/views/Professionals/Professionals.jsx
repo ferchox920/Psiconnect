@@ -3,7 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 // import Header from "../../AdminComponents/Headers";
 import { useNavigate } from "react-router-dom";
-import { getAllProfessionals, updateStatusToUsers } from "../../../../features/apiPetitions";
+import { getAllProfessionals, updateStatusToProfessional, updateStatusToUsers } from "../../../../features/apiPetitions";
 
 export default function Professionals() {
   const [data, setData] = useState([]);
@@ -30,15 +30,34 @@ export default function Professionals() {
       flex: 1,
       cellClassName: "name-column--cell",
     },
+ 
     {
-      field: "state",
-      headerName: "state",
+      field: "DNI",
+      headerName: "DNI",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
       field: "phone",
       headerName: "phone",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "description",
+      headerName: "description",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "linkedin",
+      headerName: "linkedin",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "state",
+      headerName: "state",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -55,17 +74,17 @@ export default function Professionals() {
             display="flex"
             justifyContent="center"
             onClick={() => {
-                updateStatusToUsers(params.row.id).then(()=>{
-                    params.row.state = !params.row.state;
+                updateStatusToProfessional(params.row.id).then((e)=>{
+                    params.row.state = e;
                 })
             }}
-            backgroundColor={params.row.state?"#66d7d1":"#ffa8b6"}
+            backgroundColor={params.row.state ==='avalible'?"#66d7d1":"#ffa8b6"}
             borderRadius="4px"
             sx={{
               cursor: "pointer",
             }}
           >
-            <Typography sx={{ ml: "5px" }}>{ params.row.state?'Disable':'Enable'}</Typography>
+            <Typography sx={{ ml: "5px" }}>{ params.row.state ==='avalible'?'Disable':'Enable'}</Typography>
           </Box>
         </Box>)
       },

@@ -291,5 +291,16 @@ export async function updateStatusToUsers(id){
     return
   } catch (error) {
     errorMenssage(error.response.data);
+    throw new Error(error.response.data)
+  }
+}
+export async function updateStatusToProfessional(id){
+  try {
+    const peticion = await axios.put(`/admin/disable-professional/${id}`);
+    successMessage(peticion.data.message)
+    return peticion.data.state;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data)
   }
 }
