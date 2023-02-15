@@ -7,7 +7,7 @@ import Payments from './Payments/Payments.jsx'
 import Security from './userSecurity/userSecurity.jsx'
 
 export default function ProfileUser () {
-  const {section} = useParams()
+  const {id, section} = useParams()
 
   switch (section) {
     case 'profile':

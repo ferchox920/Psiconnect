@@ -51,10 +51,10 @@ export default function SideBar() {
                 alt={user.name}>
               </Avatar>
             }
-            <MenuItem onClick={() => navigate('/userProfile/profile')} active={section === 'profile' ? true : false}> Perfil </MenuItem>
-            <MenuItem onClick={() => navigate('/userProfile/appointments')} active={section === 'appointments' ? true : false}> Historial de Consultas </MenuItem>
-            <MenuItem onClick={() => navigate('/userProfile/payments')} active={section === 'payments' ? true : false}> Historial de Pagos </MenuItem>
-            <MenuItem onClick={() => navigate('/userProfile/security')} active={section === 'security' ? true : false}> Seguridad </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/profile/${user?.id}`)} active={section === 'profile' ? true : false}> Perfil </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/appointments/${user?.id}`)} active={section === 'appointments' ? true : false}> Historial de Consultas </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/payments/${user?.id}`)} active={section === 'payments' ? true : false}> Historial de Pagos </MenuItem>
+            <MenuItem onClick={() => navigate(`/userProfile/security/${user?.id}`)} active={section === 'security' ? true : false}> Seguridad </MenuItem>
         </Menu>
     </Sidebar>
   )
