@@ -83,4 +83,94 @@
     transform-origin: left;
     transform: scaleX(1);
   }
-  
+
+ .TermsAndConditions{
+  display: flex;
+  margin: 20px 0px;
+  justify-content: start;
+  gap: 10px;
+ }
+ .TermsAndConditions span{
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+ }
+  .checkBox input {
+ opacity: 0;
+ cursor: pointer;
+ height: 0;
+ width: 0;
+}
+
+.checkBox {
+ display: block;
+ cursor: pointer;
+ font-size: 25px;
+
+}
+
+/* Create a custom checkbox */
+.checkmark {
+ position: relative;
+ top: 0;
+ left: 0;
+ height: 1em;
+ width: 1em;
+ background: var(--withe);
+ border: 3px solid var(--cadetblue);
+ border-radius: 50px;
+ transition: all 0.7s;
+ --spread: 20px;
+}
+
+.checkBox input:checked ~ .checkmark {
+ background: black;
+ border:3px solid black;
+}
+
+.checkmark:after {
+ content: "";
+ position: absolute;
+ display: none;
+}
+
+.checkBox input:checked ~ .checkmark:after {
+ display: block;
+}
+
+.checkBox .checkmark:after {
+ left: 0.37em;
+ top: 0.20em;
+ width: 0.15em;
+ height: 0.4em;
+ border: solid #f0f0f0;
+ border-width: 0 0.15em 0.15em 0;
+ transform: rotate(45deg);
+}
+.open{
+  color: var(--cadetblue);
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  align-content: center;
+}
+.open::before {
+  background-color: black;
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  border-radius: 4px;
+  bottom: 0;
+  left: 20%;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s ease-in-out;
+}
+
+.open:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
