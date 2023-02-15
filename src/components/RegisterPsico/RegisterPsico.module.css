@@ -83,4 +83,9 @@
     transform-origin: left;
     transform: scaleX(1);
   }
+
+  .label {
+    color:blue;
+    font-size:  100%;
+  }
   

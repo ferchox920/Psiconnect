@@ -18,6 +18,7 @@ import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
+import TerminoAndCondiciones from "./components/TerminoAndCondiciones/TerminoAndCondiciones.jsx";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path='/profesional/postRegister' element={<PostRegisterPsico />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
+        <Route path="/TerminoAndCondiciones" element={<TerminoAndCondiciones />} />
         <Route path="/registerProfesional" element={<RegisterProfesional />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />

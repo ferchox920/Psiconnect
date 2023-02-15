@@ -3,6 +3,7 @@ import { professionalRegister } from "../../features/apiPetitions";
 import validationsForm from "./validator.js";
 import style from "./RegisterPsico.module.css";
 import { errorMenssage } from "../../features/errorsModals";
+import { Link } from "react-router-dom";
 
 export default function RegisterPsico() {
   const [register, setRegister] = useState({
@@ -102,6 +103,11 @@ export default function RegisterPsico() {
           required
         />
       </div>
+      
+      <Link to={"/TerminoAndCondiciones"} target="_blank">
+      <input type="checkbox" className={style.input} required/><label className={style.label}> Aceptar termino y condiciones</label>
+      </Link>
+      
       <button
         className={style.boton}
         id="idSubmitRegister"
