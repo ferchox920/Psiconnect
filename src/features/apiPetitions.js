@@ -285,3 +285,11 @@ export async function updateStatusToUsers(id){
     errorMenssage(error.response.data);
   }
 }
+
+export async function verifyTokenForgotPassword(token){
+  try{}catch(err){}
+const reques = axios.get('/professional/token/forgetPassword',{
+
+})
+
+}
