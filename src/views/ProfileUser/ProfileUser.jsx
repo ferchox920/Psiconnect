@@ -1,68 +1,63 @@
 import React from 'react'
 import style from './ProfileUser.module.css'
-import UsersForm from './UsersForm.jsx'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { AppHistory } from './AppHistory'
+import UsersForm from './UsersForm/UsersForm.jsx'
 import { useParams } from 'react-router-dom'
-
-
+import ApptHistory from './ApptHistory/ApptHistory.jsx'
+import Payments from './Payments/Payments.jsx'
+import Security from './userSecurity/userSecurity.jsx'
+import SideBar from './SideBar.jsx'
 
 export default function ProfileUser () {
-    const users = useSelector((state) => state.user.user)
-    console.log(users, 'aqui')
+  const {section} = useParams()
 
-    const navigate = useNavigate()
-    const {items} = useParams()
-
-   
-
-
-  return (
-    <div className = {style.container}>
-        <div className = {style.sidebarcontainer}>
-        <div className={style.sidebar}>
-          <div className = {style.avatar}><img src={users?.avatar} alt = '' className={style.userAvatar}/></div>
-            <h1 className = {style.username}>{`${users?.name} ${users?.lastName}`}</h1>
-            <div className={style.menusideBar}>
-            
-            <div className={style.itemssidebar}> 
-              <button 
-              className={style.buttonitems}
-              name = 'perfil'
-              // onClick = {() => navigate()}active ={items === 'userProfile/Profile' ? true : false }>Historia de consultas
-              >Perfil</button>
-              
-              </div>
-            
-            <div className={style.itemssidebar}>
-              <button 
-              className={style.buttonitems}
-              name = 'Historial de Consultas'
-              onClick = {() => navigate()}active ={items === 'historialdeconsultas?' ? true : false }>Historia de consultas</button>
-            </div>
-
-
-            <div className={style.itemssidebar}><button className={style.buttonitems}>Historia de pagos</button></div>
-            <div className={style.itemssidebar}><button className={style.buttonitems}>Seguridad</button></div>
+  switch (section) {
+    case 'profile':
+      return (
+        <div className={style.container}>
+          <div className={style.sideBar}>
+            <SideBar/>
           </div>
+          <div className={style.component}>
+            <UsersForm/>
+          </div>            
         </div>
-
-        </div>
-        
-
-        <div className={style.formuser}>
-          <div className={style.formcontainer}>
-              <div className = {style.form}>
-              <UsersForm/>
-              </div>
+      )
+    case 'appointments':
+      return (
+        <div className={style.container}>
+          <div className={style.sideBar}>
+            <SideBar/>
           </div>
-          
+          <div className={style.component}>
+            <ApptHistory/>
+          </div>            
         </div>
-        
-
-    </div>
-  )
+      )
+    case 'payments':
+      return (
+        <div className={style.container}>
+          <div className={style.sideBar}>
+            <SideBar/>
+          </div>
+          <div className={style.component}>
+            <Payments/>
+          </div>            
+        </div>
+      )
+    case 'security':
+      return (
+        <div className={style.container}>
+          <div className={style.sideBar}>
+            <SideBar/>
+          </div>
+          <div className={style.component}>
+            <Security/>
+          </div>   
+        </div>
+      )    
+    default:
+      return
+  }
 }
 
 
