@@ -5,9 +5,10 @@ import { useParams } from 'react-router-dom'
 import ApptHistory from './ApptHistory/ApptHistory.jsx'
 import Payments from './Payments/Payments.jsx'
 import Security from './userSecurity/userSecurity.jsx'
+import SideBar from './SideBar.jsx'
 
 export default function ProfileUser () {
-  const {id, section} = useParams()
+  const {section} = useParams()
 
   switch (section) {
     case 'profile':

@@ -53,7 +53,7 @@ function App() {
         <Route path='/Formreview/:id' element={<Formreview />} /> 
         <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
         {/* <Route path='/userProfile/:section' element={<ProSidebarProvider><ProfileUser/></ProSidebarProvider>}/> */}
-        <Route path='/userProfile/:section/:id' element={<ProSidebarProvider><ProfileUser/></ProSidebarProvider>}/>
+        <Route path='/userProfile/:section' element={<ProSidebarProvider><ProfileUser/></ProSidebarProvider>}/>
         <Route path='*' element={<ErrorPage/>}/>
       
       </Routes>
