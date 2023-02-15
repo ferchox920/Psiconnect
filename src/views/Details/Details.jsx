@@ -35,7 +35,13 @@ export default function Details() {
   return (
       <div className={style.containdetails}>
           <div className={style.descriptionprof}>
-          <CardProfessional image = {user?.avatar}/>
+          <CardProfessional 
+          image = {professional?.avatar} 
+          name = {professional?.name} 
+          lastName = {professional?.lastName}
+          areas = {user?.areas?.map(el => el.area)}
+          skills = {user?.areas?.map(el => el.area)}
+          />
         
 
 

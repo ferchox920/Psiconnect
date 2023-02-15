@@ -17,6 +17,8 @@ import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
 
 
 function App() {
