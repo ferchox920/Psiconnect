@@ -30,6 +30,8 @@ const validationsForm = {
     avatar:(form)=>{
         if(!form.avatar){
             validationsForm.errors.avatar = 'Seleccione alguna imagen para su foto de perfil'
+        }else if(form.avatar.type.split('/')[0] !== 'image'){
+            validationsForm.errors.avatar = 'Seleccione una imagen valida'
         }else{
             delete validationsForm.errors.avatar
         }

@@ -20,7 +20,7 @@ import ProfileUser from "./views/ProfileUser/ProfileUser";
 import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Admin from "./views/Admin/Admin";
-
+//hola
 function App() {
   const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
@@ -57,7 +57,7 @@ function App() {
         <Route
           path="/professionalProfile/:section*"
           element={
-            <ProtectedRoute type={"prof"}>
+            <ProtectedRoute type={"professional"}>
               <ProSidebarProvider>
                 <ProfileProfessional />
               </ProSidebarProvider>
