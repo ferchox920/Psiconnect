@@ -57,7 +57,7 @@ function App() {
         <Route
           path="/professionalProfile/:section*"
           element={
-            <ProtectedRoute type={"prof"}>
+            <ProtectedRoute type={"professional"}>
               <ProSidebarProvider>
                 <ProfileProfessional />
               </ProSidebarProvider>
