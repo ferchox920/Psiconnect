@@ -112,7 +112,7 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
       {!loginProf && <div id="SignInDiv" style={{paddingTop:'10px'}} />}
 
       <NavLink to="/forgotpassword">
-        <h5>Olvidé mi contraseña</h5>
+        <h5>¿Has olvidado tu contraseña?</h5>
       </NavLink>
     </form>
   );

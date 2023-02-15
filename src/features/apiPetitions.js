@@ -268,3 +268,20 @@ export async function autoLoginAfterPostRegister(token){
    window.location.pathname='/';
    window.location.reload();
 }
+export async function getAllUser(state){
+  try {
+    const peticion = await axios.get('/user');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+export async function updateStatusToUsers(id){
+  try {
+    const peticion = await axios.put(`/admin/disable-user/${id}`);
+    successMessage(peticion.data)
+    return
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
