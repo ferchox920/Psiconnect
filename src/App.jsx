@@ -18,6 +18,7 @@ import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 
 function App() {
@@ -51,13 +52,27 @@ function App() {
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path='/Formreview/:id' element={<Formreview />} /> 
-        <Route path='/professionalProfile/:section' element={<ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>}/>
-        <Route path='/userProfile/profile/:id/:items' element={<ProfileUser/>}/>
-        <Route path='/userProfile/profile/:id/' element={<ProfileUser/>}/>
-        <Route path='*' element={<ErrorPage/>}/>
-      
+        <Route
+          path="/professionalProfile/:section*"
+          element={
+            <ProtectedRoute type={'prof'}>
+            <ProSidebarProvider><ProfileProfessional/></ProSidebarProvider>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/userProfile/:section*"
+          element={
+            <ProtectedRoute type={'prof'}>
+          <ProSidebarProvider><ProfileUser/></ProSidebarProvider>
+            </ProtectedRoute>
+          }
+        />
+        {/* Redirect to landing if don´t match */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
+      {pathname.split('/')[1] !== 'userProfile' &&   <Footer />}
       
       
     { user? <Chat /> : null}

@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import { useSelector } from 'react-redux'
-import putUserData from '../../features/apiPetitions.js'
+import putUserData from '../../../features/apiPetitions.js'
 import style from './UsersForm.module.css'
 import swal from "sweetalert";
 
@@ -129,7 +129,7 @@ export default function UsersForm (){
               type="text" 
               placeholder='Nombres' 
               name = 'name'
-              value = {users.name}
+              value = {users?.name}
               disabled
               onChange= {e => handleInputChanges(e)}
               />
@@ -139,7 +139,7 @@ export default function UsersForm (){
             type="text" 
             placeholder='Apellidos'
             name = 'lastName'
-            value = {users.lastName}
+            value = {users?.lastName}
             disabled
             onChange= {handleInputChanges} 
             />

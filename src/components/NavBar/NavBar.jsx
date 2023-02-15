@@ -69,7 +69,7 @@ export default function NavBar() {
                   onClick={() => {
                     user.rol !== "user"
                       ? navigate("/professionalProfile/profile")
-                      : navigate("/userProfile/profile");
+                      : navigate(`/userProfile/profile`);
                   }}
                 >
                   <h3 onClick={closeNav} className={style.navItem}>Mi perfil</h3>
@@ -112,7 +112,7 @@ export default function NavBar() {
                     }}
                   >
                     <MenuItem
-                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate(`/userProfile/profile/${user?.id}`) }}
+                      onClick={() => {user.rol ==='prof' ? navigate('/professionalProfile/profile') : navigate(`/userProfile/profile`) }}
                     >
                       Mi Perfil
                     </MenuItem>
