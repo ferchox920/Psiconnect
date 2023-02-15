@@ -62,13 +62,13 @@ export async function profUpdate({state, type, payload}){
     const petition= await axios.put('/professional/update/id', payload,{
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     } );
-    type === "local" ? state(petition?.data) : state(setUser({...petition?.data, rol: 'prof'}));
+    type === "local" ? state(petition?.data) : state(setUser(petition?.data));
     console.log(petition?.data)
     return petition
 
   } catch (error) {
      errorMenssage(error.response.data);
-    //throw new Error(error.response.data);
+    throw new Error(error.response.data);
   }
 }
 
@@ -77,8 +77,7 @@ export async function getProfByJWT({ state, type }) {
     const peticion = await axios.get("/professional/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
+    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
     console.log(error.response.data);
   }
@@ -104,21 +103,13 @@ export async function getAreas(state) {
   }
 }
 
- export async function getProfessionalByAreas({ state, type, area }) {
-  try {
-    const peticion = await axios.get("/areas/onlyAreas");
-    state(peticion.data);
-  } catch (error) {
-    return error.response;
-  }
-}
 export async function getUserByJWT({ state, type }) {
   try {
     const peticion = await axios.get(`/user/id`, {
     
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'user'}));
+    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
 
   } catch (error) {
     console.log(error.response.data);

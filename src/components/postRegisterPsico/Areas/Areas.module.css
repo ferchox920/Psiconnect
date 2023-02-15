@@ -1,0 +1,15 @@
+.errorsSelect{
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+    border-color: rgb(223, 5, 5);
+}
+.select{
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+}
