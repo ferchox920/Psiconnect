@@ -1,0 +1,89 @@
+.divContainerImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50rem;
+    height: 16rem;
+}
+.divAvatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.avatar{
+    object-fit: cover;
+    object-position: center;
+    image-resolution: 720px;
+    width:15rem;
+    height: 14.6rem;
+    border-radius: 100%;
+    border: 6px solid rgb(109, 176, 179);
+    border-style: solid;
+    box-shadow: 0px 0px 12px #dbdbdb;
+    background-image: url("https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1");
+    background-size: 108%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.divInputsImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+}
+.inputAvatarError{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0px 0px 10px #dbdbdb;
+    border-radius: 10rem;
+    width: auto;
+    max-width: max-content;
+    font-size: medium;
+    font-family: 'Poppins', sans-serif;
+    width: 25rem;
+    border: 1px solid rgb(223, 5, 5);
+    color: rgb(223, 5, 5);
+    transition: transform .5s, color .5s, background-color .5s, border .5s ;
+}
+.inputAvatarError:hover{
+    transform: translate(0px, -10px);
+}
+.inputImage{
+    border:1px solid cadetblue;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    color: cadetblue;
+    background-color: white;
+    box-shadow: 0px 0px 10px #dbdbdb;
+    border-radius: 10rem;
+    transition: transform .5s, color .5s, background-color .5s, border .5s ;
+    width: auto;
+    max-width: max-content;
+}
+.inputImage:hover{
+    transform: translate(0px, -10px);
+    color: white;
+    background-color: cadetblue;
+    box-shadow: 0px 0px 10px #dbdbdb, inset 0px 0px 0px #dbdbdb;
+}
+.inputImageDisabled{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: gray;
+    background-color: white;
+    border: 1px solid gray;
+    box-shadow: none;
+    width: auto;
+}
+.inputImageDisabled:hover{
+box-shadow: none;
+}
