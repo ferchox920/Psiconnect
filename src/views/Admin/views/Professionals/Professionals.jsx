@@ -3,15 +3,13 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 // import Header from "../../AdminComponents/Headers";
 import { useNavigate } from "react-router-dom";
-import { getAllUser, updateStatusToUsers } from "../../../../features/apiPetitions";
+import { getAllProfessionals, updateStatusToUsers } from "../../../../features/apiPetitions";
 
-export default function Users() {
+export default function Professionals() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllUser(setData);
+    getAllProfessionals(setData);
   }, []);
-  const navigate = useNavigate();
-
   const columns = [
     { field: "id", headerName: "ID" },
     {

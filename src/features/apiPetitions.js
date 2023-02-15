@@ -276,6 +276,14 @@ export async function getAllUser(state){
     errorMenssage(error.response.data);
   }
 }
+export async function getAllProfessionals(state){
+  try {
+    const peticion = await axios.get('/professional');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
 export async function updateStatusToUsers(id){
   try {
     const peticion = await axios.put(`/admin/disable-user/${id}`);
