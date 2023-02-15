@@ -38,7 +38,7 @@ export default function RegisterUser({ closeModal }) {
       })
       .then(() =>
         swal({
-          title: "Good job!",
+          title: "Se ha registrado correctamente!",
           text: `Bienvenido ${googleRegister.name}`,
           icon: "success",
         })
@@ -86,7 +86,7 @@ export default function RegisterUser({ closeModal }) {
       })
       .then(() =>
         swal({
-          title: "Good job!",
+          title: "Se ha registrado correctamente!",
           text: `Bienvenido ${form.name}`,
           icon: "success",
         })

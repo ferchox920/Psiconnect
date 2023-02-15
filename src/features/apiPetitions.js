@@ -16,7 +16,8 @@ export async function userRegister(body) {
 export async function professionalRegister(body) {
   try {
     const request = await axios.post("/professional/register", body);
-    successMessage('En breves le llegara un mail')
+    successMessage('En breves le llegara un mail').then(e => window.location.pathname = '/');
+
     return request;
   } catch (error) {
     errorMenssage(error.response.data);
@@ -61,13 +62,13 @@ export async function profUpdate({state, type, payload}){
     const petition= await axios.put('/professional/update/id', payload,{
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     } );
-    type === "local" ? state(petition?.data) : state(setUser({...petition?.data, rol: 'prof'}));
+    type === "local" ? state(petition?.data) : state(setUser(petition?.data));
     console.log(petition?.data)
     return petition
 
   } catch (error) {
      errorMenssage(error.response.data);
-    //throw new Error(error.response.data);
+    throw new Error(error.response.data);
   }
 }
 
@@ -76,8 +77,7 @@ export async function getProfByJWT({ state, type }) {
     const peticion = await axios.get("/professional/id", {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'prof'}));
+    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
     console.log(error.response.data);
   }
@@ -103,21 +103,13 @@ export async function getAreas(state) {
   }
 }
 
- export async function getProfessionalByAreas({ state, type, area }) {
-  try {
-    const peticion = await axios.get("/areas/onlyAreas");
-    state(peticion.data);
-  } catch (error) {
-    return error.response;
-  }
-}
 export async function getUserByJWT({ state, type }) {
   try {
     const peticion = await axios.get(`/user/id`, {
     
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
-    type === "local" ? state(peticion?.data) : state(setUser({...peticion?.data, rol: 'user'}));
+    type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
 
   } catch (error) {
     console.log(error.response.data);
@@ -240,12 +232,12 @@ export async function getUserById(userID, state){
   }
 }
 
-export async function postRegisterProfesional(body){
+export async function postRegisterProfesional(body,token){
   try{
     const request = await axios.put('/professional/descriptionProfesional', body,{
         headers: { pos: `Bearer ${token}` },
     });
-    return request.data
+    return request
   }catch(error){
     return error
   }
@@ -270,3 +262,45 @@ export default async function putUserData(body) {
 
 
 // }
+
+export async function autoLoginAfterPostRegister(token){
+   localStorage.setItem("profTkn", token);
+   window.location.pathname='/';
+   window.location.reload();
+}
+export async function getAllUser(state){
+  try {
+    const peticion = await axios.get('/user');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+export async function getAllProfessionals(state){
+  try {
+    const peticion = await axios.get('/professional');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+export async function updateStatusToUsers(id){
+  try {
+    const peticion = await axios.put(`/admin/disable-user/${id}`);
+    successMessage(peticion.data)
+    return
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data)
+  }
+}
+export async function updateStatusToProfessional(id){
+  try {
+    const peticion = await axios.put(`/admin/disable-professional/${id}`);
+    successMessage(peticion.data.message)
+    return peticion.data.state;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data)
+  }
+}
