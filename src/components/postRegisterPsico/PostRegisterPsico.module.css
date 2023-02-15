@@ -6,31 +6,6 @@
     margin-top:10rem; 
     margin-bottom:8rem;
 }
-.form{
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    border-left: 2px solid rgb(109, 155, 157);
-    border-right: 2px solid rgb(109, 155, 157);
-    border-top:0px;
-    border-bottom: 0px;
-    border-style: dotted;
-    background: linear-gradient( 254deg, rgba(255, 255, 255, 1) 9%, rgba(234, 242, 227, 1) 96%)
-}
-.inputs{
-    font-size: medium;
-    font-family: 'Poppins', sans-serif;
-    width: 25rem;
-    box-shadow: 0px 0px 10px #dbdbdb;
-}
-.inputsErrors{
-    font-size: medium;
-    font-family: 'Poppins', sans-serif;
-    width: 25rem;
-    border: 1px solid red;
-    box-shadow: none;
-    margin: 0px;
-}
 
 .p{
     color:cadetblue;
@@ -45,87 +20,7 @@
     font-size: 1.4rem;
     margin: 2.5rem 0px 0rem 0px;
 }
-.labelInicio{
-    text-align: center;
-    width: 100%;
-    border-radius: 5rem;
-    font-weight: 500;
-    font-size: 1.4rem;
-    margin-top: 1rem;
-}
-.inputImage{
-    border:1px solid cadetblue;
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    color: cadetblue;
-    background-color: white;
-    box-shadow: 0px 0px 10px #dbdbdb;
-    border-radius: 10rem;
-    transition: transform .5s, color .5s, background-color .5s, border .5s ;
-    width: auto;
-    max-width: max-content;
-}
-.inputImage:hover{
-    transform: translate(0px, -10px);
-    color: white;
-    background-color: cadetblue;
-    box-shadow: 0px 0px 10px #dbdbdb, inset 0px 0px 0px #dbdbdb;
-}
-.inputImageDisabled{
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    color: gray;
-    background-color: white;
-    border: 1px solid gray;
-    box-shadow: none;
-    width: auto;
-}
-.inputImageDisabled:hover{
-box-shadow: none;
-}
-.divContainerImg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50rem;
-    height: 16rem;
-}
-.divInputsImage{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 50%;
-}
-
-.avatar{
-    object-fit: cover;
-    object-position: center;
-    image-resolution: 720px;
-    width:15rem;
-    height: 14.6rem;
-    border-radius: 100%;
-    border: 6px solid rgb(109, 176, 179);
-    border-style: solid;
-    box-shadow: 0px 0px 12px #dbdbdb;
-    background-image: url("https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1");
-    background-size: 108%;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.divAvatar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.divSkills{ 
+.divContainerMapCards{ 
     margin-top: 1rem;
     width: auto;
     height: auto;
@@ -138,7 +33,7 @@ box-shadow: none;
     outline: none;
     box-shadow: 0px 0px 12px #dedede;
 }
-.skillsDivSpan{
+.divContainerCard{
     background-color: white;
     display: flex;
     align-items: center;
@@ -149,7 +44,7 @@ box-shadow: none;
     border-radius: 0.5rem 1rem 1rem 1.3rem;
     transition: transform .5s;
 }
-.skillsSpanX{
+.xSpanCard{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,130 +59,14 @@ box-shadow: none;
     border: 1px solid red;
     background-color: white;
 }
-.skillsSpanX:hover{
+.xSpanCard:hover{
     color:white;
     border: 1px solid red;
     background-color: red;
-}
-.containerDescription{
-    padding: 1rem;
-    width: 65%;
-    height: 19rem;
-    border-radius: 1rem;
-    background-color: white;
-    box-shadow: 0px 0px 12px #dedede;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.description{
-    object-fit: contain;
-    min-width: 99%;
-    max-width: 99%;
-    min-height: 100%;
-    max-height: 100%; 
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-size:medium;
-    font-family: 'Poppins', sans-serif;
-    border: none;
-    border-radius: 1rem;
-    padding: 1rem;
-    margin: 1rem;
-}
-.select{
-    border-radius: 1rem;
-    font-family: 'Poppins', sans-serif;
-    width: auto;
-    text-align: center;
-    cursor: pointer;
-}
-.inputSubmit{
-    margin-top: 5%;
-    width: 8rem;
-    border-radius: 10rem;
-    font-size: medium;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    color: cadetblue;
-    border:1px solid cadetblue;
-    background-color: white;
-    box-shadow: 0px 0px 10px #dbdbdb;
-    transition: transform .5s, color .5s, background-color .5s, border .5s ;
-}
-.inputSubmit:hover{
-    transform: translate(0px, -10px);
-    color: white;
-    background-color: cadetblue;
-    box-shadow: none;
 }
 .errorsText{
     text-align: start;
     font-family: 'Poppins', sans-serif;
     color: rgb(223, 5, 5);
     margin-bottom: 8px;
-}
-.inputAvatarError{
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    background-color: white;
-    box-shadow: 0px 0px 10px #dbdbdb;
-    border-radius: 10rem;
-    width: auto;
-    max-width: max-content;
-    font-size: medium;
-    font-family: 'Poppins', sans-serif;
-    width: 25rem;
-    border: 1px solid rgb(223, 5, 5);
-    color: rgb(223, 5, 5);
-    transition: transform .5s, color .5s, background-color .5s, border .5s ;
-}
-.inputAvatarError:hover{
-    transform: translate(0px, -10px);
-}
-.errorsDescription{
-    width: 65%;
-    text-align: start;
-    font-family: 'Poppins', sans-serif;
-    color: rgb(223, 5, 5);
-}
-.errorsDescriptionContainer{
-    width: 65%;
-    height: 19rem;
-    border-radius: 1rem;
-    background-color: white;
-    box-shadow: 0px 0px 12px #dedede;
-    overflow: hidden;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgb(223, 5, 5);
-}
-.errorsSelect{
-    border-radius: 1rem;
-    font-family: 'Poppins', sans-serif;
-    width: auto;
-    text-align: center;
-    cursor: pointer;
-    border-color: rgb(223, 5, 5);
-}
-.inputSubmitDisabled{
-    margin-top: 5%;
-    width: 8rem;
-    border-radius: 10rem;
-    font-size: medium;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    color: gray;
-    border:1px solid gray;
-    background-color: white;
-    box-shadow: 0px 0px 10px #dbdbdb;
-}
-.inputSubmitDisabled:hover{
-    box-shadow: 0px 0px 10px #dbdbdb;
 }
