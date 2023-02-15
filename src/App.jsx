@@ -67,7 +67,7 @@ function App() {
         <Route
           path="/userProfile/:section*"
           element={
-            <ProtectedRoute type={"prof"}>
+            <ProtectedRoute type={"user"}>
               <ProSidebarProvider>
                 <ProfileUser />
               </ProSidebarProvider>
