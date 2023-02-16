@@ -67,7 +67,7 @@ export default function Areas() {
               display="flex"
               justifyContent="center"
               onClick={() =>
-                navigate(`/dashboard/editProduct/${params.row.id}`)
+                navigate(`/admin/edit-area/${params.row.id}`)
               }
               backgroundColor={"#ffa8b6"}
               border="2px solid black"

@@ -3,16 +3,13 @@ import {
   } from "@mui/material";
 import FormArea from "../../Components/FormArea";
 import Header from "../../Components/Header";
+import { createArea } from "../../feutures/apiPetitions";
   
   
   const initialValues = {
-    titulo: "",
-    detalle: "",
-    precio: "",
-    stock: "",
-    categorias: [],
-    Marcas: [],
-    imagen: "",
+    image: "",
+    area: "",
+    description: "",
   };
   
   const CreateArea = () => {
@@ -21,7 +18,7 @@ import Header from "../../Components/Header";
       <Box m="20px">
         <Header title="CREATE AREA" subtitle="Create a New Area" />
   
-        <FormArea apiPetition={()=> console.log('sad')}   initialValues={initialValues} text={'Create a New Area'}
+        <FormArea apiPetition={createArea}   initialValues={initialValues} text={'Create a New Area'}
          />
       </Box>
     );

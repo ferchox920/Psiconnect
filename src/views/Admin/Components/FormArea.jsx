@@ -1,4 +1,3 @@
-import { Box, Button, MenuItem, TextField } from "@mui/material";
 import { useState } from "react";
 import validate from "./validate";
 import { errorMenssage } from "../../../features/errorsModals";
@@ -12,27 +11,29 @@ const FormArea = ({ initialValues, apiPetition, text }) => {
   const [previewSource, setPreviewSource] = useState(initialValues.image);
   const [selectedFile, setSelectedFile] = useState();
 
-  const handleFormSubmit = async () => {
-    if (Object.keys(error).length)
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (false)
       return errorMenssage(`${Object.values(error)[0]}`);
     if (previewSource === initialValues.image)
       return await apiPetition(values);
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
     reader.onloadend = async () => {
-        console.log(reader.result);
-      await apiPetition({ ...values, image: reader.result });
+      await apiPetition({ ...values, image: reader.result});
     };
   };
   const handleChange = (e) => {
+    console.log(values);
+
     setvalues({
       ...values,
       [e.target.name]: e.target.value,
     });
-    setError(validate({
-        ...values,
-        [e.target.name]: e.target.value,
-      }));
+    // setError(validate({
+    //     ...values,
+    //     [e.target.name]: e.target.value,
+    //   }));
   };
   const previewFile = (file) => {
     const reader = new FileReader();
@@ -61,7 +62,7 @@ const FormArea = ({ initialValues, apiPetition, text }) => {
       <div className={style.divAvatar}>
         <img
           className={style.avatar}
-          src={previewSource}
+          src={previewSource || values.image}
           alt="imgAvatar"
         />
       </div>
@@ -77,8 +78,8 @@ const FormArea = ({ initialValues, apiPetition, text }) => {
     <input
       className={error.linkedin ? style.inputError : style.inputs}
       type="text"
-      name="linkedin"
-      value={values.linkedin}
+      name="area"
+      value={values.area}
       placeholder="nombre de area..."
       onChange={handleChange}
     />
