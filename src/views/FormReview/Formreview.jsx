@@ -8,24 +8,6 @@ import { CheckCircle, InputRounded, Label } from '@mui/icons-material';
 export default function Formreview  () {
 
 
-    const scaleScore = [
-      {label : 'Puntualidad',
-       deficiente : 1,
-       regular : 2,
-       bueno: 3
-      },
-
-      
-      
-    ]
-
-
-    
-
-    
-  
-
-
 
   return (
 
