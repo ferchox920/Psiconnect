@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux'
 import putUserData from '../../../features/apiPetitions.js'
 import style from './UsersForm.module.css'
 import swal from "sweetalert";
-
+import { useParams } from 'react-router-dom'
 
 export default function UsersForm (){
 
     const users = useSelector((state) => state.user.user)
     const [ file, setFile ] = useState(null)
     const [urlImage, setUrlImage] = useState(null)
+    const {id} = useParams()
     
 
     const [ error, setError ] = useState({
@@ -79,7 +80,6 @@ export default function UsersForm (){
 
 
     const handledChangeImage = (e) => {
-      if(e.target.file[0]) return
       setInput ({
         ...input,
         image : ''
@@ -88,19 +88,9 @@ export default function UsersForm (){
       img.value = ''
     }
 
-      // const newForm = new FormData()
-      // formData.append('imageUser' , file) //recibe el nombre con el que se va a almacenar la imagen y el archivo
-
-      // const result = await axios.post('img/upload', formData)
-      // setUrlImage(result.data.urlImage) 
-
-      // return newForm
-
     }
 
-    // const handleFileChange = (e) => {
-    //   setFile(e.target.files[0]);
-    // };
+   
 
 
 

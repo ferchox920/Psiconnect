@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../features/firebase/chatsFeatures";
 import AllChats from "./AllChats";
@@ -7,6 +8,10 @@ import chat from '../../assets/chat.svg'
 import Message from "./Message";
 
 export default function Chat({}) {
+  const {id} = useParams()
+  console.log(id, 'id')
+  const location = useLocation()
+  console.log(location, 'ubicacion')
   const [message, setMessage] = useState("");
   const messages = useSelector((state) => state.chats.chat);
   const anchor = useRef();
@@ -31,8 +36,8 @@ export default function Chat({}) {
 
   if(!open){
     return(
-      <div className={style.containerChatFloat} onClick={()=>setOpen(true)}>
-        <img src={chat} alt="chat" />
+      <div className = {location.pathname === `/Details/${id}`? style.containerChatFloat :  style.containerChatFloatfixed } onClick={()=>setOpen(true)}> 
+        <img  className = {location.pathname === `/Details/${id}`? style.imageChatFloat :  null} src={chat} alt="chat" />
       </div>
     )
   }
