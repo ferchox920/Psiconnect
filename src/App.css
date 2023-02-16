@@ -13,7 +13,7 @@
   --yellow: #fff87f;
   --oyster: #eaf2e3;
   --aquamarine: #66d7d1;
-  --pink: rgb(255, 168, 182);
+  --pink: #ffa8b6;
   --cream: #f4f1bb;
   --white: #fff;
   --cadetblue: #5f9ea0;
@@ -27,10 +27,25 @@ body {
   padding: 0;
   margin: 0;
   margin-top: 90px;
-  background: linear-gradient(
-    254deg,
-    rgba(255, 255, 255, 1) 9%,
-    rgba(234, 242, 227, 1) 96%,
-    rgba(217, 217, 217, 1) 100%
-  );
+  background: linear-gradient(180deg, #f4f1bba9 0%, #f5f3d47d 90%);
+
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--cream)
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:var(--cadetblue)
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:rgb(95, 158, 170);
+  cursor: pointer;
 }
