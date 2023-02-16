@@ -7,11 +7,13 @@ import {
   userLoginByGoogle,
 } from "../../features/apiPetitions.js";
 import { validationsForm } from "./validate.js";
-import { spanError, inputError } from "./LoginUser.module.css";
+import { spanError, inputError, linkToForgetPass } from "./LoginUser.module.css";
 import style from "./LoginUser.module.css";
 import swal from "sweetalert";
 import { useDispatch } from "react-redux";
 import { submitHandler, submitHandlerProf } from "./submits.js";
+import InputEmail from "./InputEmail/InputEmail.jsx";
+import FormForgotPass from "./FormForgotPass/FormForgotPass.jsx";
 
 export default function LoginUser({ closeModal, loginProf, setloginProf }) {
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
     email: "",
     password: "",
   });
-
+  const [ switchForgotPass, SetSwitchForgotPass ] = useState(false)
  
 
   async function handleCredentialResponse(response) {
@@ -74,6 +76,10 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
     );
   };
   return (
+    switchForgotPass?
+    <FormForgotPass 
+    SetSwitchForgotPass={SetSwitchForgotPass} />
+    :
     <form
       onSubmit={
         loginProf
@@ -88,15 +94,11 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
         <input type="checkbox" onClick={() => setloginProf(!loginProf)} />
         <span className={style.slider}></span>
       </label>
-
-      <input
-        type="text"
-        value={form.email}
-        name="email"
-        placeholder="Correo electrónico"
-        onChange={changeHandler}
-        className={errors.email ? inputError : null}
-      />
+      
+      <InputEmail 
+      form={form} 
+      changeHandler={changeHandler} 
+      errors={errors}/>
 
       <input
         type="password"
@@ -111,9 +113,7 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
       <input type="submit" value="Iniciar sesion" />
       {!loginProf && <div id="SignInDiv" style={{paddingTop:'10px'}} />}
 
-      <NavLink to="/forgotpassword">
-        <h5>¿Has olvidado tu contraseña?</h5>
-      </NavLink>
+        <h5 className={linkToForgetPass} onClick={SetSwitchForgotPass} >¿Has olvidado tu contraseña?</h5>
     </form>
   );
 }

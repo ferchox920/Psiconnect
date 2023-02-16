@@ -1,11 +1,11 @@
-import { inputs, inputsDiv, iconDiv, icons, inputsDivError, spanError } from './Inputs.module.css'  
+import { inputs, inputsDiv, iconDiv, icons, inputsDivError, spanError } from './InputsPasswords.module.css'  
 import { useState } from 'react';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 
-const Inputs = ({state, errors, handleInputChange}) => {
+const InputsPasswords = ({state, errors, handleInputChange}) => {
 
 const [ passVisibility,  setPassVisibility ] = useState(false)
 const [ repeatVisibility,  setRepeatVisibility ] = useState(false)
@@ -62,5 +62,5 @@ const visibilityPass = (isPass) =>{
     )
 }
         
-export default Inputs;
+export default InputsPasswords;
           
