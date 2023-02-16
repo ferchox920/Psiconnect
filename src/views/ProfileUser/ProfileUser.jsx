@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import ApptHistory from './ApptHistory/ApptHistory.jsx'
 import Payments from './Payments/Payments.jsx'
 import SideBar from './SideBar.jsx'
-import Security from './userSecurity/userSecurity'
 
 export default function ProfileUser () {
   const {section} = useParams()
@@ -44,17 +43,17 @@ export default function ProfileUser () {
           </div>            
         </div>
       )
-    // case 'security':
-    //   return (
-    //     <div className={style.container}>
-    //       <div className={style.sideBar}>
-    //         <SideBar/>
-    //       </div>
-    //       <div className={style.component}>
-    //         <Security />
-    //       </div>   
-    //     </div>
-    //   )    
+    case 'security':
+      return (
+        <div className={style.container}>
+          <div className={style.sideBar}>
+            <SideBar/>
+          </div>
+          <div className={style.component}>
+            <Security />
+          </div>   
+        </div>
+      )    
     default:
       return
   }
