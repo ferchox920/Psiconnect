@@ -44,17 +44,17 @@ export default function ProfileUser () {
           </div>            
         </div>
       )
-    case 'security':
-      return (
-        <div className={style.container}>
-          <div className={style.sideBar}>
-            <SideBar/>
-          </div>
-          <div className={style.component}>
-            <Security />
-          </div>   
-        </div>
-      )    
+    // case 'security':
+    //   return (
+    //     <div className={style.container}>
+    //       <div className={style.sideBar}>
+    //         <SideBar/>
+    //       </div>
+    //       <div className={style.component}>
+    //         <Security />
+    //       </div>   
+    //     </div>
+    //   )    
     default:
       return
   }
