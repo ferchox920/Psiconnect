@@ -4,8 +4,7 @@ import Home from "./views/Home/Home";
 import Details from "./views/Details/Details";
 import Professionals from "./views/Professionals/Professionals";
 import NavBar from "./components/NavBar/NavBar";
-
-import Formreview from "./views/FormReview/Formreview.jsx";
+import Formreview from './views/FormReview/Formreview.jsx'
 import Footer from "./components/Footer/Footer.jsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,10 +16,12 @@ import ProfileProfessional from "./views/ProfileProfessional/ProfileProfessional
 import Chat from "./components/Chat/Chat";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import ProfileUser from "./views/ProfileUser/ProfileUser";
-import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Admin from "./views/Admin/Admin";
-//hola
+
+
+
 function App() {
   const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
@@ -87,11 +88,11 @@ function App() {
         {/* Redirect to landing if don´t match */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+    
       {pathname.split("/")[1] !== "professionalProfile" &&
-        pathname.split("/")[1] !== "userProfile" &&
-        pathname.split("/")[1] !== "admin" && <Footer />}
-
-      {user ? <Chat /> : null}
+      pathname.split("/")[1] !== "userProfile" &&
+      pathname.split("/")[1] !== "admin" && 'Details' && <Footer />}
+      {pathname.split('/')[1] !== 'Details' && user && user.rol !== 'admin'? <Chat />  : null}
     </>
   );
 }

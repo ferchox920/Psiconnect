@@ -8,16 +8,20 @@ import style from './admin.module.css'
 import { useParams } from 'react-router-dom'
 import SideBar from './Sidebar'
 import Users from './views/User/User'
+import Professionals from './views/Professionals/Professionals'
+import Reviews from './views/Reviews/Reviews'
+import Payments from './views/Payments/Paymets'
+import Consults from './views/Consults/Consults'
+import Areas from './views/Areas/Areas'
 
 function Section({section}){
     switch (section) {
         case 'users': return <Users />
-        case 'professionals':return <div>{section}</div>
-        case 'skills':return<div>{section}</div>
-        case 'reviews':return<div>{section}</div>
-        case 'payments':return<div>{section}</div>
-        case 'consults':return<div>{section}</div>
-        case 'areas':return<div>{section}</div>
+        case 'professionals':return <Professionals />
+        case 'reviews':return<Reviews />
+        case 'payments':return <Payments />
+        case 'consults':return <Consults />
+        case 'areas':return<Areas />
         
         default:
           return
