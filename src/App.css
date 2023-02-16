@@ -31,7 +31,7 @@ body {
 
 }
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 /* Track */
@@ -41,7 +41,8 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:var(--cadetblue)
+  background:var(--cadetblue);
+  border-radius: 10px;
 }
 
 /* Handle on hover */

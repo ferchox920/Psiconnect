@@ -43,7 +43,7 @@ export default function ProfileUser () {
           </div>            
         </div>
       )
-  
+
     default:
       return
   }

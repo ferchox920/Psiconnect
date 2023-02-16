@@ -80,6 +80,26 @@ export async function updateStatusToAreas(id) {
     throw new Error(error.response.data);
   }
 }
+export async function createArea(body) {
+  try {
+    const peticion = await axios.post(`/admin/create-area`,body);
+    successMessage(peticion.data);
+    return;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function editArea(body) {
+  try {
+    const peticion = await axios.put(`/admin/edit-area/${body.id}`,body);
+    successMessage(peticion.data);
+    return;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
 export async function updateStatusToProfessional(id) {
   try {
     const peticion = await axios.put(`/admin/disable-professional/${id}`);

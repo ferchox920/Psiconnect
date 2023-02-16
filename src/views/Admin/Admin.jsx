@@ -1,9 +1,4 @@
 import React from 'react'
-// import ProfileForm from './Form/Form'
-// import Incomes from './Incomes/Incomes'
-// import Arrangements from './Arrangements/Arrangements'
-// import Security from './Security/Security'
-
 import style from './admin.module.css'
 import { useParams } from 'react-router-dom'
 import SideBar from './Sidebar'
@@ -13,15 +8,19 @@ import Reviews from './views/Reviews/Reviews'
 import Payments from './views/Payments/Paymets'
 import Consults from './views/Consults/Consults'
 import Areas from './views/Areas/Areas'
+import CreateArea from './views/Data/createArea'
+import EditArea from './views/Data/editArea'
 
 function Section({section}){
     switch (section) {
         case 'users': return <Users />
         case 'professionals':return <Professionals />
+        case 'areas':return<Areas />
         case 'reviews':return<Reviews />
         case 'payments':return <Payments />
         case 'consults':return <Consults />
-        case 'areas':return<Areas />
+        case 'create-area':return <CreateArea />
+        case 'edit-area':return <EditArea />
         
         default:
           return

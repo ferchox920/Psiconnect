@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 // import Header from "../../AdminComponents/Headers";
 import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
 import { deleteProfessionals, getAllProfessionals, updateStatusToProfessional } from "../../feutures/apiPetitions";
+import Header from "../../Components/Header";
 
 export default function Professionals() {
   const [data, setData] = useState([]);
@@ -122,7 +123,7 @@ export default function Professionals() {
 
   return (
     <Box m="20px">
-      {/* <Header title="Users" subtitle="Managing the Users" /> */}
+      <Header title="Professional" subtitle="Managing the Professional" />
       <Box
         m="40px 0 0 0"
         height="75vh"
