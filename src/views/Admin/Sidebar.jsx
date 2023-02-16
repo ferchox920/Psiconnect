@@ -7,7 +7,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 export default function SideBar() {
   const user = useSelector((store) => store.user.user)
-  
   const {section} = useParams()
   const navigate = useNavigate()
   return (
@@ -52,10 +51,13 @@ export default function SideBar() {
                 alt={user.name}>
               </Avatar>
             }
-            <MenuItem onClick={() => navigate('/professionalProfile/profile')} active={section === 'profile' ? true : false}> Perfil </MenuItem>
-            <MenuItem onClick={() => navigate('/professionalProfile/arrangements')} active={section === 'arrangements' ? true : false}> Citas </MenuItem>
-            <MenuItem onClick={() => navigate('/professionalProfile/incomes')} active={section === 'incomes' ? true : false}> Ingresos </MenuItem>
-            <MenuItem onClick={() => navigate('/professionalProfile/security')} active={section === 'security' ? true : false}> Seguridad </MenuItem>
+            <MenuItem onClick={() => navigate('/admin/users')} active={section === 'users' ? true : false}> Usuarios </MenuItem>
+            <MenuItem onClick={() => navigate('/admin/professionals')} active={section === 'professionals' ? true : false}> Profesionales </MenuItem>
+            <MenuItem onClick={() => navigate('/admin/areas')} active={section === 'areas' ? true : false}> Areas </MenuItem>
+            <MenuItem onClick={() => navigate('/admin/skills')} active={section === 'skills' ? true : false}> Skills </MenuItem>
+            <MenuItem onClick={() => navigate('/admin/reviews')} active={section === 'reviews' ? true : false}> Reviews </MenuItem>
+            <MenuItem onClick={() => navigate('/admin/payments')} active={section === 'payments' ? true : false}> Ingresos </MenuItem>
+            <MenuItem onClick={() => navigate('/admin/consults')} active={section === 'consults' ? true : false}> Citas </MenuItem>
         </Menu>
     </Sidebar>
   )

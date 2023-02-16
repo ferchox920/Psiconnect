@@ -1,51 +1,41 @@
-import React from 'react'
-import style from './ApptHistory.module.css'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import Calendary from '../../../components/Calendary/Calendary'
+import { getUserConsults, getUserById } from '../../../features/apiPetitions'
+import style from './ApptHistory.module.css'
+import Card from './Card/Card'
+//sb-5wib4725027012@personal.example.com
+//IR%T%Ms4
 
 
+export default function ApptHistory() {
 
-export default function ApptHistory () {
-    const users = useSelector((state) => state.user.user)
-    console.log(users, 'aqui')
+  const [consults, setConsults] = useState()
+  const userId = useSelector((store) => store.user.user.id)
 
-   
-
+  useEffect(() => {
+    getUserConsults(userId, setConsults)
+  }, [])
 
   return (
-    <div className = {style.container}>
-        <div className = {style.sidebarcontainer}>
-            <div className={style.sidebar}>
-                <div className = {style.avatar}>
-                    <img src={users?.avatar} alt = '' className={style.userAvatar}/>
-                </div>
-                <h1 className = {style.username}>{`${users?.name} ${users?.lastName}`}</h1>
-                <div className={style.menusideBar}>
-                    <div className={style.itemssidebar}>
-                        <NavLink to='/userProfile/profile/:id'>
-                            <button className={style.buttonitems}>Perfil</button>
-                        </NavLink>             
-                    </div>
-                    <div className={style.itemssidebar}>
-                        <button className={style.buttonitems}>Historial de consultas</button>
-                    </div>
-                    <div className={style.itemssidebar}>
-                        <NavLink to='/userProfile/profile/pagos'>
-                            <button className={style.buttonitems}>Historial de pagos</button>
-                        </NavLink>              
-                    </div>
-                    <div className={style.itemssidebar}>
-                        <NavLink to='/userProfile/profile/seguridad'>
-                            <button className={style.buttonitems}>Seguridad</button>
-                        </NavLink>              
-                    </div>
-                </div>
+    <div className={style.container}>
+      <div className={style.consultsContainer}>
+        <h1 className={style.title}>Esta es tu lista de consultas completadas y/o pendientes:</h1>
+      </div>
+      <div className={style.box}>
+        {consults && 
+        consults.map((c, i) => {
+          return(
+            <div className={style.consult}>
+              <Card key={i} consult={c}/>
             </div>
-        </div>
-
-        <div className={style.message}>
-            Aqui va el historial de consultas del paciente
-        </div>
+          )
+        })
+        }
+      </div>
+      {/* <div className={style.calendary}>
+        <Calendary/>
+      </div> */}
     </div>
   )
 }
