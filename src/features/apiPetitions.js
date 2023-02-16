@@ -287,9 +287,22 @@ export async function updateStatusToUsers(id){
 }
 
 export async function verifyTokenForgotPassword(token){
-  try{}catch(err){}
-const reques = axios.get('/professional/token/forgetPassword',{
-
-})
-
+  try {
+    const request = await axios.get('/professional/token/forgetPassword',{
+      headers: { reset: `Bearer ${token}` },
+    });
+    return request
+  } catch (error) {
+    return error
+  }
+}
+export async function forgotPassword(token, body){
+  try{
+    const request = await axios.put('/professional/ChangePasswordForget', body, {
+       headers:{ reset : `Bearer ${token}` }
+  });
+    return  request
+  }catch(err){
+    return err
+  }
 }

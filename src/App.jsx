@@ -43,11 +43,13 @@ function App() {
     <>
       <NavBar />
       <Routes>
+        <Route 
+          path='/ChangeForgetPassword' 
+          element={<ForgotPassword />}/>
         <Route
           path="/profesional/postRegister"
           element={<PostRegisterPsico />}
         />
-        <Route path='/ChangeForgetPassword' element={<ForgotPassword />}/>
         <Route path="/" element={<Home />} />
         <Route path="/Asistencia" element={<Asistencia />} />
         <Route path="/registerProfesional" element={<RegisterProfesional />} />
