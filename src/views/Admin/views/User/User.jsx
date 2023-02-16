@@ -3,7 +3,8 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 // import Header from "../../AdminComponents/Headers";
 import { useNavigate } from "react-router-dom";
-import { getAllUser, updateStatusToUsers } from "../../../../features/apiPetitions";
+import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
+import { getAllUser, updateStatusToUsers } from "../features/apiPetitions";
 
 export default function Users() {
   const [data, setData] = useState([]);
@@ -45,8 +46,8 @@ export default function Users() {
       cellClassName: "name-column--cell",
     },
     {
-      headerName: "Disable",
-      flex: 1,
+      headerName:'Actions',
+      flex: 2.2,
       renderCell: (params) => {
       
         return (<Box gap="12px" display="flex">
@@ -69,6 +70,21 @@ export default function Users() {
           >
             <Typography sx={{ ml: "5px" }}>{ params.row.state?'Disable':'Enable'}</Typography>
           </Box>
+          <Box
+             sx={{
+              cursor: "pointer",
+            }}
+              width="60px"
+              m="0 auto"
+              p="5px"
+              display="flex"
+              justifyContent="center"
+              onClick={() => console.log('sad')}
+              backgroundColor="red"
+              borderRadius="4px"
+            >
+              <DeleteSweepOutlinedIcon style={{ scale: "110%" }} />
+            </Box>
         </Box>)
       },
     },

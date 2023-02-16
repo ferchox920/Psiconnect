@@ -1,69 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-// import Header from "../../AdminComponents/Headers";
-import { useNavigate } from "react-router-dom";
-import { getAllProfessionals, updateStatusToProfessional, updateStatusToUsers } from "../../../../features/apiPetitions";
+import { getSkills, updateStatusToAreas } from "../../../../features/apiPetitions";
 
-export default function Professionals() {
+export default function Areas() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllProfessionals(setData);
+    getSkills(setData);
   }, []);
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "lastName",
-      headerName: "lastName",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "email",
-      headerName: "email",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
- 
-    {
-      field: "DNI",
-      headerName: "DNI",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "phone",
-      headerName: "phone",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "description",
-      headerName: "description",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "linkedin",
-      headerName: "linkedin",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "areas",
-      headerName: "areas",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "skills",
-      headerName: "skills",
+      field: "area",
+      headerName: "area",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -86,21 +35,22 @@ export default function Professionals() {
             display="flex"
             justifyContent="center"
             onClick={() => {
-                updateStatusToProfessional(params.row.id).then((e)=>{
-                    params.row.state = e;
+                updateStatusToAreas(params.row.id).then(()=>{
+                    params.row.state = !params.row.state;
                 })
             }}
-            backgroundColor={params.row.state ==='avalible'?"#66d7d1":"#ffa8b6"}
+            backgroundColor={params.row.state?"#66d7d1":"#ffa8b6"}
             borderRadius="4px"
             sx={{
               cursor: "pointer",
             }}
           >
-            <Typography sx={{ ml: "5px" }}>{ params.row.state ==='avalible'?'Disable':'Enable'}</Typography>
+            <Typography sx={{ ml: "5px" }}>{ params.row.state?'Disable':'Enable'}</Typography>
           </Box>
         </Box>)
       },
     },
+   
   ];
 
   return (

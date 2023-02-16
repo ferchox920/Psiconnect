@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 import { errorMenssage, successMessage } from "./errorsModals.js";
-import { setAllProfessional, setFilterProfessional} from "./professionalSlice.js";
+import { setFilterProfessional} from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
@@ -162,7 +162,7 @@ export async function getProfessionalsFilters({
 export async function getSkills({state, type}){
   try{
     const request = await axios.get('/skills')
-    type === 'local'? state(request?.data) : null;
+    state(request?.data);
   }catch(error){
     return error.response
   }
@@ -267,40 +267,4 @@ export async function autoLoginAfterPostRegister(token){
    localStorage.setItem("profTkn", token);
    window.location.pathname='/';
    window.location.reload();
-}
-export async function getAllUser(state){
-  try {
-    const peticion = await axios.get('/user');
-    state(peticion.data)
-  } catch (error) {
-    errorMenssage(error.response.data);
-  }
-}
-export async function getAllProfessionals(state){
-  try {
-    const peticion = await axios.get('/professional');
-    state(peticion.data)
-  } catch (error) {
-    errorMenssage(error.response.data);
-  }
-}
-export async function updateStatusToUsers(id){
-  try {
-    const peticion = await axios.put(`/admin/disable-user/${id}`);
-    successMessage(peticion.data)
-    return
-  } catch (error) {
-    errorMenssage(error.response.data);
-    throw new Error(error.response.data)
-  }
-}
-export async function updateStatusToProfessional(id){
-  try {
-    const peticion = await axios.put(`/admin/disable-professional/${id}`);
-    successMessage(peticion.data.message)
-    return peticion.data.state;
-  } catch (error) {
-    errorMenssage(error.response.data);
-    throw new Error(error.response.data)
-  }
 }
