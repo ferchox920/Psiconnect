@@ -118,7 +118,8 @@ export async function getUserByJWT({ state, type }) {
 export async function getProfessionalById(id, state) {
   try {
     const peticion = await axios.get(`/professional/details/${id}`);
-    return state(peticion?.data);
+    console.log(peticion , 'peticion')
+    return state(peticion.data);
   } catch (error) {
     return error.response;
   }
@@ -241,7 +242,6 @@ export async function getUserById(userID, state){
     console.log(error)
   }
 }
-
 export async function postRegisterProfesional(body,token){
   try{
     const request = await axios.put('/professional/descriptionProfesional', body,{
@@ -252,7 +252,9 @@ export async function postRegisterProfesional(body,token){
     return error
   }
 };
-export default async function putUserData(body) {
+
+
+export default async function putUserData(id, body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body)
       return(updateUser)

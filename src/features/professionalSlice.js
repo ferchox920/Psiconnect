@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
  AllProfessional:[],
  FilterProfessional:[],
- 
 };
 
 const professionalSlice = createSlice({
@@ -14,10 +13,9 @@ const professionalSlice = createSlice({
         state.AllProfessional = payload;
       },
     setFilterProfessional(state, { payload }) {
+      console.log(payload, 'aqui2')
         state.FilterProfessional = payload;
       },
-  
-    
   },
 });
 export const {

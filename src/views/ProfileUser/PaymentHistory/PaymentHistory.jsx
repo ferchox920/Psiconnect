@@ -1,11 +1,11 @@
 import React from 'react'
-import style from './UserSecurity.module.css'
+import style from './PaymentHistory.module.css'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 
 
-export default function UserSecurity () {
+export default function PaymentHistory () {
     const users = useSelector((state) => state.user.user)
     console.log(users, 'aqui')
 
@@ -32,19 +32,19 @@ export default function UserSecurity () {
                         </NavLink>
                     </div>
                     <div className={style.itemssidebar}>
-                        <NavLink to='/userProfile/profile/pagos'>
-                            <button className={style.buttonitems}>Historial de pagos</button>
-                        </NavLink>              
+                        <button className={style.buttonitems}>Historial de pagos</button>              
                     </div>
                     <div className={style.itemssidebar}>
-                        <button className={style.buttonitems}>Seguridad</button>              
+                        <NavLink to='/userProfile/profile/seguridad'>
+                            <button className={style.buttonitems}>Seguridad</button>
+                        </NavLink>              
                     </div>
                 </div>
             </div>
         </div>
 
         <div className={style.message}>
-            Aqui va la configuracion de seguridad del paciente
+            Aqui va el historial de pagos del paciente
         </div>
     </div>
   )
