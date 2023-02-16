@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    font-size: 70px;
+    font-size: 150%;
     font: var(--hTitle);
     font-style: italic;
     padding: 20px;
