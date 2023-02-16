@@ -2,17 +2,19 @@ import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { getAreas } from "../../../../features/apiPetitions";
-import { updateStatusToAreas } from "../../feutures/apiPetitions";
+import { deleteArea, updateStatusToAreas } from "../../feutures/apiPetitions";
 import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
 import Header from "../../Components/Header";
 import { useNavigate } from "react-router";
 
 export default function Areas() {
   const [data, setData] = useState([]);
+  const [anchor, setAnchor] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     getAreas(setData);
-  }, []);
+  }, [anchor]);
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -87,7 +89,7 @@ export default function Areas() {
               p="5px"
               display="flex"
               justifyContent="center"
-              onClick={() => deleteProduct(params.row.id)}
+              onClick={() => deleteArea(params.row.id).then(e => setAnchor(!anchor))}
               backgroundColor="red"
               borderRadius="4px"
             >
