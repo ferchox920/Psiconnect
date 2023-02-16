@@ -19,8 +19,7 @@ export default function ProfileProfessional() {
           </div>
           <div className={style.component}>
             <ProfileForm/>
-          </div>
-            
+          </div>            
         </div>
       )
     case 'incomes':
@@ -31,8 +30,7 @@ export default function ProfileProfessional() {
           </div>
           <div className={style.component}>
             <Incomes/>
-          </div>
-            
+          </div>            
         </div>
       )
     case 'arrangements':
@@ -43,8 +41,7 @@ export default function ProfileProfessional() {
           </div>
           <div className={style.component}>
             <Arrangements/>
-          </div>
-            
+          </div>            
         </div>
       )
     case 'security':
@@ -55,8 +52,7 @@ export default function ProfileProfessional() {
           </div>
           <div className={style.component}>
             <Security/>
-          </div>
-            
+          </div>   
         </div>
       )    
     default:

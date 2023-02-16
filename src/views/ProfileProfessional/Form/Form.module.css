@@ -1,22 +1,11 @@
-/* .container{
-    width: 86%;
-    margin-right: 0%;
-    
+.spanError{
+    color:#f11010;
+    font-size:small;
+    margin: 0.5%;
 }
-
-.box{
-    padding: 5%;
-  
-
+.inputError{
+    border: 1.5px solid rgb(227, 67, 67)
 }
-.avatar{
-    width: 10%;
-    height: 10%;
-}
-.avatar:hover{
-    cursor: pointer;
-
-} */
 
 .divContainer{
     display: flex;
@@ -120,7 +109,6 @@
     align-items: center;
     width: 50rem;
     height: 16rem;
-    background: green;
 }
 .form .divInputsImage{
     display: flex;

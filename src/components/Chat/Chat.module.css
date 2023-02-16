@@ -13,6 +13,33 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
 }
 .containerChatFloat{
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 30px 30px -7px;
+  border: 3px dotted rgba(0, 0, 0, 0.2);
+  background-color: var(--oyster);
+  border-radius: 100px;
+  width: 130px;
+  height: 130px;
+  transition: 400ms all ease;
+  cursor: pointer;  
+}
+
+.containerChatFloat:hover{
+  transform: scale(1.1)
+}
+
+.imageChatFloat{
+  z-index: 1;
+  position: absolute;
+  top: 15px;
+  left:8px;
+  width: 80%;
+  height: 80%;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.containerChatFloatfixed{
   position: fixed;
   z-index: 20;
   bottom: 35px;
@@ -27,6 +54,8 @@
   cursor: pointer;
   transition: 400ms all ease;
 }
+
+
 .closeIcon{
   position: relative;
   background-color:none;
@@ -40,10 +69,10 @@
 .closeIcon:hover{
  transform: scale(1.1);
 }
-.containerChatFloat:hover{
+.containerChatFloatfixed:hover{
   transform: scale(1.06)
 }
-.containerChatFloat img{
+.containerChatFloatfixed img{
   scale: 75%;
 }
 .containerImage {

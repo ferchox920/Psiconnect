@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {useSelector} from 'react-redux'
-import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar'
+import {  Menu, MenuItem, Sidebar} from 'react-pro-sidebar'
 import { sidebarClasses, menuClasses } from 'react-pro-sidebar'
 import { Avatar } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 
 export default function SideBar() {
   const user = useSelector((store) => store.user.user)
+  
   const {section} = useParams()
   const navigate = useNavigate()
   return (

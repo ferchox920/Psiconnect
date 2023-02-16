@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+}
+
+.consult{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+.client{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.title{
+    height: 30%;
+    width: 100%;
+    text-align: center;
+    border-bottom: solid black 1px;
+    border-right: dotted black 1px;
+}
