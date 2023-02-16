@@ -13,15 +13,17 @@ import Reviews from './views/Reviews/Reviews'
 import Payments from './views/Payments/Paymets'
 import Consults from './views/Consults/Consults'
 import Areas from './views/Areas/Areas'
+import CreateArea from './views/Data/createArea'
 
 function Section({section}){
     switch (section) {
         case 'users': return <Users />
         case 'professionals':return <Professionals />
+        case 'areas':return<Areas />
         case 'reviews':return<Reviews />
         case 'payments':return <Payments />
         case 'consults':return <Consults />
-        case 'areas':return<Areas />
+        case 'create-area':return <CreateArea />
         
         default:
           return
