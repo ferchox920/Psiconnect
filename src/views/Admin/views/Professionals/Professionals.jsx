@@ -2,14 +2,16 @@ import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 // import Header from "../../AdminComponents/Headers";
-import { useNavigate } from "react-router-dom";
-import { getAllProfessionals, updateStatusToProfessional, updateStatusToUsers } from "../../../../features/apiPetitions";
+import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
+import { deleteProfessionals, getAllProfessionals, updateStatusToProfessional } from "../../feutures/apiPetitions";
 
 export default function Professionals() {
   const [data, setData] = useState([]);
+  const [anchor, setAnchor] = useState(false);
+
   useEffect(() => {
     getAllProfessionals(setData);
-  }, []);
+  }, [anchor]);
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -56,14 +58,26 @@ export default function Professionals() {
       cellClassName: "name-column--cell",
     },
     {
+      field: "areas",
+      headerName: "areas",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "skills",
+      headerName: "skills",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
       field: "state",
       headerName: "state",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      headerName: "Disable",
-      flex: 1,
+      headerName:'Actions',
+      flex: 2.2,
       renderCell: (params) => {
       
         return (<Box gap="12px" display="flex">
@@ -86,6 +100,21 @@ export default function Professionals() {
           >
             <Typography sx={{ ml: "5px" }}>{ params.row.state ==='avalible'?'Disable':'Enable'}</Typography>
           </Box>
+          <Box
+             sx={{
+              cursor: "pointer",
+            }}
+              width="60px"
+              m="0 auto"
+              p="5px"
+              display="flex"
+              justifyContent="center"
+              onClick={() => deleteProfessionals(params.row.id).then(()=> setAnchor(!anchor) )}
+              backgroundColor="red"
+              borderRadius="4px"
+            >
+              <DeleteSweepOutlinedIcon style={{ scale: "110%" }} />
+            </Box>
         </Box>)
       },
     },

@@ -1,37 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-// import Header from "../../AdminComponents/Headers";
-import { useNavigate } from "react-router-dom";
-import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
-import { deleteUser, getAllUser, updateStatusToUsers } from "../../feutures/apiPetitions";
+import { getSkills, updateStatusToAreas } from "../../feutures/apiPetitions";
 
-
-export default function Users() {
+export default function Areas() {
   const [data, setData] = useState([]);
-  const [anchor, setAnchor] = useState(false);
   useEffect(() => {
-    getAllUser(setData);
-  }, [anchor]);
-  const navigate = useNavigate();
-
+    getSkills(setData);
+  }, []);
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "lastName",
-      headerName: "lastName",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "email",
-      headerName: "email",
+      field: "area",
+      headerName: "area",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -42,14 +23,8 @@ export default function Users() {
       cellClassName: "name-column--cell",
     },
     {
-      field: "phone",
-      headerName: "phone",
+      headerName: "Disable",
       flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      headerName:'Actions',
-      flex: 2.2,
       renderCell: (params) => {
       
         return (<Box gap="12px" display="flex">
@@ -60,7 +35,7 @@ export default function Users() {
             display="flex"
             justifyContent="center"
             onClick={() => {
-                updateStatusToUsers(params.row.id).then(()=>{
+                updateStatusToAreas(params.row.id).then(()=>{
                     params.row.state = !params.row.state;
                 })
             }}
@@ -72,24 +47,10 @@ export default function Users() {
           >
             <Typography sx={{ ml: "5px" }}>{ params.row.state?'Disable':'Enable'}</Typography>
           </Box>
-          <Box
-             sx={{
-              cursor: "pointer",
-            }}
-              width="60px"
-              m="0 auto"
-              p="5px"
-              display="flex"
-              justifyContent="center"
-              onClick={() => deleteUser(params.row.id).then(()=> setAnchor(!anchor) )}
-              backgroundColor="red"
-              borderRadius="4px"
-            >
-              <DeleteSweepOutlinedIcon style={{ scale: "110%" }} />
-            </Box>
         </Box>)
       },
     },
+   
   ];
 
   return (

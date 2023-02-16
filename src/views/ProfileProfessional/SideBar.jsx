@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 export default function SideBar() {
   const user = useSelector((store) => store.user.user)
+  
   const {section} = useParams()
   const navigate = useNavigate()
   return (
