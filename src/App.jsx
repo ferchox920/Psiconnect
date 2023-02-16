@@ -71,11 +71,16 @@ function App() {
         {/* Redirect to landing if don´t match */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      {pathname.split('/')[1] !== 'Details' && <Footer />}
       {pathname.split('/')[1] !== 'professionalProfile' &&   <Footer />}
-      {pathname.split('/')[1] !== 'userProfile' &&   <Footer />}
       
       
-    { user? <Chat /> : null}
+      
+      
+      
+    { user? pathname.split('/')[1] !== 'Details' && <Chat/> &&<Footer/> : null} 
+    
+
     </>
   );
 }
