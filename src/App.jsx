@@ -88,11 +88,11 @@ function App() {
         {/* Redirect to landing if don´t match */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      { user? pathname.split('/')[1] !== 'Details' && <Chat/> && <Footer/> : null} 
+    
       {pathname.split("/")[1] !== "professionalProfile" &&
       pathname.split("/")[1] !== "userProfile" &&
       pathname.split("/")[1] !== "admin" && 'Details' && <Footer />}
-      {user && user.rol !== 'admin'? <Chat /> : null}
+      {pathname.split('/')[1] !== 'Details' && user && user.rol !== 'admin'? <Chat />  : null}
     </>
   );
 }

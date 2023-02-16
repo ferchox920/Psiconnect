@@ -1,12 +1,16 @@
 
-::-webkit-scrollbar{
-    
+.descprofile::-webkit-scrollbar{
+    background: white;
     border-radius: 20px;
     width: 15px;
 }
 
-::-webkit-scrollbar-thumb{
-    background-color: cadetblue;
+::-webkit-scrollbar-track{
+    background: white;
+}
+
+.descprofile::-webkit-scrollbar-thumb{
+    background: cadetblue;
     border-radius: 5px;
 }
 
@@ -118,12 +122,15 @@
 }
 
 .descprofile{
-    width: 300px;
+    width: 310px;
     padding: 10px;
     height: 250px;
     position: absolute;
     margin-left: 390px;
     margin-top : -150px;
+    overflow-y: auto ;
+    overflow-x: hidden;
+   
 
     
 }
@@ -131,8 +138,7 @@
 .infprofile{
     width: 300px;
     height: 200px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    
  
 }
 
