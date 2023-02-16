@@ -1,11 +1,11 @@
 import React from 'react'
-import style from './UserSecurity.module.css'
+import style from './userSecurity.module.css'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 
 
-export default function UserSecurity () {
+export default function Security () {
     const users = useSelector((state) => state.user.user)
     console.log(users, 'aqui')
 
