@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 // import Header from "../../AdminComponents/Headers";
 import { useNavigate } from "react-router-dom";
 import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
-import { getAllUser, updateStatusToUsers } from "../features/apiPetitions";
+import { deleteUser, getAllUser, updateStatusToUsers } from "../../feutures/apiPetitions";
+
 
 export default function Users() {
   const [data, setData] = useState([]);
+  const [anchor, setAnchor] = useState(false);
   useEffect(() => {
     getAllUser(setData);
-  }, []);
+  }, [anchor]);
   const navigate = useNavigate();
 
   const columns = [
@@ -79,7 +81,7 @@ export default function Users() {
               p="5px"
               display="flex"
               justifyContent="center"
-              onClick={() => console.log('sad')}
+              onClick={() => deleteUser(params.row.id).then(()=> setAnchor(!anchor) )}
               backgroundColor="red"
               borderRadius="4px"
             >

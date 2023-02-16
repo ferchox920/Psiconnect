@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { getSkills, updateStatusToAreas } from "../../../../features/apiPetitions";
+import { getSkills, updateStatusToAreas } from "../../feutures/apiPetitions";
 
 export default function Areas() {
   const [data, setData] = useState([]);

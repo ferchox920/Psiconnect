@@ -79,7 +79,8 @@ export async function getProfByJWT({ state, type }) {
     });
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
-    console.log(error.response.data);
+    localStorage.removeItem("profTkn"),
+    console.log('jaj soy un error');
   }
 }
 
@@ -112,7 +113,8 @@ export async function getUserByJWT({ state, type }) {
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
 
   } catch (error) {
-    console.log(error.response.data);
+    localStorage.removeItem("tkn"),
+    console.log('soy un mapa');
   }
 }
 export async function getProfessionalById(id, state) {

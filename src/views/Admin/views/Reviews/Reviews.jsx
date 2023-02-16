@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import {  getAllReviews } from "../../../../features/apiPetitions";
+import {  getAllReviews } from "../../feutures/apiPetitions";
 
 export default function Reviews() {
   const [data, setData] = useState([]);
