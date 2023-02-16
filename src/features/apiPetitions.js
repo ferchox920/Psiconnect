@@ -223,6 +223,16 @@ export async function getProfessionalConsults(professionalId, state){
     console.log(error)
   }
 }
+
+export async function getUserConsults(userId, state){
+  try {
+    const response = await axios.get(`/consult/user/${userId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function getUserById(userID, state){
   try {
     const response = await axios.get(`/user/${userID}`)
