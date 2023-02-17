@@ -97,7 +97,7 @@ export async function changePassword(body) {
 }
 export async function changePasswordProfessional(body) {
   try {
-    const peticion = await axios.post(`/professional/changePassword`, body, {
+    const peticion = await axios.put(`/professional/changePassword`, body, {
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
     localStorage.setItem("tkn", peticion?.data.data);
