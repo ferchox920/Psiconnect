@@ -333,3 +333,52 @@ export async function getAllProfessionals(state){
   }
 }
 
+export async function verifyTokenForgotPassword(token){
+  try {
+    const request = await axios.get('/professional/token/forgetPassword',{
+      headers: { reset: `Bearer ${token}` },
+    });
+    return request
+  } catch (error) {
+    return error
+  }
+}
+export async function forgotPasswordProfessional(token, body){
+  try{
+    const request = await axios.put('/professional/ChangePasswordForget', body, {
+       headers:{ reset : `Bearer ${token}` }
+  });
+    return request
+  }catch(err){
+    return err
+  }
+};
+export async function forgotPasswordUser(token, body){
+  try{
+    const request = await axios.put('/user/ChangePasswordForget', body, {
+       headers:{ reset : `Bearer ${token}` }
+  });
+    return request
+  }catch(err){
+    return err
+  }
+};
+
+export async function sendEmailForgetPassUser(body){
+try{
+    const request = await axios.put(`/user/forget-password`, body);
+    return request?.data;
+  }catch(err){
+    return err;
+  }
+}
+
+export async function sendEmailForgetPassProfessional(body){
+  try{
+    const request = await axios.put(`/professional/forget-password`, body);
+    return request?.data;
+  }catch(err){
+  return err;
+}
+}
+

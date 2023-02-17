@@ -133,3 +133,6 @@
   border-radius: 30px;
   
 }
+.hourDisabled{
+  background-color: var(--pink)
+}
