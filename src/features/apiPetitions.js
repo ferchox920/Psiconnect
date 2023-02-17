@@ -117,7 +117,7 @@ export async function getUserByJWT({ state, type }) {
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/details/${id}`);
+    const peticion = await axios.get(`/professional/details/${id}`);  
     console.log(peticion , 'peticion')
     return state(peticion.data);
   } catch (error) {
@@ -296,6 +296,7 @@ export async function getAllProfessionals(state){
     errorMenssage(error.response.data);
   }
 }
+
 export async function updateStatusToUsers(id){
   try {
     const peticion = await axios.put(`/admin/disable-user/${id}`);

@@ -91,7 +91,7 @@ function App() {
     
       {pathname.split("/")[1] !== "professionalProfile" &&
       pathname.split("/")[1] !== "userProfile" &&
-      pathname.split("/")[1] !== "admin" && 'Details' && <Footer />}
+      pathname.split("/")[1] !== "admin" && pathname.split("/")[1] !== 'Details' && <Footer />}
       {pathname.split('/')[1] !== 'Details' && user && user.rol !== 'admin'? <Chat />  : null}
     </>
   );

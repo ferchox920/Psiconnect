@@ -13,10 +13,6 @@ export default function ApptHistory() {
 
   const [consults, setConsults] = useState()
   const userId = useSelector((store) => store.user.user.id)
-  // const user = useSelector((store) => store.user.user)
-  // const userId = user.id
-
-  console.log(userId, 'iduser')
 
   useEffect(() => {
     getUserConsults(userId, setConsults)
@@ -39,6 +35,8 @@ export default function ApptHistory() {
         })
         }
       </div>
+
+     
       
       
       {/* <div className={style.calendary}>
