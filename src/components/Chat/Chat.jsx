@@ -9,9 +9,7 @@ import Message from "./Message";
 
 export default function Chat({}) {
   const {id} = useParams()
-  console.log(id, 'id')
   const location = useLocation()
-  console.log(location, 'ubicacion')
   const [message, setMessage] = useState("");
   const messages = useSelector((state) => state.chats.chat);
   const anchor = useRef();

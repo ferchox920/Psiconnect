@@ -32,7 +32,7 @@ const RegisterProfesional = () => {
           <div className={style.logo__psicologia}>
             <img
               src={
-                "https://c0.klipartz.com/pngpicture/972/819/gratis-png-dibujo-cerebro-cerebro-thumbnail.png"
+                "https://res.cloudinary.com/dcdywqotf/image/upload/v1676483326/Cerebritos%20svg/cerebtito_con_bombillos_dix3wp.svg"
               }
               alt="Psicologia"
             />
