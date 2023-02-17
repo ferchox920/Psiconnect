@@ -4,8 +4,8 @@ import UsersForm from './UsersForm/UsersForm.jsx'
 import { useParams } from 'react-router-dom'
 import ApptHistory from './ApptHistory/ApptHistory.jsx'
 import Payments from './Payments/Payments.jsx'
+import UserSecurity from './UserSecurity/UserSecurity.jsx'
 import SideBar from './SideBar.jsx'
-import Security from './userSecurity/userSecurity'
 
 export default function ProfileUser () {
   const {section} = useParams()
@@ -51,10 +51,11 @@ export default function ProfileUser () {
             <SideBar/>
           </div>
           <div className={style.component}>
-            <Security />
-          </div>   
+            <UserSecurity/>          
+          </div>
         </div>
-      )    
+      )
+
     default:
       return
   }

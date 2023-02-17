@@ -1,14 +1,13 @@
 .countainer {
-  background: linear-gradient(180deg, #f4f1bba9 0%, #f5f3d47d 90%);
-   
-    
+    background: linear-gradient(180deg, #f4f1bba9 0%, #f5f3d47d 90%);
     display: flex;
     flex-direction: column;
     text-align: center;
     margin-top: 80px;
-    padding: 50px;
+    padding: 20px;
   }
-   img {
+
+  img {
     width: 180px;
   }
   
@@ -16,13 +15,17 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    font-size: 40px;
+    font-size: 150%;
+    font: var(--hTitle);
+    font-style: italic;
+    padding: 20px;
   }
-  
+
   .parrafo{
     display: flex;
     justify-content: center;
     font: var(--paragraph);
-    font-size: 120%;
+    font-size: 160%;
     font-style: italic;
+    padding: 5px;
   }

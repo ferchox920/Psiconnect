@@ -244,6 +244,14 @@ export async function getUserById(userID, state){
     console.log(error)
   }
 }
+export async function getAreaById(state, id){
+  try {
+    const response = await axios.get(`/areas/id/${id}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 export async function postRegisterProfesional(body,token){
   try{
     const request = await axios.put('/professional/descriptionProfesional', body,{
