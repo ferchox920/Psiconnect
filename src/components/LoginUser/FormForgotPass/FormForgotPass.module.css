@@ -26,7 +26,7 @@
     align-items: end;
     height: 20%;
 }
-.TitleMin{
+.titleMin{
     text-align: center;
     font-size: 1.8rem;
     margin-bottom: 0px;
@@ -49,4 +49,15 @@
 }
 .submit{
     cursor: pointer;
+}
+.loadingDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.loading{
+    color: black;
 }

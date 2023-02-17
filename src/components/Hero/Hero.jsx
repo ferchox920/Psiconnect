@@ -31,7 +31,7 @@ export default function Hero() {
             </h4>
             
             <button className={style.cta} onClick={openModal}>
-            <span>{!user ?"Empeza ahora!": 'Ver mis citas'}</span>
+            <span>{!user ?"Empieza ahora!": 'Ver mis citas'}</span>
             <svg viewBox="0 0 13 10" height="30px" width="35px">
               <path d="M1,5 L11,5"></path>
               <polyline points="8 1 12 5 8 9"></polyline>

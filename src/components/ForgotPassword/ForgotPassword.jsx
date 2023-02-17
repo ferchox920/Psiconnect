@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { errorMenssage, successMessage } from '../../features/errorsModals.js';
-import { verifyTokenForgotPassword, forgotPassword } from '../../features/apiPetitions.js';
+import { verifyTokenForgotPassword, forgotPasswordUser, forgotPasswordProfessional } from '../../features/apiPetitions.js';
 import { form, DivContainerForm, title, imgDiv, buttonSubmit, img, imgDivContainer} from './ForgotPassword.module.css'
 import validationsForm from '../RegisterPsico/validator.js';
 import InputsPasswords from './InputsPasswords/InputsPasswords.jsx'
@@ -20,7 +20,10 @@ const [ verifyToken, setVerifyToken ] = useState(null)
 
 useEffect(()=>{
     verifyTokenForgotPassword(token)
-    .then(data => setVerifyToken(true))
+    .then(data =>{
+        if(data.status === 204) setVerifyToken(true)
+        else  setVerifyToken(false)
+    })
     .catch(err => setVerifyToken(false))
 },[])
 
@@ -50,20 +53,22 @@ const checkErrors = () => {
 const hanldeOnSubimt = async(e) => {
     e.preventDefault()
     if(checkErrors()) errorMenssage(Object.values(errors).join(', ')|| 'Error') 
-    const request = await forgotPassword(token,{...passwords, newPassword: passwords.password})
-    if(request.status === 200){
-        successMessage(request.data)
-            .then(data =>  window.location.pathname = '/')
+    else {
+        const request = await forgotPasswordUser(token,{newPassword: passwords.password})
+        const requestTwo = await forgotPasswordProfessional(token,{newPassword: passwords.password})
+        if(request.data){
+            successMessage(request.data)
+                .then(data =>  window.location.pathname = '/')
+        }else if(requestTwo.data){
+            successMessage(requestTwo.data)
+                .then(data =>  window.location.pathname = '/')
+        }else errorMenssage('Upss, Alparecer hubo problemas, intentalo de nuevo mas tarde')
     }
-    else if(request.response.status === 500) errorMenssage('Upss, Alparecer hubo problemas, intentalo de nuevo mas tarde')
-    else errorMenssage(request.response?.data?.data)
 }
-// if(verifyToken === null) return (<></>)
-// else if(verifyToken === false){
-//     return <Navigate to='/' />
-// }
-// else 
-return(   
+if(verifyToken === null) return (<h1>Cargando</h1>)
+else if(verifyToken === false){
+    return <Navigate to='/' />
+}else return(   
     <div className={DivContainerForm}> 
         <form 
         onSubmit={hanldeOnSubimt}
@@ -75,10 +80,10 @@ return(
             state={passwords}
             />
             <input 
-            disabled={false}
             className={buttonSubmit}
             type='submit' 
-            value='Actualizar' 
+            value='Actualizar'
+            disabled={errors.password || errors.repeatPassword? true : false } 
             />
         </form>   
         <div className={imgDiv}>
@@ -90,7 +95,6 @@ return(
                 />
             </div>
         </div>
-
     </div>
     )
 }

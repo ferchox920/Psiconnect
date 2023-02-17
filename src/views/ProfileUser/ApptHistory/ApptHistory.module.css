@@ -12,6 +12,10 @@
     padding: 30px;
 }
 
+.calificar{
+    color: black;
+}
+
 .box{
     position: sticky;
     height: 30%;

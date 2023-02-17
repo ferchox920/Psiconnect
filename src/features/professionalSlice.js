@@ -13,7 +13,6 @@ const professionalSlice = createSlice({
         state.AllProfessional = payload;
       },
     setFilterProfessional(state, { payload }) {
-      console.log(payload, 'aqui2')
         state.FilterProfessional = payload;
       },
   },

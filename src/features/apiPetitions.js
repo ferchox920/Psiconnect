@@ -95,12 +95,11 @@ export async function changePassword(body) {
     return error.response;
   }
 }
-export async function changePasswordProfessional(body) {
+export async function changePasswordProfessional(body) {  
   try {
-    const peticion = await axios.post(`/professional/changePassword`, body, {
-      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+    const peticion = await axios.put(`/professional/changePassword`, body, {
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    localStorage.setItem("tkn", peticion?.data.data);
     return peticion;
   } catch (error) {
     return error.response;
@@ -130,7 +129,7 @@ export async function getUserByJWT({ state, type }) {
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/details/${id}`);
+    const peticion = await axios.get(`/professional/details/${id}`);  
     console.log(peticion , 'peticion')
     return state(peticion.data);
   } catch (error) {
@@ -316,6 +315,7 @@ export async function autoLoginAfterPostRegister(token){
    window.location.pathname='/';
    window.location.reload();
 }
+
 export async function getAllUser(state){
   try {
     const peticion = await axios.get('/user');
@@ -332,26 +332,6 @@ export async function getAllProfessionals(state){
     errorMenssage(error.response.data);
   }
 }
-export async function updateStatusToUsers(id){
-  try {
-    const peticion = await axios.put(`/admin/disable-user/${id}`);
-    successMessage(peticion.data)
-    return
-  } catch (error) {
-    errorMenssage(error.response.data);
-    throw new Error(error.response.data)
-  }
-}
-export async function updateStatusToProfessional(id){
-  try {
-    const peticion = await axios.put(`/admin/disable-professional/${id}`);
-    successMessage(peticion.data.message)
-    return peticion.data.state;
-  } catch (error) {
-    errorMenssage(error.response.data);
-    throw new Error(error.response.data)
-  }
-}
 
 export async function verifyTokenForgotPassword(token){
   try {
@@ -363,12 +343,22 @@ export async function verifyTokenForgotPassword(token){
     return error
   }
 }
-export async function forgotPassword(token, body){
+export async function forgotPasswordProfessional(token, body){
   try{
     const request = await axios.put('/professional/ChangePasswordForget', body, {
        headers:{ reset : `Bearer ${token}` }
   });
-    return  request
+    return request
+  }catch(err){
+    return err
+  }
+};
+export async function forgotPasswordUser(token, body){
+  try{
+    const request = await axios.put('/user/ChangePasswordForget', body, {
+       headers:{ reset : `Bearer ${token}` }
+  });
+    return request
   }catch(err){
     return err
   }
