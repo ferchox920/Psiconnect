@@ -78,9 +78,9 @@ export default function Details() {
           </div>
         </div>
 
-        <div className={style.container__botttom}>
+        {/* <div className={style.container__botttom}>
             {modal && <FormModal name="User" set={setModal} />}
-        </div>
+        </div> */}
 
 
       </div>

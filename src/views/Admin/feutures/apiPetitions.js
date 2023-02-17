@@ -80,6 +80,105 @@ export async function updateStatusToAreas(id) {
     throw new Error(error.response.data);
   }
 }
+export async function createArea(body) {
+  try {
+    const peticion = await axios.post(`/admin/create-area`, body);
+    successMessage(peticion.data);
+    return;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function editArea(body) {
+  try {
+    const peticion = await axios.put(`/admin/edit-area/${body.id}`, body);
+    successMessage(peticion.data);
+    return;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function deleteArea(id) {
+  await swal({
+    title: "Estas seguro?",
+    text: "una vez eliminado no se recuperara el Area!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then(async (willDelete) => {
+    if (willDelete) {
+      try {
+        const peticion = await axios.delete(`/admin/delete-area/${id}`);
+        successMessage(peticion.data);
+        return;
+      } catch (error) {
+        errorMenssage(error.response.data);
+        throw new Error(error.response.data);
+      }
+    } else {
+      swal("El area se salvo!");
+    }
+  });
+}
+export async function updateStatusToSkill(id) {
+  try {
+    const peticion = await axios.put(`/admin/disable-skill/${id}`);
+    successMessage(peticion.data);
+    return;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function createSkill(body) {
+  try {
+    const peticion = await axios.post(`/admin/create-skill`, body);
+    successMessage(peticion.data);
+    return;
+  } catch (error) {
+    errorMenssage(error.response.data.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function editSkill(body) {
+  try {
+    const peticion = await axios.put(`/admin/edit-skill/${body.id}`, body);
+    successMessage(peticion.data);
+    return;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function deleteSkill(id) {
+  await swal({
+    title: "Estas seguro?",
+    text: "una vez eliminado no se recuperara el skill!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then(async (willDelete) => {
+    if (willDelete) {
+      try {
+        const peticion = await axios.delete(`/admin/delete-skill/${id}`);
+        successMessage(peticion.data);
+        return;
+      } catch (error) {
+        errorMenssage(error.response.data);
+        throw new Error(error.response.data);
+      }
+    } else {
+      swal("El area se salvo!");
+    }
+  });
+}
+
+
+
+
+
 export async function updateStatusToProfessional(id) {
   try {
     const peticion = await axios.put(`/admin/disable-professional/${id}`);

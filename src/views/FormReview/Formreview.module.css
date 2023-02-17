@@ -1,50 +1,269 @@
+
+.containerform{
+    background: white;
+    margin-top: 40px;
+}
+
+
 .formReview{
-   
+    background: #f4f1bb;
     width: 80%;
     height: 100vh;
     margin-top: 100px;
     margin-left: 120px;
     padding: 10px;
-    position: relative; 
+    box-shadow: none;
 }
 
-.indications{
-    width: 80%;
-    height: 100px;
+.containerreputacion{
+    width: 50%;
+    height: 250px;
+    background: white;
+    border-radius: 30px;
     position: absolute;
-    background:#eaf2e3;
-    margin-top: -550px;
-    opacity: 0.8;    
-    border-radius: 20px;
-    box-shadow: 2px 10px 8px #5e5b5b;  
+    margin-top: -300px;
+    margin-left: -170px;
+
 }
 
-.parrafoindications{
-    color: black;
+.containerDescription{
+    width: 650px;
+    height: 200px;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: 200px;
+    margin-left: -200px;
+    
+}
+
+.description{
+    min-width: 99%;
+    max-width: 99%;
+    min-height: 100%;
+    max-height: 100%; 
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size:medium;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    
+}
+
+.idUsercontainer{
+    position: absolute;
+    margin-top: -600px;
+    margin-left: 650px;
+    border: none;
+    box-shadow: none
+}
+
+.inputIdUser{
+    width: 290px;
+    box-shadow: none;
+    border-radius: 5px;
+    margin-left: 90px;
+    background: none;
+    pointer-events: none;
+    
+
+}
+
+.idProfcontainer{ 
+    border: none;
+    box-shadow: none;
+    z-index: 1;
+    margin-top: -590px;
+    
+}
+
+.inputIdUProf{
+    width: 300px;
+    box-shadow: none;
+    border-radius: 5px;
+    margin-left: -340px;
+    background: none;
+    pointer-events: none;
+}
+
+.nameProfcontainer{
+    border: none;
+    box-shadow: none;
+   
+}
+
+.inputNameProf{
+    width: 400px;
+    box-shadow: none;
+    border-radius: 5px;
+    margin-left: -150px;
+    background: none;
+    pointer-events: none;
     font-size: 20px;
-    padding: 10px;
+    font-family: 'Poppins' , sans-serif;
+}
+
+.reputacions{
+    width: 100%;
+    height: auto;
+}
+
+.checpuntualidad{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    padding: 15px;
+    margin-top: -30px;
+}
+
+.inputspuntualidad{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    padding: 15px;
+}
+
+.labeltrato{
+    position: absolute;
+    margin-top: -20px;
+}
+
+.checkTrato{
+    margin-top: -30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    padding: 15px;
+
+}
+
+.inputstrato{
+    margin-left: 80px;
+    display: flex;
+    margin-top: -20px;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    padding: 15px;
+
+}
+
+.labelatencion{
+    position: absolute;
+    margin-top: -30px;
+}
+
+.checkAtencion{
+    display: flex;
+    margin-top: -20px;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    padding: 15px;
+}
+
+.inputsatencion{
+    margin-left: 80px;
+    display: flex;
+    margin-top: -30px;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    padding: 15px;
+}
+
+
+.puntualidadscore{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+
+.inputpuntualidadscore{
+    font-size: 15px;
+    width: 30px;
+    box-shadow: none;
+    background:none;
+    color: black;
+    box-shadow: none;
+    border: none;
+}
+
+.tratoscore{
+    margin-top: -20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; 
+}
+
+.inputtratoscore{
+    font-size: 15px;
+    width: 30px;
+    box-shadow: none;
+    background:none;
+    color: black;
+    box-shadow: none;
+    border: none;
+}
+
+.atencionscore{
+    margin-top: -20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;  
+}
+
+.inputatencionscore{
+    font-size: 15px;
+    width: 30px;
+    box-shadow: none;
+    background:none;
+    color: black;
+    box-shadow: none;
+    border: none;
+}
+
+.scores{
+    background: green;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    margin-left: 700px;
+    margin-top: -300px;
 }
 
 .score{
-    width: 100%;
-    height: 200px;
-    position: absolute;
-    background: green;
-    margin-top: -110px;
-    margin-left: -700px;
+    margin-top: -20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; 
 }
 
-.itemScore{
-    width: 100%;
-    height: 110px;
-    background: red;
-}
-
-.label{
+.inputscore{
+    font-size: 15px;
+    width: 50px;
+    box-shadow: none;
+    background:none;
     color: black;
-    font-size: 30px;
-    background-color: aqua;
-    margin-top: auto;
-    position: absolute;
+    box-shadow: none;
+    border: none;
+
 }
+
+
+
+
+
+
+
+
 

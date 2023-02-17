@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Calendary from '../../../components/Calendary/Calendary'
 import { getUserConsults, getUserById } from '../../../features/apiPetitions'
@@ -21,6 +22,7 @@ export default function ApptHistory() {
     <div className={style.container}>
       <div className={style.consultsContainer}>
         <h1 className={style.title}>Esta es tu lista de consultas completadas y/o pendientes:</h1>
+       
       </div>
       <div className={style.box}>
         {consults && 
@@ -33,9 +35,15 @@ export default function ApptHistory() {
         })
         }
       </div>
+
+     
+      
+      
       {/* <div className={style.calendary}>
         <Calendary/>
       </div> */}
+
+      
     </div>
   )
 }

@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import swal from "sweetalert";
 import { requestConsultation } from "../../features/apiPetitions";
 import style from "./Calendary.module.css";
-const Calendary = ( {professionalId} ) => {
+const Calendary = ({ professionalId }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const user = useSelector((state) => state.user.user);
-  const goToPayment = (body) => {
-    requestConsultation({ ...body, userId: user.id, professionalId }).then(
-      (e) => (window.location.href = e)
-    );
-  };
-
-  const [workingHours, setWorkingHours] = useState([
+  // para dani de firebase
+  const daysDisabled = [];
+  const workingHours = [
     "9:00 am",
     "10:00 am",
     "11:00 am",
@@ -21,7 +17,37 @@ const Calendary = ( {professionalId} ) => {
     "15:00 pm",
     "16:00 pm",
     "17:00 pm",
-  ]);
+  ];
+
+  const freeDays = ["Sat"];
+
+
+  const user = useSelector((state) => state.user.user);
+  const goToPayment = (body) => {
+    daysDisabled.push(body.date)
+    console.log(body.date);
+    requestConsultation({ ...body, userId: user.id, professionalId }).then(
+      (e) => (window.location.href = e)
+    );
+  };
+
+  const validateHours = (day, hour) => {
+    return (
+      freeDays.includes(day.toString().split(" ")[0]) ||
+      day < new Date() ||
+      daysDisabled.includes(hour)
+    );
+  };
+  const validateDate = (day, hour) => {
+    console.log(daysDisabled);
+    validateHours(day, `${day} ${hour}`)
+      ? swal({
+        title:'Upps!',
+        text:'lo siento pero ese horario no esta disponible',
+      })
+      : setSelectedHour({ day, hour });
+  };
+
   const [selectedHour, setSelectedHour] = useState(null);
 
   const renderWeek = () => {
@@ -33,7 +59,6 @@ const Calendary = ( {professionalId} ) => {
       day.setDate(day.getDate() + i);
 
       days.push(
-
         <div key={i} className={style.day}>
           <div className={style.weekday_Date}>
             <div className={style.weekDay}>{weekDays[day.getDay()]}</div>
@@ -41,12 +66,10 @@ const Calendary = ( {professionalId} ) => {
           </div>
           <div className={style.workingHours}>{renderWorkingHours(day)}</div>
         </div>
-        
       );
     }
 
     return (
-    
       <div className={style.week} style={{ display: "flex", flexWrap: "wrap" }}>
         {days}
       </div>
@@ -59,8 +82,12 @@ const Calendary = ( {professionalId} ) => {
       hours.push(
         <div
           key={i}
-          className={style.hour}
-          onClick={() => setSelectedHour({ day, hour: workingHours[i] })}
+          className={`${style.hour} ${
+            validateHours(day, `${day} ${workingHours[i]}`)
+              ? style.hourDisabled
+              : null
+          }`}
+          onClick={() => validateDate(day, workingHours[i])}
         >
           {workingHours[i]}
         </div>
@@ -71,7 +98,6 @@ const Calendary = ( {professionalId} ) => {
   };
 
   return (
-  
     <div className={style.calendar}>
       <h2 className={style.titlecalendar}>Agenda un cita</h2>
       <div className={style.header}>
@@ -80,9 +106,9 @@ const Calendary = ( {professionalId} ) => {
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() - 7))
-              )
-            }
-            >
+            )
+          }
+        >
           &larr;
         </button>
         <div>{currentDate.toLocaleString("default", { month: "long" })} </div>
@@ -91,9 +117,9 @@ const Calendary = ( {professionalId} ) => {
           onClick={() =>
             setCurrentDate(
               new Date(currentDate.setDate(currentDate.getDate() + 7))
-              )
-            }
-            >
+            )
+          }
+        >
           &rarr;
         </button>
       </div>
@@ -103,25 +129,19 @@ const Calendary = ( {professionalId} ) => {
           <div>
             {selectedHour.day.toLocaleString("default", { weekday: "long" })},{" "}
             {selectedHour.day.toLocaleString("default", { month: "long" })}{" "}
-            {selectedHour.day.getDate()}, {selectedHour.hour}
+            {selectedHour.hour}
           </div>
           <button
             className={style.button}
             onClick={() => setSelectedHour(null)}
-            >
+          >
             Close
           </button>
           <button
             className={style.button}
             onClick={() =>
               goToPayment({
-                date: `${selectedHour.day.toLocaleString("default", {
-                  weekday: "long",
-                })}
-                ${selectedHour.day.toLocaleString("default", {
-                  month: "long",
-                })} 
-                ${selectedHour.day.getDate()}, ${selectedHour.hour}`,
+                date: `${selectedHour.day} ${selectedHour.hour}`,
                 price: "200",
               })
             }
@@ -131,7 +151,6 @@ const Calendary = ( {professionalId} ) => {
         </div>
       )}
     </div>
-   
   );
 };
 export default Calendary;

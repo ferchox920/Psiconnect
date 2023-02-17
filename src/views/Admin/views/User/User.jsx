@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-// import Header from "../../AdminComponents/Headers";
 import { useNavigate } from "react-router-dom";
 import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
 import { deleteUser, getAllUser, updateStatusToUsers } from "../../feutures/apiPetitions";
+import Header from "../../Components/Header";
 
 
 export default function Users() {
@@ -94,7 +94,7 @@ export default function Users() {
 
   return (
     <Box m="20px">
-      {/* <Header title="Users" subtitle="Managing the Users" /> */}
+      <Header title="Users" subtitle="Managing the Users" />
       <Box
         m="40px 0 0 0"
         height="75vh"

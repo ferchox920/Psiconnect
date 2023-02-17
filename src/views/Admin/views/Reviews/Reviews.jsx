@@ -34,6 +34,41 @@ export default function Reviews() {
       flex: 1,
       cellClassName: "name-column--cell",
     },
+    {
+      field: "state",
+      headerName: "state",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      headerName: "Disable",
+      flex: 1,
+      renderCell: (params) => {
+      
+        return (<Box gap="12px" display="flex">
+          <Box
+            width="100px"
+            m="0 auto"
+            p="5px"
+            display="flex"
+            justifyContent="center"
+            onClick={() => {
+                updateStatusToAreas(params.row.id).then(()=>{
+                    params.row.state = !params.row.state;
+                })
+            }}
+            backgroundColor={params.row.state?"#66d7d1":"#ffa8b6"}
+            borderRadius="4px"
+            sx={{
+              cursor: "pointer",
+            }}
+          >
+            <Typography sx={{ ml: "5px" }}>{ params.row.state?'Disable':'Enable'}</Typography>
+          </Box>
+        </Box>)
+      },
+    },
+   
 
    
   ];

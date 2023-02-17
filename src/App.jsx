@@ -26,6 +26,10 @@ function App() {
   const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
   const dispacht = useDispatch();
+  useEffect(()=>{
+    document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, I
+  },[pathname])
   useEffect(() => {
     localStorage.getItem("tkn")
       ? getUserByJWT({
@@ -56,7 +60,7 @@ function App() {
         <Route path="/Professionals/:area" element={<Professionals />} />
         <Route path="/Formreview/:id" element={<Formreview />} />
         <Route
-          path="/professionalProfile/:section*"
+          path="/professionalProfile/:section"
           element={
             <ProtectedRoute type={"professional"}>
               <ProSidebarProvider>
@@ -66,7 +70,7 @@ function App() {
           }
         />
         <Route
-          path="/userProfile/:section*"
+          path="/userProfile/:section"
           element={
             <ProtectedRoute type={"user"}>
               <ProSidebarProvider>
@@ -76,7 +80,7 @@ function App() {
           }
         />
         <Route
-          path="/admin/:section*"
+          path="/admin/:section"
           element={
             <ProtectedRoute type={"admin"}>
               <ProSidebarProvider>
@@ -91,7 +95,7 @@ function App() {
     
       {pathname.split("/")[1] !== "professionalProfile" &&
       pathname.split("/")[1] !== "userProfile" &&
-      pathname.split("/")[1] !== "admin" && 'Details' && <Footer />}
+      pathname.split("/")[1] !== "admin" && pathname.split("/")[1] !== 'Details' && <Footer />}
       {pathname.split('/')[1] !== 'Details' && user && user.rol !== 'admin'? <Chat />  : null}
     </>
   );
