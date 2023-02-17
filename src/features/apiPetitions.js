@@ -264,7 +264,22 @@ export default async function putUserData(id, body) {
     console.log(error)
   }
 }
-
+export async function getProfessionalPayments(professionalId, state){
+  try {
+    const response = await axios.get(`/payment/professional/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+export async function getResultProfessionalPayments(professionalId, state){
+  try {
+    const response = await axios.get(`/payment/professionalPayment/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 // export default async function postImageCloudinary(file, image) {
 
 //       try{
