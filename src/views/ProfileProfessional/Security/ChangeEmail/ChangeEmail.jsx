@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
 
 function ChangeEmail() {
-  const [currentEmail, setCurrentEmail] = useState('');
-  const [newEmail, setNewEmail] = useState('');
+  const [emailData, setEmailData] = useState({
+    currentEmail: '',
+    newEmail: '',
+  });
   const [verifyNewEmail, setVerifyNewEmail] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!currentEmail) {
+    if (!emailData.currentEmail) {
       alert("Debe ingresar su correo electrónico actual.");
       return;
     }
-    if (!newEmail) {
+    if (!emailData.newEmail) {
       alert("Debe ingresar su nuevo correo electrónico.");
       return;
     }
-    if (!verifyNewEmail || verifyNewEmail !== newEmail) {
+    if (!verifyNewEmail || verifyNewEmail !== emailData.newEmail) {
       alert("Debe verificar su nueva dirección de correo electrónico.");
       return;
     }
-    setCurrentEmail(newEmail);
-    setNewEmail('');
+    setEmailData({
+      currentEmail: emailData.newEmail,
+      newEmail: '',
+    });
     setVerifyNewEmail('');
     alert("¡Se cambió su correo electrónico correctamente!");
   }
@@ -33,8 +37,8 @@ function ChangeEmail() {
         <input
           type="email"
           id="current-email"
-          value={currentEmail}
-          onChange={(e) => setCurrentEmail(e.target.value)}
+          value={emailData.currentEmail}
+          onChange={(e) => setEmailData({...emailData, currentEmail: e.target.value})}
           required
         />
         <label htmlFor="new-email">Nuevo correo electrónico:</label>
@@ -42,8 +46,8 @@ function ChangeEmail() {
           <input
             type="email"
             id="new-email"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
+            value={emailData.newEmail}
+            onChange={(e) => setEmailData({...emailData, newEmail: e.target.value})}
             required
           />
         </div>
