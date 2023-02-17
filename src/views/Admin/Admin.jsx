@@ -10,12 +10,14 @@ import Consults from './views/Consults/Consults'
 import Areas from './views/Areas/Areas'
 import CreateArea from './views/Data/createArea'
 import EditArea from './views/Data/editArea'
+import Skills from './views/Skills/Skills'
 
 function Section({section}){
     switch (section) {
         case 'users': return <Users />
         case 'professionals':return <Professionals />
         case 'areas':return<Areas />
+        case 'skills':return<Skills />
         case 'reviews':return<Reviews />
         case 'payments':return <Payments />
         case 'consults':return <Consults />
