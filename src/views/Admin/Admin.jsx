@@ -1,23 +1,28 @@
 import React from 'react'
-// import ProfileForm from './Form/Form'
-// import Incomes from './Incomes/Incomes'
-// import Arrangements from './Arrangements/Arrangements'
-// import Security from './Security/Security'
-
 import style from './admin.module.css'
 import { useParams } from 'react-router-dom'
 import SideBar from './Sidebar'
 import Users from './views/User/User'
+import Professionals from './views/Professionals/Professionals'
+import Reviews from './views/Reviews/Reviews'
+import Payments from './views/Payments/Paymets'
+import Consults from './views/Consults/Consults'
+import Areas from './views/Areas/Areas'
+import CreateArea from './views/Data/createArea'
+import EditArea from './views/Data/editArea'
+import Skills from './views/Skills/Skills'
 
 function Section({section}){
     switch (section) {
         case 'users': return <Users />
-        case 'professionals':return <div>{section}</div>
-        case 'skills':return<div>{section}</div>
-        case 'reviews':return<div>{section}</div>
-        case 'payments':return<div>{section}</div>
-        case 'consults':return<div>{section}</div>
-        case 'areas':return<div>{section}</div>
+        case 'professionals':return <Professionals />
+        case 'areas':return<Areas />
+        case 'skills':return<Skills />
+        case 'reviews':return<Reviews />
+        case 'payments':return <Payments />
+        case 'consults':return <Consults />
+        case 'create-area':return <CreateArea />
+        case 'edit-area':return <EditArea />
         
         default:
           return

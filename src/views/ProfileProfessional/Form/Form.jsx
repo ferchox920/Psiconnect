@@ -155,7 +155,6 @@ const uploadImage= async (file)=>{
         icon: "error",
       });
     }
-    console.log(form, errors, form.skills.at(0))
   };
 
   return (

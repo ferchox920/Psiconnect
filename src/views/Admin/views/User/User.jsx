@@ -1,15 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-// import Header from "../../AdminComponents/Headers";
 import { useNavigate } from "react-router-dom";
-import { getAllUser, updateStatusToUsers } from "../../../../features/apiPetitions";
+import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
+import { deleteUser, getAllUser, updateStatusToUsers } from "../../feutures/apiPetitions";
+import Header from "../../Components/Header";
+
 
 export default function Users() {
   const [data, setData] = useState([]);
+  const [anchor, setAnchor] = useState(false);
   useEffect(() => {
     getAllUser(setData);
-  }, []);
+  }, [anchor]);
   const navigate = useNavigate();
 
   const columns = [
@@ -45,8 +48,8 @@ export default function Users() {
       cellClassName: "name-column--cell",
     },
     {
-      headerName: "Disable",
-      flex: 1,
+      headerName:'Actions',
+      flex: 2.2,
       renderCell: (params) => {
       
         return (<Box gap="12px" display="flex">
@@ -61,7 +64,7 @@ export default function Users() {
                     params.row.state = !params.row.state;
                 })
             }}
-            backgroundColor="#eaf2e3"
+            backgroundColor={params.row.state?"#66d7d1":"#ffa8b6"}
             borderRadius="4px"
             sx={{
               cursor: "pointer",
@@ -69,6 +72,21 @@ export default function Users() {
           >
             <Typography sx={{ ml: "5px" }}>{ params.row.state?'Disable':'Enable'}</Typography>
           </Box>
+          <Box
+             sx={{
+              cursor: "pointer",
+            }}
+              width="60px"
+              m="0 auto"
+              p="5px"
+              display="flex"
+              justifyContent="center"
+              onClick={() => deleteUser(params.row.id).then(()=> setAnchor(!anchor) )}
+              backgroundColor="red"
+              borderRadius="4px"
+            >
+              <DeleteSweepOutlinedIcon style={{ scale: "110%" }} />
+            </Box>
         </Box>)
       },
     },
@@ -76,7 +94,7 @@ export default function Users() {
 
   return (
     <Box m="20px">
-      {/* <Header title="Users" subtitle="Managing the Users" /> */}
+      <Header title="Users" subtitle="Managing the Users" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -101,12 +119,7 @@ export default function Users() {
             borderTop: "none",
             backgroundColor: "#5f9ea0",
           },
-          "& .MuiCheckbox-root": {
-            // color: `${colors.greenAccent[200]} !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            // color: `${colors.grey[100]} !important`,
-          },
+
         }}
       >
         <DataGrid
