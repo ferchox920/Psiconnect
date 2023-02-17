@@ -2,13 +2,19 @@ import InputEmail from "../InputEmail/InputEmail";
 import { useState } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { TitleMin, divContainer, submit, arrowDiv, form, arrow, divInputs, titleMinDiv } from './FormForgotPass.module.css';
-
+import { sendEmailForgetPassProfessional, sendEmailForgetPassUser } from '../../../features/apiPetitions.js'
+import { successMessage } from "../../../features/errorsModals";
 
 const FormForgotPass = ({SetSwitchForgotPass}) => {
 const [ email, setEmail ] = useState('')
 
 const handleOnSubmit = async(e) => {
-    e.preventDefault()
+    e.preventDefault();
+    const request = await sendEmailForgetPassUser({email:email});
+    const requestTwo = await sendEmailForgetPassProfessional({email:email});
+        successMessage("Verificacion enviada al email")
+            .then(data => SetSwitchForgotPass(false))
+    setEmail('')
 }
 const handleInputChange = (e) => {
     setEmail(e.target.value)

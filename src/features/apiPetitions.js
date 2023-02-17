@@ -346,4 +346,23 @@ export async function forgotPassword(token, body){
   }catch(err){
     return err
   }
+};
+
+export async function sendEmailForgetPassUser(body){
+try{
+    const request = await axios.put(`/user/forget-password`, body);
+    return request?.data;
+  }catch(err){
+    return err;
+  }
 }
+
+export async function sendEmailForgetPassProfessional(body){
+  try{
+    const request = await axios.put(`/professional/forget-password`, body);
+    return request?.data;
+  }catch(err){
+  return err;
+}
+}
+

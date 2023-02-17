@@ -78,7 +78,8 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
   return (
     switchForgotPass?
     <FormForgotPass 
-    SetSwitchForgotPass={SetSwitchForgotPass} />
+    SetSwitchForgotPass={SetSwitchForgotPass}
+    />
     :
     <form
       onSubmit={
