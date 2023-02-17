@@ -10,11 +10,11 @@ import Calendary from "../../components/Calendary/Calendary";
 import FormModal from "../../components/modals/Modals";
 import CardProfessional from "./CardDetails/CardProfessional";
 import { createChat } from "../../features/firebase/chatsFeatures";
-import  {
+import firestore, {
   getConsultsProfessional,
   getContextProfessional,
 } from "../../features/firebase/calendaryFeatures";
-// import { collection, onSnapshot } from "@firebase/firestore";
+import { collection, onSnapshot } from "@firebase/firestore";
 
 export default function Details() {
   const [professional, setProfessional] = useState({});
@@ -46,19 +46,19 @@ export default function Details() {
     getConsultsProfessional({ professionalId: id, state: setDaysDisabled });
   }, [id]);
 
-  // useEffect(
-  //   () =>
-  //     onSnapshot(
-  //       collection(
-  //         firestore,
-  //         `context/${id}/times`
-  //       ),
-  //       (snapshot) => {
-  //         setContextProfessional(snapshot.docs.map((doc) => doc.data()));
-  //       }
-  //     ),
-  //   [id]
-  // );
+  useEffect(
+    () =>
+      onSnapshot(
+        collection(
+          firestore,
+          `context/${id}/times`
+        ),
+        (snapshot) => {
+          setContextProfessional(snapshot.docs.map((doc) => doc.data()));
+        }
+      ),
+    [id]
+  );
 
 
 
