@@ -25,7 +25,7 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
     console.log(body.date);
-    window,alert(body.date)
+    window.alert(body.date)
     // requestConsultation({ ...body, userId: user.id, professionalId }).then(
     //   (e) => (window.location.href = e)
     // );
