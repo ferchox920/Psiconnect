@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { changeEmailProfessional } from '../../../../features/apiPetitions';
 
 function ChangeEmail() {
   const [emailData, setEmailData] = useState({
@@ -21,6 +22,7 @@ function ChangeEmail() {
       alert("Debe verificar su nueva dirección de correo electrónico.");
       return;
     }
+    changeEmailProfessional(emailData.newEmail)
     setEmailData({
       currentEmail: emailData.newEmail,
       newEmail: '',
