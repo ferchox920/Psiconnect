@@ -9,8 +9,6 @@
 }
  */
 
-
-
 footer {
     display: flex;
     flex-direction: column;
@@ -190,5 +188,18 @@ footer {
     .footer .h5 {
       font-size: 16px;
     }
+  }
+  
+  @media (max-width: 650px) {
+  .footer{
+    display: flex;
+    flex-direction:  column-reverse;
+    justify-content: center;
+  }
+  .footer div div, .footer div a, .footer div p{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
   }
   

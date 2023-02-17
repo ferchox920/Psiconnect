@@ -95,6 +95,17 @@ export async function changePassword(body) {
     return error.response;
   }
 }
+export async function changePasswordProfessional(body) {
+  try {
+    const peticion = await axios.post(`/professional/changePassword`, body, {
+      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+    });
+    localStorage.setItem("tkn", peticion?.data.data);
+    return peticion;
+  } catch (error) {
+    return error.response;
+  }
+}
 export async function getAreas(state) {
   try {
     const peticion = await axios.get("/areas");
@@ -119,7 +130,7 @@ export async function getUserByJWT({ state, type }) {
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/details/${id}`);
+    const peticion = await axios.get(`/professional/details/${id}`);  
     console.log(peticion , 'peticion')
     return state(peticion.data);
   } catch (error) {
@@ -272,7 +283,22 @@ export default async function putUserData(id, body) {
     console.log(error)
   }
 }
-
+export async function getProfessionalPayments(professionalId, state){
+  try {
+    const response = await axios.get(`/payment/professional/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+export async function getResultProfessionalPayments(professionalId, state){
+  try {
+    const response = await axios.get(`/payment/professionalPayment/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 // export default async function postImageCloudinary(file, image) {
 
 //       try{
@@ -290,3 +316,21 @@ export async function autoLoginAfterPostRegister(token){
    window.location.pathname='/';
    window.location.reload();
 }
+
+export async function getAllUser(state){
+  try {
+    const peticion = await axios.get('/user');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+export async function getAllProfessionals(state){
+  try {
+    const peticion = await axios.get('/professional');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+
