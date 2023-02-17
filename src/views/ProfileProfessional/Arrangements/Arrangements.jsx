@@ -7,13 +7,22 @@ import {
 } from "../../../features/apiPetitions";
 import style from "./Arrangements.module.css";
 import CardConsult from "./Card/CardConsult";
-import {createConsults, createContext, getContextProfessional} from "../../../features/firebase/calendaryFeatures";
+import {
+  createConsults,
+  createContext,
+  getConsultsProfessional,
+  getContextProfessional,
+} from "../../../features/firebase/calendaryFeatures";
 //sb-5wib4725027012@personal.example.com
 //IR%T%Ms4
 
 export default function Arrangements() {
   const [consults, setConsults] = useState();
   const [contextProfessional, setContextProfessional] = useState();
+  const [daysDisabled, setDaysDisabled] = useState();
+
+
+
   const professionalId = useSelector((store) => store.user.user.id);
   const freeDays = ["Sun"];
   const workingHours = [
@@ -24,25 +33,20 @@ export default function Arrangements() {
     "13:00 am",
     "17:00 am",
     "20:00 pm",
-  
   ];
   useEffect(() => {
     getProfessionalConsults(professionalId, setConsults);
+    getContextProfessional({ professionalId, state: setContextProfessional });
+    getConsultsProfessional({professionalId, state:setDaysDisabled});
   }, []);
-  useEffect(() => {
-    getContextProfessional({professionalId, state:setContextProfessional})
-  }, []);
+ 
   const createContextProfessional = () => {
     createContext({
       professionalId,
       freeDays,
       workingHours,
     });
-    createConsults({
-      professionalId,
-      freeDays,
-      workingHours,
-    });
+ 
   };
   return (
     <div className={style.container}>
@@ -51,17 +55,18 @@ export default function Arrangements() {
       </div>
       <button onClick={createContextProfessional}>testing</button>
       <div className={style.box}>
-        {consults && 
-        consults.map((c, i) => {
-          return(
-              <CardConsult key={i} consult={c}/>  
-          )
-        })
-        }
+        {consults &&
+          consults.map((c, i) => {
+            return <CardConsult key={i} consult={c} />;
+          })}
         {!consults?.length && <p> No tienes citas agendadas </p>}
       </div>
       <div className={style.calendary}>
-        <Calendary workingHours={contextProfessional?.workingHours || []} freeDays = {contextProfessional?.freeDays || []}  />
+        <Calendary
+          workingHours={contextProfessional?.workingHours || []}
+          freeDays={contextProfessional?.freeDays || []}
+          daysDisabled = {daysDisabled || []}
+        />
       </div>
     </div>
   );

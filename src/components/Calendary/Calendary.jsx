@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import { requestConsultation } from "../../features/apiPetitions";
+import { getConsultsProfessional } from "../../features/firebase/calendaryFeatures";
 import style from "./Calendary.module.css";
-const Calendary = ({ workingHours, professionalId, freeDays  }) => {
+const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled  }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
+
   // para dani de firebase
-  const daysDisabled = ['Thu Feb 23 2023 9:00 am'];
   // const workingHours = [
   //   "9:00 am",
   //   "10:00 am",
@@ -24,16 +25,16 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
 
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
-    console.log(body.date);
-    window.alert(body.date)
-    // requestConsultation({ ...body, userId: user.id, professionalId }).then(
-    //   (e) => (window.location.href = e)
-    // );
+    createConsults({
+      professionalId,
+      hours: body.date
+    });
+    requestConsultation({ ...body, userId: user.id, professionalId }).then(
+      (e) => (window.location.href = e)
+    );
   };
 
   const validateHours = (day, hour) => {
-    console.log(day.toString().split(' ').slice(4).join(' '));
-    console.log(daysDisabled);
     return (
       freeDays.includes(day.toString().split(" ")[0]) ||
       day < new Date() ||
@@ -143,8 +144,8 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
             className={style.button}
             onClick={() =>
               goToPayment({
-                date: `${selectedHour.day} ${selectedHour.hour}`,
-                price: "200",
+                date: `${selectedHour.day.toString().split(' ').slice(0,4).join(' ')} ${selectedHour.hour}`,
+                price: price || "200",
               })
             }
           >
