@@ -53,7 +53,7 @@ const Footer = () => {
       <div className={style.about}>
         <div className={style.h5}>CONOCENOS</div>
         <a href="/Asistencia" className={style.info}>¿Necesitas ayuda?</a>
-        <a href="/registerProfesional" className={style.info}>¿Eres médico?</a>
+        <a href="/registerProfesional" className={style.info}>Trabaja con nosotros</a>
         <a className={style.info} onClick={openModal}>Contactanos</a>
         <a className={style.info} onClick={close}>Terminos y condiciones</a> 
       </div>
