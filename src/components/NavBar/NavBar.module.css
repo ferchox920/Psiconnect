@@ -188,7 +188,7 @@
   padding-top:100px ;
  }
  .navClose{
-  right: -100%;
+  right: -120%;
  }
  .nav div{
   display: flex;
@@ -221,4 +221,25 @@
   .hamburger {
     width: 35px;
     height: 35px
-}}
+}
+.logo{
+  justify-content: start;
+  padding-left: 20px;
+}
+}
+@media (max-width: 350px) {
+  .hamburger {
+    width: 30px;
+    height: 30px
+}
+.logo{
+  justify-content: start;
+  padding-left: 20px;
+}
+.logo a img{
+  width: 30px;
+}
+.logo a h3{
+  font-size: 30px;
+}
+}
