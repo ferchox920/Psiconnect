@@ -6,9 +6,7 @@
     font: var(--hTitle);
     font-size: 150%
 }
-.img {
-  width: 180px;
-}
+
 
 .info{
   display: grid;
@@ -21,10 +19,15 @@
   align-items: center;
 }
 .logo__psicologia img{
-  scale: 210%;
+  width: 90%;
   border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  transition: all 1600ms ease;
+  box-shadow: rgba(246, 171, 171, 0.2) 0px 30px 20px -17px;
 
+}
+.logo__psicologia img:hover{
+  transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 30px 20px -17px;
 
 }
 .titulo{
@@ -33,7 +36,7 @@
   position: relative;
   cursor: pointer;
   align-content: center;
-  font-size: 30px;
+  font-size: 1.5em;
 }
 .title{
   display: flex;
@@ -41,7 +44,7 @@
   position: relative;
   cursor: pointer;
   align-content: center;
-  font-size: 50px;
+  font-size: 2em;
 }
 .title::before {
   background-color: #7ed0e9;
@@ -67,10 +70,40 @@
   display: flex;
   justify-content: center;
   font: var(--paragraph);
-  font-size: 120%;
+  font-size: 1em;
 }
 
 .secondInfo{
   display: grid;
   grid-template-columns: 40% 60%;
+}
+
+@media (max-width: 1024px) {
+  .container{
+    padding: 20px 1em;
+  }
+  .info{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .secondInfo{
+    display: flex;
+    flex-direction: column;
+  }
+  .logo__psicologia img{
+    width: 35%;
+  }
+}
+@media (max-width: 700px) {
+  
+  .title{
+ font-size: 1.2em;
+  }
+  .titulo{
+    font-size: 1em;
+
+  }
+  .parrafo{
+    font-size: 0.6em;
+  }
 }

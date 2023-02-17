@@ -28,10 +28,11 @@ body {
   margin: 0;
   margin-top: 90px;
   background: linear-gradient(180deg, #f4f1bba9 0%, #f5f3d47d 90%);
+  overflow-x: hidden !important;
 
 }
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 /* Track */
@@ -41,7 +42,8 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background:var(--cadetblue)
+  background:var(--cadetblue);
+  border-radius: 10px;
 }
 
 /* Handle on hover */
