@@ -5,6 +5,7 @@ function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
   const handleSubmit = (e) => {
       e.preventDefault();
     if (newPassword !== confirmPassword) {
@@ -13,7 +14,7 @@ function ChangePassword() {
     }
     if (!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(newPassword)) {
       alert("La nueva contraseña debe tener al menos una letra mayúscula, un número y tener un mínimo de 8 caracteres.");
-      changePasswordProfessional()
+      changePasswordProfessional({newPassword,currentPassword})
       return;
     }
     // Si todo es válido, enviar una solicitud de cambio de contraseña al servidor
