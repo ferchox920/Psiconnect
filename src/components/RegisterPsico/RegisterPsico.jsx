@@ -24,7 +24,8 @@ export default function RegisterPsico() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if(!CheckTermsAndConditions) return errorMenssage('Por favor lea nuestas politicas de empresa')
+    if (!CheckTermsAndConditions)
+      return errorMenssage("Por favor lea nuestas politicas de empresa");
     if (!Object.keys(errors).length) {
       professionalRegister(register);
     } else errorMenssage(Object.values(errors)[0]);
@@ -112,12 +113,19 @@ export default function RegisterPsico() {
         </div>
         <div className={style.TermsAndConditions}>
           <label className={style.checkBox}>
-            <input type="checkbox" onClick={()=> setCheckTermsAndConditions(!CheckTermsAndConditions)} />
+            <input
+              type="checkbox"
+              onClick={() =>
+                setCheckTermsAndConditions(!CheckTermsAndConditions)
+              }
+            />
             <div className={style.checkmark}></div>
           </label>
           <span>
-            <span className={style.open} onClick={close}>terminos y condiciones </span>
-           de nuestra empresa.
+            <span className={style.open} onClick={close}>
+              terminos y condiciones{" "}
+            </span>
+            <span>de nuestra empresa.</span>
           </span>
         </div>
 

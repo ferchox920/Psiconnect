@@ -1,7 +1,29 @@
 import style from "./Footer.module.css";
 import logo from  "../../assets/LogoCerebro.svg";
+import FormModal from "../modals/Modals";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import TerminoAndCondiciones from "../TerminoAndCondiciones/TerminoAndCondiciones";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+
+  const [modal, setModal] = useState(null);
+  const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+  const openModal = () => {
+    user ?
+    navigate("/Asistencia")
+    :
+    setModal(!modal);
+  };
+  const [TermsAndConditions, setTermsAndConditions] = useState(false);
+  const [CheckTermsAndConditions, setCheckTermsAndConditions] = useState(false);
+  const close = () => {
+    setTermsAndConditions(!TermsAndConditions);
+  };
+
+
   return (
     <div>
     <footer>
@@ -30,12 +52,15 @@ const Footer = () => {
       </div>
       <div className={style.about}>
         <div className={style.h5}>CONOCENOS</div>
-        <a href="#" className={style.info}>¿Necesitas ayuda?</a>
+        <a href="/Asistencia" className={style.info}>¿Necesitas ayuda?</a>
         <a href="/registerProfesional" className={style.info}>¿Eres médico?</a>
-        <a href="#" className={style.info}>Contactanos</a>
+        <a className={style.info} onClick={openModal}>Contactanos</a>
+        <a className={style.info} onClick={close}>Terminos y condiciones</a> 
       </div>
     </section>
   </footer>
+  {TermsAndConditions && <TerminoAndCondiciones close={close} />}
+  {modal && <FormModal name={"User"} />}
     </div>
   );
 };
