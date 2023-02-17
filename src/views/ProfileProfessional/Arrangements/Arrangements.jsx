@@ -7,36 +7,51 @@ import {
 } from "../../../features/apiPetitions";
 import style from "./Arrangements.module.css";
 import CardConsult from "./Card/CardConsult";
-import {createContext, getContextProfessional} from "../../../features/firebase/calendaryFeatures";
+import {createConsults, createContext, getContextProfessional} from "../../../features/firebase/calendaryFeatures";
 //sb-5wib4725027012@personal.example.com
 //IR%T%Ms4
 
 export default function Arrangements() {
   const [consults, setConsults] = useState();
   const [contextProfessional, setContextProfessional] = useState();
+  const [daysDisabled, setDaysDisabled] = useState();
+
+
+
   const [startHour, setStartHour] = useState()
   const [endHour, setEndHour] = useState()
 
   const professionalId = useSelector((store) => store.user.user.id);
-
-  const hours = Array.from({length: 24}, (_, i) => ("0" + i).slice(-2) + ":00");
-
-
+  const freeDays = ["Sun"];
+  const workingHours = [
+    "9:00 am",
+    "10:00 am",
+    "11:00 am",
+    "12:00 am",
+    "13:00 am",
+    "17:00 am",
+    "20:00 pm",
+  
+  ];
   useEffect(() => {
     getProfessionalConsults(professionalId, setConsults);
+    getContextProfessional({ professionalId, state: setContextProfessional });
+    getConsultsProfessional({professionalId, state:setDaysDisabled});
   }, []);
   useEffect(() => {
     getContextProfessional({professionalId, state:setContextProfessional})
   }, []);
-
-  const range =  generateHours(startHour, endHour)
-
   const createContextProfessional = () => {
     console.log(range)
     createContext({
       professionalId,
       freeDays,
-      workingHours : range,
+      workingHours,
+    });
+    createConsults({
+      professionalId,
+      freeDays,
+      workingHours,
     });
   };
 
@@ -67,13 +82,10 @@ export default function Arrangements() {
         <h1 className={style.title}>Estas son tus citas agendadas</h1>
       </div>
       <div className={style.box}>
-        {consults && 
-        consults.map((c, i) => {
-          return(
-              <CardConsult key={i} consult={c}/>  
-          )
-        })
-        }
+        {consults &&
+          consults.map((c, i) => {
+            return <CardConsult key={i} consult={c} />;
+          })}
         {!consults?.length && <p> No tienes citas agendadas </p>}
       </div>
       <div>
@@ -96,7 +108,19 @@ export default function Arrangements() {
         </select> hs</label>
       </div>
       <div className={style.calendary}>
-        <Calendary workingHours={contextProfessional?.workingHours || []} freeDays = {contextProfessional?.freeDays || []}  />
+        <Calendary
+          workingHours={contextProfessional?.workingHours || [
+            "9:00 am",
+            "10:00 am",
+            "11:00 am",
+            "12:00 am",
+            "13:00 am",
+            "17:00 am",
+            "20:00 pm",
+          ]}
+          freeDays={contextProfessional?.freeDays || []}
+          daysDisabled = {daysDisabled || []}
+        />
       </div>
       <button onClick={() => createContextProfessional()}>Guardar cambios</button>
     </div>

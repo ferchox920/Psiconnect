@@ -25,15 +25,15 @@ export async function createContext({ professionalId, freeDays, workingHours }) 
 
 
 
-  
+
 export async function createConsults({ professionalId, hours }) {
     const docuRef = doc(
       firestore,
-      `context/${professionalId}/consults/${professionalId}`
+      `context/${professionalId}/consults/${hours}`
     );
-    console.log(docuRef);
     await setDoc(docuRef, {
-      hours:['Thu Feb 23 2023 16:49:07 GMT-0300 (hora estándar de Argentina) 9:00 am']
+      id: new Date().getTime(),
+      hours
     });
   }
 export async function getContextProfessional({professionalId, state}) {
@@ -41,6 +41,15 @@ export async function getContextProfessional({professionalId, state}) {
   const constextCifrados = await getDocs(collectionRef);
   const context = constextCifrados.docs.map((contextCifrado) => contextCifrado.data());
   state(context[0]);
+  return context;
+  }
+  
+export async function getConsultsProfessional({professionalId, state}) {
+  const collectionRef = collection(firestore, `context/${professionalId}/consults`);
+  const contextCifrados = await getDocs(collectionRef);
+  const context = contextCifrados.docs.map((contextCifrado) => contextCifrado.data());
+  const data = await context.map(e => e?.hours)
+  state(data);
   return context;
   }
   
