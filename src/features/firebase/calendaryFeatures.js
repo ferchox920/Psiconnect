@@ -49,7 +49,6 @@ export async function getConsultsProfessional({professionalId, state}) {
   const contextCifrados = await getDocs(collectionRef);
   const context = contextCifrados.docs.map((contextCifrado) => contextCifrado.data());
   const data = await context.map(e => e?.hours)
-  console.log(data);
   state(data);
   return context;
   }

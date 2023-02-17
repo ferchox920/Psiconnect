@@ -2,27 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import { requestConsultation } from "../../features/apiPetitions";
-import { getConsultsProfessional } from "../../features/firebase/calendaryFeatures";
+import { createConsults } from "../../features/firebase/calendaryFeatures";
 import style from "./Calendary.module.css";
-const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled  }) => {
+const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-
-  // para dani de firebase
-  // const workingHours = [
-  //   "9:00 am",
-  //   "10:00 am",
-  //   "11:00 am",
-  //   "12:00 pm",
-  //   "13:00 pm",
-  //   "14:00 pm",
-  //   "15:00 pm",
-  //   "16:00 pm",
-  //   "17:00 pm",
-  // ];
-
-  // const freeDays = ["Sat"];
-
-
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
     createConsults({
