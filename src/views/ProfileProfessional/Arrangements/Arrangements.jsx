@@ -25,12 +25,11 @@ export default function Arrangements() {
         {consults && 
         consults.map((c, i) => {
           return(
-            <div className={style.consult}>
-              <CardConsult key={i} consult={c}/>
-            </div>
+              <CardConsult key={i} consult={c}/>  
           )
         })
         }
+        {!consults?.length && <p> No tienes citas agendadas </p>}
       </div>
       <div className={style.calendary}>
         <Calendary/>
