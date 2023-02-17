@@ -7,51 +7,42 @@ import {
 } from "../../../features/apiPetitions";
 import style from "./Arrangements.module.css";
 import CardConsult from "./Card/CardConsult";
-import {createConsults, createContext, getContextProfessional} from "../../../features/firebase/calendaryFeatures";
+import {
+  createContext,
+  getConsultsProfessional,
+  getContextProfessional,
+} from "../../../features/firebase/calendaryFeatures";
 //sb-5wib4725027012@personal.example.com
 //IR%T%Ms4
 
 export default function Arrangements() {
   const [consults, setConsults] = useState();
   const [contextProfessional, setContextProfessional] = useState();
-  const [daysDisabled, setDaysDisabled] = useState();
-
-
-
   const [startHour, setStartHour] = useState()
   const [endHour, setEndHour] = useState()
+  const [daysDisabled, setDaysDisabled] = useState();
+  const [freeDays, setFreeDays] = useState([])
 
   const professionalId = useSelector((store) => store.user.user.id);
-  const freeDays = ["Sun"];
-  const workingHours = [
-    "9:00 am",
-    "10:00 am",
-    "11:00 am",
-    "12:00 am",
-    "13:00 am",
-    "17:00 am",
-    "20:00 pm",
+
+  const hours = Array.from({length: 24}, (_, i) => ("0" + i).slice(-2) + ":00");
+
   
-  ];
+
   useEffect(() => {
     getProfessionalConsults(professionalId, setConsults);
     getContextProfessional({ professionalId, state: setContextProfessional });
     getConsultsProfessional({professionalId, state:setDaysDisabled});
   }, []);
-  useEffect(() => {
-    getContextProfessional({professionalId, state:setContextProfessional})
-  }, []);
+
+  const range =  generateHours(startHour, endHour)
+
   const createContextProfessional = () => {
     console.log(range)
     createContext({
       professionalId,
       freeDays,
-      workingHours,
-    });
-    createConsults({
-      professionalId,
-      freeDays,
-      workingHours,
+      workingHours : range,
     });
   };
 
