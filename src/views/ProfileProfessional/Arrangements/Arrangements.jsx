@@ -25,15 +25,7 @@ export default function Arrangements() {
 
   const professionalId = useSelector((store) => store.user.user.id);
   const freeDays = ["Sun"];
-  const workingHours = [
-    "9:00 am",
-    "10:00 am",
-    "11:00 am",
-    "12:00 am",
-    "13:00 am",
-    "17:00 am",
-    "20:00 pm",
-  ];
+
   useEffect(() => {
     getProfessionalConsults(professionalId, setConsults);
     getContextProfessional({ professionalId, state: setContextProfessional });
@@ -63,7 +55,15 @@ export default function Arrangements() {
       </div>
       <div className={style.calendary}>
         <Calendary
-          workingHours={contextProfessional?.workingHours || []}
+          workingHours={contextProfessional?.workingHours || [
+            "9:00 am",
+            "10:00 am",
+            "11:00 am",
+            "12:00 am",
+            "13:00 am",
+            "17:00 am",
+            "20:00 pm",
+          ]}
           freeDays={contextProfessional?.freeDays || []}
           daysDisabled = {daysDisabled || []}
         />
