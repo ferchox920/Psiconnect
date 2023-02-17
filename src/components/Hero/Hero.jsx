@@ -25,7 +25,7 @@ export default function Hero() {
             <img className={style.img} src={!user? 'https://res.cloudinary.com/dcdywqotf/image/upload/v1676483326/Cerebritos%20svg/Cerebritomeditando_iimsr6.svg' : 'https://res.cloudinary.com/dcdywqotf/image/upload/v1676483326/Cerebritos%20svg/Cerebrito_alegre_ec68ls.svg'} alt="" />
           </div>
           <div className={style.left}>
-            <h2 className={style.h2_1}> Fortificando mentes,</h2> 
+            <h2 className={style.h2_1}> Fortaleciendo mentes,</h2> 
             <h2 className={style.h2_2}> transformando vidas.</h2>
             <h4 className={style.heroH4}>
               Recibe la atención que te mereces.
