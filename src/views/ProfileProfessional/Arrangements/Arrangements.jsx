@@ -50,14 +50,14 @@ export default function Arrangements() {
       </div>
       <button onClick={createContextProfessional}>testing</button>
       <div className={style.box}>
-        {consults &&
-          consults.map((c, i) => {
-            return (
-              <div className={style.consult}>
-                <CardConsult key={i} consult={c} />
-              </div>
-            );
-          })}
+        {consults && 
+        consults.map((c, i) => {
+          return(
+              <CardConsult key={i} consult={c}/>  
+          )
+        })
+        }
+        {!consults?.length && <p> No tienes citas agendadas </p>}
       </div>
       <div className={style.calendary}>
         <Calendary workingHours={contextProfessional?.workingHours || []} freeDays = {contextProfessional?.freeDays || []}  />
