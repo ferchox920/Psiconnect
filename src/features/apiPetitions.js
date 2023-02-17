@@ -130,7 +130,7 @@ export async function getUserByJWT({ state, type }) {
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/details/${id}`);
+    const peticion = await axios.get(`/professional/details/${id}`);  
     console.log(peticion , 'peticion')
     return state(peticion.data);
   } catch (error) {
@@ -316,3 +316,21 @@ export async function autoLoginAfterPostRegister(token){
    window.location.pathname='/';
    window.location.reload();
 }
+
+export async function getAllUser(state){
+  try {
+    const peticion = await axios.get('/user');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+export async function getAllProfessionals(state){
+  try {
+    const peticion = await axios.get('/professional');
+    state(peticion.data)
+  } catch (error) {
+    errorMenssage(error.response.data);
+  }
+}
+
