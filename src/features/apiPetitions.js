@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 import { errorMenssage, successMessage } from "./errorsModals.js";
-import { setAllProfessional, setFilterProfessional} from "./professionalSlice.js";
+import { setFilterProfessional} from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
@@ -79,7 +79,8 @@ export async function getProfByJWT({ state, type }) {
     });
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
-    console.log(error.response.data);
+    localStorage.removeItem("profTkn"),
+    console.log('jaj soy un error');
   }
 }
 
@@ -89,6 +90,16 @@ export async function changePassword(body) {
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
     });
     localStorage.setItem("tkn", peticion?.data.data);
+    return peticion;
+  } catch (error) {
+    return error.response;
+  }
+}
+export async function changePasswordProfessional(body) {  
+  try {
+    const peticion = await axios.put(`/professional/changePassword`, body, {
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+    });
     return peticion;
   } catch (error) {
     return error.response;
@@ -112,13 +123,15 @@ export async function getUserByJWT({ state, type }) {
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
 
   } catch (error) {
-    console.log(error.response.data);
+    localStorage.removeItem("tkn"),
+    console.log('soy un mapa');
   }
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/details/${id}`);
-    return state(peticion?.data);
+    const peticion = await axios.get(`/professional/details/${id}`);  
+    console.log(peticion , 'peticion')
+    return state(peticion.data);
   } catch (error) {
     return error.response;
   }
@@ -162,7 +175,7 @@ export async function getProfessionalsFilters({
 export async function getSkills({state, type}){
   try{
     const request = await axios.get('/skills')
-    type === 'local'? state(request?.data) : null;
+    state(request?.data);
   }catch(error){
     return error.response
   }
@@ -223,6 +236,16 @@ export async function getProfessionalConsults(professionalId, state){
     console.log(error)
   }
 }
+
+export async function getUserConsults(userId, state){
+  try {
+    const response = await axios.get(`/consult/user/${userId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function getUserById(userID, state){
   try {
     const response = await axios.get(`/user/${userID}`)
@@ -231,7 +254,14 @@ export async function getUserById(userID, state){
     console.log(error)
   }
 }
-
+export async function getAreaById(state, id){
+  try {
+    const response = await axios.get(`/areas/id/${id}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 export async function postRegisterProfesional(body,token){
   try{
     const request = await axios.put('/professional/descriptionProfesional', body,{
@@ -242,7 +272,9 @@ export async function postRegisterProfesional(body,token){
     return error
   }
 };
-export default async function putUserData(body) {
+
+
+export default async function putUserData(id, body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body)
       return(updateUser)
@@ -250,7 +282,22 @@ export default async function putUserData(body) {
     console.log(error)
   }
 }
-
+export async function getProfessionalPayments(professionalId, state){
+  try {
+    const response = await axios.get(`/payment/professional/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+export async function getResultProfessionalPayments(professionalId, state){
+  try {
+    const response = await axios.get(`/payment/professionalPayment/${professionalId}`)
+    return state(response?.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 // export default async function postImageCloudinary(file, image) {
 
 //       try{
@@ -268,6 +315,7 @@ export async function autoLoginAfterPostRegister(token){
    window.location.pathname='/';
    window.location.reload();
 }
+
 export async function getAllUser(state){
   try {
     const peticion = await axios.get('/user');
@@ -276,12 +324,12 @@ export async function getAllUser(state){
     errorMenssage(error.response.data);
   }
 }
-export async function updateStatusToUsers(id){
+export async function getAllProfessionals(state){
   try {
-    const peticion = await axios.put(`/admin/disable-user/${id}`);
-    successMessage(peticion.data)
-    return
+    const peticion = await axios.get('/professional');
+    state(peticion.data)
   } catch (error) {
     errorMenssage(error.response.data);
   }
 }
+
