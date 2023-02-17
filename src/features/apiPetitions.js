@@ -95,12 +95,11 @@ export async function changePassword(body) {
     return error.response;
   }
 }
-export async function changePasswordProfessional(body) {
+export async function changePasswordProfessional(body) {  
   try {
     const peticion = await axios.put(`/professional/changePassword`, body, {
-      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    localStorage.setItem("tkn", peticion?.data.data);
     return peticion;
   } catch (error) {
     return error.response;

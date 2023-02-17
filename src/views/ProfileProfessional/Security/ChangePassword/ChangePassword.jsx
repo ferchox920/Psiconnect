@@ -14,7 +14,7 @@ function ChangePassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const handleSubmit = (e) => {
+  const  handleSubmit = async (e) => {
     e.preventDefault();
     if (passwords.newPassword !== confirmPassword) {
       alert("Las nuevas contraseñas no coinciden.");
@@ -27,7 +27,8 @@ function ChangePassword() {
       return;
     }
     // Si todo es válido, enviar una solicitud de cambio de contraseña al servidor
-    changePasswordProfessional(passwords);
+    await changePasswordProfessional(passwords);
+ 
     setPasswords({ oldPassword: "", newPassword: "" });
     setConfirmPassword("");
     alert("¡Se cambió su contraseña correctamente!");
