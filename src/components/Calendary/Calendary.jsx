@@ -32,16 +32,17 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
   };
 
   const validateHours = (day, hour) => {
-    console.log(daysDisabled.includes(hour.toString().split(' ').slice(0,4).join(' ') + ' 9:00 am'));
+    console.log(day.toString().split(' ').slice(4).join(' '));
+    console.log(daysDisabled);
     return (
       freeDays.includes(day.toString().split(" ")[0]) ||
       day < new Date() ||
-      daysDisabled.includes(hour.toString().split(' ').slice(0,4).join(' ') + ' 9:00 am')
+      daysDisabled.includes(`${day.toString().split(' ').slice(0,4).join(' ')} ${hour}`)
     );
   };
   const validateDate = (day, hour) => {
     console.log(daysDisabled);
-    validateHours(day, `${day} ${hour}`)
+    validateHours(day, hour)
       ? swal({
         title:'Upps!',
         text:'lo siento pero ese horario no esta disponible',
@@ -84,7 +85,7 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
         <div
           key={i}
           className={`${style.hour} ${
-            validateHours(day, `${day} ${workingHours[i]}`)
+            validateHours(day, workingHours[i])
               ? style.hourDisabled
               : null
           }`}

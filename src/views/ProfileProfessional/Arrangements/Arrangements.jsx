@@ -13,7 +13,7 @@ import {createConsults, createContext, getContextProfessional} from "../../../fe
 
 export default function Arrangements() {
   const [consults, setConsults] = useState();
-  const [contextProfessional, setCcontextProfessional] = useState();
+  const [contextProfessional, setContextProfessional] = useState();
   const professionalId = useSelector((store) => store.user.user.id);
   const freeDays = ["Sun"];
   const workingHours = [
@@ -22,14 +22,15 @@ export default function Arrangements() {
     "11:00 am",
     "12:00 am",
     "13:00 am",
-    "21:00 pm",
+    "17:00 am",
+    "20:00 pm",
   
   ];
   useEffect(() => {
     getProfessionalConsults(professionalId, setConsults);
   }, []);
   useEffect(() => {
-    getContextProfessional({professionalId, state:setCcontextProfessional})
+    getContextProfessional({professionalId, state:setContextProfessional})
   }, []);
   const createContextProfessional = () => {
     createContext({
