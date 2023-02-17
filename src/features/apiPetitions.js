@@ -95,6 +95,17 @@ export async function changePassword(body) {
     return error.response;
   }
 }
+export async function changePasswordProfessional(body) {
+  try {
+    const peticion = await axios.post(`/professional/changePassword`, body, {
+      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+    });
+    localStorage.setItem("tkn", peticion?.data.data);
+    return peticion;
+  } catch (error) {
+    return error.response;
+  }
+}
 export async function getAreas(state) {
   try {
     const peticion = await axios.get("/areas");

@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
+import { changePasswordProfessional } from '../../../../features/apiPetitions';
 
 function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validar que la contraseña actual sea correcta y que las nuevas contraseñas coincidan
+      e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      alert("Las nuevas contraseñas no coinciden.");
+      return;
+    }
+    if (!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(newPassword)) {
+      alert("La nueva contraseña debe tener al menos una letra mayúscula, un número y tener un mínimo de 8 caracteres.");
+      changePasswordProfessional()
+      return;
+    }
     // Si todo es válido, enviar una solicitud de cambio de contraseña al servidor
   }
 
