@@ -25,7 +25,6 @@ export default function AreaSliderFilter() {
         <>
           <div className={style.ondas}>
             <img src={'https://res.cloudinary.com/dcdywqotf/image/upload/v1675267920/areas/Ondas_jha0ta.svg'} alt="ondas" />
-
           </div>
           <h1 className={style.titulo}>Areas</h1>
           <p className={style.parrafo}>
@@ -46,14 +45,14 @@ export default function AreaSliderFilter() {
           navigation
           loop={true}
           breakpoints={{
-            1400: {
+            1200: {
               slidesPerView: 4,
             },
             // when window width is <= 768px
-            768: {
+            900: {
               slidesPerView: 3,
             },
-            20: {
+            550: {
               slidesPerView: 2,
             },
           }}

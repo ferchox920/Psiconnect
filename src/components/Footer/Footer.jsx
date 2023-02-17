@@ -4,7 +4,7 @@ import logo from  "../../assets/LogoCerebro.svg";
 const Footer = () => {
   return (
     <div>
-      <footer>
+    <footer>
     <section className={style.footer}>
       <div className={style.brand}>
         <div className={style.h5}>
