@@ -11,8 +11,10 @@ export default function SideBar() {
   const {section} = useParams()
   const navigate = useNavigate()
   return (
-    <Sidebar rootStyles={{
-      [`.${sidebarClasses.container}`]: {
+    <Sidebar
+    breakPoint='md'
+    rootStyles={{
+      [`.${sidebarClasses.container}`]:{
         backgroundColor:'#afcecf',
         position:'fixed',
         height:'100vh',
