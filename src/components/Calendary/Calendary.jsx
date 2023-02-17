@@ -3,32 +3,32 @@ import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import { requestConsultation } from "../../features/apiPetitions";
 import style from "./Calendary.module.css";
-const Calendary = ({ professionalId }) => {
+const Calendary = ({ workingHours, professionalId, freeDays  }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   // para dani de firebase
-  const daysDisabled = [];
-  const workingHours = [
-    "9:00 am",
-    "10:00 am",
-    "11:00 am",
-    "12:00 pm",
-    "13:00 pm",
-    "14:00 pm",
-    "15:00 pm",
-    "16:00 pm",
-    "17:00 pm",
-  ];
+  const daysDisabled = ['Tue Feb 23 2023 16:49:07 GMT-0300 (hora estándar de Argentina) 9:00 am'];
+  // const workingHours = [
+  //   "9:00 am",
+  //   "10:00 am",
+  //   "11:00 am",
+  //   "12:00 pm",
+  //   "13:00 pm",
+  //   "14:00 pm",
+  //   "15:00 pm",
+  //   "16:00 pm",
+  //   "17:00 pm",
+  // ];
 
-  const freeDays = ["Sat"];
+  // const freeDays = ["Sat"];
 
 
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
-    daysDisabled.push(body.date)
     console.log(body.date);
-    requestConsultation({ ...body, userId: user.id, professionalId }).then(
-      (e) => (window.location.href = e)
-    );
+    window,alert(body.date)
+    // requestConsultation({ ...body, userId: user.id, professionalId }).then(
+    //   (e) => (window.location.href = e)
+    // );
   };
 
   const validateHours = (day, hour) => {
