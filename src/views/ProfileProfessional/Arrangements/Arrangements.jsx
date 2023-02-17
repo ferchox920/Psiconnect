@@ -22,6 +22,7 @@ export default function Arrangements() {
     "11:00 am",
     "12:00 am",
     "13:00 am",
+    "21:00 pm",
   
   ];
   useEffect(() => {

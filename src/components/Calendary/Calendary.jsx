@@ -6,7 +6,7 @@ import style from "./Calendary.module.css";
 const Calendary = ({ workingHours, professionalId, freeDays  }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   // para dani de firebase
-  const daysDisabled = ['Tue Feb 23 2023 16:49:07 GMT-0300 (hora estándar de Argentina) 9:00 am'];
+  const daysDisabled = ['Thu Feb 23 2023 9:00 am'];
   // const workingHours = [
   //   "9:00 am",
   //   "10:00 am",
@@ -25,17 +25,18 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
     console.log(body.date);
-    window,alert(body.date)
+    window.alert(body.date)
     // requestConsultation({ ...body, userId: user.id, professionalId }).then(
     //   (e) => (window.location.href = e)
     // );
   };
 
   const validateHours = (day, hour) => {
+    console.log(daysDisabled.includes(hour.toString().split(' ').slice(0,4).join(' ') + ' 9:00 am'));
     return (
       freeDays.includes(day.toString().split(" ")[0]) ||
       day < new Date() ||
-      daysDisabled.includes(hour)
+      daysDisabled.includes(hour.toString().split(' ').slice(0,4).join(' ') + ' 9:00 am')
     );
   };
   const validateDate = (day, hour) => {
