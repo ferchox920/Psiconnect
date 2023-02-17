@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Areas from "./Card/Areas.jsx";
 import { getAreas } from "../../features/apiPetitions";
-import { Link, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
@@ -62,9 +62,7 @@ export default function AreaSliderFilter() {
             return (
               <SwiperSlide key={e.id}>
                 <div className={style.card}>
-                  <Link to = {`/Professionals/${e.area}`}>
-                  <Areas img={e.image} area={e.area} />
-                  </Link>
+                  <Areas img={e.image} area={e.area} description={e.description} />
                 </div>
               </SwiperSlide>
             );
