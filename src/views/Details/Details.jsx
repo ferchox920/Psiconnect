@@ -4,8 +4,8 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { HiOutlineArrowDown } from "react-icons/hi";
 import { getProfessionalById } from "../../features/apiPetitions";
-import cerebrito from '../../assets/Details/cerebritoconbombillos.svg'
-import logopaypal from '../../assets/Details/paypal.svg'
+import cerebrito from "../../assets/Details/cerebritoconbombillos.svg";
+import paypal from "../../assets/Details/paypal.svg"
 import Chat from "../../components/Chat/Chat";
 import Calendary from "../../components/Calendary/Calendary";
 import FormModal from "../../components/modals/Modals";
@@ -91,19 +91,29 @@ export default function Details() {
 
       <div className={style.reviews}></div>
 
-
-          <div className={style.reviews}>
-              
-          </div>
-
-        
-        <div ref = {viewref}className={style.contcalendary}>
-          <img className = {style.cerebrito} src={cerebrito} alt="" />
-          <p className={style.pagatucita}>Metodos de pago</p>
-          <img className = {style.logopaypal} src = {logopaypal} alt = '' />
-          <div className={style.calendary__box}>
-            <Calendary professionalId={professional.id} />
-          </div>
+      <div ref={viewref} className={style.contcalendary}>
+        <img className={style.cerebrito} src={cerebrito} alt="" />
+        <p className={style.pagatucita}>Metodos de pago</p>
+        <div className={style.calendary__box}>
+          <Calendary
+            professionalId={id}
+            price={professional.price}
+            workingHours={
+              contextProfessional?.workingHours || [
+                "9:00 am",
+                "10:00 am",
+                "11:00 am",
+                "12:00 pm",
+                "13:00 pm",
+                "14:00 pm",
+                "15:00 pm",
+                "16:00 pm",
+                "17:00 pm",
+              ]
+            }
+            freeDays={contextProfessional?.freeDays || []}
+            daysDisabled={daysDisabled || []}
+          />
         </div>
       </div>
 
@@ -113,3 +123,5 @@ export default function Details() {
     </div>
   );
 }
+
+
