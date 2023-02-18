@@ -4,7 +4,7 @@ import { getProfessionalById, createProfessionalReview } from '../../features/ap
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate} from 'react-router-dom';
-import cerebrito from '../../assets/Details/cerebritoalegre.svg'
+import cerebrito from '../../assets/Details/Cerebritoalegre.svg'
 
 import swal from "sweetalert";
 
