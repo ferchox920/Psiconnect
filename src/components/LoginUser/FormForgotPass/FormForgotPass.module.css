@@ -1,0 +1,63 @@
+.divContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.arrowDiv{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 96%;
+    height: 10%;
+}
+.arrow{
+    cursor: pointer;
+    border-radius: 50%;
+    transition: color .5s;
+}
+.arrow:hover{
+    color: var(--cadetblue);
+}
+.titleMinDiv{
+    display: flex;
+    align-items: end;
+    height: 20%;
+}
+.titleMin{
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    width: 100%;
+}
+.divInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 75%;
+}
+.submit{
+    cursor: pointer;
+}
+.loadingDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.loading{
+    color: black;
+}
