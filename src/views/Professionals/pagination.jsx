@@ -20,9 +20,9 @@ export default function Pagination({
 
   let adicionalNumbers = 2;
 
-  if (window.screen.width < 500) adicionalNumbers = 1;
-  if (window.screen.width > 650) adicionalNumbers = 3;
-  if (window.screen.width > 1000) adicionalNumbers = 4;
+  if (window.screen.width < 500) adicionalNumbers = 0;
+  if (window.screen.width > 650) adicionalNumbers = 1;
+  if (window.screen.width > 1000) adicionalNumbers = 2;
 
   // total of numbers in the pagination bar
   let countOfNumbers = adicionalNumbers * 2 + 1;

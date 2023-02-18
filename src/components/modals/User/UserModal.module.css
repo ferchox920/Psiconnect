@@ -235,4 +235,42 @@ i {
     align-items: center;
     flex-direction: column;
 }
+.hidden, .switchResponsive{
+  display: none;
+}
+@media (max-width: 780px) {
+.overlayContainer{
+  display: none;
+}
+.registrarse {
+  width: 100%;
+  opacity: 0;
+  z-index: 1;
+}
 
+.iniciarSesion {
+  width: 100%;
+  z-index: 2;
+}
+.Usermodal{
+  width: 400px;
+  min-height: 570px;
+
+}
+}
+@media (max-width: 400px) {
+.Usermodal{
+  width: 380px;
+
+}
+}
+@media (max-width: 380px) {
+.Usermodal{
+  width: 350px;
+}
+}
+@media (max-width: 320px) {
+.Usermodal{
+  width: 320px;
+}
+}

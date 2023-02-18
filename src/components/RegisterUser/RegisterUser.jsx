@@ -6,7 +6,7 @@ import style from "./RegisterUser.module.css";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 
-export default function RegisterUser({ closeModal }) {
+export default function RegisterUser({ closeModal,setSwitcherResponsive }) {
   const dispacht = useDispatch();
   const [form, setForm] = useState({
     name: "",
@@ -152,8 +152,10 @@ export default function RegisterUser({ closeModal }) {
         onChange={(e) => {handleInputChange(e)}}
       />
 
-      <input type="submit" value="Crear cuenta" />
       <div id="SignInDiv2" />
+      <input type="submit" value="Crear cuenta" />
+      <span className={style.hidden}>or</span>
+      <div className={style.switchResponsive} onClick={()=> setSwitcherResponsive(false)}>inicia Sesion</div>
     </form>
   );
 }

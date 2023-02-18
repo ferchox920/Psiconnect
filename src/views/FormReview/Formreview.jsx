@@ -1,27 +1,59 @@
 import React from 'react'
 import style from './Formreview.module.css'
-import { getProfessionalById } from '../../features/apiPetitions';
+import { getProfessionalById, createProfessionalReview } from '../../features/apiPetitions';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { CheckCircle, InputRounded, Label } from '@mui/icons-material';
+import { useParams, useNavigate} from 'react-router-dom';
+import cerebrito from '../../assets/Details/Cerebritoalegre.svg'
+
+import swal from "sweetalert";
+
 
 export default function Formreview  () {
 
+  const navigate = useNavigate()
+ 
   const user = useSelector(store => store.user.user)
   const [professional, setProfessional ] = useState({})
-  const { id } = useParams()
-  const [puntualidad, setpuntualidad] = useState(0);
-  const [trato, setTrato] = useState(0);
-  const [atencion, setAtencion] = useState(0);
-  const [score, setScore] = useState(0);
+  const { professionalId } = useParams()
+  const [inputs , setInputs] = useState({
+      comments: '',
+      puntualidad: 0,
+      trato : 0,
+      general: 0,
+      score : 0,
+      userId : user? user.id : null,
+      
+  })
+
+  const [error, setError] = useState({
+      comments: '',
+      puntualidad: 0,
+      trato : 0,
+      general: 0,
+      score : 0,
+  })
+
 
   useEffect(() => {  
-    getProfessionalById( id , setProfessional);
+    getProfessionalById( professionalId , setProfessional);
   }, []);
 
+
+  const handlecommentsChange = (e) => {
+      setInputs ({
+        ...inputs,
+        [e.target.name] : e.target.value
+      })
+
+      setError(validation({
+        ...inputs,
+        [e.target.name]: e.target.value,
+      }))
+  }
+
   const handlepuntualidadChange = (e) => {
-    let value = 0;
+    let value = [e.target.name];
     switch (e.target.value) {
       case 'Excelente':
         value = 5;
@@ -30,7 +62,7 @@ export default function Formreview  () {
         value = 4;
         break;
       case 'Bueno':
-        value = 3;
+       value = 3;
         break;
       case 'Regular':
         value = 2;
@@ -41,12 +73,14 @@ export default function Formreview  () {
       default:
         value = 0;
     }
-    setpuntualidad(value);
-    setScore((value + trato + atencion) / 3);
+    const promedio = (((value + inputs.trato + inputs.general) /3))
+    setInputs({...inputs, [e.target.name] : value, score : promedio.toFixed(1) });
+    
   };
 
   const handleTratoChange = (e) => {
-    let value = 0;
+
+    let value = [e.target.name];
     switch (e.target.value) {
       case 'Excelente':
         value = 5;
@@ -58,7 +92,7 @@ export default function Formreview  () {
         value = 3;
         break;
       case 'Regular':
-        value = 2;
+       value = 2;
         break;
       case 'Deficiente':
         value = 1;
@@ -66,12 +100,14 @@ export default function Formreview  () {
       default:
         value = 0;
     }
-    setTrato(value);
-    setScore(( puntualidad + value + atencion) / 3);
+    const promedio = ((inputs.puntualidad + value + inputs.general) /3)
+    setInputs({...inputs, [e.target.name] : value, score : promedio.toFixed(1) });
+    
   };
 
-  const handleatencionChange = (e) => {
-    let value = 0;
+  const handlegeneralChange = (e) => {
+    
+    let value = [e.target.name];
     switch (e.target.value) {
       case 'Excelente':
         value = 5;
@@ -91,16 +127,52 @@ export default function Formreview  () {
       default:
         value = 0;
     }
-    setAtencion(value);
-    setScore((puntualidad + trato + value) / 3);
+    const promedio = ((inputs.puntualidad + inputs.trato + value) /3)
+    setInputs({...inputs, [e.target.name] : value, score:promedio.toFixed(1) });
+   
+    
   };
+
+  const handleSubmit = () => { 
+    let error = validation(inputs)
+    if(Object.entries(error) == 0){
+     
+      createProfessionalReview({...inputs, id : professionalId }) 
+      swal({
+        title: "!Gracias por calificar¡",
+        text: `Enviado`,
+        icon: "success",
+      })
+
+    }else
+    swal({
+      title: "Error!",
+      text: Object.values(error)[0],
+      icon: "error",
+    })
+
+    setInputs({
+      comments: '',
+      puntualidad: 0,
+      trato : 0,
+      general: 0,
+      score : 0,
+      
+    })
+    alert('Gracias por calificar su experiencia')
+    navigate('/')
+    
+}
  
-
-
   return (
 
     <div className = {style.containerform}>
-        <form className = { style.formReview}>
+      <p className = {style.slogan}>Tu opinión es muy importante, <br/>
+        <p className = {style.califica}>Califica tu experiencia y ayunos a mejorar.</p>
+      
+      </p>
+      
+        <form className = { style.formReview} onSubmit={handleSubmit}>
 
             <div className = {style.idUsercontainer}>
               <input 
@@ -109,6 +181,8 @@ export default function Formreview  () {
                className = {style.inputIdUser}
                placeholder='idUser'
                value = {`IdUser: ${user?.id}`} 
+               name = 'userId'
+               hidden
                disabled
                />
             </div>
@@ -120,7 +194,9 @@ export default function Formreview  () {
                id= '#idProf'
                className = {style.inputIdUProf}
                placeholder='idUser'
-               value = {`IdProf: ${id}`}
+               value = {`IdProf: ${professionalId}`}
+               hidden
+               name = 'professionalId'
                disabled
                />
             </div>
@@ -224,45 +300,45 @@ export default function Formreview  () {
                </div>
                 </div>
 
-               <div  className = {style.checkAtencion}>
+               <div  className = {style.checkgeneral}>
 
-                <label className = {style.labelatencion}>Atencion:</label>  
+                <label className = {style.labelgeneral}>General:</label>  
 
-                <div className = {style.inputsatencion}>
+                <div className = {style.inputsgeneral}>
                 <input 
                 type='radio' 
-                name='atencion' 
+                name='general' 
                 value='Excelente' 
                 className={style.checkbox}
-                onChange={handleatencionChange} />Excelente
+                onChange={handlegeneralChange} />Excelente
 
                 <input 
                 type='radio' 
-                name='atencion' 
+                name='general' 
                 value='Muy Bueno' 
                 className={style.checkbox}
-                onChange={handleatencionChange} />Muy Bueno
+                onChange={handlegeneralChange} />Muy Bueno
                 
                 <input 
                 type='radio' 
-                name='atencion' 
+                name='general' 
                 value='Bueno' 
                 className={style.checkbox}
-                onChange={handleatencionChange} />Bueno
+                onChange={handlegeneralChange} />Bueno
 
                 <input 
                 type='radio' 
-                name='atencion' 
+                name='general' 
                 value='Regular' 
                 className={style.checkbox}
-                onChange={handleatencionChange} />Regular
+                onChange={handlegeneralChange} />Regular
                 
                 <input 
                 type='radio' 
-                name='atencion' 
+                name='general' 
                 value='Deficiente' 
                 className={style.checkbox}
-                onChange={handleatencionChange} />Deficiente
+                onChange={handlegeneralChange} />Deficiente
 
                </div>
                 </div>
@@ -272,45 +348,49 @@ export default function Formreview  () {
 
           <div className={style.scores}>
             <div className = {style.puntualidadscore}>
-            <label>Puntualidad:</label> 
+            <label></label> 
             <input 
              type='number' 
              className={style.inputpuntualidadscore}
-             value ={puntualidad}
+             value ={inputs.puntualidad}
              name = 'puntualidad'
              disabled
+             hidden
              />
             </div>
 
             <div className = {style.tratoscore}>
-            <label>Trato:</label> 
+            <label></label> 
             <input 
              type='number' 
              className={style.inputtratoscore}
-             value ={trato}
+             value ={inputs.trato}
              name = 'trato'
+             hidden
              disabled
              />
             </div>
 
-            <div className = {style.atencionscore}>
-            <label>Atencion:</label> 
+            <div className = {style.generalscore}>
+            <label></label> 
             <input 
              type='number' 
-             className={style.inputatencionscore}
-             value ={atencion}
-             name = 'atencion'
+             className={style.inputgeneralscore}
+             value ={inputs.general}
+             name = 'general'
+             hidden
              disabled
              />
             </div>
 
             <div className = {style.score}>
-            <label>Score:</label> 
+            <label></label> 
             <input 
              type='number' 
              className={style.inputscore}
              name = 'score'
-             value ={score.toFixed(1)}
+             value ={inputs.score}
+             hidden
              disabled
              />
             </div>
@@ -320,32 +400,41 @@ export default function Formreview  () {
 
             <div className={style.containerDescription}>
             <textarea
-            name='description'
+            name='comments'
             placeholder='Deje un comentario'
+            onChange={handlecommentsChange}
             className={style.description}
-           
           ></textarea>
-        </div>
 
-     
-           
-        
+          </div>
+
+        <button 
+        className={style.button}
+        type = 'submit'
+        disabled = {Object.keys(validation(inputs)).length !== 0 ? true : false}
+        onSubmit={handleSubmit}
+        >Calificar
+       </button>
+      </form>
 
 
-
-
-
-
-
-
-       
-
-        </form>
+      <div className = {style.cerebrito}>
+          <img className = {style.imgcerebrito}src={cerebrito} alt="" />
+      </div>
+      
     </div>
-   
-        
-
-   
-
   )
 }
+
+
+const validation = (inputs) => {
+let error = {}
+if(!inputs.puntualidad) error.puntualidad = 'Por favor califique la puntualidad'
+if(!inputs.trato) error.trato = 'Por favor califique el trato del profesional'
+if(!inputs.general) error.general = 'Por favor califique que le parecio la consulta en rasgos generales'
+if(!inputs.comments) error.comments = 'Por favor indique un breve comentario de su experiencia'
+console.log(error)
+return error
+
+}
+

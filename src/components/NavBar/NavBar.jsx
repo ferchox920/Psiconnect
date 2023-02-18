@@ -44,6 +44,7 @@ export default function NavBar() {
             <span></span>
           </div>
         </div>
+        <div className={open ?  style.containerNav : style.navClose} onClick={()=> setOpen(false)}>
         <div className={`${style.nav} ${open ? null : style.navClose}`}>
           <div className={style.nav_list}>
             <div>
@@ -152,7 +153,7 @@ export default function NavBar() {
               </div>
             </div>
           )}
-        </div>
+        </div></div>
       </div>
 
       {modal && <FormModal name="User" set={setModal} />}
