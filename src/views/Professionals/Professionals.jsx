@@ -63,13 +63,15 @@ export default function Professionals() {
             .slice(indexOfFirstProfessional, indexOfLastProfessional)
             .map((e, i) => (
               <ProfessionalsCard
-                key={i}
-                id={e.id}
-                name={e.name}
-                lastName={e.lastName}
-                email={e.email}
-                avatar={e.avatar}
-                skills={e.skills}
+              key={i}
+              id={e.id}
+              name={e.name}
+              lastName={e.lastName}
+              areas={e.areas}
+              avatar={e?.avatar}
+              skills={e.skills}
+              price={e?.price}
+              score={e?.score}
               />
             ))}
       </div>

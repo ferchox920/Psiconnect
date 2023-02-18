@@ -48,7 +48,7 @@
 .input {
   padding: 20px 25px;
   margin: 8px 15px;
-  width: 35%;
+  width: auto;
   height: 30px;
   border-radius: 15px;
   border: none;
