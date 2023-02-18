@@ -162,7 +162,7 @@ export default function Formreview  () {
       
     })
     alert('Gracias por calificar su experiencia')
-    // navigate('/')
+    navigate('/')
     
 }
  
