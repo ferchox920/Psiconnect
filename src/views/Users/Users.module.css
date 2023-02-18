@@ -18,22 +18,22 @@
     width: 35%;
     height: 30px;
     border-radius: 15px;
+    box-shadow: none;
     border: none;
     outline: none;
     background-color: white;
-    box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
   }
   .button {
     color: #000000;
     background:var(--oyster);
     font-weight: bold;
+    box-shadow: none;
     font-size: 12px;
     height: 60px;
     width: 60px;
     padding: 12px 15px;
     margin: 5px;
     border-radius: 60%;
-    box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
     outline: none;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -49,8 +49,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 0.5em;
-    column-gap: 1em;
+    gap: 2em;
   }
   
   .paginated {
@@ -74,7 +73,6 @@
     width: 40px;
     cursor: pointer;
     box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--color-principal);
     background-color: var(--yellow);
     color: black;
   }

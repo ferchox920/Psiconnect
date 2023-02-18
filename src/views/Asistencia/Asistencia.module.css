@@ -1,31 +1,103 @@
-.countainer {
-    background: linear-gradient(180deg, #f4f1bba9 0%, #f5f3d47d 90%);
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 80px;
-    padding: 20px;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0px 100px;
+  font: var(--hTitle);
+  font-size: 150%;
+  background: linear-gradient(180deg, #f4f1bb 0%, #f5f3d4 90%);
 
-  img {
-    width: 180px;
-  }
-  
-  .titulo{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    font-size: 150%;
-    font: var(--hTitle);
-    font-style: italic;
-    padding: 20px;
-  }
+}
+.container input{
+  box-shadow: none;
+  border: 2px solid cadetblue;
+  transition: all 1700ms ease-in-out;
 
-  .parrafo{
-    display: flex;
-    justify-content: center;
-    font: var(--paragraph);
-    font-size: 160%;
-    font-style: italic;
-    padding: 5px;
-  }
+}
+.container button{
+  box-shadow: none;
+  border: 2px solid cadetblue;
+}
+.container input:hover{
+background-color: rgb(233, 249, 250) ;
+}
+.titulo {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  align-content: center;
+  font-size: 2em;
+  font-weight: bolder;
+}
+.titulo::before {
+  background-color: #7ed0e9;
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 4px;
+  border-radius: 4px;
+  bottom: 0;
+  left: 40%;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s ease-in-out;
+}
+
+.titulo:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+.parrafo {
+  text-align: left;
+  font: var(--paragraph);
+  font-size: 1em;
+}
+.parrafo span {
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  align-content: center;
+  font-weight: bold;
+}
+
+.parrafo span::before {
+  background-color: #000000;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  bottom: 0;
+  transform-origin: left;
+  transform: scaleX(1);
+  transition: transform 1s ease-in-out;
+}
+
+.parrafo span:hover::before {
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.imageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imageContainer img {
+  width: 80%;
+  border-radius: 50px;
+  transition: all 1600ms ease;
+  box-shadow: rgba(246, 171, 171, 0.2) 0px 30px 20px -17px;
+}
+.imageContainer img:hover {
+  transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 30px 20px -17px;
+}
