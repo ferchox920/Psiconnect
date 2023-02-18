@@ -22,6 +22,7 @@ import Admin from "./views/Admin/Admin";
 
 
 
+
 function App() {
   const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
@@ -45,6 +46,7 @@ function App() {
       : null;
   }, []);
   return (
+    
     <>
       <NavBar />
       <Routes>
@@ -58,7 +60,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
-        <Route path="/Formreview/:id" element={<Formreview />} />
+        <Route path="/Formreview/:professionalId" element={<Formreview />} />
         <Route
           path="/professionalProfile/:section"
           element={
