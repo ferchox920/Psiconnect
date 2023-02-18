@@ -4,6 +4,7 @@
   text-align: center;
   padding: 0px 100px;
   font: var(--hTitle);
+  overflow-y: hidden!;
   font-size: 150%;
   background: linear-gradient(180deg, #f4f1bb 0%, #f5f3d4 90%);
 
@@ -111,7 +112,18 @@ background-color: rgb(233, 249, 250) ;
     font-size: 1em;
 
   }
+  .imageContainer img {
+    border-radius: 0%;
+  }
   .parrafo{
     font-size: 0.6em;
+  }
+  .container input{
+    width: 200%;
+    height: 20px;
+    font-size: 15px;
+  }
+  .container button{
+    display: none;
   }
 }
