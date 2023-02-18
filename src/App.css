@@ -12,7 +12,7 @@
   /* Paleta de Colores */
   --yellow: rgb(255, 249, 127);
   --oyster: #eaf2e3;
-  --aquamarine: #66d7d1;
+  --aquamarine: rgb(102, 215, 209);
   --pink: #ffa8b6;
   --cream: #f4f1bb;
   --white: #fff;
@@ -44,6 +44,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background:var(--cadetblue);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 /* Handle on hover */

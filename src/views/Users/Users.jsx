@@ -27,7 +27,7 @@ export default function Users() {
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
   const indexOfFirstProfessional =
     indexOfLastProfessional - ProfessionalsPerPage;
-
+  console.log(professionals);
   return (
     <div className={style.container}>
       <div className={style.containerSearchBar}>
@@ -48,9 +48,11 @@ export default function Users() {
                 id={e.id}
                 name={e.name}
                 lastName={e.lastName}
-                email={e.email}
+                areas={e.areas}
                 avatar={e.avatar}
                 skills={e.skills}
+                price={e.price}
+                score={e.score}
               />
             ))}
       </div>
