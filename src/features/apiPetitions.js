@@ -105,8 +105,23 @@ export async function changePasswordProfessional(body) {
     return error.response;
   }
 }
-export async function getAreas(state) {
+export async function changeEmailProfessional(body) {  
   try {
+    const peticion = await axios.put(`/professional/changeEmail`, body, {
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+    });
+    successMessage('Ve a verificar tu email')
+    localStorage.removeItem("profTkn")
+    window.location.pathname='/'
+    return peticion;
+  } catch (error) {
+    
+    errorMenssage('Tuvimos problemas')
+    throw new Error(error)
+  }
+}
+export async function getAreas(state) {
+  try {   
     const peticion = await axios.get("/areas");
     state(peticion.data);
   } catch (error) {
@@ -180,9 +195,6 @@ export async function getSkills({state, type}){
     return error.response
   }
 }
-
-
-
 
 export async function getProfessionalReview(id, state){
   try {
@@ -331,5 +343,54 @@ export async function getAllProfessionals(state){
   } catch (error) {
     errorMenssage(error.response.data);
   }
+}
+
+export async function verifyTokenForgotPassword(token){
+  try {
+    const request = await axios.get('/professional/token/forgetPassword',{
+      headers: { reset: `Bearer ${token}` },
+    });
+    return request
+  } catch (error) {
+    return error
+  }
+}
+export async function forgotPasswordProfessional(token, body){
+  try{
+    const request = await axios.put('/professional/ChangePasswordForget', body, {
+       headers:{ reset : `Bearer ${token}` }
+  });
+    return request
+  }catch(err){
+    return err
+  }
+};
+export async function forgotPasswordUser(token, body){
+  try{
+    const request = await axios.put('/user/ChangePasswordForget', body, {
+       headers:{ reset : `Bearer ${token}` }
+  });
+    return request
+  }catch(err){
+    return err
+  }
+};
+
+export async function sendEmailForgetPassUser(body){
+try{
+    const request = await axios.put(`/user/forget-password`, body);
+    return request?.data;
+  }catch(err){
+    return err;
+  }
+}
+
+export async function sendEmailForgetPassProfessional(body){
+  try{
+    const request = await axios.put(`/professional/forget-password`, body);
+    return request?.data;
+  }catch(err){
+  return err;
+}
 }
 

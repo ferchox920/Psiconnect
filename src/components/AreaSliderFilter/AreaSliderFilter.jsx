@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./AreaSliderFilter.module.css";
 
@@ -34,15 +34,14 @@ export default function AreaSliderFilter() {
       ) : null}
       <div className={style.container}>
         <Swiper
-          modules={[ Autoplay, Navigation]}
+          modules={[ Autoplay,Pagination]}
           autoplay={{
-            delay: 2000,
+            delay: 3000,
             disableOnInteraction: false,
           }}
           pagination={{
               dynamicBullets: true,
           }}
-          navigation
           loop={true}
           breakpoints={{
             1200: {

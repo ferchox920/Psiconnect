@@ -7,13 +7,20 @@ import {
   userLoginByGoogle,
 } from "../../features/apiPetitions.js";
 import { validationsForm } from "./validate.js";
-import { spanError, inputError } from "./LoginUser.module.css";
+import { spanError, inputError, linkToForgetPass } from "./LoginUser.module.css";
 import style from "./LoginUser.module.css";
 import swal from "sweetalert";
 import { useDispatch } from "react-redux";
 import { submitHandler, submitHandlerProf } from "./submits.js";
+import InputEmail from "./InputEmail/InputEmail.jsx";
+import FormForgotPass from "./FormForgotPass/FormForgotPass.jsx";
 
-export default function LoginUser({ closeModal, loginProf, setloginProf }) {
+export default function LoginUser({
+  closeModal,
+  loginProf,
+  setloginProf,
+  setSwitcherResponsive,
+}) {
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({
@@ -24,7 +31,9 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
     password: "",
   });
 
+  const [ switchForgotPass, SetSwitchForgotPass ] = useState(false)
  
+
 
   async function handleCredentialResponse(response) {
     const dataUser = jwtDecode(response.credential);
@@ -74,6 +83,11 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
     );
   };
   return (
+    switchForgotPass?
+    <FormForgotPass 
+    SetSwitchForgotPass={SetSwitchForgotPass}
+    />
+    :
     <form
       onSubmit={
         loginProf
@@ -81,22 +95,17 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
           : (e) => submitHandler(e, errors, form, dispatch, closeModal)
       }
     >
-  
       <h1>Iniciar sesión</h1>
       <p>Use su cuenta {loginProf ? "de profesional" : "de usuario"}</p>
       <label className={style.switch}>
         <input type="checkbox" onClick={() => setloginProf(!loginProf)} />
         <span className={style.slider}></span>
       </label>
-
-      <input
-        type="text"
-        value={form.email}
-        name="email"
-        placeholder="Correo electrónico"
-        onChange={changeHandler}
-        className={errors.email ? inputError : null}
-      />
+      
+      <InputEmail 
+      form={form} 
+      changeHandler={changeHandler} 
+      errors={errors}/>
 
       <input
         type="password"
@@ -106,11 +115,15 @@ export default function LoginUser({ closeModal, loginProf, setloginProf }) {
         onChange={changeHandler}
         className={errors.password ? inputError : null}
       />
-      <span className={spanError}>{errors.password}</span>
-
       <input type="submit" value="Iniciar sesion" />
-      {!loginProf && <div id="SignInDiv" style={{paddingTop:'10px'}} />}
-
+      {!loginProf && <div id="SignInDiv" style={{ paddingTop: "10px" }} />}
+      <span className={style.hidden}>or</span>
+      <div
+        className={style.switchResponsive}
+        onClick={() => setSwitcherResponsive(true)}
+      >
+        registrarse
+      </div>
       <NavLink to="/forgotpassword">
         <h5>Olvidé mi contraseña</h5>
       </NavLink>

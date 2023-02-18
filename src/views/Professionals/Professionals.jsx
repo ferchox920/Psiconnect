@@ -40,9 +40,10 @@ export default function Professionals() {
   return (
     <div className={style.container}>
       <h2 className={style.title}>{area}</h2>
+      
       <div className={style.description}>
         {areas?.map((e) => e.area === area ? 
-        <span>{e.description}</span>
+        <p>{e.description}</p>
         : null)}
       </div>
       <div className={style.ContainerAreaSliderFilter}>
@@ -63,13 +64,15 @@ export default function Professionals() {
             .slice(indexOfFirstProfessional, indexOfLastProfessional)
             .map((e, i) => (
               <ProfessionalsCard
-                key={i}
-                id={e.id}
-                name={e.name}
-                lastName={e.lastName}
-                email={e.email}
-                avatar={e.avatar}
-                skills={e.skills}
+              key={i}
+              id={e.id}
+              name={e.name}
+              lastName={e.lastName}
+              areas={e.areas}
+              avatar={e?.avatar}
+              skills={e.skills}
+              price={e?.price}
+              score={e?.score}
               />
             ))}
       </div>
