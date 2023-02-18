@@ -284,7 +284,7 @@ export async function postRegisterProfesional(body,token){
 };
 
 
-export default async function putUserData(id, body) {
+export default async function putUserData(body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body)
       return(updateUser)
