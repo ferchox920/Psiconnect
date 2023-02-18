@@ -95,12 +95,11 @@ export async function changePassword(body) {
     return error.response;
   }
 }
-export async function changePasswordProfessional(body) {
+export async function changePasswordProfessional(body) {  
   try {
-    const peticion = await axios.post(`/professional/changePassword`, body, {
-      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+    const peticion = await axios.put(`/professional/changePassword`, body, {
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
-    localStorage.setItem("tkn", peticion?.data.data);
     return peticion;
   } catch (error) {
     return error.response;
@@ -205,23 +204,14 @@ export async function verifyTokenPostRegister(token){
   }
 }
 
-export async function createProfessionalReview(body){
+export async function createProfessionalReview (professionalId, body){
     
   try {
-      const createReview = await axios.post(`/review/${body.id}`, body)
-      return (createReview)
+      const createReview = await axios.post(`/review/${professionalId}`, body)
+      return createReview
 
   }catch (error){
     console.log(error.response.data)
-  }
-}
-
-export default async function putUserData(body) {
-  try {
-    const updateUser = await axios.put(`user/${body.id}`, body)
-      return(updateUser)
-  }catch(error){
-    console.log(error)
   }
 }
 
@@ -284,7 +274,7 @@ export async function postRegisterProfesional(body,token){
 };
 
 
-export default async function putUserData(body) {
+export default async function putUserData(id, body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body)
       return(updateUser)
