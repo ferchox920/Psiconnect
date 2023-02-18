@@ -40,9 +40,10 @@ export default function Professionals() {
   return (
     <div className={style.container}>
       <h2 className={style.title}>{area}</h2>
+      
       <div className={style.description}>
         {areas?.map((e) => e.area === area ? 
-        <span>{e.description}</span>
+        <p>{e.description}</p>
         : null)}
       </div>
       <div className={style.ContainerAreaSliderFilter}>

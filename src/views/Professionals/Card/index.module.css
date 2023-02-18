@@ -12,7 +12,7 @@
 
 .card:hover {
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.623);
-  background-color: rgb(75, 184, 255);
+  background-color: cadetblue;
   transition: all 1.5s ease-in-out;
 }
 
@@ -21,7 +21,7 @@
   width: 75%;
   border-radius: 0 0 30px 30px;
   margin: 0 auto;
-  background-color: #4bb8ff;
+  background-color:cadetblue;
   visibility: visible;
   transition: all 1.3s;
 }
@@ -35,7 +35,7 @@
   margin: 30px auto 10px auto;
   width: 120px;
   height: 120px;
-  background-color: #4bb8ff;
+  background-color:cadetblue;
   border-radius: 50%;
   font-size: 11px;
   overflow: hidden;
@@ -51,7 +51,7 @@
   height: 60%;
   border-radius: 30px;
   margin: 0 auto;
-  background-color: #f0f0f0;
+  background-color: white;
   z-index: 99999;
 }
 

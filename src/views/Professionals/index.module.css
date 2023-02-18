@@ -3,7 +3,23 @@
   display: flex;
   justify-content: center;
   text-align: center;
+  
   flex-direction: column;
+}
+
+.container input{
+  box-shadow: none;
+  width: 50%;
+  border: 2px solid cadetblue;
+  transition: all 1700ms ease-in-out;
+
+}
+.container button{
+  box-shadow: none;
+  border: 2px solid cadetblue;
+}
+.container input:hover{
+background-color: rgb(233, 249, 250) ;
 }
 .title{
   display: flex;
@@ -92,7 +108,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
+  gap: 2em;
   column-gap: 1em;
 }
 
@@ -182,9 +198,9 @@
   margin: 0% 8%;
   border-radius: 1em;
   text-align: justify;
-  padding: 2%;
+  padding: 40px;
+  font-size: 1rem;
   font-style: normal;
-  font-size: large;
   color: mintcream;
   background-color: cadetblue;
 }
@@ -217,5 +233,16 @@
   font: var(--hTitle);
   font-size: 1.5rem;
 }
+
+   
+.container input{
+  width: 200%;
+  height: 20px;
+  font-size: 15px;
+}
+.container button{
+  display: none;
+}
+
 
 }
