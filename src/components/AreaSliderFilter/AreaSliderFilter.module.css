@@ -11,6 +11,7 @@
 }
 
 .ondas{
+    position: relative;
     height: auto;
 }
 .ondas img{
@@ -41,7 +42,9 @@
 .card{
     justify-content: center;
     scale: auto;
-    
+    width: 100%;
+    display: flex;
+    justify-content: center;
     
 }
 
@@ -66,5 +69,24 @@ h2{
     scale: 10%;
 }
 
+@media (max-width: 950px) {
 
+.parrafo{
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0px 20px;
+}
+
+.ondas{
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    height: 440px;
+}
+.ondas img{
+    min-width: 1600px;
+
+}
+}
 

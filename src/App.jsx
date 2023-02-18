@@ -27,6 +27,10 @@ function App() {
   const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
   const dispacht = useDispatch();
+  useEffect(()=>{
+    document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, I
+  },[pathname])
   useEffect(() => {
     localStorage.getItem("tkn")
       ? getUserByJWT({

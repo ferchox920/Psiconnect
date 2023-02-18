@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProfessionalsFilters } from "../../features/apiPetitions";
+import { getProfessionalsFilters , getAreas} from "../../features/apiPetitions";
 import ProfessionalsCard from "./Card/ProfessionalsCard";
 import style from "./index.module.css";
 import Pagination from "./pagination.jsx";
@@ -26,6 +26,11 @@ export default function Professionals() {
     });
   }, [area]);
 
+  useEffect(() => {
+    getAreas(setAreas);
+  }, []);
+
+  const [areas, setAreas] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
@@ -35,6 +40,11 @@ export default function Professionals() {
   return (
     <div className={style.container}>
       <h2 className={style.title}>{area}</h2>
+      <div className={style.description}>
+        {areas?.map((e) => e.area === area ? 
+        <span>{e.description}</span>
+        : null)}
+      </div>
       <div className={style.ContainerAreaSliderFilter}>
         <div className={style.filter}>
 
