@@ -10,7 +10,7 @@
   --lightParagrah: 300 48px Poppins;
 
   /* Paleta de Colores */
-  --yellow: #fff87f;
+  --yellow: rgb(255, 249, 127);
   --oyster: #eaf2e3;
   --aquamarine: #66d7d1;
   --pink: #ffa8b6;
@@ -32,7 +32,7 @@ body {
 
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 20px;
 }
 
 /* Track */

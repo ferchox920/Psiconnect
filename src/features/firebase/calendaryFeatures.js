@@ -6,7 +6,6 @@ import {
   setDoc,
   getDocs,
 } from "firebase/firestore";
-import { setAllChats, setChat } from "../chatSlice";
 
 const firestore = getFirestore(firebaseApp);
 
@@ -23,14 +22,18 @@ export async function createContext({ professionalId, freeDays, workingHours }) 
      workingHours
     });
   }
+
+
+
+
 export async function createConsults({ professionalId, hours }) {
     const docuRef = doc(
       firestore,
-      `context/${professionalId}/consults/${professionalId}`
+      `context/${professionalId}/consults/${hours}`
     );
-    console.log(docuRef);
     await setDoc(docuRef, {
-      hours:['Thu Feb 23 2023 16:49:07 GMT-0300 (hora estándar de Argentina) 9:00 am']
+      id: new Date().getTime(),
+      hours
     });
   }
 export async function getContextProfessional({professionalId, state}) {
@@ -41,39 +44,12 @@ export async function getContextProfessional({professionalId, state}) {
   return context;
   }
   
-
-
-
-export async function sendMessage({ from, to, message, state }) {
-  const docuRef = doc(
-    firestore,
-    `chats/${from}/chat/${from}_${to}/message/${new Date().getTime()}`
-  );
-  setDoc(docuRef, {
-    id: new Date().getTime(),
-    from: from,
-    to: to,
-    message,
-  });
-  const docuRefProfessional = doc(
-    firestore,
-    `chats/${to}/chat/${to}_${from}/message/${new Date().getTime()}`
-  );
-  setDoc(docuRefProfessional, {
-    id: new Date().getTime(),
-    from: from,
-    to: to,
-    message,
-  });
-  getMessageOfChat({ from, to, state });
-}
-export async function getMessageOfChat({ from, to, state }) {
-  const collectionRef = collection(
-    firestore,
-    `chats/${from}/chat/${from}_${to}/message/`
-  );
-  const chatsCifrados = await getDocs(collectionRef);
-  const message = chatsCifrados.docs.map((chatCifrado) => chatCifrado.data());
-  state(setChat(message));
-}
-
+export async function getConsultsProfessional({professionalId, state}) {
+  const collectionRef = collection(firestore, `context/${professionalId}/consults`);
+  const contextCifrados = await getDocs(collectionRef);
+  const context = contextCifrados.docs.map((contextCifrado) => contextCifrado.data());
+  const data = await context.map(e => e?.hours)
+  state(data);
+  return context;
+  }
+  

@@ -15,7 +15,7 @@ export default function CardConsult({consult}) {
             <div className={style.title}>
                 <h5>Consulta</h5>
             </div>
-            <div>
+            <div className={style.info}>
                 <p><b>Fecha: </b>{consult.date}</p>
                 <p><b>Precio: </b>{consult.price} usd</p>
             </div>
@@ -25,7 +25,7 @@ export default function CardConsult({consult}) {
                 <h5>Paciente</h5>
             </div>
             {user &&
-            <div>
+            <div className={style.info}>
                 <p><b>Nombre: </b>{user.name}</p>  
                 <p><b>Apelido: </b>{user.lastName}</p>
             </div>

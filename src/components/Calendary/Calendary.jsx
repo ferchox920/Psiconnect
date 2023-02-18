@@ -3,44 +3,33 @@ import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import { requestConsultation } from "../../features/apiPetitions";
 import style from "./Calendary.module.css";
-const Calendary = ({ workingHours, professionalId, freeDays  }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  // para dani de firebase
-  const daysDisabled = ['Tue Feb 23 2023 16:49:07 GMT-0300 (hora estándar de Argentina) 9:00 am'];
-  // const workingHours = [
-  //   "9:00 am",
-  //   "10:00 am",
-  //   "11:00 am",
-  //   "12:00 pm",
-  //   "13:00 pm",
-  //   "14:00 pm",
-  //   "15:00 pm",
-  //   "16:00 pm",
-  //   "17:00 pm",
-  // ];
+import { createConsults } from "../../features/firebase/calendaryFeatures";
 
-  // const freeDays = ["Sat"];
+const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled }) => {
+  const [currentDate, setCurrentDate] = useState(new Date());
 
 
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
-    console.log(body.date);
-    window.alert(body.date)
-    // requestConsultation({ ...body, userId: user.id, professionalId }).then(
-    //   (e) => (window.location.href = e)
-    // );
+    createConsults({
+      professionalId,
+      hours: body.date
+    });
+    requestConsultation({ ...body, userId: user.id, professionalId }).then(
+      (e) => (window.location.href = e)
+    );
   };
 
   const validateHours = (day, hour) => {
     return (
       freeDays.includes(day.toString().split(" ")[0]) ||
       day < new Date() ||
-      daysDisabled.includes(hour)
+      daysDisabled.includes(`${day.toString().split(' ').slice(0,4).join(' ')} ${hour}`)
     );
   };
   const validateDate = (day, hour) => {
     console.log(daysDisabled);
-    validateHours(day, `${day} ${hour}`)
+    validateHours(day, hour)
       ? swal({
         title:'Upps!',
         text:'lo siento pero ese horario no esta disponible',
@@ -83,7 +72,7 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
         <div
           key={i}
           className={`${style.hour} ${
-            validateHours(day, `${day} ${workingHours[i]}`)
+            validateHours(day, workingHours[i])
               ? style.hourDisabled
               : null
           }`}
@@ -141,8 +130,8 @@ const Calendary = ({ workingHours, professionalId, freeDays  }) => {
             className={style.button}
             onClick={() =>
               goToPayment({
-                date: `${selectedHour.day} ${selectedHour.hour}`,
-                price: "200",
+                date: `${selectedHour.day.toString().split(' ').slice(0,4).join(' ')} ${selectedHour.hour}`,
+                price: price || "200",
               })
             }
           >

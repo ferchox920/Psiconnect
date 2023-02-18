@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 100vh;
     background-color: var(--cream);
-    height: auto;
+    
 }
 
 .title{
@@ -13,8 +13,10 @@
 }
 
 .box{
+    display: flex;
+    flex-direction: column;
     position: sticky;
-    height: 30%;
+    min-height: 30%;
     width: 100vh;
     border-style: solid;
     border-width: 2px;
@@ -23,18 +25,13 @@
     overflow-y: auto;
     background-color: beige;
     max-height: 400px;
-    margin-bottom: 100px;
-}
-
-.consult{
-    margin: 10px;
-    border: black solid 2px;
-    height: 40%;
+    text-align: center;
 }
 
 .calendary{
-    position: relative;
-    margin-bottom: 100px;
+   display: flex;
+   justify-content: center; 
+   margin-left: -350px; 
 }
 
 
