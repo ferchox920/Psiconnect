@@ -55,14 +55,13 @@ const Asistencia = () => {
         <h3 className={style.titulo}>
           Elige el profesional de tu preferencia!
         </h3>
-        <p className={style.parrafo}>
+        <p className={style.parrafo} style={{textAlign:'center'}}>
         No esperes más para cuidar tu salud mental: nuestros profesionales están aquí para ti
         </p>
 
         <Users />
       </div>
     </>
-    //footer
   );
 };
 

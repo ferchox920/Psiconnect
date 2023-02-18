@@ -1,6 +1,6 @@
 .card {
   width: 320px;
-  height: 430px;
+  height: 450px;
   background: #ffffff;
   border-radius: 30px;
   text-align: center;
@@ -32,8 +32,8 @@
 .card .img {
   display: flex;
   margin: 30px auto 10px auto;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background-color: #4bb8ff;
   border-radius: 50%;
   font-size: 11px;

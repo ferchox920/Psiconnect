@@ -27,16 +27,11 @@ export default function Users() {
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
   const indexOfFirstProfessional =
     indexOfLastProfessional - ProfessionalsPerPage;
-  console.log(professionals);
   return (
     <div className={style.container}>
       <div className={style.containerSearchBar}>
         <SearchBar />
       </div>
-
-      {/*  
-          // filtros por areas (reciclar componente) 
-  */}
       <div className={style.cardContainer}>
         {professionals &&
           professionals
