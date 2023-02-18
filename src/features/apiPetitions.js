@@ -216,15 +216,6 @@ export async function createProfessionalReview(body){
   }
 }
 
-export default async function putUserData(body) {
-  try {
-    const updateUser = await axios.put(`user/${body.id}`, body)
-      return(updateUser)
-  }catch(error){
-    console.log(error)
-  }
-}
-
 
 export async function requestConsultation(body){
   try {
