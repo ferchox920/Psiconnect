@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Calendary from '../../../components/Calendary/Calendary'
 import { getUserConsults, getUserById } from '../../../features/apiPetitions'
 import style from './ApptHistory.module.css'
 import Card from './Card/Card'
+
 //sb-5wib4725027012@personal.example.com
 //IR%T%Ms4
 
@@ -13,6 +14,7 @@ export default function ApptHistory() {
 
   const [consults, setConsults] = useState()
   const userId = useSelector((store) => store.user.user.id)
+  
 
   useEffect(() => {
     getUserConsults(userId, setConsults)

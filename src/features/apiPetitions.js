@@ -216,11 +216,11 @@ export async function verifyTokenPostRegister(token){
   }
 }
 
-export async function createProfessionalReview (professionalId, body){
+export async function createProfessionalReview(body){
     
   try {
-      const createReview = await axios.post(`/review/${professionalId}`, body)
-      return createReview
+      const createReview = await axios.post(`/review/${body.professionalId}`, body)
+      return (createReview)
 
   }catch (error){
     console.log(error.response.data)

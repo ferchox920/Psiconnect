@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 export default function PaymentHistory () {
     const users = useSelector((state) => state.user.user)
     console.log(users, 'aqui')
-
+    
    
 
 
