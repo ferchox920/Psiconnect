@@ -14,10 +14,8 @@ export default function Formreview  () {
   const navigate = useNavigate()
  
   const user = useSelector(store => store.user.user)
-  console.log(user.id, 'iduser')
   const [professional, setProfessional ] = useState({})
   const { professionalId } = useParams()
-  console.log(professionalId, 'idProfessional')
   const [inputs , setInputs] = useState({
       comments: '',
       puntualidad: 0,
