@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { changeEmailProfessional } from '../../../../features/apiPetitions';
+import React, { useState } from "react";
+import { changeEmailProfessional } from "../../../../features/apiPetitions";
 
 function ChangeEmail() {
   const [emailData, setEmailData] = useState({
-    currentEmail: '',
-    newEmail: '',
+    currentEmail: "",
+    newEmail: "",
   });
-  const [verifyNewEmail, setVerifyNewEmail] = useState('');
+  const [verifyNewEmail, setVerifyNewEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!emailData.currentEmail) {
       alert("Debe ingresar su correo electrónico actual.");
@@ -22,14 +22,14 @@ function ChangeEmail() {
       alert("Debe verificar su nueva dirección de correo electrónico.");
       return;
     }
-    changeEmailProfessional(emailData.newEmail)
+    await changeEmailProfessional({ email: emailData.newEmail });
+
     setEmailData({
       currentEmail: emailData.newEmail,
-      newEmail: '',
+      newEmail: "",
     });
-    setVerifyNewEmail('');
-    alert("¡Se cambió su correo electrónico correctamente!");
-  }
+    setVerifyNewEmail("");
+  };
 
   return (
     <div>
@@ -40,7 +40,9 @@ function ChangeEmail() {
           type="email"
           id="current-email"
           value={emailData.currentEmail}
-          onChange={(e) => setEmailData({...emailData, currentEmail: e.target.value})}
+          onChange={(e) =>
+            setEmailData({ ...emailData, currentEmail: e.target.value })
+          }
           required
         />
         <label htmlFor="new-email">Nuevo correo electrónico:</label>
@@ -49,7 +51,9 @@ function ChangeEmail() {
             type="email"
             id="new-email"
             value={emailData.newEmail}
-            onChange={(e) => setEmailData({...emailData, newEmail: e.target.value})}
+            onChange={(e) =>
+              setEmailData({ ...emailData, newEmail: e.target.value })
+            }
             required
           />
         </div>

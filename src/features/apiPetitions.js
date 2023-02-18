@@ -110,13 +110,18 @@ export async function changeEmailProfessional(body) {
     const peticion = await axios.put(`/professional/changeEmail`, body, {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
+    successMessage('Ve a verificar tu email')
+    localStorage.removeItem("profTkn")
+    window.location.pathname='/'
     return peticion;
   } catch (error) {
-    return error.response;
+    
+    errorMenssage('Tuvimos problemas')
+    throw new Error(error)
   }
 }
 export async function getAreas(state) {
-  try {
+  try {   
     const peticion = await axios.get("/areas");
     state(peticion.data);
   } catch (error) {
