@@ -192,14 +192,23 @@ export async function verifyTokenPostRegister(token){
   }
 }
 
-export async function createProfessionalReview (id, body){
+export async function createProfessionalReview(body){
     
   try {
-      const createReview = await axios.post(`/review/${id}`, body)
-      return createReview
+      const createReview = await axios.post(`/review/${body.id}`, body)
+      return (createReview)
 
   }catch (error){
     console.log(error.response.data)
+  }
+}
+
+export default async function putUserData(body) {
+  try {
+    const updateUser = await axios.put(`user/${body.id}`, body)
+      return(updateUser)
+  }catch(error){
+    console.log(error)
   }
 }
 
@@ -254,14 +263,7 @@ export async function postRegisterProfesional(body,token){
 };
 
 
-export default async function putUserData(id, body) {
-  try {
-    const updateUser = await axios.put(`user/${body.id}`, body)
-      return(updateUser)
-  }catch(error){
-    console.log(error)
-  }
-}
+
 
 // export default async function postImageCloudinary(file, image) {
 

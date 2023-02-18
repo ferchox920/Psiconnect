@@ -18,7 +18,7 @@ export default function Hero() {
   return (
     //navbar
     <>
-      <div className={style.container}>
+      <div className={style.container} >
         <div className={style.heroContainer}>
           <div>
             <img className={style.img} src={'https://w7.pngwing.com/pngs/427/179/png-transparent-brain-character-illustration-brain-learning-cognitive-training-mind-color-creative-mind-thinking-color-splash-orange-people.png'} alt="" />

@@ -53,7 +53,7 @@ export default function UsersForm (){
             icon: "success",
           })
           
-        }else 
+        } else 
         swal({
           title: "Error!",
           text: Object.values(error)[0],
@@ -89,11 +89,7 @@ export default function UsersForm (){
     }
 
     }
-
-   
-
-
-
+    
   return (
       <div className={style.usersForm} >
         <p className={style.p}>*Por favor complete los datos  de su perfil</p>
