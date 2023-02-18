@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {  getProfessionalPayments, getResultProfessionalPayments } from "../../../features/apiPetitions";
 import CardConsult from "./Card/CardConsult";
-import "./Incomes.css"; // Importar el archivo de estilos
+import "./incomes.css"; // Importar el archivo de estilos
 
 export default function Incomes() {
   const [consults, setConsults] = useState();
