@@ -137,7 +137,7 @@ export default function Formreview  () {
     let error = validation(inputs)
     if(Object.entries(error) == 0){
      
-      createProfessionalReview({...inputs, id : professionalId }) 
+      createProfessionalReview({...inputs}, professionalId ) 
       swal({
         title: "!Gracias por calificar¡",
         text: `Enviado`,
