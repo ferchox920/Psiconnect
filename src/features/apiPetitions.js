@@ -105,8 +105,23 @@ export async function changePasswordProfessional(body) {
     return error.response;
   }
 }
-export async function getAreas(state) {
+export async function changeEmailProfessional(body) {  
   try {
+    const peticion = await axios.put(`/professional/changeEmail`, body, {
+      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+    });
+    successMessage('Ve a verificar tu email')
+    localStorage.removeItem("profTkn")
+    window.location.pathname='/'
+    return peticion;
+  } catch (error) {
+    
+    errorMenssage('Tuvimos problemas')
+    throw new Error(error)
+  }
+}
+export async function getAreas(state) {
+  try {   
     const peticion = await axios.get("/areas");
     state(peticion.data);
   } catch (error) {
@@ -180,9 +195,6 @@ export async function getSkills({state, type}){
     return error.response
   }
 }
-
-
-
 
 export async function getProfessionalReview(id, state){
   try {
