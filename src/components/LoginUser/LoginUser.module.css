@@ -32,6 +32,13 @@
     height: 35px;
    }
    
+.linkToForgetPass{
+    cursor: pointer;
+}
+.linkToForgetPass:hover{
+    color: var(--cadetblue);
+}
+
    .switch input {
     display: none;
    }

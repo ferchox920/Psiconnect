@@ -18,7 +18,7 @@ export default function Hero() {
   };
   return (
     <>
-      <div className={style.container}>
+      <div className={style.container} >
         <div className={style.heroContainer}>
           <div className={style.imgContainer}>
             <img className={style.img} src={!user? 'https://res.cloudinary.com/dcdywqotf/image/upload/v1676483326/Cerebritos%20svg/Cerebritomeditando_iimsr6.svg' : 'https://res.cloudinary.com/dcdywqotf/image/upload/v1676483326/Cerebritos%20svg/Cerebrito_alegre_ec68ls.svg'} alt="" />

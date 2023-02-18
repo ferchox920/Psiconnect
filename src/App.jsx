@@ -19,6 +19,7 @@ import ProfileUser from "./views/ProfileUser/ProfileUser";
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Admin from "./views/Admin/Admin";
+import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx'
 
 
 
@@ -45,9 +46,13 @@ function App() {
       : null;
   }, []);
   return (
+    
     <>
       <NavBar />
       <Routes>
+        <Route 
+          path='/ChangeForgetPassword' 
+          element={<ForgotPassword />}/>
         <Route
           path="/profesional/postRegister"
           element={<PostRegisterPsico />}
@@ -58,7 +63,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
-        <Route path="/Formreview/:id" element={<Formreview />} />
+        <Route path="/Formreview/:professionalId" element={<Formreview />} />
         <Route
           path="/professionalProfile/:section"
           element={
