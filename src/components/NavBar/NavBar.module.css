@@ -181,14 +181,14 @@
     padding: 30px;
     border: 2px solid black;
     box-shadow: 20px 2px 12px;
-    transition: all 2s ease-in-out;
+    transition: all 1.4s ease-in-out;
     display: flex;
     justify-content: start;
     flex-direction: column;
     padding-top: 100px;
   }
   .navClose {
-    transition: all 2s ease-in-out;
+    transition: all 1.4s ease-in-out;
 
     right: -130%;
   }
