@@ -9,6 +9,9 @@ export default function User({set, closeModal}) {
     const [loginProf, setloginProf] = useState(false);
 
     const click = ()=>{
+        loginProf?
+        window.location.pathname ='/registerProfesional'
+        :
         setSwitcher(!switcher)
     }
   return (

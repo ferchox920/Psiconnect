@@ -257,8 +257,8 @@ export async function requestConsultation(body) {
     console.log(peticion.data.data.links[1].href);
     return peticion.data.data.links[1].href;
   } catch (error) {
-    console.log(error);
-    return error.response;
+    errorMenssage('Upps algo salio mal en nuestros sistemas')
+    throw new Error('upps')
   }
 }
 

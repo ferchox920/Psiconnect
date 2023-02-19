@@ -21,6 +21,7 @@ export default function Details() {
   const [daysDisabled, setDaysDisabled] = useState();
 
   const [modal, setModal] = useState(null);
+  const [openLogin, setOpenLogin] = useState(null);
   const user = useSelector((state) => state.user.user);
   const dispacht = useDispatch();
   const viewref = useRef(null);
@@ -74,6 +75,7 @@ export default function Details() {
           openModal={openModal}
           startChat={startChat}
           handleClick={handleClick}
+          setOpenModal={setOpenLogin}
         />
         <div className={style.reviews}></div>
 
@@ -97,14 +99,12 @@ export default function Details() {
             }
             freeDays={contextProfessional?.freeDays || []}
             daysDisabled={daysDisabled || []}
+            setOpenLogin={setOpenLogin}
           />
         </div>
-
-        {/* <div className={style.container__botttom}>
-          {modal && <FormModal name="User" set={setModal} />}
-        </div> */}
       </div>
-      <Chat initialValue={modal} />
+      {openLogin && <FormModal name="User" set={setOpenLogin} />}
+      {modal && <Chat initialValue={modal} />}
     </>
   );
 }

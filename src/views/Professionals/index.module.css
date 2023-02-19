@@ -67,7 +67,7 @@ background-color: rgb(233, 249, 250) ;
 .input {
   padding: 20px 25px;
   margin: 8px 15px;
-  width: auto;
+  width: 40%;
   height: 30px;
   border-radius: 15px;
   border: none;

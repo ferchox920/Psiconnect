@@ -1,7 +1,8 @@
 .descprofile::-webkit-scrollbar {
   background: white;
   border-radius: 10px;
-  width: 15px;
+  width: 5px;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar-track {

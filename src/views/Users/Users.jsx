@@ -28,7 +28,7 @@ export default function Users() {
   const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
   useEffect(() => {
     if (window.screen.width < 650) {
-      setProfessionalsPerPage(4);
+      setProfessionalsPerPage(6);
     }
   }, [window.screen.width]);
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
