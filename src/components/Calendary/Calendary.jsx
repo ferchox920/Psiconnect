@@ -112,7 +112,10 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
           &rarr;
         </button>
       </div>
+      <div className={style.renderWeek}>
       {renderWeek()}
+
+      </div>
       {selectedHour && (
         <div className={style.modal}>
           <div>
