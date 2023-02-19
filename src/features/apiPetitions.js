@@ -193,6 +193,7 @@ export async function getProfessionalsFilters({
   name,
   lastName,
 }) {
+  console.log(area);
   try {
     const peticion = await axios.get(
       `/professional${area ? `/area/${area}` : ""}${
@@ -207,6 +208,7 @@ export async function getProfessionalsFilters({
       ? state(peticion?.data)
       : state(setFilterProfessional(peticion?.data));
   } catch (error) {
+    errorMenssage(`no se encontro a ${name} ${lastName? lastName:''}`)
     return error.response;
   }
 }
