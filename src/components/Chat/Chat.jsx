@@ -15,7 +15,6 @@ export default function Chat({initialValue}) {
   const [open, setOpen] = useState(initialValue)
 
 useEffect(()=>{
-  window.alert(initialValue)
   setOpen(initialValue)
 },[initialValue])
   const dispacht = useDispatch();

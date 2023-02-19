@@ -59,7 +59,7 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
     }
 
     return (
-      <div className={style.week} style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className={style.week} style={{ display: "flex" }}>
         {days}
       </div>
     );

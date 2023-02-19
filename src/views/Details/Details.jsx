@@ -73,40 +73,38 @@ export default function Details() {
           linkedin={professional.linkedin}
           openModal={openModal}
           startChat={startChat}
-          handleClick ={ handleClick}
+          handleClick={handleClick}
         />
         <div className={style.reviews}></div>
 
-        {/* <div ref={viewref} className={style.contcalendary}>
+        <div ref={viewref} className={style.contcalendary}>
           <img className={style.cerebrito} src={cerebrito} alt="" />
-          <div className={style.calendary__box}>
-            <Calendary
-              professionalId={id}
-              price={professional.price}
-              workingHours={
-                contextProfessional?.workingHours || [
-                  "9:00 am",
-                  "10:00 am",
-                  "11:00 am",
-                  "12:00 pm",
-                  "13:00 pm",
-                  "14:00 pm",
-                  "15:00 pm",
-                  "16:00 pm",
-                  "17:00 pm",
-                ]
-              }
-              freeDays={contextProfessional?.freeDays || []}
-              daysDisabled={daysDisabled || []}
-            />
-          </div>
-        </div> */}
+          <Calendary
+            professionalId={id}
+            price={professional.price}
+            workingHours={
+              contextProfessional?.workingHours || [
+                "9:00 am",
+                "10:00 am",
+                "11:00 am",
+                "12:00 pm",
+                "13:00 pm",
+                "14:00 pm",
+                "15:00 pm",
+                "16:00 pm",
+                "17:00 pm",
+              ]
+            }
+            freeDays={contextProfessional?.freeDays || []}
+            daysDisabled={daysDisabled || []}
+          />
+        </div>
 
         {/* <div className={style.container__botttom}>
-            {modal && <FormModal name="User" set={setModal} />}
+          {modal && <FormModal name="User" set={setModal} />}
         </div> */}
       </div>
-   <Chat initialValue={modal} />
+      <Chat initialValue={modal} />
     </>
   );
 }

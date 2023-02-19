@@ -1,15 +1,15 @@
 
 .calendar {
   border-radius: 20px;
-  width: 50%;
+  width: 90%;
   display: flex;
-  margin-top: 30px;
-  margin-left: 350px;
-  padding-bottom: 30px;
+  position: relative;
+  padding: 20px 40px;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.3);
   background-color:#fcf8f8; 
+  overflow-x: scroll;
 }
 
 .titlecalendar{
@@ -28,8 +28,8 @@
 
 .week {
   display: flex;
- 
-  
+  justify-content: center;
+  align-items: center;
 }
 
 .day {
@@ -136,3 +136,10 @@
 .hourDisabled{
   background-color: var(--pink)
 }
+
+@media (max-width: 760px) {
+ .calendar{
+  padding: 20px;
+
+ }
+  }
