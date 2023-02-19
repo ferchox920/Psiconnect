@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {  changePasswordUser } from '../../../../features/apiPetitions';
+import style from './ChangePasswordUser.module.css'
 
 const ChangePasswordUser = () => {
     const [passwords, setPasswords] = useState({
