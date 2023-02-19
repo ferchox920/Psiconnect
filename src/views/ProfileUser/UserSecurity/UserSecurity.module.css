@@ -19,6 +19,18 @@
     font: var(--paragraph);
     font-size: 150%;
     color: white;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: white;
+    border-radius: 25px;
+    border: dotted cadetblue;
+    padding: 1%;
+    font: var(--paragraph);
+    font-size: 150%;
+    color: cadetblue;
+    cursor: pointer;
 }
 
 .changeSection{
