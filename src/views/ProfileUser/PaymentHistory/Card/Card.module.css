@@ -1,0 +1,49 @@
+.container{
+    display: flex;
+}
+
+.consult{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+    background: var(--cream);
+    border-collapse: collapse;  
+    border: 1px dotted #000;
+    border-radius: 2.5%;
+    padding: 5px;
+    gap: 1px;
+    margin-bottom: 5px;
+}
+
+.client{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.title{
+    height: 30%;
+    width: 100%;
+    text-align: center;
+}
+
+.tableItem{
+    padding: 3px
+}
+
+.tableItem1{
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000; 
+    border-top: 1px solid #000; 
+}
+
+.tableItem2{
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;  
+}
+
+.tableItem3{
+    border-top: 1px solid #000;  
+}
