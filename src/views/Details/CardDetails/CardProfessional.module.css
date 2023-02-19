@@ -1,6 +1,6 @@
 .descprofile::-webkit-scrollbar {
   background: white;
-  border-radius: 20px;
+  border-radius: 10px;
   width: 15px;
 }
 
@@ -15,13 +15,11 @@
 
 ::-webkit-scrollbar-button {
   background-color: white;
-  border-radius: 50px;
+  border-radius: 5px;
 }
 
 .card {
   width: 85%;
-  min-height: 400px;
-  height: 400px;
   padding:  20px 40px;
   margin-top: 30px;
   display: grid;
