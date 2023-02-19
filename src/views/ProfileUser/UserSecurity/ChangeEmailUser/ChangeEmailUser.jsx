@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {  changeEmailUser } from "../../../../features/apiPetitions";
+import style from './ChangeEmailUser.module.css'
 
 const ChangeEmailUser = () => {
     const [emailData, setEmailData] = useState({
