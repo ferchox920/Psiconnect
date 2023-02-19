@@ -3,13 +3,14 @@ import style from './ProfileUser.module.css'
 import UsersForm from './UsersForm/UsersForm.jsx'
 import { useParams } from 'react-router-dom'
 import ApptHistory from './ApptHistory/ApptHistory.jsx'
-import Payments from './Payments/Payments.jsx'
 import UserSecurity from './UserSecurity/Security.jsx'
 import SideBar from './SideBar.jsx'
-
+import PaymentHistory from './PaymentHistory/PaymentHistory'
+  
 export default function ProfileUser () {
   const {section} = useParams()
-
+  
+ 
   switch (section) {
     case 'profile':
       return (
@@ -40,7 +41,7 @@ export default function ProfileUser () {
             <SideBar/>
           </div>
           <div className={style.component}>
-            <Payments/>
+            <PaymentHistory/>
           </div>            
         </div>
       )

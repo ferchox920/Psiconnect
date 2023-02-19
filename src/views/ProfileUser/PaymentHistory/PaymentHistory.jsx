@@ -9,9 +9,6 @@ export default function PaymentHistory () {
     const users = useSelector((state) => state.user.user)
     console.log(users, 'aqui')
 
-   
-
-
   return (
     <div className = {style.container}>
         <div className = {style.sidebarcontainer}>
