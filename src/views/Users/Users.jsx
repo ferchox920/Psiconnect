@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import style from "./Users.module.css";
 import SearchBar from "../Professionals/SearchBar.jsx";
 import { getProfessionalsFilters } from "../../features/apiPetitions.js";
+import PriceOrdering from "../Professionals/PriceOrdering.jsx";
 
 export default function Users() {
   const professionals = useSelector(
@@ -22,6 +23,7 @@ export default function Users() {
       lastName: null,
     });
   }, []);
+  const [select, setSelect]= useState('Ordena por precio')
   const [currentPage, setCurrentPage] = useState(1);
   const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
   useEffect(() => {
@@ -34,8 +36,13 @@ export default function Users() {
     indexOfLastProfessional - ProfessionalsPerPage;
   return (
     <div className={style.container}>
+      <div className={style.searchBarAndOrder}>
       <div className={style.containerSearchBar}>
         <SearchBar />
+      </div>
+      
+        <PriceOrdering select={select} setSelect={setSelect}/>
+      
       </div>
       <div className={style.cardContainer}>
         {professionals &&

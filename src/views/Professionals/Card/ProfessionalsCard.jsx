@@ -5,7 +5,7 @@ export default function ProfessionalsCard({
   id,
   name,
   lastName,
-  precio,
+  price,
   avatar,
   skills,
   score,
@@ -30,7 +30,7 @@ export default function ProfessionalsCard({
       <div className={style.info}>
         <p><span>Skills:</span> <br /> {skills?.split(' ')[0] || 'AMABLE'}</p>
         <p><span>Areas:</span> <br /> {areas?.split(' ')[0]}</p>
-        <p><span>Precio:</span> <br /> ${precio || 200}</p>
+        <p><span>Precio:</span> <br /> ${price || 200}</p>
         <p><span>Calificación: <br /></span> {score || 3.4} / 5</p>
       </div>
     </div>

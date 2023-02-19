@@ -52,6 +52,7 @@ background-color: rgb(233, 249, 250) ;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 70%;
 }
 .inputCointer {
   width: 100%;
@@ -204,6 +205,23 @@ background-color: rgb(233, 249, 250) ;
   color: mintcream;
   background-color: cadetblue;
 }
+.select{
+  border-radius: 1rem;
+  font-family: 'Poppins', sans-serif;
+  width: auto;
+  text-align: center;
+  cursor: pointer;
+  font-size: large;
+  margin-right: 50%;
+}
+.selectContainer{
+  width: 30%;
+}
+.searchBarAndOrder{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @media (max-width: 600px) {
   
 .paginated li {
@@ -243,6 +261,19 @@ background-color: rgb(233, 249, 250) ;
 .container button{
   display: none;
 }
-
+.select{
+  border-radius: 1rem;
+  font-family: 'Poppins', sans-serif;
+  width: auto;
+  text-align: center;
+  cursor: pointer;
+  font-size: small;
+}
+.searchBarAndOrder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 }
