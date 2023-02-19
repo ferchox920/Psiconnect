@@ -77,7 +77,7 @@ export default function Details() {
         />
         <div className={style.reviews}></div>
 
-        <div ref={viewref} className={style.contcalendary}>
+        {/* <div ref={viewref} className={style.contcalendary}>
           <img className={style.cerebrito} src={cerebrito} alt="" />
           <div className={style.calendary__box}>
             <Calendary
@@ -100,7 +100,7 @@ export default function Details() {
               daysDisabled={daysDisabled || []}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* <div className={style.container__botttom}>
             {modal && <FormModal name="User" set={setModal} />}
