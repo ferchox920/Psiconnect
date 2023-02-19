@@ -1,8 +1,12 @@
 .containdetails {
   width: 100%;
   font-family: "Poppins";
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: wheat;
-  height: 1400px;
 }
 
 .descriptionprof{

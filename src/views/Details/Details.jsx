@@ -15,7 +15,6 @@ import firestore, {
   getContextProfessional,
 } from "../../features/firebase/calendaryFeatures";
 import { collection, onSnapshot } from "@firebase/firestore";
-
 export default function Details() {
   const [professional, setProfessional] = useState({});
   const [contextProfessional, setContextProfessional] = useState();
@@ -27,7 +26,7 @@ export default function Details() {
   const viewref = useRef(null);
 
   const openModal = () => {
-    setModal(true);
+    setModal(!modal);
   };
   const startChat = () => {
     createChat({
@@ -48,19 +47,11 @@ export default function Details() {
 
   useEffect(
     () =>
-      onSnapshot(
-        collection(
-          firestore,
-          `context/${id}/times`
-        ),
-        (snapshot) => {
-          setContextProfessional(snapshot.docs.map((doc) => doc.data()));
-        }
-      ),
+      onSnapshot(collection(firestore, `context/${id}/times`), (snapshot) => {
+        setContextProfessional(snapshot.docs.map((doc) => doc.data()));
+      }),
     [id]
   );
-
-
 
   const handleClick = (e) => {
     e.preventDefault(e);
@@ -68,8 +59,8 @@ export default function Details() {
   };
 
   return (
-    <div className={style.containdetails}>
-      <div className={style.descriptionprof}>
+    <>
+      <div className={style.containdetails}>
         <CardProfessional
           image={professional?.avatar}
           name={professional?.name}
@@ -78,46 +69,44 @@ export default function Details() {
           skills={professional?.skills?.map((el) => el.skills)}
           precio={professional.price}
           description={professional.description}
+          email={professional.email}
+          linkedin={professional.linkedin}
+          openModal={openModal}
+          startChat={startChat}
+          handleClick ={ handleClick}
         />
-        <button className={style.button} onClick={(e) => handleClick(e)}>
-          <HiOutlineArrowDown className={style.arrow} />
-        </button>
-      </div>
+        <div className={style.reviews}></div>
 
-      <div className={style.iconochat}>
-        <Chat />
-      </div>
-
-      <div className={style.reviews}></div>
-
-      <div ref={viewref} className={style.contcalendary}>
-        <img className={style.cerebrito} src={cerebrito} alt="" />
-        <div className={style.calendary__box}>
-          <Calendary
-            professionalId={id}
-            price={professional.price}
-            workingHours={
-              contextProfessional?.workingHours || [
-                "9:00 am",
-                "10:00 am",
-                "11:00 am",
-                "12:00 pm",
-                "13:00 pm",
-                "14:00 pm",
-                "15:00 pm",
-                "16:00 pm",
-                "17:00 pm",
-              ]
-            }
-            freeDays={contextProfessional?.freeDays || []}
-            daysDisabled={daysDisabled || []}
-          />
+        <div ref={viewref} className={style.contcalendary}>
+          <img className={style.cerebrito} src={cerebrito} alt="" />
+          <div className={style.calendary__box}>
+            <Calendary
+              professionalId={id}
+              price={professional.price}
+              workingHours={
+                contextProfessional?.workingHours || [
+                  "9:00 am",
+                  "10:00 am",
+                  "11:00 am",
+                  "12:00 pm",
+                  "13:00 pm",
+                  "14:00 pm",
+                  "15:00 pm",
+                  "16:00 pm",
+                  "17:00 pm",
+                ]
+              }
+              freeDays={contextProfessional?.freeDays || []}
+              daysDisabled={daysDisabled || []}
+            />
+          </div>
         </div>
-      </div>
 
-      {/* <div className={style.container__botttom}>
+        {/* <div className={style.container__botttom}>
             {modal && <FormModal name="User" set={setModal} />}
         </div> */}
-    </div>
+      </div>
+   <Chat initialValue={modal} />
+    </>
   );
 }

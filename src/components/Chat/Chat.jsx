@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../features/firebase/chatsFeatures";
 import AllChats from "./AllChats";
@@ -7,15 +7,17 @@ import style from "./Chat.module.css";
 import chat from '../../assets/chat.svg'
 import Message from "./Message";
 
-export default function Chat({}) {
+export default function Chat({initialValue}) {
   const {id} = useParams()
-  const location = useLocation()
   const [message, setMessage] = useState("");
   const messages = useSelector((state) => state.chats.chat);
   const anchor = useRef();
-  const [open, setOpen] = useState(null)
+  const [open, setOpen] = useState(initialValue)
 
-
+useEffect(()=>{
+  window.alert(initialValue)
+  setOpen(initialValue)
+},[initialValue])
   const dispacht = useDispatch();
   const user = useSelector((state) => state.user.user);
 
@@ -34,8 +36,8 @@ export default function Chat({}) {
 
   if(!open){
     return(
-      <div className = {location.pathname === `/Details/${id}`? style.containerChatFloat :  style.containerChatFloatfixed } onClick={()=>setOpen(true)}> 
-        <img  className = {location.pathname === `/Details/${id}`? style.imageChatFloat :  null} src={chat} alt="chat" />
+      <div className = { style.containerChatFloatfixed } onClick={()=>setOpen(true)}> 
+        <img  src={chat} alt="chat" />
       </div>
     )
   }
