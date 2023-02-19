@@ -27,6 +27,9 @@ export default function Incomes() {
               </div>
             );
           })}
+        {!consults?.length && <div  className={style.noPymnt}>
+          <p> <b>No tienes pagos realizados</b> </p>
+        </div> }
       </div>
       {/* <div className={style.paymentsPayContainer}>  Agregar un contenedor para el monto total 
         {pay ? (
