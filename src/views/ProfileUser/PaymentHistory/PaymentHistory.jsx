@@ -1,48 +1,44 @@
-import React from 'react'
-import style from './PaymentHistory.module.css'
-import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import {  getUserPayments, getResultUserPayments } from "../../../features/apiPetitions";
+import Card from "./Card/Card.jsx";
+import style from "./PaymentHistory.module.css"; // Importar el archivo de estilos
 
+export default function Incomes() {
+  const [consults, setConsults] = useState();
+  const [pay, setPay] = useState();
 
+  const userId = useSelector((store) => store.user.user.id);
 
-export default function PaymentHistory () {
-    const users = useSelector((state) => state.user.user)
-    console.log(users, 'aqui')
+  useEffect(() => {
+    getUserPayments(userId, setConsults);
+    getResultUserPayments(userId, setPay)
+  }, []);
 
   return (
-    <div className = {style.container}>
-        <div className = {style.sidebarcontainer}>
-            <div className={style.sidebar}>
-                <div className = {style.avatar}>
-                    <img src={users?.avatar} alt = '' className={style.userAvatar}/>
-                </div>
-                <h1 className = {style.username}>{`${users?.name} ${users?.lastName}`}</h1>
-                <div className={style.menusideBar}>
-                    <div className={style.itemssidebar}>
-                        <NavLink to='/userProfile/profile/:id'>
-                            <button className={style.buttonitems}>Perfil</button>
-                        </NavLink>             
-                    </div>
-                    <div className={style.itemssidebar}>
-                        <NavLink to='/userProfile/profile/consultas'>
-                            <button className={style.buttonitems}>Historial de consultas</button>
-                        </NavLink>
-                    </div>
-                    <div className={style.itemssidebar}>
-                        <button className={style.buttonitems}>Historial de pagos</button>              
-                    </div>
-                    <div className={style.itemssidebar}>
-                        <NavLink to='/userProfile/profile/seguridad'>
-                            <button className={style.buttonitems}>Seguridad</button>
-                        </NavLink>              
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div className={style.message}>
-            Aqui va el historial de pagos del paciente
-        </div>
+    <div className={style.paymentsContainer}> {/* Aplicar la clase CSS en el contenedor principal */}
+      <div className={style.paymentsTitle}>Historial de pagos</div>
+      <div className={style.paymentsListContainer}> {/* Agregar un contenedor para la lista de consultas */}
+        {consults &&
+          consults.map((c, i) => {
+            return (
+              <div>
+                <Card key={i} consult={c} />
+              </div>
+            );
+          })}
+        {!consults?.length && <div  className={style.noPymnt}>
+          <p> <b>No tienes pagos realizados</b> </p>
+        </div> }
+      </div>
+      {/* <div className={style.paymentsPayContainer}>  Agregar un contenedor para el monto total 
+        {pay ? (
+          <>
+            <p className={style.paymentsPayTitle}>En total tus pagos suman</p>
+            <p className={style.paymentsPayAmount}>{pay}</p>
+          </>
+        ) : null}
+      </div> */}
     </div>
-  )
+  );
 }
