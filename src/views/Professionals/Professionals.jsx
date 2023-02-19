@@ -5,8 +5,10 @@ import { getProfessionalsFilters , getAreas} from "../../features/apiPetitions";
 import ProfessionalsCard from "./Card/ProfessionalsCard";
 import style from "./index.module.css";
 import Pagination from "./pagination.jsx";
-import SearchBar from "./SearchBar";
+import PriceOrdering from "./PriceOrdering.jsx";
+import SearchBar from "./SearchBar.jsx";
 import AreaSliderFilter from "../../components/AreaSliderFilter/AreaSliderFilter";
+import { orderProfessionalsByPrice } from "../../features/professionalSlice";
 
 export default function Professionals() {
   const { area } = useParams();
@@ -24,12 +26,16 @@ export default function Professionals() {
       area: area ? area : null,
       type: "global",
     });
+    setSelect('Ordena por precio')
+    setCurrentPage(1)
   }, [area]);
 
   useEffect(() => {
     getAreas(setAreas);
   }, []);
 
+
+  const [select, setSelect]= useState('Ordena por precio')
   const [areas, setAreas] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
@@ -52,12 +58,14 @@ export default function Professionals() {
       <AreaSliderFilter />
         </div>
       </div>
+      <div className={style.searchBarAndOrder}>
       <div className={style.containerSearchBar}>
         <SearchBar area={area}/>
       </div>
-      {/*  
-        // filtros por areas (reciclar componente) 
-*/}
+     
+     <PriceOrdering select={select} setSelect={setSelect}/>
+     
+     </div>
       <div className={style.cardContainer}>
         {professionals &&
           professionals

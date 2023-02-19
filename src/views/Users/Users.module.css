@@ -2,11 +2,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
   }
   .inputCointer {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding-right: 30%;
+  }
+  .searchBarAndOrder{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
   }
   .input {
@@ -106,4 +113,13 @@
     justify-content: center;
     font-family: 'Poppins';
     font-style: italic;
+}
+
+@media (max-width: 600px){
+  .searchBarAndOrder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
