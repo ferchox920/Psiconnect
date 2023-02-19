@@ -42,15 +42,13 @@ export default function Professionals() {
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
   const indexOfFirstProfessional =
     indexOfLastProfessional - ProfessionalsPerPage;
-
+    const areaDescription = areas?.find(e => e.area === area)?.description;
   return (
     <div className={style.container}>
       <h2 className={style.title}>{area}</h2>
       
       <div className={style.description}>
-        {areas?.map((e) => e.area === area ? 
-        <p>{e.description}</p>
-        : null)}
+      {areaDescription && <p>{areaDescription}</p>}
       </div>
       <div className={style.ContainerAreaSliderFilter}>
         <div className={style.filter}>

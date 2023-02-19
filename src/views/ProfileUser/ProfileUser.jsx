@@ -7,9 +7,11 @@ import PaymentHistory from './PaymentHistory/PaymentHistory.jsx'
 import UserSecurity from './UserSecurity/Security.jsx'
 import SideBar from './SideBar.jsx'
 
+
 export default function ProfileUser () {
   const {section} = useParams()
-
+  
+ 
   switch (section) {
     case 'profile':
       return (
