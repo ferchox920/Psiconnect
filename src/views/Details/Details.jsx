@@ -51,7 +51,6 @@ export default function Details() {
     });
   };
   const { id } = useParams();
-  console.log(id, 'de quien es este id')
   useEffect(() => {
     getProfessionalById(id, setProfessional);
     getProfessionalReview(id , setReviewProfessional)
@@ -198,12 +197,10 @@ export default function Details() {
     </div>
 
 
-      <div ref={viewref} className={style.contcalendary}>
+      <div className={style.contImg}>
         <img className={style.cerebrito} src={cerebrito} alt="" />
-        <img className = {style.paypal}src={paypal} alt="" />
-
         <div className = {style.volver2}>
-        <button className={style.cta2} onClick = {handleCklicBuscar}>
+        <button className={style.cta} onClick = {handleCklicBuscar}>
         <span>Seguir buscando</span>
         <svg viewBox="0 0 13 10" height="30px" width="35px">
           <path d="M1,5 L11,5"></path>
@@ -212,11 +209,10 @@ export default function Details() {
         </button>
 
         </div>
+        <img className = {style.paypal}src={paypal} alt="" />
         </div>
 
         <div ref={viewref} className={style.contcalendary}>
-          <img className={style.cerebrito} src={cerebrito} alt="" />
-
           <Calendary
             professionalId={id}
             price={professional.price}

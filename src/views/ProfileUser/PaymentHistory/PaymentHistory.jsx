@@ -4,19 +4,9 @@ import {  getUserPayments, getResultUserPayments } from "../../../features/apiPe
 import Card from "./Card/Card.jsx";
 import style from "./PaymentHistory.module.css"; // Importar el archivo de estilos
 
-export default function Incomes() {
-  const [consults, setConsults] = useState();
-  const [pay, setPay] = useState();
-
-  const userId = useSelector((store) => store.user.user.id);
-
 
 export default function PaymentHistory () {
     const users = useSelector((state) => state.user.user)
-    console.log(users, 'aqui')
-    
-   
-
 
   useEffect(() => {
     getUserPayments(userId, setConsults);
