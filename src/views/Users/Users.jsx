@@ -28,7 +28,7 @@ export default function Users() {
   const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
   useEffect(() => {
     if (window.screen.width < 650) {
-      setProfessionalsPerPage(4);
+      setProfessionalsPerPage(6);
     }
   }, [window.screen.width]);
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
@@ -38,11 +38,9 @@ export default function Users() {
     <div className={style.container}>
       <div className={style.searchBarAndOrder}>
       <div className={style.containerSearchBar}>
-        <SearchBar />
+        <SearchBar setSelect={setSelect}/>
       </div>
-     
         <PriceOrdering select={select} setSelect={setSelect}/>
-      
       </div>
       <div className={style.cardContainer}>
         {professionals &&

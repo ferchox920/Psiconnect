@@ -2,8 +2,11 @@ import React from "react";
 import style from "./CardProfessional.module.css";
 import { HiOutlineArrowDown } from "react-icons/hi";
 import chat from "../../../assets/chat.svg";
+import { useSelector } from "react-redux";
+import swal from "sweetalert";
 
 export default function CardProfessional(props) {
+  const user = useSelector((state) => state.user.user);
   return (
     <div className={style.card}>
       <div className={style.detalles}>
@@ -47,6 +50,12 @@ export default function CardProfessional(props) {
           src={chat}
           alt="chat"
           onClick={() => {
+            if (!user || user.rol !== "user") {
+              swal("tienes que iniciar sesion como usuario antes").then((e) => {
+                props.setOpenModal(true);
+              });
+              return;
+            }
             props.startChat();
             props.openModal();
           }}

@@ -13,11 +13,18 @@ const Calendary = ({
   freeDays,
   price,
   daysDisabled,
+  setOpenLogin
 }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
+    if (!user || user.rol !=='user') {
+      swal("tienes que iniciar sesion como usuario antes").then((e) => {
+        setOpenLogin(true);
+      });
+      return;
+    }
     createConsults({
       professionalId,
       hours: body.date,
@@ -142,7 +149,7 @@ const Calendary = ({
                   .split(" ")
                   .slice(0, 4)
                   .join(" ")} ${selectedHour.hour}`,
-                price: price || "200",
+                price: price || "20",
               })
             }
           >

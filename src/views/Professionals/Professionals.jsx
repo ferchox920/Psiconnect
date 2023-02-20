@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getProfessionalsFilters , getAreas} from "../../features/apiPetitions";
+import { getProfessionalsFilters, getAreas } from "../../features/apiPetitions";
 import ProfessionalsCard from "./Card/ProfessionalsCard";
 import style from "./index.module.css";
 import Pagination from "./pagination.jsx";
@@ -20,65 +20,67 @@ export default function Professionals() {
     (state) => state.professionals.FilterProfessional
   );
 
-  useEffect(() => {  
+  useEffect(() => {
     getProfessionalsFilters({
       state: dispatch,
       area: area ? area : null,
       type: "global",
     });
-    setSelect('Ordena por precio')
-    setCurrentPage(1)
+    setSelect("Ordena por precio");
+    setCurrentPage(1);
   }, [area]);
 
   useEffect(() => {
     getAreas(setAreas);
   }, []);
 
-
-  const [select, setSelect]= useState('Ordena por precio')
+  const [select, setSelect] = useState("Ordena por precio");
   const [areas, setAreas] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [ProfessionalsPerPage, setProfessionalsPerPage] = useState(8);
   const indexOfLastProfessional = currentPage * ProfessionalsPerPage;
   const indexOfFirstProfessional =
     indexOfLastProfessional - ProfessionalsPerPage;
-    const areaDescription = areas?.find(e => e.area === area)?.description;
+  useEffect(() => {
+    if (window.screen.width < 650) {
+      setProfessionalsPerPage(6);
+    }
+  }, [window.screen.width]);
+  const areaDescription = areas?.find((e) => e.area === area)?.description;
   return (
     <div className={style.container}>
       <h2 className={style.title}>{area}</h2>
-      
+
       <div className={style.description}>
-      {areaDescription && <p>{areaDescription}</p>}
+        {areaDescription && <p>{areaDescription}</p>}
       </div>
       <div className={style.ContainerAreaSliderFilter}>
         <div className={style.filter}>
-
-      <AreaSliderFilter />
+          <AreaSliderFilter />
         </div>
       </div>
       <div className={style.searchBarAndOrder}>
-      <div className={style.containerSearchBar}>
-        <SearchBar area={area}/>
+        <div className={style.containerSearchBar}>
+          <SearchBar area={area} setSelect={setSelect} />
+        </div>
+
+        <PriceOrdering select={select} setSelect={setSelect} />
       </div>
-     
-     <PriceOrdering select={select} setSelect={setSelect}/>
-     
-     </div>
       <div className={style.cardContainer}>
         {professionals &&
           professionals
             .slice(indexOfFirstProfessional, indexOfLastProfessional)
             .map((e, i) => (
               <ProfessionalsCard
-              key={i}
-              id={e.id}
-              name={e.name}
-              lastName={e.lastName}
-              areas={e.areas}
-              avatar={e?.avatar}
-              skills={e.skills}
-              price={e?.price}
-              score={e?.score}
+                key={i}
+                id={e.id}
+                name={e.name}
+                lastName={e.lastName}
+                areas={e.areas}
+                avatar={e?.avatar}
+                skills={e.skills}
+                price={e?.price}
+                score={e?.score}
               />
             ))}
       </div>
