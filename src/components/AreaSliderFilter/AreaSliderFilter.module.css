@@ -37,6 +37,7 @@
     font-style: italic;
     position: relative;
     z-index: 1;
+    margin: auto;
 }
 
 .card{
