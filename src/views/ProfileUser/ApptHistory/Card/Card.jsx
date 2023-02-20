@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { getProfessionalById } from '../../../../features/apiPetitions'
 import style from './Card.module.css'
 
-export default function Card({consult}) {
+export default function Card({consult, status, link}) {
     const [user, setUser] = useState()
 
     useEffect(() => {
@@ -33,10 +33,16 @@ export default function Card({consult}) {
             }
         </div>
         
+        {status=== 'COMPLETED'?
+        <div><p>Estado de consulta: <b>ACEPTADA</b></p>
             <Link to = {`/Formreview/${user?.professionalId}`}>
             <p>Calificacion</p>
             </Link>
-        
+            </div>
+        : <div>
+            <p>Estado de consulta: <b>PENDIENTE</b></p>
+        <a href={link}> Link de pago</a>
+</div>}
     </div>
   )
 }
