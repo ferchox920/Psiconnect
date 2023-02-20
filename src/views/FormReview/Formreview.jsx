@@ -23,6 +23,7 @@ export default function Formreview  () {
       trato : 0,
       general: 0,
       score : 0,
+      userId : user?.id
       
       
   })
@@ -139,7 +140,7 @@ export default function Formreview  () {
     let error = validation(inputs)
     if(Object.entries(error) == 0){
      
-      createProfessionalReview({...inputs, professionalId : professionalId , userId : user.id}) 
+      createProfessionalReview({...inputs, professionalId : professionalId }) 
       swal({
         title: "!Gracias por calificar¡",
         text: `Enviado`,
@@ -163,10 +164,9 @@ export default function Formreview  () {
       
     })
     alert('Gracias por calificar su experiencia')
-    // navigate('/')
-    
+    navigate('/')
 }
- 
+
   return (
 
     <div className = {style.containerform}>

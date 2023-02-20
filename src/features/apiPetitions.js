@@ -145,7 +145,6 @@ export async function getUserByJWT({ state, type }) {
 export async function getProfessionalById(id, state) {
   try {
     const peticion = await axios.get(`/professional/details/${id}`);  
-    console.log(peticion , 'peticion')
     return state(peticion.data);
   } catch (error) {
     return error.response;
@@ -199,6 +198,7 @@ export async function getSkills({state, type}){
 export async function getProfessionalReview(id, state){
   try {
     const peticion = await axios.get(`/review/${id}`)
+    console.log(peticion, 'peticiondata')
     return state(peticion?.data)
   }catch(error) {
     return error.response
@@ -219,15 +219,10 @@ export async function verifyTokenPostRegister(token){
 export async function createProfessionalReview(body){
     
   try {
-    console.log(body.professionalId, 'professional')
-    console.log(body.userId, 'userId')
       const createReview = await axios.post(`/review/${body.professionalId}`, body)
-      
-      console.log(createReview, 'reviewcreado')
       return (createReview)
       
   }catch (error){
-    console.log(error.response.data)
   }
 }
 
