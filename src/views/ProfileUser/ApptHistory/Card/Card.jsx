@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getProfessionalById } from '../../../../features/apiPetitions'
 import style from './Card.module.css'
 
@@ -26,11 +27,16 @@ export default function Card({consult}) {
             </div>
             {user &&
             <div>
-                <p><b>Nombre: </b>{user.name}</p>  
-                <p><b>Apelido: </b>{user.lastName}</p>
-            </div>
+                <p><b>Nombre: </b>{user?.name}</p>  
+                <p><b>Apelido: </b>{user?.lastName}</p>
+            </div>   
             }
         </div>
+        
+            <Link to = {`/Formreview/${user?.professionalId}`}>
+            <p>Calificacion</p>
+            </Link>
+        
     </div>
   )
 }
