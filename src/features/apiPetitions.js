@@ -1,6 +1,6 @@
 import axios from "./axios.js";
 import { errorMenssage, successMessage } from "./errorsModals.js";
-import { setFilterProfessional} from "./professionalSlice.js";
+import { setFilterProfessional, BestProfessionals} from "./professionalSlice.js";
 import { setUser } from "./userSlice.js";
 
 export async function userRegister(body) {
@@ -379,6 +379,16 @@ export async function sendEmailForgetPassProfessional(body){
     return request?.data;
   }catch(err){
   return err;
+  }
 }
+
+export async function getBestProfessionals(state){
+  try{
+    const request = await axios.get('/professional/score');
+    return state(request?.data)
+  }catch(err){
+    return err;
+  }
 }
+
 
