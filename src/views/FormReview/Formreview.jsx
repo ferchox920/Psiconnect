@@ -16,16 +16,12 @@ export default function Formreview  () {
   const user= useSelector(store => store.user.user)
   const [professional, setProfessional ] = useState({})
   const { professionalId } = useParams()
-  console.log(professionalId, 'profid')
   const [inputs , setInputs] = useState({
       comments: '',
       puntualidad: 0,
       trato : 0,
       general: 0,
       score : 0,
-      userId : user?.id
-      
-      
   })
 
   const [error, setError] = useState({
@@ -139,16 +135,7 @@ export default function Formreview  () {
     e.preventDefault();
     let error = validation(inputs)
     if(Object.entries(error) == 0){
-     
-
-      createProfessionalReview({...inputs, professionalId : professionalId }) 
-
-      swal({
-        title: "!Gracias por calificar¡",
-        text: `Enviado`,
-        icon: "success",
-      })
-
+      createProfessionalReview({...inputs,userId : user.id, professionalId : professionalId }) 
     }else
     swal({
       title: "Error!",
@@ -165,7 +152,6 @@ export default function Formreview  () {
       
       
     })
-    alert('Gracias por calificar su experiencia')
     navigate('/')
 }
 
