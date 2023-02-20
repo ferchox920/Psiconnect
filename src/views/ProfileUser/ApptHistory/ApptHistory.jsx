@@ -15,6 +15,7 @@ export default function ApptHistory() {
   const [consults, setConsults] = useState()
   const userId = useSelector((store) => store.user.user.id)
   
+  console.log('CONSULTA', consults)
 
   useEffect(() => {
     getUserConsults(userId, setConsults)
