@@ -61,7 +61,7 @@ export default function Professionals() {
       </div>
       <div className={style.searchBarAndOrder}>
         <div className={style.containerSearchBar}>
-          <SearchBar area={area} />
+          <SearchBar area={area} setSelect={setSelect} />
         </div>
 
         <PriceOrdering select={select} setSelect={setSelect} />
