@@ -40,7 +40,7 @@ export default function Users() {
       <div className={style.containerSearchBar}>
         <SearchBar />
       </div>
-      
+     
         <PriceOrdering select={select} setSelect={setSelect}/>
       
       </div>
