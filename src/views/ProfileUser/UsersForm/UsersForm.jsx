@@ -2,9 +2,9 @@ import React from 'react'
 import {useState} from 'react'
 import { useSelector } from 'react-redux'
 import putUserData from '../../../features/apiPetitions.js'
-import style from './UsersForm.module.css'
 import swal from "sweetalert";
 import { useParams } from 'react-router-dom'
+import style from './UsersForm.module.css'
 
 export default function UsersForm (){
 
@@ -13,7 +13,6 @@ export default function UsersForm (){
     const [urlImage, setUrlImage] = useState(null)
     const {id} = useParams()
     
-
     const [ error, setError ] = useState({
       name : '',
       lastName: '',
@@ -27,7 +26,6 @@ export default function UsersForm (){
       phone: '',
       image: ''
     })
-
 
     const handleInputChanges = (e) => {
       setInput({
@@ -91,86 +89,97 @@ export default function UsersForm (){
     }
     
   return (
-      <div className={style.usersForm} >
-        <p className={style.p}>*Por favor complete los datos  de su perfil</p>
+      <div  className={style.profileContainer}>
+        <section className={style.profileTitle}>
+          <p className={style.p}>
+            Estos son tus datos de usuario<br/>
+            (puedes modificarlos si lo necesitas)
+          </p>
+        </section>
         
-        <form className= {style.form} onSubmit ={e => handleSubmitUpdate(e)}>
-          <label className={style.labelInicio}>Avatar</label>
-          <div className = {style.imgperfil}>
-            <img src = {input.image} ></img>
+        <form className={style.profileForm} onSubmit ={e => handleSubmitUpdate(e)}>
+          <section className={style.imageChange}>
+            <label className={style.avatarTitle}>Tu foto de perfil</label>
+            <div className={style.imageContainer}>
+              <img className={style.sourceImage} src={users.image || input.image}/>
+            </div>
+            <div className={style.imageForm}>
+              <input
+                className={style.imageInput} 
+                type= 'file' 
+                name = 'image'
+                id = '#imageProfile'
+                onChange = {e => handledImageProfile(e)}
+              />
+              
+              <div className={style.formButtons}>
+                <button
+                  className={style.imageButton} 
+                  type="submit"  
+                  onClick = {e => handledImageProfile(e)}
+                  disabled
+                >Guardar Imagen</button>
+                        
+                <button
+                  className={style.imageButton} 
+                  type="submit"  
+                  onClick = {e => handledChangeImage(e)}
+                  disabled
+                >Cambiar Imagen</button> 
+              </div>                                     
+            </div>
+          </section>          
 
-          </div>
-          <div className={style.inputfile}>
-            <input 
-            className={style.fileSelect}
-            type= 'file' 
-            name = 'image'
-            id = '#imageProfile'
-            onChange = {e => handledImageProfile(e)}
-            />                        
-          </div>
-
-          <div className={style.userInfo}>
-            <input 
+          <section className={style.dataChange}>
+            <input
+              className={style.dataInput} 
               type="text" 
               placeholder='Nombres' 
               name = 'name'
               value = {users?.name}
               disabled
               onChange= {e => handleInputChanges(e)}
-              />
-              {error.name ? <p className = {style.inputerrorname}>{error.name}</p> : <></>}
+            />
+            {error.name ? <p >{error.name}</p> : <></>}
 
-            <input 
-            type="text" 
-            placeholder='Apellidos'
-            name = 'lastName'
-            value = {users?.lastName}
-            disabled
-            onChange= {handleInputChanges} 
+            <input
+              className={style.dataInput}  
+              type="text" 
+              placeholder='Apellidos'
+              name = 'lastName'
+              value = {users?.lastName}
+              disabled
+              onChange= {handleInputChanges} 
             />
-            {error.lastName ? <p className = {style.inputerrorlastName}>{error.lastName}</p> : <></>}
-            <input 
-            type="text" 
-            placeholder='Telefono'
-            name = 'phone'
-            value = {input.phone}
-            onChange= {handleInputChanges}
+            {error.lastName ? <p >{error.lastName}</p> : <></>}
+
+            <input
+              className={style.dataInput}  
+              type="text" 
+              placeholder='Telefono'
+              name = 'phone'
+              value = {input.phone}
+              onChange= {handleInputChanges}
             />
-            {error.phone ? <p className = {style.inputerrorPhone}>{error.phone}</p> : <></>}
+            {error.phone ? <p >{error.phone}</p> : <></>}
             
-            <input 
-            type="text" 
-            placeholder='URL de tu imagen en linea' 
-            id = 'imgUrl'
-            name = 'image'
-            value = {input.image}
-            onChange= {e => handleInputChanges(e)}
+            <input
+              className={style.dataInput}  
+              type="text" 
+              placeholder='URL de tu imagen en linea' 
+              id = 'imgUrl'
+              name = 'image'
+              value = {input.image}
+              onChange= {e => handleInputChanges(e)}
             />
-            
 
-          </div>
-          
-          <button 
-           className={style.formSubmit}
-           type="submit" 
-           disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
-           onSubmit = {e => handleSubmitUpdate(e)}  >Actualizar</button>
-
-          <button 
-          type="submit"  
-          className={style.saveImg}
-          onClick = {e => handledImageProfile(e)}
-          disabled
-          >Guardar Imagen</button>
-          
-          
-          <button type="submit"  
-          className={style.changeImg}
-          onClick = {e => handledChangeImage(e)}
-          disabled
-          >Cambiar Imagen</button>
-        
+            <button
+              className={style.dataButton}  
+              type="submit" 
+              disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
+              onSubmit = {e => handleSubmitUpdate(e)}  
+            >Actualizar</button>            
+          </section>          
         </form>
       </div>
   )
