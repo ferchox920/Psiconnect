@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { changePasswordProfessional } from "../../../../features/apiPetitions";
 
-
 //Hay un problema con el token que no permite que la petition se ejecute
-
 
 function ChangePassword() {
   const [passwords, setPasswords] = useState({
@@ -14,7 +12,7 @@ function ChangePassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (passwords.newPassword !== confirmPassword) {
       alert("Las nuevas contraseñas no coinciden.");
@@ -28,10 +26,8 @@ function ChangePassword() {
     }
     // Si todo es válido, enviar una solicitud de cambio de contraseña al servidor
     await changePasswordProfessional(passwords);
- 
     setPasswords({ oldPassword: "", newPassword: "" });
     setConfirmPassword("");
-    alert("¡Se cambió su contraseña correctamente!");
   };
 
   const toggleShowPassword = () => {
@@ -92,14 +88,14 @@ function ChangePassword() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-         <button
-            type="button"
-            className="password-toggle-button"
-            onClick={toggleShowPassword}
-            disabled={buttonDisabled}
-          >
-            {showPassword ? "Ocultar" : "Mostrar"}
-          </button>
+        <button
+          type="button"
+          className="password-toggle-button"
+          onClick={toggleShowPassword}
+          disabled={buttonDisabled}
+        >
+          {showPassword ? "Ocultar" : "Mostrar"}
+        </button>
         <button type="submit">Guardar cambios</button>
       </form>
     </div>

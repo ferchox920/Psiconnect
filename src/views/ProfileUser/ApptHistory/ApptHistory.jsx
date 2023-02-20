@@ -28,14 +28,16 @@ export default function ApptHistory() {
       </div>
       <div className={style.box}>
         {consults && 
-        consults.map((c, i) => {
-          return(
-            <div className={style.consult}>
-              <Card key={i} consult={c}/>
-            </div>
-          )
-        })
-        }
+          consults.map((c, i) => {
+            return(
+              <div className={style.consult}>
+                <Card key={i} consult={c}/>
+              </div>
+            )
+        })}
+        {!consults?.length && <div  className={style.noAppt}>
+          <p> <b>No tienes citas agendadas</b> </p>
+        </div> }
       </div>
 
      
