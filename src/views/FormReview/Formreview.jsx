@@ -13,16 +13,18 @@ export default function Formreview  () {
 
   const navigate = useNavigate()
  
-  const user = useSelector(store => store.user.user)
+  const user= useSelector(store => store.user.user)
   const [professional, setProfessional ] = useState({})
   const { professionalId } = useParams()
+  console.log(professionalId, 'profid')
   const [inputs , setInputs] = useState({
       comments: '',
       puntualidad: 0,
       trato : 0,
       general: 0,
       score : 0,
-      userId : user? user.id : null,
+      userId : user?.id
+      
       
   })
 
@@ -133,11 +135,14 @@ export default function Formreview  () {
     
   };
 
-  const handleSubmit = () => { 
+  const handleSubmit = (e) => { 
+    e.preventDefault();
     let error = validation(inputs)
     if(Object.entries(error) == 0){
      
-      createProfessionalReview({...inputs}, professionalId ) 
+
+      createProfessionalReview({...inputs, professionalId : professionalId }) 
+
       swal({
         title: "!Gracias por calificar¡",
         text: `Enviado`,
@@ -158,12 +163,12 @@ export default function Formreview  () {
       general: 0,
       score : 0,
       
+      
     })
     alert('Gracias por calificar su experiencia')
     navigate('/')
-    
 }
- 
+
   return (
 
     <div className = {style.containerform}>
@@ -182,7 +187,7 @@ export default function Formreview  () {
                placeholder='idUser'
                value = {`IdUser: ${user?.id}`} 
                name = 'userId'
-               hidden
+             
                disabled
                />
             </div>
@@ -195,7 +200,7 @@ export default function Formreview  () {
                className = {style.inputIdUProf}
                placeholder='idUser'
                value = {`IdProf: ${professionalId}`}
-               hidden
+              
                name = 'professionalId'
                disabled
                />

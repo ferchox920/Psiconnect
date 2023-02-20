@@ -32,6 +32,7 @@ export default function AreaSliderFilter() {
           </p>
         </>
       ) : null}
+      
       <div className={style.container}>
         <Swiper
           modules={[ Autoplay,Pagination]}
