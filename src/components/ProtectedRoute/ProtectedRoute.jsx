@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children, type }) {
   const user = useSelector((state) => state.user.user);
-  if (user)
     return user?.rol === type ? (
       <section> {children} </section>
     ) : (

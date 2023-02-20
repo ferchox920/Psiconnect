@@ -15,19 +15,19 @@ import firestore, {
   getContextProfessional,
 } from "../../features/firebase/calendaryFeatures";
 import { collection, onSnapshot } from "@firebase/firestore";
-
 export default function Details() {
   const [professional, setProfessional] = useState({});
   const [contextProfessional, setContextProfessional] = useState();
   const [daysDisabled, setDaysDisabled] = useState();
 
   const [modal, setModal] = useState(null);
+  const [openLogin, setOpenLogin] = useState(null);
   const user = useSelector((state) => state.user.user);
   const dispacht = useDispatch();
   const viewref = useRef(null);
 
   const openModal = () => {
-    setModal(true);
+    setModal(!modal);
   };
   const startChat = () => {
     createChat({
@@ -48,19 +48,11 @@ export default function Details() {
 
   useEffect(
     () =>
-      onSnapshot(
-        collection(
-          firestore,
-          `context/${id}/times`
-        ),
-        (snapshot) => {
-          setContextProfessional(snapshot.docs.map((doc) => doc.data()));
-        }
-      ),
+      onSnapshot(collection(firestore, `context/${id}/times`), (snapshot) => {
+        setContextProfessional(snapshot.docs.map((doc) => doc.data()));
+      }),
     [id]
   );
-
-
 
   const handleClick = (e) => {
     e.preventDefault(e);
@@ -68,8 +60,8 @@ export default function Details() {
   };
 
   return (
-    <div className={style.containdetails}>
-      <div className={style.descriptionprof}>
+    <>
+      <div className={style.containdetails}>
         <CardProfessional
           image={professional?.avatar}
           name={professional?.name}
@@ -78,21 +70,17 @@ export default function Details() {
           skills={professional?.skills?.map((el) => el.skills)}
           precio={professional.price}
           description={professional.description}
+          email={professional.email}
+          linkedin={professional.linkedin}
+          openModal={openModal}
+          startChat={startChat}
+          handleClick={handleClick}
+          setOpenModal={setOpenLogin}
         />
-        <button className={style.button} onClick={(e) => handleClick(e)}>
-          <HiOutlineArrowDown className={style.arrow} />
-        </button>
-      </div>
+        <div className={style.reviews}></div>
 
-      <div className={style.iconochat}>
-        <Chat />
-      </div>
-
-      <div className={style.reviews}></div>
-
-      <div ref={viewref} className={style.contcalendary}>
-        <img className={style.cerebrito} src={cerebrito} alt="" />
-        <div className={style.calendary__box}>
+        <div ref={viewref} className={style.contcalendary}>
+          <img className={style.cerebrito} src={cerebrito} alt="" />
           <Calendary
             professionalId={id}
             price={professional.price}
@@ -111,13 +99,12 @@ export default function Details() {
             }
             freeDays={contextProfessional?.freeDays || []}
             daysDisabled={daysDisabled || []}
+            setOpenLogin={setOpenLogin}
           />
         </div>
       </div>
-
-      {/* <div className={style.container__botttom}>
-            {modal && <FormModal name="User" set={setModal} />}
-        </div> */}
-    </div>
+      {openLogin && <FormModal name="User" set={setOpenLogin} />}
+      {modal && <Chat initialValue={modal} />}
+    </>
   );
 }

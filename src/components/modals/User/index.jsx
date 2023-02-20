@@ -5,20 +5,24 @@ import style from "./UserModal.module.css";
 
 export default function User({set, closeModal}) {
     const [switcher, setSwitcher] = useState(false);
+    const [switcherResponsive, setSwitcherResponsive] = useState(false);
     const [loginProf, setloginProf] = useState(false);
 
     const click = ()=>{
+        loginProf?
+        window.location.pathname ='/registerProfesional'
+        :
         setSwitcher(!switcher)
     }
   return (
     <div className= {`${style.Usermodal} ${
         switcher ? style.containerDerechoActivo : null
       }`}>
-         <div className={style.registrarse}>
-            <RegisterUser closeModal={closeModal} />
+         <div className={style.registrarse} style= {switcherResponsive? {opacity:'5', zIndex:'3'} :null} >
+            <RegisterUser setSwitcherResponsive={setSwitcherResponsive}  closeModal={closeModal} />
         </div>
         <div className={style.iniciarSesion}>
-            <LoginUser set={set} closeModal={closeModal} loginProf={loginProf} setloginProf={setloginProf} />
+            <LoginUser setSwitcherResponsive={setSwitcherResponsive} set={set} closeModal={closeModal} loginProf={loginProf} setloginProf={setloginProf} />
         </div>
       <div className={style.overlayContainer}>
         <div className={`${style.overlay} ${loginProf?style.loginProf:null}`}>

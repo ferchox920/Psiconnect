@@ -4,16 +4,30 @@ import swal from "sweetalert";
 import { requestConsultation } from "../../features/apiPetitions";
 import style from "./Calendary.module.css";
 import { createConsults } from "../../features/firebase/calendaryFeatures";
+import RightArrow from "../../views/Professionals/SVG/RightArrow";
+import LeftArrow from "../../views/Professionals/SVG/LeftArrow";
 
-const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled }) => {
+const Calendary = ({
+  workingHours,
+  professionalId,
+  freeDays,
+  price,
+  daysDisabled,
+  setOpenLogin
+}) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-
 
   const user = useSelector((state) => state.user.user);
   const goToPayment = (body) => {
+    if (!user || user.rol !=='user') {
+      swal("tienes que iniciar sesion como usuario antes").then((e) => {
+        setOpenLogin(true);
+      });
+      return;
+    }
     createConsults({
       professionalId,
-      hours: body.date
+      hours: body.date,
     });
     requestConsultation({ ...body, userId: user.id, professionalId }).then(
       (e) => (window.location.href = e)
@@ -24,16 +38,18 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
     return (
       freeDays.includes(day.toString().split(" ")[0]) ||
       day < new Date() ||
-      daysDisabled.includes(`${day.toString().split(' ').slice(0,4).join(' ')} ${hour}`)
+      daysDisabled.includes(
+        `${day.toString().split(" ").slice(0, 4).join(" ")} ${hour}`
+      )
     );
   };
   const validateDate = (day, hour) => {
     console.log(daysDisabled);
     validateHours(day, hour)
       ? swal({
-        title:'Upps!',
-        text:'lo siento pero ese horario no esta disponible',
-      })
+          title: "Upps!",
+          text: "lo siento pero ese horario no esta disponible",
+        })
       : setSelectedHour({ day, hour });
   };
 
@@ -59,7 +75,7 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
     }
 
     return (
-      <div className={style.week} style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className={style.week} style={{ display: "flex" }}>
         {days}
       </div>
     );
@@ -72,9 +88,7 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
         <div
           key={i}
           className={`${style.hour} ${
-            validateHours(day, workingHours[i])
-              ? style.hourDisabled
-              : null
+            validateHours(day, workingHours[i]) ? style.hourDisabled : null
           }`}
           onClick={() => validateDate(day, workingHours[i])}
         >
@@ -90,7 +104,7 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
     <div className={style.calendar}>
       <h2 className={style.titlecalendar}>Agenda un cita</h2>
       <div className={style.header}>
-        <button
+        <div
           className={style.right}
           onClick={() =>
             setCurrentDate(
@@ -98,10 +112,10 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
             )
           }
         >
-          &larr;
-        </button>
-        <div>{currentDate.toLocaleString("default", { month: "long" })} </div>
-        <button
+          <LeftArrow />
+        </div>
+        <h3>{currentDate.toLocaleString("default", { month: "long" })} </h3>
+        <div
           className={style.left}
           onClick={() =>
             setCurrentDate(
@@ -109,10 +123,10 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
             )
           }
         >
-          &rarr;
-        </button>
+          <RightArrow />
+        </div>
       </div>
-      {renderWeek()}
+      <div className={style.renderWeek}>{renderWeek()}</div>
       {selectedHour && (
         <div className={style.modal}>
           <div>
@@ -130,8 +144,12 @@ const Calendary = ({ workingHours, professionalId, freeDays, price, daysDisabled
             className={style.button}
             onClick={() =>
               goToPayment({
-                date: `${selectedHour.day.toString().split(' ').slice(0,4).join(' ')} ${selectedHour.hour}`,
-                price: price || "200",
+                date: `${selectedHour.day
+                  .toString()
+                  .split(" ")
+                  .slice(0, 4)
+                  .join(" ")} ${selectedHour.hour}`,
+                price: price || "20",
               })
             }
           >

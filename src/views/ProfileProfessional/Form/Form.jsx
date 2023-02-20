@@ -46,6 +46,7 @@ const ProfileForm = () => {
       state: setSkills,
       type: "local",
     });
+   
   }, []);
 
   const handleInputDeletedAvatar = () => {

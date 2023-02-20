@@ -1,18 +1,16 @@
 
-.containerform{
-    background: white;
-    margin-top: 40px;
-}
 
 
 .formReview{
-    background: #f4f1bb;
-    width: 80%;
+    background: #faf9e5;
+    width: 60%;
     height: 100vh;
-    margin-top: 100px;
+    margin-top: 200px;
     margin-left: 120px;
     padding: 10px;
     box-shadow: none;
+    border-radius: 30px;
+    
 }
 
 .containerreputacion{
@@ -22,17 +20,20 @@
     border-radius: 30px;
     position: absolute;
     margin-top: -300px;
-    margin-left: -170px;
+    margin-left: -10px;
+    border: dotted cadetblue;
+    box-shadow: 5px 10px 20xp black ;
 
 }
 
 .containerDescription{
+    border: dotted cadetblue;
     width: 650px;
     height: 200px;
     border-radius: 20px;
     position: absolute;
     margin-top: 200px;
-    margin-left: -200px;
+    margin-left: -30px;
     
 }
 
@@ -46,7 +47,7 @@
     font-size:medium;
     font-family: 'Poppins', sans-serif;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 15px;
     
 }
@@ -152,12 +153,12 @@
 
 }
 
-.labelatencion{
+.labelgeneral{
     position: absolute;
     margin-top: -30px;
 }
 
-.checkAtencion{
+.checkgeneral{
     display: flex;
     margin-top: -20px;
     flex-direction: row;
@@ -166,7 +167,7 @@
     padding: 15px;
 }
 
-.inputsatencion{
+.inputsgeneral{
     margin-left: 80px;
     display: flex;
     margin-top: -30px;
@@ -213,7 +214,7 @@
     border: none;
 }
 
-.atencionscore{
+.generalscore{
     margin-top: -20px;
     display: flex;
     flex-direction: row;
@@ -221,7 +222,7 @@
     align-items: center;  
 }
 
-.inputatencionscore{
+.inputgeneralscore{
     font-size: 15px;
     width: 30px;
     box-shadow: none;
@@ -232,12 +233,12 @@
 }
 
 .scores{
-    background: green;
+   
     width: 200px;
     height: 200px;
     position: absolute;
-    margin-left: 700px;
-    margin-top: -300px;
+    margin-left: 800px;
+    margin-top: -250px;
 }
 
 .score{
@@ -258,6 +259,51 @@
     border: none;
 
 }
+
+.button{
+    position:absolute;
+  
+    margin-top: 100px;
+    background-color:  cadetblue;
+    height: 60px;
+    font-size: 125%;
+    width: 300px;
+    position: absolute;
+    border-radius: 25px;
+    margin-left: 1100px;
+    border: dotted white;
+}
+
+.button:hover{
+    background-color: white;
+    border: dotted cadetblue; 
+    cursor: pointer;
+}
+
+
+
+.imgcerebrito{
+    width: 250px;
+    margin-left: 950px;
+    position: absolute;
+    margin-top: -600px;
+    
+}
+
+.slogan{
+  font: var(--paragraph);
+  font-size: 230%;
+  margin-top: -90px;
+  position: absolute;
+  margin-left: 200px;
+}
+
+.califica{
+    font-size: 22px;
+    margin-left: 40px;  ;
+    
+}
+
 
 
 

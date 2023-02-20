@@ -22,6 +22,7 @@ import Admin from "./views/Admin/Admin";
 import ForgotPassword from './components/ForgotPassword/ForgotPassword.jsx'
 
 
+
 function App() {
   const user = useSelector((state) => state.user.user);
   const { pathname } = useLocation();
@@ -45,6 +46,7 @@ function App() {
       : null;
   }, []);
   return (
+    
     <>
       <NavBar />
       <Routes>
@@ -61,7 +63,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/Professionals" element={<Professionals />} />
         <Route path="/Professionals/:area" element={<Professionals />} />
-        <Route path="/Formreview/:id" element={<Formreview />} />
+        <Route path="/Formreview/:professionalId" element={<Formreview />} />
         <Route
           path="/professionalProfile/:section"
           element={
@@ -98,7 +100,7 @@ function App() {
     
       {pathname.split("/")[1] !== "professionalProfile" &&
       pathname.split("/")[1] !== "userProfile" &&
-      pathname.split("/")[1] !== "admin" && pathname.split("/")[1] !== 'Details' && <Footer />}
+      pathname.split("/")[1] !== "admin"  && <Footer />}
       {pathname.split('/')[1] !== 'Details' && user && user.rol !== 'admin'? <Chat />  : null}
     </>
   );

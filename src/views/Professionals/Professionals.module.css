@@ -1,4 +1,9 @@
 .containerProf{
     display: flex;
     flex-wrap: wrap;
+    gap: 50px;
+}
+
+.input .button{
+    box-shadow: none;
 }
