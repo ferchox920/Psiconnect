@@ -21,6 +21,8 @@ export default function SearchBar({ area , setSelect}) {
       area: area ? area : null,
       name: input,
       lastName: input.split(" ")[1] || null,
+    }).then(e =>{
+      setInput('');
     });
   };
   return (
