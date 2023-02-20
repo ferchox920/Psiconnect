@@ -31,7 +31,7 @@ export default function ApptHistory() {
           consults.map((c, i) => {
             return(
               <div className={style.consult}>
-                <Card key={i} consult={c}/>
+                <Card key={i} consult={c} status={c.status} link={c.linkpay}/>
               </div>
             )
         })}
