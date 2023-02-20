@@ -73,25 +73,25 @@ export default function Details() {
     [id]
   );
 
-  useEffect(() => {
-    setTimeout(() => {
-      setReviewProfessional([
-        {
-          user1: reviewProfessional[0].username,
-          lastName1: reviewProfessional[0].lastusername,
-        },
-        {
-          user2: reviewProfessional[1].username,
-          lastName2: reviewProfessional[1].lastusername,
-        },
-        {
-          user3: reviewProfessional[2].username,
-          lastName3: reviewProfessional[2].lastusername,
-        },
-      ]);
-      setLoading(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setReviewProfessional([
+  //       {
+  //         user1: reviewProfessional[0].username,
+  //         lastName1: reviewProfessional[0].lastusername,
+  //       },
+  //       {
+  //         user2: reviewProfessional[1].username,
+  //         lastName2: reviewProfessional[1].lastusername,
+  //       },
+  //       {
+  //         user3: reviewProfessional[2].username,
+  //         lastName3: reviewProfessional[2].lastusername,
+  //       },
+  //     ]);
+  //     setLoading(false);
+  //   }, 3000);
+  // }, []);
 
   useEffect(() => {
     if (reviewProfessional && reviewProfessional.length > 0) {

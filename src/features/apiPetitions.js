@@ -246,9 +246,18 @@ export async function verifyTokenPostRegister(token) {
 export async function createProfessionalReview(body) {
   try {
       const createReview = await axios.post(`/review/${body.professionalId}`, body)
+      swal({
+        title: "Gracias por calificar!",
+        text: `Enviado`,
+        icon: "success",
+      })
       return (createReview)
   } catch (error) {
-    console.log(error.response.data);
+    swal({
+      title: "upps",
+      text: `algo salio mal`,
+      icon: "error",
+    })
   }
 }
 
