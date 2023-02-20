@@ -49,10 +49,10 @@ const Asistencia = () => {
         </p>
         <h3>Algunas areas en donde podemos ayudarte!</h3>
 
-        <AreaSliderFilter />
+        <AreaSliderFilter id = 'searchprofessional'/>
 
         <br />
-        <h3 className={style.titulo}>
+        <h3 className={style.titulo}  >
           Elige el profesional de tu preferencia!
         </h3>
         <p className={style.parrafo} style={{textAlign:'center'}}>

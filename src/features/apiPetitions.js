@@ -169,8 +169,9 @@ export async function getUserByJWT({ state, type }) {
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/details/${id}`);
-    console.log(peticion, "peticion");
+
+    const peticion = await axios.get(`/professional/details/${id}`);  
+
     return state(peticion.data);
   } catch (error) {
     return error.response;
@@ -208,8 +209,8 @@ export async function getProfessionalsFilters({
       ? state(peticion?.data)
       : state(setFilterProfessional(peticion?.data));
   } catch (error) {
-    errorMenssage(`no se encontro a ${name} ${lastName? lastName:''}`)
-    return error.response;
+    errorMenssage(`no se encontro a ${name} ${lastName ? lastName : ""}`);
+    throw new Error("error");
   }
 }
 
@@ -224,10 +225,10 @@ export async function getSkills({ state, type }) {
 
 export async function getProfessionalReview(id, state) {
   try {
-    const peticion = await axios.get(`/review/${id}`);
-    return state(peticion?.data);
-  } catch (error) {
-    return error.response;
+    const peticion = await axios.get(`/review/${id}`)
+    return state(peticion?.data)
+  }catch(error) {
+    return error.response
   }
 }
 
@@ -242,10 +243,10 @@ export async function verifyTokenPostRegister(token) {
   }
 }
 
-export async function createProfessionalReview(body, id) {
+export async function createProfessionalReview(body) {
   try {
-    const createReview = await axios.post(`/review/${id}`, body);
-    return createReview;
+      const createReview = await axios.post(`/review/${body.professionalId}`, body)
+      return (createReview)
   } catch (error) {
     console.log(error.response.data);
   }
@@ -257,8 +258,8 @@ export async function requestConsultation(body) {
     console.log(peticion.data.data.links[1].href);
     return peticion.data.data.links[1].href;
   } catch (error) {
-    errorMenssage('Upps algo salio mal en nuestros sistemas')
-    throw new Error('upps')
+    errorMenssage("Upps algo salio mal en nuestros sistemas");
+    throw new Error("upps");
   }
 }
 
@@ -311,7 +312,7 @@ export async function postRegisterProfesional(body, token) {
   }
 }
 
-export default async function putUserData(body) {
+export default async function putUserData(id, body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body);
     return updateUser;
@@ -338,21 +339,21 @@ export async function getResultProfessionalPayments(professionalId, state) {
   }
 }
 
-export async function getUserPayments(userId, state){
+export async function getUserPayments(userId, state) {
   try {
-    const response = await axios.get(`/payment/user/${userId}`)
-    return state(response?.data)
+    const response = await axios.get(`/payment/user/${userId}`);
+    return state(response?.data);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
-export async function getResultUserPayments(userId, state){
+export async function getResultUserPayments(userId, state) {
   try {
-    const response = await axios.get(`/payment/userPayment/${userId}`)
-    return state(response?.data)
+    const response = await axios.get(`/payment/userPayment/${userId}`);
+    return state(response?.data);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 // export default async function postImageCloudinary(file, image) {

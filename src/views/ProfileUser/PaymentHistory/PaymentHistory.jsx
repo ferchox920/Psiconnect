@@ -4,16 +4,15 @@ import {  getUserPayments, getResultUserPayments } from "../../../features/apiPe
 import Card from "./Card/Card.jsx";
 import style from "./PaymentHistory.module.css"; // Importar el archivo de estilos
 
-export default function Incomes() {
-  const [consults, setConsults] = useState();
-  const [pay, setPay] = useState();
 
-  const userId = useSelector((store) => store.user.user.id);
+export default function PaymentHistory () {
+    const users = useSelector((state) => state.user.user)
 
   useEffect(() => {
     getUserPayments(userId, setConsults);
     getResultUserPayments(userId, setPay)
   }, []);
+
 
   return (
     <div className={style.paymentsContainer}> {/* Aplicar la clase CSS en el contenedor principal */}
