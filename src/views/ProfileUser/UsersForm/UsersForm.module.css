@@ -22,13 +22,20 @@
 .profileForm{
     background: var(--cream);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     border-radius: 10px;
     border: 1px solid black;
-    margin: 0 5%;
-    padding: 5%;
+    margin: 0 1%;
+    padding: 3%;
+    gap: 3rem;
+}
+
+.changesField{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 10rem;
 }
 
@@ -36,7 +43,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 26rem;
+    width: 35rem;
+    gap: 1em;
 }
 
 .avatarTitle{
@@ -72,42 +80,16 @@
     border-radius: 20px;
     border: none;
     outline: none;
-    box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
+    box-shadow: 7px 7px 12px #c1c1c1, -7px -7px 13px #fff !important;
     font: var(--lightParagrah);
     font-size: 100%;
-}
-
-.formButtons{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5%;
-    width: 100%;
-    margin-right: -10%;
-}
-
-.imageButton{
-    background-color: cadetblue;
-    border-radius: 25px;
-    border: dotted white;
-    padding: 3%;
-    font: var(--paragraph);
-    font-size: 105%;
-    color: white;
-    cursor: pointer;
-}
-
-.imageButton:hover{
-    background-color: white;
-    border: dotted cadetblue;
-    color: cadetblue;
 }
 
 .dataChange{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40rem;
+    width: 35rem;
     gap: 1em;
 }
 
@@ -118,7 +100,7 @@
     border-radius: 20px;
     border: none;
     outline: none;
-    box-shadow: 9px 9px 15px #dedede, -9px -9px 15px #fff;
+    box-shadow: 7px 7px 12px #c1c1c1, -7px -7px 13px #fff !important;
     font: var(--lightParagrah);
     font-size: 100%;
 }
@@ -127,11 +109,11 @@
     background-color: cadetblue;
     border-radius: 25px;
     border: dotted white;
-    padding: 3%;
     font: var(--paragraph);
-    font-size: 105%;
+    font-size: 175%;
     color: white;
     cursor: pointer;
+    padding: 1%;
 }
 
 .dataButton:hover{

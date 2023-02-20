@@ -8,85 +8,82 @@ import style from './UsersForm.module.css'
 
 export default function UsersForm (){
 
-    const users = useSelector((state) => state.user.user)
-    const [ file, setFile ] = useState(null)
-    const [urlImage, setUrlImage] = useState(null)
-    const {id} = useParams()
+  const users = useSelector((state) => state.user.user)
+  const [ file, setFile ] = useState(null)
+  const [urlImage, setUrlImage] = useState(null)
+  const {id} = useParams()
     
-    const [ error, setError ] = useState({
+  const [ error, setError ] = useState({
       name : '',
       lastName: '',
       phone: '',
       image: ''
+  })
 
-    })
-    const [input, setInput] = useState({
-      name : '',
-      lastName: '',
-      phone: '',
-      image: ''
-    })
+  const [input, setInput] = useState({
+    name : '',
+    lastName: '',
+    phone: '',
+    image: ''
+  })
 
-    const handleInputChanges = (e) => {
-      setInput({
+  const handleInputChanges = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+      
+    });
+    
+    setError(validation({
         ...input,
         [e.target.name]: e.target.value,
-        
-      });
-      
-      setError(validation({
-          ...input,
-          [e.target.name]: e.target.value,
-        }))
-     
-    };
+      }))
+    
+  };
 
-    const handleSubmitUpdate = (e) => {
-        e.preventDefault()
-        if(Object.entries(error).length == 0){
-          putUserData({...input , id: users.id})
-          swal({
-            title: "Cambios guardados!",
-            text: `Sus datos fueron actualizados correctamente`,
-            icon: "success",
-          })
-          
-        } else 
+  const handleSubmitUpdate = (e) => {
+      e.preventDefault()
+      if(Object.entries(error).length == 0){
+        putUserData({...input , id: users.id})
         swal({
-          title: "Error!",
-          text: Object.values(error)[0],
-          icon: "error",
+          title: "Cambios guardados!",
+          text: `Sus datos fueron actualizados correctamente`,
+          icon: "success",
         })
+        
+      } else 
+      swal({
+        title: "Error!",
+        text: Object.values(error)[0],
+        icon: "error",
+      })
 
-        setInput({
-          name : '',
-          lastName: '',
-          phone: '',
-          image: ''
-        })
-        alert('Sus datos han sido actualizados')
-    }
-
-    const handledImageProfile = (e) => {
-
-      if(!e.target.files[0])return
       setInput({
-        ...input,
-        [e.target.name]: e.target.files[0],
-        image: URL.createObjectURL(e.target.files[0]),
+        name : '',
+        lastName: '',
+        phone: '',
+        image: ''
       })
+      alert('Sus datos han sido actualizados')
+  }
 
+  const handledImageProfile = (e) => {
+    if(!e.target.files[0])return
+    setInput({
+      ...input,
+      [e.target.name]: e.target.files[0],
+      image: URL.createObjectURL(e.target.files[0]),
+    })
+  }
 
-    const handledChangeImage = (e) => {
-      setInput ({
-        ...input,
-        image : ''
-      })
-      let img = document.querySelector('#imageProfile')
-      img.value = ''
-    }
-
-    }
+  const handledChangeImage = (e) => {
+    setInput ({
+      ...input,
+      image : ''
+    })
+    let img = document.querySelector('#imageProfile')
+    img.value = ''
+  }
     
   return (
       <div  className={style.profileContainer}>
@@ -98,88 +95,72 @@ export default function UsersForm (){
         </section>
         
         <form className={style.profileForm} onSubmit ={e => handleSubmitUpdate(e)}>
-          <section className={style.imageChange}>
-            <label className={style.avatarTitle}>Tu foto de perfil</label>
-            <div className={style.imageContainer}>
-              <img className={style.sourceImage} src={users.image || input.image}/>
-            </div>
-            <div className={style.imageForm}>
+          <div className={style.changesField}>
+            <section className={style.imageChange}>
+              <label className={style.avatarTitle}>Tu foto de perfil</label>
+              <div className={style.imageContainer}>
+                <img className={style.sourceImage} src={users.image || input.image}/>
+              </div>
+
               <input
-                className={style.imageInput} 
-                type= 'file' 
-                name = 'image'
-                id = '#imageProfile'
-                onChange = {e => handledImageProfile(e)}
+                  className={style.imageInput} 
+                  type= 'file' 
+                  name = 'image'
+                  id = '#imageProfile'
+                  onChange = {e => handledImageProfile(e)}
               />
+            </section>          
+
+            <section className={style.dataChange}>
+              <input
+                className={style.dataInput} 
+                type="text" 
+                placeholder='Nombres' 
+                name = 'name'
+                value = {users?.name}
+                disabled
+                onChange= {e => handleInputChanges(e)}
+              />
+
+              <input
+                className={style.dataInput}  
+                type="text" 
+                placeholder='Apellidos'
+                name = 'lastName'
+                value = {users?.lastName}
+                disabled
+                onChange= {handleInputChanges} 
+              />
+
+              <input
+                className={style.dataInput}  
+                type="text" 
+                placeholder='Telefono'
+                name = 'phone'
+                value = {input.phone}
+                onChange= {handleInputChanges}
+              />
+              {error.phone ? <p >{error.phone}</p> : <></>}
               
-              <div className={style.formButtons}>
-                <button
-                  className={style.imageButton} 
-                  type="submit"  
-                  onClick = {e => handledImageProfile(e)}
-                  disabled
-                >Guardar Imagen</button>
-                        
-                <button
-                  className={style.imageButton} 
-                  type="submit"  
-                  onClick = {e => handledChangeImage(e)}
-                  disabled
-                >Cambiar Imagen</button> 
-              </div>                                     
-            </div>
-          </section>          
+              <input
+                className={style.dataInput}  
+                type="text" 
+                placeholder='URL de tu imagen en linea' 
+                id = 'imgUrl'
+                name = 'image'
+                value = {input.image}
+                onChange= {e => handleInputChanges(e)}
+              />                      
+            </section>
+          </div>
+          
 
-          <section className={style.dataChange}>
-            <input
-              className={style.dataInput} 
-              type="text" 
-              placeholder='Nombres' 
-              name = 'name'
-              value = {users?.name}
-              disabled
-              onChange= {e => handleInputChanges(e)}
-            />
-            {error.name ? <p >{error.name}</p> : <></>}
-
-            <input
-              className={style.dataInput}  
-              type="text" 
-              placeholder='Apellidos'
-              name = 'lastName'
-              value = {users?.lastName}
-              disabled
-              onChange= {handleInputChanges} 
-            />
-            {error.lastName ? <p >{error.lastName}</p> : <></>}
-
-            <input
-              className={style.dataInput}  
-              type="text" 
-              placeholder='Telefono'
-              name = 'phone'
-              value = {input.phone}
-              onChange= {handleInputChanges}
-            />
-            {error.phone ? <p >{error.phone}</p> : <></>}
-            
-            <input
-              className={style.dataInput}  
-              type="text" 
-              placeholder='URL de tu imagen en linea' 
-              id = 'imgUrl'
-              name = 'image'
-              value = {input.image}
-              onChange= {e => handleInputChanges(e)}
-            />
-
-            <button
+          <button
               className={style.dataButton}  
               type="submit" 
               disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
               onSubmit = {e => handleSubmitUpdate(e)}  
-            >Actualizar</button>            
-          </section>          
+          >Actualiza tus datos</button>            
         </form>
       </div>
   )
@@ -192,11 +173,11 @@ const validation  = (input) => {
   const rgOnlyNumbers = new RegExp(/^\d+$/)
   
 
-  if (!input.name) error.name = 'El nombre es requerido'
-  else if(!onlyLetter.test(input.name)) error.name = "Solo letras" 
+  // if (!input.name) error.name = 'El nombre es requerido'
+  // else if(!onlyLetter.test(input.name)) error.name = "Solo letras" 
 
-  if (!input.lastName) error.lastName = 'El apellido es requerido'
-  else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras" 
+  // if (!input.lastName) error.lastName = 'El apellido es requerido'
+  // else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras" 
 
   if(!input.phone) error.phone = 'Nro tlf es requerido'
   else if(!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros" 
