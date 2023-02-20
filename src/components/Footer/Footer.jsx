@@ -1,5 +1,4 @@
 import style from "./Footer.module.css";
-import logo from  "../../assets/LogoCerebro.svg";
 import FormModal from "../modals/Modals";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -11,14 +10,8 @@ const Footer = () => {
   const [modal, setModal] = useState(null);
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
-  const openModal = () => {
-    user ?
-    navigate("/Asistencia")
-    :
-    setModal(!modal);
-  };
+
   const [TermsAndConditions, setTermsAndConditions] = useState(false);
-  const [CheckTermsAndConditions, setCheckTermsAndConditions] = useState(false);
   const close = () => {
     setTermsAndConditions(!TermsAndConditions);
   };
@@ -54,7 +47,6 @@ const Footer = () => {
         <div className={style.h5}>CONOCENOS</div>
         <a href="/Asistencia" className={style.info}>¿Necesitas ayuda?</a>
         <a href="/registerProfesional" className={style.info}>Trabaja con nosotros</a>
-        <a className={style.info} onClick={openModal}>Contactanos</a>
         <a className={style.info} onClick={close}>Terminos y condiciones</a> 
       </div>
     </section>

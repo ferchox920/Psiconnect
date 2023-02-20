@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { getProfessionalsFilters } from "../../features/apiPetitions";
 import style from "./index.module.css";
 import lupa from "../../assets/hero/lupa.svg";
-export default function SearchBar({ area }) {
+import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
+export default function SearchBar({ area , setSelect}) {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
@@ -13,12 +14,15 @@ export default function SearchBar({ area }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSelect('Ordena por precio')
     getProfessionalsFilters({
       type: "global",
       state: dispatch,
       area: area ? area : null,
       name: input,
       lastName: input.split(" ")[1] || null,
+    }).then(e =>{
+      setInput('');
     });
   };
   return (

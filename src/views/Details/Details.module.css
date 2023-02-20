@@ -1,21 +1,13 @@
 .containdetails {
   width: 100%;
   font-family: "Poppins";
-  background: wheat;
-  height: 1600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.descriptionprof{
-  width: 100%;
-  height: 500px ;
-}
 
-.cardprof{
-  width: 70%;
-  height: 300px;
-  padding: 10px;
-  background: white;
-}
 
 .reviews{
     width: 80%;
@@ -27,51 +19,27 @@
 }
 
 .cerebrito{
-  position: absolute;
   transform:scaleX(-1);
-  width: 300px;
-  margin-top: 100px;
-}
-
-.logopaypal{
-  position: absolute;
-  margin-left: 1100px;
-  margin-top : 250px
-
-}
-
-.pagatucita{
-  position: absolute;
-  margin-left: 1070px;
-  font: var(--paragraph);
-  font-size: 180%;
-  margin-top: 150px;
-  font-weight:bold;
- 
-}
-.container__botttom {
-  
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  align-content: center;
-  align-items: center; 
-
+  width:20%;
 }
 
 .contcalendary{
   width: 100%;
-  margin-top: 50px
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 50px;
   
 }
-
-.container__top {
+.contImg{
   width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 60% 40%;
-  margin-top: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 50px;
+  
 }
 
 .description{
@@ -96,7 +64,7 @@
 .calendario {
   width: 10%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
   padding: 5px;
@@ -108,10 +76,7 @@
 }
 
 .paypal{
-  width: 200px;
-  position: absolute;
-  margin-left: 1100px;
-  margin-top: 150px;
+ width: 10%;
 }
 .arrow{
     
@@ -121,22 +86,6 @@
   color: #292D32;
   cursor: pointer;
   
-  
-}
-
-.button{
-  position: absolute;
-  background: none;
-  border: none;
-  width: 30px;
-  margin-top: 360px;
-  margin-left: 965px;
-  transition: transform 0.2s ease-in-out;
-
-}
-
-.button:hover{
-  transform: translateY(10px);
 }
 
 .cardreview{
@@ -166,11 +115,12 @@
 }
 
 .nohaycalf{
-  font-size: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
   font-weight:lighter;
-  position: absolute;
-  color:#5e5b5b;
-  margin-top: -30px;
+  color:cadetblue;
+  margin-top: 30px;
 
 }
 
@@ -269,73 +219,22 @@
   transform: scale(1.1);
 }
 
-.volver2{
-  position: absolute;
-  margin-left: 1050px;
-  margin-top: 370px;
+
+
+
+@media (max-width: 1250px) {
+.contcalendary{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 }
 
-
-.cta2 {
-  position: relative;
-  margin: auto;
-  padding: 18px 28px;
-  transition: all 0.2s ease;
-  border: none;
-  background: none;
-  cursor: pointer;
+@media (max-width: 680px) {
+.paypal{
+  display: none;
 }
-
-.cta2:before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 0;
-  display: block;
-  border-radius: 60px;
-  background: #b1dae7;
-  width: 70px;
-  height: 75px;
-  transition: all 0.3s ease;
+.cerebrito{
+  display: none;
 }
-
-.cta2 span {
-  position: relative;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 25px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #234567;
 }
-
-.cta2 svg {
-  position: relative;
-  top: 0;
-  margin-left: 25px;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke: #234567;
-  stroke-width: 2;
-  transform: translateX(-5px);
-  transition: all 0.3s ease;
-}
-
-.cta2:hover:before {
-  width: 100%;
-  background: #b1dae7;
-}
-
-.cta2:hover svg {
-  transform: translateX(0);
-}
-
-.cta2:active {
-  transform: scale(1.1);
-}
-
-
-
-
-
-
