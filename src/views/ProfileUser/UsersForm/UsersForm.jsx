@@ -112,6 +112,7 @@ export default function UsersForm (){
 
           <div className={style.userInfo}>
             <input 
+              className= {style.name}
               type="text" 
               placeholder='Nombres' 
               name = 'name'
@@ -119,9 +120,10 @@ export default function UsersForm (){
               disabled
               onChange= {e => handleInputChanges(e)}
               />
-              {error.name ? <p className = {style.inputerrorname}>{error.name}</p> : <></>}
+             
 
             <input 
+            className= {style.lastName}
             type="text" 
             placeholder='Apellidos'
             name = 'lastName'
@@ -129,9 +131,10 @@ export default function UsersForm (){
             disabled
             onChange= {handleInputChanges} 
             />
-            {error.lastName ? <p className = {style.inputerrorlastName}>{error.lastName}</p> : <></>}
+           
             <input 
             type="text" 
+            className={style.phone}
             placeholder='Telefono'
             name = 'phone'
             value = {input.phone}
@@ -157,14 +160,6 @@ export default function UsersForm (){
            disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
            onSubmit = {e => handleSubmitUpdate(e)}  >Actualizar</button>
 
-          <button 
-          type="submit"  
-          className={style.saveImg}
-          onClick = {e => handledImageProfile(e)}
-          disabled
-          >Guardar Imagen</button>
-          
-          
           <button type="submit"  
           className={style.changeImg}
           onClick = {e => handledChangeImage(e)}
@@ -179,15 +174,8 @@ export default function UsersForm (){
 
 const validation  = (input) => {
   let error = {}
-  const onlyLetter = new RegExp('^[A-Z]+$', 'i');
   const rgOnlyNumbers = new RegExp(/^\d+$/)
   
-
-  if (!input.name) error.name = 'El nombre es requerido'
-  else if(!onlyLetter.test(input.name)) error.name = "Solo letras" 
-
-  if (!input.lastName) error.lastName = 'El apellido es requerido'
-  else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras" 
 
   if(!input.phone) error.phone = 'Nro tlf es requerido'
   else if(!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros" 
