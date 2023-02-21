@@ -323,7 +323,6 @@ export async function postRegisterProfesional(body, token) {
 export  async function putUserData({state, type, body}) {
   try {
     console.log(body)
-    const image = await postImageCloudinary(body.file, body.image)
     const petition = await axios.put(`user/id`, body ,{
       headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
   });

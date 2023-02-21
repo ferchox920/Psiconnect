@@ -59,14 +59,12 @@ export default function UsersForm() {
   const handleSubmitUpdate = async (e) => {
     setError(validation(input));
     e.preventDefault();
-    if(!Object.entries(error).at(0)) {
-      console.log(input)
-      console.log(selectedFile)
-
-      const reader = new FileReader();
-      reader.readAsDataURL(selectedFile);
-      reader.onloadend = async () => {
-
+    if(Object.entries(error).at(0)) return swal({title: "Error!", text: Object.values(error)[0], icon: "error",});
+      else{
+        console.log(input)
+        const reader = new FileReader();
+        reader.readAsDataURL(fileInputState);
+        reader.onloadend = async () => {
         putUserData({
           state: dispatch,
           type: 'global',
@@ -80,14 +78,10 @@ export default function UsersForm() {
             text: `Sus datos fueron actualizados correctamente`,
             icon: "success",
           })
-        );
-  }}else
-  swal({
-    title: "Error!",
-    text: Object.values(error)[0],
-    icon: "error",
-  });
-};
+          );
+        };
+      };
+  };
   return (
     <div className={style.profileContainer}>
       <section className={style.profileTitle}>
