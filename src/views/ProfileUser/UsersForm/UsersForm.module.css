@@ -30,7 +30,6 @@
     border-radius: 200px ;
     overflow: hidden;
 }
-
 .profileContainer{
     display: flex;
     flex-direction: column;

@@ -12,5 +12,5 @@
 
 .component{
     width: 86%;
-    background-color: whitesmoke;
+    background-color: var(--cream);
 }

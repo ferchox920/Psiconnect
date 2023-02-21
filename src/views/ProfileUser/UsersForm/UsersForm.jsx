@@ -117,16 +117,6 @@ export default function UsersForm() {
           </section>
 
           <section className={style.dataChange}>
-            <input
-              className={style.dataInput}
-              type="text"
-              placeholder="Nombres"
-              name="name"
-              value={users?.name}
-              disabled
-              onChange={(e) => handleInputChanges(e)}
-            />
-
             <div className={style.userInfo}>
               <input
                 className={style.name}
@@ -161,35 +151,6 @@ export default function UsersForm() {
               ) : (
                 <></>
               )}
-
-              <input
-                type="text"
-                placeholder="URL de tu imagen en linea"
-                id="imgUrl"
-                name="image"
-                value={input.image}
-                onChange={(e) => handleInputChanges(e)}
-              />
-
-              <input
-                className={style.dataInput}
-                type="text"
-                placeholder="Telefono"
-                name="phone"
-                value={input.phone}
-                onChange={handleInputChanges}
-              />
-              {error.phone ? <p>{error.phone}</p> : <></>}
-
-              <input
-                className={style.dataInput}
-                type="text"
-                placeholder="URL de tu imagen en linea"
-                id="imgUrl"
-                name="image"
-                value={input.image}
-                onChange={(e) => handleInputChanges(e)}
-              />
             </div>
           </section>
         </div>
