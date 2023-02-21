@@ -88,8 +88,7 @@
   height: 90px; 
   font-weight: -20px;
   color: #292D32;
-  cursor: pointer;
-  
+  cursor: pointer; 
 }
 .swiper-slide{
   width: 400px !important;
