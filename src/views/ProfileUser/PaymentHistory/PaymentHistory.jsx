@@ -13,11 +13,6 @@ export default function PaymentHistory() {
   }, []);
 
   return (
-<<<<<<< HEAD
-    <div className={style.paymentsContainer}>
-      <div className={style.paymentsTitle}>Historial de pagos</div>
-      <div className={style.paymentsListContainer}>
-=======
     <div className={style.paymentsContainer}> 
       <section className={style.paymentTitle}>
         <p className={style.title}>
@@ -26,7 +21,6 @@ export default function PaymentHistory() {
       </section>
 
       <section className={style.paymentList}>
->>>>>>> 2693e820ebf9ca6b4788b09790a9054188d0bfbf
         {consults &&
           consults.map((c, i) => {
             return (
@@ -34,17 +28,6 @@ export default function PaymentHistory() {
                 <Card key={i} consult={c} />
               </div>
             );
-<<<<<<< HEAD
-          })}
-        {!consults?.length && (
-          <div className={style.noPymnt}>
-            <p>
-              <b>No tienes pagos realizados</b>
-            </p>
-          </div>
-        )}
-      </div>
-=======
         })}
 
         {!consults?.length && <div className={style.noPymnt}>
@@ -53,7 +36,6 @@ export default function PaymentHistory() {
           </p>
         </div>}
       </section>
->>>>>>> 2693e820ebf9ca6b4788b09790a9054188d0bfbf
     </div>
   );
 }
