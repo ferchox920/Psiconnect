@@ -2,7 +2,6 @@
   width: 100%;
   font-family: "Poppins";
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -11,10 +10,11 @@
 
 
 .reviews{
-    width: 100%;
+    width: 80%;
     margin-top: 20px;
-    height:250px;
-    background: pink;
+    height:400px;
+    margin-left: 130px;
+    display: flex;
 
 }
 
@@ -29,10 +29,198 @@
   justify-content: space-around;
   align-items: center;
   gap: 40px;
-  margin-top: 50px;
   margin-bottom: 50px;
   
 }
+.contImg{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 50px;
+  
+}
+
+.description{
+  width: 40%;
+  height: 270px;
+  position: absolute;
+  margin-top: 50px;
+  z-index: 1;
+  margin-left: 450px;
+
+}
+
+.iconochat{
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  margin-top: -320px;
+  margin-left: 950px;
+}
+
+
+.calendario {
+  width: 10%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+  height: 50px;
+  position: absolute;
+  box-shadow: -5px 5px 5px #5e5b5b;
+  margin-top: 60px;
+  border-radius: 8px 5px 5px 5px;
+}
+
+.paypal{
+ width: 10%;
+}
+.arrow{
+    
+  width: 90px;
+  height: 90px; 
+  font-weight: -20px;
+  color: #292D32;
+  cursor: pointer;
+  
+}
+
+.cardreview{
+ 
+  width: 200px;
+  margin-top: -20px;
+  display: flex;
+  flex-direction:row;
+  margin-left: 100px;
+  
+}
+
+.sinreview{
+  width: 100%;
+  background: green;
+  height: 300px;
+  margin-top: 20px;
+ 
+}
+
+.sincalificacion{
+  width: 100%;
+  height: 300px;
+  
+ 
+  
+}
+
+.nohaycalf{
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  font-weight:lighter;
+  color:cadetblue;
+  margin-top: 30px;
+
+}
+
+.imgmascota{
+  width: 250px;
+  margin-left: 800px;
+  position: absolute;
+  margin-top: 20px;
+  
+}
+
+
+
+.iniciaconv{
+  font-size: 25px;
+  position: absolute;  
+  font-weight: bold;
+}
+
+.iconochat2{
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 120px;
+
+}
+
+.volver{
+  width: 400px;
+  height: 220px;
+  position: absolute;
+  margin-left: 350px;
+  margin-top: 100px
+}
+
+.buscarotro{
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 18px 28px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: block;
+  border-radius: 60px;
+  background: #b1dae7;
+  width: 70px;
+  height: 50px;
+  transition: all 0.3s ease;
+}
+
+.cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #234567;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 25px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #234567;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+  width: 100%;
+  background: #b1dae7;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active {
+  transform: scale(1.1);
+}
+
+
+
 
 @media (max-width: 1250px) {
 .contcalendary{
@@ -42,6 +230,11 @@
 }
 }
 
-
-
-
+@media (max-width: 680px) {
+.paypal{
+  display: none;
+}
+.cerebrito{
+  display: none;
+}
+}

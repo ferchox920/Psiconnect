@@ -169,8 +169,9 @@ export async function getUserByJWT({ state, type }) {
 }
 export async function getProfessionalById(id, state) {
   try {
-    const peticion = await axios.get(`/professional/details/${id}`);
-    console.log(peticion, "peticion");
+
+    const peticion = await axios.get(`/professional/details/${id}`);  
+
     return state(peticion.data);
   } catch (error) {
     return error.response;
@@ -224,10 +225,10 @@ export async function getSkills({ state, type }) {
 
 export async function getProfessionalReview(id, state) {
   try {
-    const peticion = await axios.get(`/review/${id}`);
-    return state(peticion?.data);
-  } catch (error) {
-    return error.response;
+    const peticion = await axios.get(`/review/${id}`)
+    return state(peticion?.data)
+  }catch(error) {
+    return error.response
   }
 }
 
@@ -242,12 +243,21 @@ export async function verifyTokenPostRegister(token) {
   }
 }
 
-export async function createProfessionalReview(body, id) {
+export async function createProfessionalReview(body) {
   try {
-    const createReview = await axios.post(`/review/${id}`, body);
-    return createReview;
+      const createReview = await axios.post(`/review/${body.professionalId}`, body)
+      swal({
+        title: "Gracias por calificar!",
+        text: `Enviado`,
+        icon: "success",
+      })
+      return (createReview)
   } catch (error) {
-    console.log(error.response.data);
+    swal({
+      title: "upps",
+      text: `algo salio mal`,
+      icon: "error",
+    })
   }
 }
 
@@ -311,7 +321,7 @@ export async function postRegisterProfesional(body, token) {
   }
 }
 
-export default async function putUserData(body) {
+export default async function putUserData(id, body) {
   try {
     const updateUser = await axios.put(`user/${body.id}`, body);
     return updateUser;
