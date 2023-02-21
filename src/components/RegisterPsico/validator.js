@@ -57,8 +57,8 @@ const validationsForm = {
             validationsForm.errors.password = 'La contraseña debe tener al menos un largo de 10 caracteres'
         }else if(form.password.length>25){
             validationsForm.errors.password = 'La contraseña debe tener un largo menor a 25 caracteres'
-        }else if(!/^(?=.*[0-9])(?=.*[!@#$%^&*_.-])(?=.*[A-Z]+)[a-zA-Z0-9!@#$%^&*]/.test(form.password)){
-            validationsForm.errors.password = `El repetir contraseña debe tener al menos 1 de los siguientes caracteres especiales ( !@#$%^&*_.- ), 1 numero y 1 letra Mayúscula`
+        }else if(!/^(?=.*[0-9])(?=.*[A-Z]+)(?=.*[a-z]+)[a-zA-Z0-9!]/.test(form.password)){
+            validationsForm.errors.password = `La contraseña debe tener al menos una letra Mayúscula una minúcula y un número`
         }else{
             delete validationsForm.errors.password
         }
