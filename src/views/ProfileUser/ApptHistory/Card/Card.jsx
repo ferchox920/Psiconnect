@@ -16,44 +16,55 @@ export default function Card({consult, status, link}) {
         getProfessionalById(consult.professionalId, setUser)
     }, [])
 
-  return (
-    <div className={style.container}>
-        <div className={style.consult}>
-            <div className={style.title}>
-                <h5>Sobre tu Consulta</h5>
-            </div>
+    return (
+    <div className={style.cardContainer}>
+        <section className={style.dataContainer}>
             <div>
-                <p><b>Fecha: </b>{consult.date}</p>
-                <p><b>Precio: </b>{consult.price} usd</p>
-            </div>
-        </div>
-        <div className={style.client}>
-            <div className={style.title}>
-                <h5>Sobre tu Profesional</h5>
-            </div>
+                <p>
+                    <b>Sobre tu Consulta</b>
+                </p>
+            
+                <p>
+                    <b>Fecha: </b>{consult.date}
+                </p>
+
+                <p>
+                    <b>Precio: </b>{consult.price} usd
+                </p>
+            </div>                
+
             {user &&
             <div>
-                <p><b>Nombre: </b>{user?.name}</p>  
-                <p><b>Apelido: </b>{user?.lastName}</p>
+                <p>
+                    <b>Sobre tu Profesional</b>
+                </p>
+
+                <p>
+                    <b>Nombre: </b>{user?.name}
+                </p>
+
+                <p>
+                    <b>Apelido: </b>{user?.lastName}
+                </p>
             </div>   
             }
-        </div>
+        </section>
         
         {status=== 'COMPLETED'?
-            <div>
+            <section className={style.statusContainer}>
                 <p>Estado de consulta: <b>ACEPTADA</b></p>
-                <button onClick={handleNavigate}>
-                   Calificacion
-                </button>
-                
-            </div>
-        :   <div>
+
+                <button className={style.navigateButton} onClick={handleNavigate}>
+                    Califica tu experiencia
+                </button>                
+            </section>
+        :   <section className={style.statusContainer}>
                 <p>Estado de consulta: <b>PENDIENTE</b></p>
-                <button onClick={handleNavigate}>
+                <button className={style.navigateButton} onClick={handleNavigate}>
                     Link de Pago
                 </button>
-            </div>
+            </section>
         }
     </div>
-  )
+    )
 }
