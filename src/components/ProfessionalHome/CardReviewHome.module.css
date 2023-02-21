@@ -1,6 +1,6 @@
 .containercard{
     width: 350px;
-    height: 380px;
+    height: 400px;
     background: white;
     border-radius: 30px;
     display: flex;
@@ -30,7 +30,7 @@
 
   .name{
     margin-top: 25px;
-    font-size: 30px;
+    font-size: 25px;
     margin-left: 60px;
 
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './ReviewProfessionalHome.module.css'
+import { useNavigate } from 'react-router-dom'
 import { getAllReview } from '../../features/apiPetitions'
 import { useEffect, useState  } from 'react'
 import CardReviewHome from './CardReviewHome.jsx'
@@ -16,12 +17,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function ReviewProfessionalHome () {
 
-    const [professionalReview, setProfessionalReview] = useState()
-    console.log(professionalReview, 'review')
-    const orderReview = professionalReview?.sort((a,b) => b.score - a.score)
-    console.log(orderReview, 'ordenado')
+    const navigate = useNavigate()
+    const [professionalReview, setProfessionalReview] = useState() 
+    const orderReview = professionalReview?.sort((a,b) => b.score - a.score) 
     const filterOrderReview = orderReview?.filter( el => el.score >= 4)
-    console.log(filterOrderReview, 'filter')
     const sliceReview = filterOrderReview?.slice(0,6)
     console.log(sliceReview, 'slice')
 
@@ -29,39 +28,47 @@ export default function ReviewProfessionalHome () {
     getAllReview(setProfessionalReview)
 }, [])
 
+
   return (
-   <div className={style.container}> 
-            <p className={style.title}>Profesionale destacados</p>
-        {<Swiper
-            modules={[Autoplay, Pagination]}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: true,
-            }}
-            pagination={{
-              dynamicBullets: true,
-            }}
-            loop={true}
-            slidesPerView={3}
-        >   {sliceReview?.map(el => {
-                return(
-                    <SwiperSlide  >    
-                    <div className={style.card}>
-                      <CardReviewHome 
-                        key={el.id}
-                        avatar = {el.professional.avatar}
-                        name={el.professional.name}
-                        lastName={el.professional.lastName}
-                        puntualidad={el.puntualidad}
-                        trato={el.trato}
-                        general={el.general}  
-                        score = {el.score}   
-                      />                    
-                    </div>
-                  </SwiperSlide>
-            )})}
-            </Swiper>}
-        </div>
-  
+   <div className = {style.container}>
+
+        <p className={style.title}>Profesionales Destacados</p>
+
+    <div className={style.containerswiper} > 
+       
+     {<Swiper
+         modules={[Autoplay, Pagination]}
+         autoplay={{
+           delay: 5000,
+           disableOnInteraction: true,
+         }}
+         pagination={{
+           dynamicBullets: true,
+         }}
+         spaceBetween = {5}
+         loop={true}
+         slidesPerView={3}
+
+     >   {sliceReview?.map(el => {
+             return(
+                 <SwiperSlide   className = {style['swiper-slice']}>    
+                 <div className={style.card}>
+                   <CardReviewHome 
+                     key={el.id}
+                     avatar = {el.professional.avatar}
+                     name={el.professional.name}
+                     lastName={el.professional.lastName}
+                     puntualidad={el.puntualidad}
+                     trato={el.trato}
+                     general={el.general}  
+                     score = {el.score}   
+                   />                    
+                 </div>
+               </SwiperSlide>
+         )})}
+         </Swiper>}
+     </div>
+   </div>
+   
   )
 }
