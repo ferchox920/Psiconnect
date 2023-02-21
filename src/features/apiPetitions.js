@@ -438,8 +438,8 @@ export async function sendEmailForgetPassUser(body) {
   try {
     const request = await axios.put(`/user/forget-password`, body);
     return request?.data;
-  } catch (err) {
-    return err;
+  }catch(err){
+  return err;
   }
 }
 
@@ -451,3 +451,12 @@ export async function sendEmailForgetPassProfessional(body) {
     return err;
   }
 }
+
+export async function getBestProfessionals(state){
+  try{
+    const request = await axios.get('/professional/score');
+    return state(request?.data);
+  }catch(err){
+    return err;
+  }
+};
