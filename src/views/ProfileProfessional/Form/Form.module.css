@@ -32,16 +32,16 @@
     font-size: medium;
     font-family: 'Poppins', sans-serif;
     width: 25rem;
+    box-shadow: 0px 0px 10px #dbdbdb;
 }
 
 .form .inputsErrors{
     font-size: medium;
     font-family: 'Poppins', sans-serif;
     width: 25rem;
-    height: 5%;
     border: 1px solid red;
     box-shadow: none;
-    margin-top: 0%;
+    margin: 0px;
 }
 .form .spanErrors{
     font-size: x-small;
@@ -72,15 +72,15 @@
     margin-top: 1rem;
 }
 .form .inputImage{
+    border:1px solid cadetblue;
     font-size: 1rem;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
     color: cadetblue;
     background-color: white;
-    border: 2px solid rgb(95, 158, 160);
-    border-style: dotted;
-    box-shadow: none;
+    box-shadow: 0px 0px 10px #dbdbdb;
+    border-radius: 10rem;
     transition: transform .5s, color .5s, background-color .5s, border .5s ;
     width: auto;
     max-width: max-content;
@@ -89,8 +89,7 @@
     transform: translate(0px, -10px);
     color: white;
     background-color: cadetblue;
-    border:2.2px solid white;
-    border-style: dotted;
+    box-shadow: 0px 0px 10px #dbdbdb, inset 0px 0px 0px #dbdbdb;
 }
 .form .inputImageDisabled{
     font-size: 1rem;
@@ -98,10 +97,12 @@
     font-family: 'Poppins', sans-serif;
     color: gray;
     background-color: white;
-    border: 2px solid gray;
-    border-style: dotted;
+    border: 1px solid gray;
     box-shadow: none;
     width: auto;
+}
+.form .inputImageDisabled:hover{
+    box-shadow: none;
 }
 .form .divContainerImg{
     display: flex;
@@ -119,12 +120,19 @@
 }
 
 .form .divContainerImg .divAvatar .avatar{
-    object-fit: fill;
-    width:16rem;
-    height: 15rem;
+    object-fit: cover;
+    object-position: center;
+    image-resolution: 720px;
+    width:15rem;
+    height: 14.6rem;
     border-radius: 100%;
-    border: 4px solid cadetblue;
-    border-style: dotted;
+    border: 6px solid rgb(109, 176, 179);
+    border-style: solid;
+    box-shadow: 0px 0px 12px #dbdbdb;
+    background-image: url("https://th.bing.com/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?pid=ImgDet&rs=1");
+    background-size: 108%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .form .divContainerImg .divAvatar{
@@ -179,12 +187,13 @@
     background-color: red;
 }
 .form .containerDescription{
+    padding: 1rem;
     width: 65%;
     height: 19rem;
     border-radius: 1rem;
-    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
+    background-color: white;
+    box-shadow: 0px 0px 12px #dedede;
     overflow: hidden;
-    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,7 +210,6 @@
     font-family: 'Poppins', sans-serif;
     border: none;
     border-radius: 1rem;
-    box-shadow: 9px 9px 15px #dedede, -3px -6px 18px #f2f1f1;
     padding: 1rem;
     margin: 1rem;
 }
@@ -213,23 +221,22 @@
     cursor: pointer;
 }
 .form .inputSubmit{
-margin-top: 5%;
-width: 8rem;
-font-size: medium;
-font-weight: 500;
-font-family: 'Poppins', sans-serif;
-cursor: pointer;
-color: cadetblue;
-background-color: white;
-border:2px solid rgb(95, 158, 160);
-border-style: dotted;
-box-shadow: none;
-transition: transform .5s, color .5s, background-color .5s, border .5s ;
+    margin-top: 5%;
+    width: 8rem;
+    border-radius: 10rem;
+    font-size: medium;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    color: cadetblue;
+    border:1px solid cadetblue;
+    background-color: white;
+    box-shadow: 0px 0px 10px #dbdbdb;
+    transition: transform .5s, color .5s, background-color .5s, border .5s ;
 }
 .form .inputSubmit:hover{
     transform: translate(0px, -10px);
     color: white;
     background-color: cadetblue;
-    border:2.2px solid white;
-    border-style: dotted;
+    box-shadow: none;
 }

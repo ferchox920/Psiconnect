@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import swal from 'sweetalert';
-import putUserData from '../../../features/apiPetitions.js';
-import style from './UsersForm.module.css';
+import React from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import putUserData from "../../../features/apiPetitions.js";
+import swal from "sweetalert";
+import { useParams } from "react-router-dom";
+import style from "./UsersForm.module.css";
 
 export default function UsersForm() {
   const users = useSelector((state) => state.user.user);
@@ -12,14 +13,17 @@ export default function UsersForm() {
   const { id } = useParams();
 
   const [error, setError] = useState({
-    phone: '',
+    name: "",
+    lastName: "",
+    phone: "",
+    image: "",
   });
 
   const [input, setInput] = useState({
-    name: users.name,
-    lastName: users.lastName,
-    phone: '',
-    image: '',
+    name: "",
+    lastName: "",
+    phone: "",
+    image: "",
   });
 
   const handleInputChanges = (e) => {
@@ -28,49 +32,41 @@ export default function UsersForm() {
       [e.target.name]: e.target.value,
     });
 
-    setError(validation({
-      ...input,
-      [e.target.name]: e.target.value,
-    }));
+    setError(
+      validation({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
-  const handleSubmitUpdate = async (e) => {
+  const handleSubmitUpdate = (e) => {
     e.preventDefault();
-
-    if (Object.entries(error).length === 0) {
-      try {
-        const updatedUser = await putUserData({ ...input, id: users.id });
-        swal({
-          title: 'Cambios guardados!',
-          text: 'Sus datos fueron actualizados correctamente',
-          icon: 'success',
-        });
-      } catch (err) {
-        swal({
-          title: 'Error!',
-          text: 'No se pudo actualizar sus datos. Inténtelo de nuevo más tarde',
-          icon: 'error',
-        });
-      }
-    } else {
+    if (Object.entries(error).length == 0) {
+      putUserData({ ...input, id: users.id });
       swal({
-        title: 'Error!',
-        text: Object.values(error)[0],
-        icon: 'error',
+        title: "Cambios guardados!",
+        text: `Sus datos fueron actualizados correctamente`,
+        icon: "success",
       });
-    }
+    } else
+      swal({
+        title: "Error!",
+        text: Object.values(error)[0],
+        icon: "error",
+      });
 
     setInput({
-      name: '',
-      lastName: '',
-      phone: '',
-      image: '',
+      name: "",
+      lastName: "",
+      phone: "",
+      image: "",
     });
+    alert("Sus datos han sido actualizados");
   };
 
   const handledImageProfile = (e) => {
     if (!e.target.files[0]) return;
-
     setInput({
       ...input,
       [e.target.name]: e.target.files[0],
@@ -81,11 +77,10 @@ export default function UsersForm() {
   const handledChangeImage = (e) => {
     setInput({
       ...input,
-      image: '',
+      image: "",
     });
-
-    let img = document.querySelector('#imageProfile');
-    img.value = '';
+    let img = document.querySelector("#imageProfile");
+    img.value = "";
   };
 
   return (
@@ -98,92 +93,94 @@ export default function UsersForm() {
         </p>
       </section>
 
-      <form className={style.profileForm} onSubmit={handleSubmitUpdate}>
+      <form
+        className={style.profileForm}
+        onSubmit={(e) => handleSubmitUpdate(e)}
+      >
         <div className={style.changesField}>
           <section className={style.imageChange}>
             <label className={style.avatarTitle}>Tu foto de perfil</label>
             <div className={style.imageContainer}>
-              <img className={style.sourceImage} src={users.image || input.image} />
+              <img
+                className={style.sourceImage}
+                src={users.image || input.image}
+              />
             </div>
 
             <input
               className={style.imageInput}
-              type='file'
-              name='image'
-              id='imageProfile'
-              onChange={handledImageProfile}
+              type="file"
+              name="image"
+              id="#imageProfile"
+              onChange={(e) => handledImageProfile(e)}
             />
           </section>
 
           <section className={style.dataChange}>
-            <input
-              className={style.dataInput}
-              type='text'
-              placeholder='Nombres'
-              name='name'
-              value={input.name}
-              disabled
-            />
-
+            <div className={style.userInfo}>
               <input
-                className={style.dataInput}  
-                type="text" 
-                placeholder='Apellidos'
-                name = 'lastName'
-                value = {users?.lastName}
+                className={style.name}
+                type="text"
+                placeholder="Nombres"
+                name="name"
+                value={users?.name}
                 disabled
-                onChange= {handleInputChanges} 
+                onChange={(e) => handleInputChanges(e)}
               />
 
               <input
-                className={style.dataInput}  
-                type="text" 
-                placeholder='Telefono'
-                name = 'phone'
-                value = {input.phone}
-                onChange= {handleInputChanges}
+                className={style.lastName}
+                type="text"
+                placeholder="Apellidos"
+                name="lastName"
+                value={users?.lastName}
+                disabled
+                onChange={handleInputChanges}
               />
-              {error.phone ? <p >{error.phone}</p> : <></>}
-              
+
               <input
-                className={style.dataInput}  
-                type="text" 
-                placeholder='URL de tu imagen en linea' 
-                id = 'imgUrl'
-                name = 'image'
-                value = {input.image}
-                onChange= {e => handleInputChanges(e)}
-              />                      
-            </section>
-          </div>
-          
+                type="text"
+                className={style.phone}
+                placeholder="Telefono"
+                name="phone"
+                value={input.phone}
+                onChange={handleInputChanges}
+              />
+              {error.phone ? (
+                <p className={style.inputerrorPhone}>{error.phone}</p>
+              ) : (
+                <></>
+              )}
+            </div>
+          </section>
+        </div>
+        <button
+          className={style.formSubmit}
+          type="submit"
+          disabled={Object.keys(validation(input)).length !== 0 ? true : false}
+          onSubmit={(e) => handleSubmitUpdate(e)}
+        >
+          Actualizar
+        </button>
 
-          <button
-              className={style.dataButton}  
-              type="submit" 
-              disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
-              onSubmit = {e => handleSubmitUpdate(e)}  
-          >Actualiza tus datos</button>            
-        </form>
-      </div>
-  )
+        <button
+          type="submit"
+          className={style.changeImg}
+          onClick={(e) => handledChangeImage(e)}
+          disabled
+        >
+          Cambiar Imagen
+        </button>
+      </form>
+    </div>
+  );
 }
 
+const validation = (input) => {
+  let error = {};
+  const rgOnlyNumbers = new RegExp(/^\d+$/);
+  if (!input.phone) error.phone = "Nro tlf es requerido";
+  else if (!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros";
 
-const validation  = (input) => {
-  let error = {}
-  const onlyLetter = new RegExp('^[A-Z]+$', 'i');
-  const rgOnlyNumbers = new RegExp(/^\d+$/)
-  
-
-  // if (!input.name) error.name = 'El nombre es requerido'
-  // else if(!onlyLetter.test(input.name)) error.name = "Solo letras" 
-
-  // if (!input.lastName) error.lastName = 'El apellido es requerido'
-  // else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras" 
-
-  if(!input.phone) error.phone = 'Nro tlf es requerido'
-  else if(!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros" 
-  
-return error
-}
+  return error;
+};

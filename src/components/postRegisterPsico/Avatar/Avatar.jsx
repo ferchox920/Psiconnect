@@ -22,7 +22,8 @@ const handleInputDeletedAvatar = () => {
     }
 };
 const handleInputChangeAvatar = (e) =>{
-    if(errors.avatar) delete errors.avatar
+if(errors.avatar) delete errors.avatar
+if(e.target.files[0].type.split('/')[0] !== 'image') return
     if(e.target.files[0]){
         setState({
             ...state,

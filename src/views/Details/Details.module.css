@@ -18,6 +18,10 @@
 
 }
 
+.cargando{
+  color:beige;
+}
+
 .cerebrito{
   transform:scaleX(-1);
   width:20%;

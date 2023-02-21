@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  getUserPayments,
-  getResultUserPayments,
-} from "../../../features/apiPetitions";
+import { getUserPayments } from "../../../features/apiPetitions";
 import Card from "./Card/Card.jsx";
 import style from "./PaymentHistory.module.css";
 export default function PaymentHistory() {
@@ -13,33 +10,32 @@ export default function PaymentHistory() {
 
   useEffect(() => {
     getUserPayments(users.id, setConsults);
-
   }, []);
 
   return (
-    <div className={style.paymentsContainer}>
-      {" "}
-      <div className={style.paymentsTitle}>Historial de pagos</div>
-      <div className={style.paymentsListContainer}>
-        {" "}
+    <div className={style.paymentsContainer}> 
+      <section className={style.paymentTitle}>
+        <p className={style.title}>
+          <b>Historial de pagos</b>
+        </p> 
+      </section>
+
+      <section className={style.paymentList}>
         {consults &&
           consults.map((c, i) => {
             return (
-              <div>
+              <div className={style.paymentInfo}>
                 <Card key={i} consult={c} />
               </div>
             );
-          })}
-        {!consults?.length && (
-          <div className={style.noPymnt}>
-            <p>
-              {" "}
-              <b>No tienes pagos realizados</b>{" "}
-            </p>
-          </div>
-        )}
-      </div>
-    
+        })}
+
+        {!consults?.length && <div className={style.noPymnt}>
+          <p>
+            <b>No tienes pagos realizados</b>
+          </p>
+        </div>}
+      </section>
     </div>
   );
 }

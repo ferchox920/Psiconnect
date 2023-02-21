@@ -1,4 +1,4 @@
-.containerDiv{
+/* .containerDiv{
     width: 100%;
     height: 36rem;
     display: flex;
@@ -87,11 +87,11 @@
 hTitle
 paragraph
 lightParagrah */
-
+/* 
 @keyframes fadeSlider {
     from{
     }to{
         transform: translateY(0rem);
         opacity: 100%;
     }
-}
+}  */
