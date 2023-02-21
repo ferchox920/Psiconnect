@@ -17,11 +17,14 @@ export default function PaymentHistory() {
   }, []);
 
   return (
-    <div className={style.paymentsContainer}>
-      {" "}
-      <div className={style.paymentsTitle}>Historial de pagos</div>
-      <div className={style.paymentsListContainer}>
-        {" "}
+    <div className={style.paymentsContainer}> 
+      <section className={style.paymentTitle}>
+        <p className={style.title}>
+          <b>Historial de pagos</b>
+        </p> 
+      </section>
+
+      <section className={style.paymentList}>
         {consults &&
           consults.map((c, i) => {
             return (
@@ -29,17 +32,14 @@ export default function PaymentHistory() {
                 <Card key={i} consult={c} />
               </div>
             );
-          })}
-        {!consults?.length && (
-          <div className={style.noPymnt}>
-            <p>
-              {" "}
-              <b>No tienes pagos realizados</b>{" "}
-            </p>
-          </div>
-        )}
-      </div>
-    
+        })}
+
+        {!consults?.length && <div className={style.noPymnt}>
+          <p>
+            <b>No tienes pagos realizados</b>
+          </p>
+        </div>}
+      </section>
     </div>
   );
 }
