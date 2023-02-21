@@ -29,6 +29,7 @@ const dispatch= useDispatch()
 
     setError(
       validation({
+
         ...input,
         [e.target.name]: e.target.value,
       })

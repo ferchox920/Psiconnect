@@ -22,6 +22,8 @@ export default function Arrangements() {
   const [endHour, setEndHour] = useState()
   const [daysDisabled, setDaysDisabled] = useState();
   const [freeDays, setFreeDays] = useState([])
+  const [freeDaysRender, setFreeDaysRender] = useState([])
+
 
   const professionalId = useSelector((store) => store.user.user.id);
 
@@ -33,16 +35,21 @@ export default function Arrangements() {
     getProfessionalConsults(professionalId, setConsults);
     getContextProfessional({ professionalId, state: setContextProfessional });
     getConsultsProfessional({professionalId, state:setDaysDisabled});
+    
   }, []);
-
-  const range =  generateHours(startHour, endHour)
+  useEffect(() => {
+    if(contextProfessional?.freeDays){
+    setFreeDays(contextProfessional?.freeDays)
+    setFreeDaysRender(contextProfessional?.freeDays)}
+  },[contextProfessional?.freeDays])
 
   const createContextProfessional = () => {
+    const range =  generateHours(startHour, endHour)
     console.log(range)
     createContext({
       professionalId,
-      freeDays,
-      workingHours : range,
+      freeDays: freeDays,
+      workingHours : range.length<1 ? null : range,
     });
   };
 
@@ -62,9 +69,20 @@ export default function Arrangements() {
       setStartHour(e.target.value)
     }else if (e.target.name === 'end'){
       setEndHour(e.target.value)
+    }else if(e.target.name === 'days'){
+      if(!freeDays.includes(e.target.value.split('-')[1])){
+      setFreeDays([...freeDays, e.target.value.split('-')[1]])
+      setFreeDaysRender([...freeDaysRender, e.target.value])
     }
   }
+}
 
+  const cleanRender = (e) => {
+    const {value} = e.target
+    console.log(value)
+    setFreeDays(freeDays.filter((e) => e !== (value.split('-').length<=1 ? value : value.split('-')[1])))
+    setFreeDaysRender(freeDaysRender.filter((e) => e !== value))
+  }
 
 
   return (
@@ -79,24 +97,55 @@ export default function Arrangements() {
           })}
         {!consults?.length && <p> No tienes citas agendadas </p>}
       </div>
-      <div>
+      
+      <div className={style.select}>
         <h4>Selecciona tu horario de trabajo</h4>
-        <label>De {' '}
-        <select name='start' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
-          {hours.map((h, i) => {
+        <div className={style.section}>
+          <label className={style.selectDays}>Aquí puedes seleccionar los días que no quieras trabajar:</label>
+            <select name="days" className={style.select} onChange={(e) => handleChange(e)}>
+              <option hidden>Selecciona</option>
+              <option value="Lunes-Mon">Lunes</option>
+              <option value="Martes-Tue">Martes</option>
+              <option value="Miércoles-Wed">Miércoles</option>
+              <option value="Jueves-Thu">Jueves</option>
+              <option value="Viernes-Fri">Viernes</option>
+              <option value="Sábado-Sat">Sábado</option>
+              <option value="Domingo-Sun">Domingo</option>
+            </select>
+        </div>
+        {freeDaysRender?.length>0 &&
+        <div  className={style.divDays}>
+          {freeDaysRender?.length && freeDaysRender.map((element,i) => {
             return(
-              <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
+              <div key={i} className={style.divDaysCard}>
+                <div>{element.toString().split('-')[0]}</div>
+                <button value={element} onClick={(e) => cleanRender(e)}>x</button>
+              </div>
             )
           })}
-        </select> hs a </label>
-        <label>
-        <select name='end' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
-        {hours.map((h, i) => {
-            return(
-              <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
-            )
-          })}
-        </select> hs</label>
+        </div>}
+        <div className={style.section}>
+          <label>Aqué puedes seleccionar el rango horario en que trabajarás:
+          </label>
+          <div className={style.select}>
+            <label>De {' '}
+            <select className={style.select} name='start' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
+              {hours.map((h, i) => {
+                return(
+                  <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
+                )
+              })}
+            </select> hs a </label>
+            <label>
+            <select className={style.select} name='end' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
+            {hours.map((h, i) => {
+                return(
+                  <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
+                )
+              })}
+            </select> hs</label>
+          </div>
+        </div>
       </div>
       <div className={style.calendary}>
         <Calendary
@@ -113,7 +162,7 @@ export default function Arrangements() {
           daysDisabled = {daysDisabled || []}
         />
       </div>
-      <button onClick={() => createContextProfessional()}>Guardar cambios</button>
+      <input type='submit' value={'Guardar Cambios'} className={style.inputSubmit} onClick={() => {createContextProfessional()}}/>
     </div>
   );
 }
