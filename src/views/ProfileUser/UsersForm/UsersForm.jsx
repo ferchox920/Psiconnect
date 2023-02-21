@@ -178,15 +178,7 @@ export default function UsersForm() {
 
 const validation = (input) => {
   let error = {};
-  const onlyLetter = new RegExp("^[A-Z]+$", "i");
   const rgOnlyNumbers = new RegExp(/^\d+$/);
-
-  // if (!input.name) error.name = 'El nombre es requerido'
-  // else if(!onlyLetter.test(input.name)) error.name = "Solo letras"
-
-  // if (!input.lastName) error.lastName = 'El apellido es requerido'
-  // else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras"
-
   if (!input.phone) error.phone = "Nro tlf es requerido";
   else if (!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros";
 

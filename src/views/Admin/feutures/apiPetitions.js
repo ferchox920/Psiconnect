@@ -199,9 +199,28 @@ export async function getAllReviews(state) {
     throw new Error(error.response.data);
   }
 }
+export async function updateStatusToReview(id) {
+  try {
+    const peticion = await axios.put(`/admin/disable-review/${id}`);
+    successMessage(peticion.data.message);
+    return peticion.data.state;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
 export async function getAllPayment(state) {
   try {
     const peticion = await axios.get("/payment");
+    state(peticion.data);
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function getAllConsult(state) {
+  try {
+    const peticion = await axios.get("/consult");
     state(peticion.data);
   } catch (error) {
     errorMenssage(error.response.data);
