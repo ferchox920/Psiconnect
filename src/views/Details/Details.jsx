@@ -117,20 +117,19 @@ export default function Details() {
                 delay: 3000,
                 disableOnInteraction: true,
               }}
-              spaceBetween={15}
+              
               pagination={{
                 dynamicBullets: true,
               }}
               loop={true}
+              spaceBetween={5}
               slidesPerView={3}
             >
               {reviewProfessional?.map((el) => {
-                return (
-                  
+                return ( 
                   <SwiperSlide key={el.id} className = {style['swiper-slide']}>  
                    <div className={style.cardreview}>
-                      <CardReview
-                       
+                      <CardReview    
                         name={el.username}
                         lastName={el.lastusername}
                         puntualidad={el.puntualidad}
