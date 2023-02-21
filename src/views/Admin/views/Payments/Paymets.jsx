@@ -1,30 +1,30 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import {  getAllReviews, updateStatusToProfessional } from "../../feutures/apiPetitions";
+import { getAllPayment } from "../../feutures/apiPetitions";
 
 export default function Payments() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllReviews(setData);
+    getAllPayment(setData);
   }, []);
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "score",
-      headerName: "score",
+      field: "price",
+      headerName: "price",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "score",
-      headerName: "score",
+      field: "status",
+      headerName: "status",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "comments",
-      headerName: "comments",
+      field: "date",
+      headerName: "date",
       flex: 1,
       cellClassName: "name-column--cell",
     },

@@ -10,7 +10,8 @@ export default function UsersForm() {
   const [selectedFile, setSelectedFile] = useState();
   const [fileInputState, setFileInputState] = useState();
   const [previewSource, setPreviewSource] = useState(users?.avatar);
-const dispatch= useDispatch()
+
+  const dispatch= useDispatch()
 
   const [error, setError] = useState({});
 
@@ -59,27 +60,29 @@ const dispatch= useDispatch()
   const handleSubmitUpdate = async (e) => {
     setError(validation(input));
     e.preventDefault();
-    if (Object.entries(error).length == 0) {
-      console.log(input)
+    if(Object.entries(error).at(0)) return swal({title: "Error!", text: Object.values(error)[0], icon: "error",});
+      else{
+        console.log(input)
+        const reader = new FileReader();
+        reader.readAsDataURL(fileInputState);
+        reader.onloadend = async () => {
         putUserData({
-          state:dispatch,
+          state: dispatch,
           type: 'global',
-          body: input
+          body: {
+            ...input,
+            avatar: reader.result
+          }
         }).then(() =>
           swal({
             title: "Cambios guardados!",
             text: `Sus datos fueron actualizados correctamente`,
             icon: "success",
           })
-        );
-    } else
-      swal({
-        title: "Error!",
-        text: Object.values(error)[0],
-        icon: "error",
-      });
+          );
+        };
+      };
   };
-
   return (
     <div className={style.profileContainer}>
       <section className={style.profileTitle}>

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  getUserPayments,
-  getResultUserPayments,
-} from "../../../features/apiPetitions";
+import { getUserPayments } from "../../../features/apiPetitions";
 import Card from "./Card/Card.jsx";
 import style from "./PaymentHistory.module.css";
 export default function PaymentHistory() {
@@ -13,7 +10,6 @@ export default function PaymentHistory() {
 
   useEffect(() => {
     getUserPayments(users.id, setConsults);
-
   }, []);
 
   return (
