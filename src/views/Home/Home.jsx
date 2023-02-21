@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className={style.container}>
       <Hero />
+      {/* <ScoredProfSlider /> */}
       <HomeInformations />
-      <ScoredProfSlider />
       <AreaSliderFilter />
     </div>
   );
