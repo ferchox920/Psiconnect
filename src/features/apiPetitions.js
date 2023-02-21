@@ -442,3 +442,12 @@ export async function sendEmailForgetPassProfessional(body) {
     return err;
   }
 }
+
+export async function getAllReview(state) {
+    try{
+        const allReview = await axios.get('/review')
+        return state(allReview?.data);
+    }catch(error){
+      console.log(error.response)
+    }
+}

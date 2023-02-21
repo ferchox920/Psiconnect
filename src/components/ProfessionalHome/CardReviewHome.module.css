@@ -1,0 +1,108 @@
+.containercard{
+    width: 350px;
+    height: 380px;
+    background: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    
+
+}
+
+.containerimg {
+    width: 150px;
+    height: 100px;
+    border-radius: 75px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 25%;;
+  }
+  
+  .image {
+    border: 1px solid cadetblue;
+    box-shadow: 3px 3px 10px #5e5b5b;
+    background: white;
+    width: 80%;
+    border-radius: 50%;
+
+  }
+
+  .name{
+    margin-top: 25px;
+    font-size: 30px;
+    margin-left: 60px;
+
+  }
+
+  .puntualidad{
+    width: 300px;
+    display: flex;
+    margin-left: 5%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;   
+
+  }
+  .labelpuntualidad{
+    font-size: 20px;
+    
+  }
+
+  .starspuntualidad{
+    width: 150px;
+    margin-left: 10px;
+    letter-spacing: 8px;
+    text-align: center;
+  }
+
+  .trato{
+    width: 300px;
+    display: flex;
+    margin-left: 5%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;   
+
+  }
+  .labeltrato{
+    font-size: 20px;
+    
+  }
+
+  .starstrato{
+    width: 150px;
+    margin-left: 10px;
+    letter-spacing: 8px;
+    text-align: center;
+  }
+
+  .general{
+    width: 300px;
+    display: flex;
+    margin-left: 5%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;   
+
+  }
+  .labelgeneral{
+    font-size: 20px;
+    
+  }
+
+  .starsgeneral{
+    width: 150px;
+    margin-left: 10px;
+    letter-spacing: 8px;
+    text-align: center;
+  }
+  .score{
+    font-size: 120%;
+    margin-left: 15%;
+    font-style: oblique;
+    font-weight: bolder
+
+  }
+
+  

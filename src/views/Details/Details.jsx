@@ -109,13 +109,14 @@ export default function Details() {
 
           {loading && <p className= {style.cargando}>Cargando calificaciones...</p>}
 
-          {  reviewProfessional && reviewProfessional.length > 0  ? (
+          {  reviewProfessional && reviewProfessional.length > 0  ?  (
             <Swiper
               modules={[Autoplay, Pagination]}
               autoplay={{
                 delay: 5000,
                 disableOnInteraction: true,
               }}
+              spaceBetween={15}
               pagination={{
                 dynamicBullets: true,
               }}
@@ -124,18 +125,21 @@ export default function Details() {
             >
               {reviewProfessional?.map((el) => {
                 return (
-                  <SwiperSlide key={el.id}>
-                    <div className={style.cardreview}>
+                  
+                  <SwiperSlide key={el.id} className = {style['swiper-slide']}>  
+                   <div className={style.cardreview}>
                       <CardReview
+                       
                         name={el.username}
                         lastName={el.lastusername}
                         puntualidad={el.puntualidad}
                         trato={el.trato}
                         general={el.general}
                         comments={el.comments}
-                      />
-                    </div>
+                      />   
+                      </div>                 
                   </SwiperSlide>
+                  
                 );
               })}
             </Swiper>

@@ -7,8 +7,6 @@
   align-items: center;
 }
 
-
-
 .reviews{
     width: 80%;
     margin-top: 20px;
@@ -91,20 +89,27 @@
   cursor: pointer;
   
 }
+.swiper-slide{
+  width: 350px !important;
+  height: auto;
+
+}
 
 .cardreview{
- 
-  width: 200px;
+  position: absolute;
+  width: 300%;
+  background: violet;
   margin-top: -20px;
   display: flex;
   flex-direction:row;
-  margin-left: 100px;
+  margin-left: 20px;
+  margin-top: 20px;
+  
   
 }
 
 .sinreview{
   width: 100%;
-  background: green;
   height: 300px;
   margin-top: 20px;
  
