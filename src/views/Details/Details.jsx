@@ -72,37 +72,6 @@ export default function Details() {
       }),
     [id]
   );
-<<<<<<< HEAD
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setReviewProfessional([
-  //       {
-  //         user1: reviewProfessional[0].username,
-  //         lastName1: reviewProfessional[0].lastusername,
-  //       },
-  //       {
-  //         user2: reviewProfessional[1].username,
-  //         lastName2: reviewProfessional[1].lastusername,
-  //       },
-  //       {
-  //         user3: reviewProfessional[2].username,
-  //         lastName3: reviewProfessional[2].lastusername,
-  //       },
-  //     ]);
-  //     setLoading(false);
-  //   }, 3000);
-  // }, []);
-
-  useEffect(() => {
-    if (reviewProfessional && reviewProfessional.length > 0) {
-      setNoreview(false);
-    }
-    setLoading(false);
-  }, [reviewProfessional]);
-
-=======
->>>>>>> 50f14feaab1fa4ce1c803885801a857b12e2a6ad
   const handleCklicBuscar = (e) => {
     navigate("/Asistencia#searchprofessional");
   };
