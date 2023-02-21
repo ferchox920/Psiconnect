@@ -3,6 +3,7 @@ import Description from '../Description/Description.jsx';
 import Areas from '../Areas/Areas';
 import Skills from '../Skills/Skills';
 import Linkedin from '../Linkedin/Linkedin.jsx';
+import Price from '../Price/Price.jsx';
 import { form, inputSubmitDisabled, inputSubmit } from './Form.module.css';
 
 const Form = (props) => {
@@ -39,6 +40,12 @@ const Form = (props) => {
             state={props.state} 
             setState={props.setState} 
             errors={props.errors}/>
+
+            <Price 
+            state={props.state} 
+            setState={props.setState} 
+            errors={props.errors}
+            />
 
             <input 
             disabled={props.inputErrorChecker()}
