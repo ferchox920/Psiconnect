@@ -51,7 +51,7 @@ const handleInputSelectChange = (e) =>{
                     skills.map(el=>{
                         return(
                             <option 
-                            disabled={state.skills.some(skill => skill.name === el.area)? true : false}
+                            disabled={state.skills.some(skill => skill.name === el.skill)? true : false}
                             key={el.id} 
                             id={el.skill} 
                             value={[el.skill, el.id]}> 

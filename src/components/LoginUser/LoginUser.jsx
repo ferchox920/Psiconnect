@@ -124,9 +124,7 @@ export default function LoginUser({
       >
         registrarse
       </div>
-      <NavLink to="/forgotpassword">
-        <h5>Olvidé mi contraseña</h5>
-      </NavLink>
+        <h5 className={style.h5} onClick={SetSwitchForgotPass}>Olvidé mi contraseña</h5>
     </form>
   );
 }

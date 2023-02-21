@@ -22,8 +22,13 @@
     padding-left: 3%;
     padding-right: 3%;
 }
-
-
+.h5{
+    color: #3C3C3C;
+    cursor: pointer;
+}
+.h5:hover{
+    color: var(--cadetblue);
+}
 .switch {
     position: relative;
     display: inline-block;

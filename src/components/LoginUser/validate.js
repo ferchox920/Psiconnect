@@ -16,10 +16,6 @@ export const validationsForm ={
   password: (form) => {
     if(!form.password){
         validationsForm.errors.password = 'La contraseña no puede estar vacia'
-    }else if(form.password.length>25){
-        validationsForm.errors.password = 'La contraseña debe tener un largo menor a 25 caracteres'
-    }else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,26}$/.test(form.password)){
-        validationsForm.errors.password = `La contraseña debe tener al menos 8 caracteres, una mayuscula, una minúscula y un número`
     }else{
         delete validationsForm.errors.password
     }
