@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getProfessionalById } from '../../../../features/apiPetitions'
 import style from './Card.module.css'
 
 export default function Card({consult, status, link}) {
     const [user, setUser] = useState()
+    const navigate = useNavigate()
+
+    const handleNavigate = (e) => {
+        e.preventDefault()
+        status=== 'COMPLETED' ? navigate(`/Formreview/${user?.professionalId}`) : window.location.href=link
+    }
 
     useEffect(() => {
         getProfessionalById(consult.professionalId, setUser)
@@ -34,15 +40,20 @@ export default function Card({consult, status, link}) {
         </div>
         
         {status=== 'COMPLETED'?
-        <div><p>Estado de consulta: <b>ACEPTADA</b></p>
-            <Link to = {`/Formreview/${user?.professionalId}`}>
-            <p>Calificacion</p>
-            </Link>
+            <div>
+                <p>Estado de consulta: <b>ACEPTADA</b></p>
+                <button onClick={handleNavigate}>
+                   Calificacion
+                </button>
+                
             </div>
-        : <div>
-            <p>Estado de consulta: <b>PENDIENTE</b></p>
-        <a href={link}> Link de pago</a>
-</div>}
+        :   <div>
+                <p>Estado de consulta: <b>PENDIENTE</b></p>
+                <button onClick={handleNavigate}>
+                    Link de Pago
+                </button>
+            </div>
+        }
     </div>
   )
 }
