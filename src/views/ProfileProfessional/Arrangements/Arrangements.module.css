@@ -2,9 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
     background-color: var(--cream);
-    
 }
 
 .title{
@@ -16,7 +14,6 @@
     display: flex;
     flex-direction: column;
     position: sticky;
-    min-height: 30%;
     width: 100vh;
     border-style: solid;
     border-width: 2px;
@@ -25,13 +22,46 @@
     overflow-y: auto;
     background-color: beige;
     max-height: 400px;
+    min-height: 50px;
     text-align: center;
 }
 
 .calendary{
-   display: flex;
-   justify-content: center; 
-   margin-left: -350px; 
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.select{
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.inputSubmit{
+    margin-top: 5%;
+    width: 12rem;
+    font-size: medium;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    color: cadetblue;
+    background-color: white;
+    border:2px solid rgb(95, 158, 160);
+    border-style: dotted;
+    box-shadow: none;
+    transition: transform .5s, color .5s, background-color .5s, border .5s ;
+}
+
+.selectDays{
+    display: flex;
+    flex-direction: column;
+}
+
+.section{
+    padding-bottom: 10px;
 }
 
 
