@@ -1,25 +1,45 @@
-.container{
-    display: flex;
-}
-
-.consult{
+.cardContainer{
+    background: var(--cream);
     display: flex;
     flex-direction: column;
-    width: 50%;
-    align-items: center;
+    margin: 1%;
+    border-radius: 10px;
+    border: 1px solid black;
+    font: var(--paragraph);
+    font-size: 120%;
 }
 
-.client{
+.dataContainer{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    width: 50%;
+    justify-content: space-around;
+    margin: 1% 2% 2% 2%;
 }
 
-.title{
-    height: 30%;
-    width: 100%;
-    text-align: center;
-    border-bottom: solid black 1px;
-    border-right: dotted black 1px;
+.statusContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1% 2% 2% 2%;
+    border-top: 1px solid black;
+    padding-top: 1%;
+}
+
+.navigateButton{
+    background-color: cadetblue;
+    border-radius: 25px;
+    border: dotted white;
+    font: var(--paragraph);
+    font-size: 94%;
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+}
+
+.navigateButton:hover{
+    background-color: white;
+    border: dotted cadetblue;
+    color: cadetblue;
 }

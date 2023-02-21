@@ -22,8 +22,8 @@ export async function professionalRegister(body) {
 
     return request;
   } catch (error) {
-    errorMenssage(error.response.data);
-    throw new Error(error.response.data);
+    errorMenssage(error.response.data.errors? error.response.data.errors[0] : error.response.data);
+    throw new Error(error.response.data.errors? error.response.data.errors[0] : error.response.data);
   }
 }
 export async function userLogin(body) {
@@ -42,7 +42,6 @@ export async function userLoginByGoogle(body) {
     localStorage.setItem("tkn", peticion?.data);
     return peticion;
   } catch (error) {
-    console.log(error);
     errorMenssage(error.response.data);
     throw new Error(error.response.data);
   }
@@ -65,7 +64,6 @@ export async function profUpdate({ state, type, payload }) {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
     type === "local" ? state(petition?.data) : state(setUser(petition?.data));
-    console.log(petition?.data);
     return petition;
   } catch (error) {
     errorMenssage(error.response.data);
@@ -80,7 +78,7 @@ export async function getProfByJWT({ state, type }) {
     });
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
-    localStorage.removeItem("profTkn"), console.log("jaj soy un error");
+    localStorage.removeItem("profTkn");
   }
 }
 
@@ -115,7 +113,6 @@ export async function changePasswordUser(body) {
     successMessage("Cambiamos tu contraseña");
     return peticion;
   } catch (error) {
-    console.log(localStorage.getItem("tkn"));
     errorMenssage("Tuvimos problemas");
     return error.response;
   }
@@ -164,7 +161,7 @@ export async function getUserByJWT({ state, type }) {
     });
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
-    localStorage.removeItem("tkn"), console.log("soy un mapa");
+    localStorage.removeItem("tkn");
   }
 }
 export async function getProfessionalById(id, state) {
@@ -209,8 +206,8 @@ export async function getProfessionalsFilters({
       ? state(peticion?.data)
       : state(setFilterProfessional(peticion?.data));
   } catch (error) {
-    errorMenssage(`no se encontro a ${name} ${lastName? lastName:''}`)
-    return error.response;
+    errorMenssage(`no se encontro a ${name} ${lastName ? lastName : ""}`);
+    throw new Error("error");
   }
 }
 
@@ -246,20 +243,31 @@ export async function verifyTokenPostRegister(token) {
 export async function createProfessionalReview(body) {
   try {
       const createReview = await axios.post(`/review/${body.professionalId}`, body)
+      swal({
+        title: "Gracias por calificar!",
+        text: `Enviado`,
+        icon: "success",
+      })
       return (createReview)
   } catch (error) {
-    console.log(error.response.data);
+    swal({
+      title: "upps",
+      text: `algo salio mal`,
+      icon: "error",
+    })
   }
 }
 
 export async function requestConsultation(body) {
   try {
+
     const peticion = await axios.post(`/payment/create-payment`, body);
     console.log(peticion.data.data.links[1].href);
+    
     return peticion.data.data.links[1].href;
   } catch (error) {
-    errorMenssage('Upps algo salio mal en nuestros sistemas')
-    throw new Error('upps')
+    errorMenssage("Upps algo salio mal en nuestros sistemas");
+    throw new Error("upps");
   }
 }
 
@@ -339,21 +347,21 @@ export async function getResultProfessionalPayments(professionalId, state) {
   }
 }
 
-export async function getUserPayments(userId, state){
+export async function getUserPayments(userId, state) {
   try {
-    const response = await axios.get(`/payment/user/${userId}`)
-    return state(response?.data)
+    const response = await axios.get(`/payment/user/${userId}`);
+    return state(response?.data);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
-export async function getResultUserPayments(userId, state){
+export async function getResultUserPayments(userId, state) {
   try {
-    const response = await axios.get(`/payment/userPayment/${userId}`)
-    return state(response?.data)
+    const response = await axios.get(`/payment/userPayment/${userId}`);
+    return state(response?.data);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 // export default async function postImageCloudinary(file, image) {
@@ -429,8 +437,8 @@ export async function sendEmailForgetPassUser(body) {
   try {
     const request = await axios.put(`/user/forget-password`, body);
     return request?.data;
-  } catch (err) {
-    return err;
+  }catch(err){
+  return err;
   }
 }
 
@@ -442,3 +450,12 @@ export async function sendEmailForgetPassProfessional(body) {
     return err;
   }
 }
+
+export async function getBestProfessionals(state){
+  try{
+    const request = await axios.get('/professional/score');
+    return state(request?.data);
+  }catch(err){
+    return err;
+  }
+};

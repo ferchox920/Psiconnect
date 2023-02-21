@@ -38,7 +38,7 @@ export default function Users() {
     <div className={style.container}>
       <div className={style.searchBarAndOrder}>
       <div className={style.containerSearchBar}>
-        <SearchBar />
+        <SearchBar setSelect={setSelect}/>
       </div>
         <PriceOrdering select={select} setSelect={setSelect}/>
       </div>

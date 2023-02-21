@@ -124,7 +124,6 @@ const uploadImage= async (file)=>{
         [e.target.name]: form[e.target.name].filter((el) => el !== e.target.value),
       })
     );
-    console.log(errors)
       options.disabled = false;
     }
   }
@@ -216,7 +215,7 @@ const uploadImage= async (file)=>{
         </div>
 
         <label className={style.label}>Areas</label>
-        <p className={style.p}>*selecciona las areas en las que trbajas</p>
+        <p className={style.p}>*selecciona las areas en las que trabajas</p>
         <span className={style.spanError}>{errors.areas}</span>
         <select
           className={style.select}
