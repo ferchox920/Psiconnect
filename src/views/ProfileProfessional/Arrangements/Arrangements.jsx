@@ -35,16 +35,20 @@ export default function Arrangements() {
     getProfessionalConsults(professionalId, setConsults);
     getContextProfessional({ professionalId, state: setContextProfessional });
     getConsultsProfessional({professionalId, state:setDaysDisabled});
+    
   }, []);
-
-  const range =  generateHours(startHour, endHour)
+  useEffect(() => {
+    setFreeDays(contextProfessional?.freeDays)
+    setFreeDaysRender(contextProfessional?.freeDays)
+  },[contextProfessional?.freeDays])
 
   const createContextProfessional = () => {
+    const range =  generateHours(startHour, endHour)
     console.log(range)
     createContext({
       professionalId,
       freeDays: freeDays,
-      workingHours : range,
+      workingHours : range.length<1 ? null : range,
     });
   };
 
@@ -65,16 +69,19 @@ export default function Arrangements() {
     }else if (e.target.name === 'end'){
       setEndHour(e.target.value)
     }else if(e.target.name === 'days'){
-      if(!freeDays.includes(e.target.value)){
-      setFreeDays([...freeDays, e.target.value])
-      setFreeDaysRender([...freeDaysRender, e.target.key])
-      }/* else if(freeDays.includes(e.target.value)){
-        setFreeDays([...freeDays, freeDays.filter((e) => e !== e.target.value)])
-        setFreeDaysRender([...freeDaysRender, freeDays.filter((e) => e !== e.target.key)])
-      } */
+      if(!freeDays.includes(e.target.value.split('-')[1])){
+      setFreeDays([...freeDays, e.target.value.split('-')[1]])
+      setFreeDaysRender([...freeDaysRender, e.target.value])
     }
   }
+}
 
+  const cleanRender = (e) => {
+    const {value} = e.target
+    console.log(value)
+    setFreeDays(freeDays.filter((e) => e !== value.split('-').length===1 ? value : value.split('-')[1]))
+    setFreeDaysRender(freeDaysRender.filter((e) => e !== value))
+  }
 
 
   return (
@@ -95,20 +102,27 @@ export default function Arrangements() {
         <div className={style.section}>
           <label className={style.selectDays}>Aquí puedes seleccionar los días que no quieras trabajar:</label>
             <select name="days" className={style.select} onChange={(e) => handleChange(e)}>
-              <option key={'Lunes'} value="Mon">Lunes</option>
-              <option key={'Martes'} value="Tus">Martes</option>
-              <option value="Wed">Miércoles</option>
-              <option value="Thu">Jueves</option>
-              <option value="Fri">Viernes</option>
-              <option value="Sat">Sábado</option>
-              <option value="Sun">Domingo</option>
+              <option hidden>Selecciona</option>
+              <option value="Lunes-Mon">Lunes</option>
+              <option value="Martes-Tue">Martes</option>
+              <option value="Miércoles-Wed">Miércoles</option>
+              <option value="Jueves-Thu">Jueves</option>
+              <option value="Viernes-Fri">Viernes</option>
+              <option value="Sábado-Sat">Sábado</option>
+              <option value="Domingo-Sun">Domingo</option>
             </select>
         </div>
-        {freeDaysRender?.length && freeDaysRender.map((e,i) => {
-          return(
-            <div key={i} >{e}</div>
-          )
-        })}
+        {freeDaysRender?.length>0 &&
+        <div  className={style.divDays}>
+          {freeDaysRender?.length && freeDaysRender.map((element,i) => {
+            return(
+              <div key={i} className={style.divDaysCard}>
+                <div>{element.toString().split('-')[0]}</div>
+                <button value={element} onClick={(e) => cleanRender(e)}>x</button>
+              </div>
+            )
+          })}
+        </div>}
         <div className={style.section}>
           <label>Aqué puedes seleccionar el rango horario en que trabajarás:
           </label>
@@ -147,7 +161,7 @@ export default function Arrangements() {
           daysDisabled = {daysDisabled || []}
         />
       </div>
-      <input type='submit' value={'Guardar Cambios'} className={style.inputSubmit} onClick={() => {createContextProfessional(), window.location.reload()}}/>
+      <input type='submit' value={'Guardar Cambios'} className={style.inputSubmit} onClick={() => {createContextProfessional()}}/>
     </div>
   );
 }

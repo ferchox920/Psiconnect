@@ -64,6 +64,20 @@
     padding-bottom: 10px;
 }
 
+.divDays{ 
+    display: flex;
+    flex-wrap: wrap;
+    border: solid black 1px;
+}
+
+.divDaysCard{
+    display: flex;
+    
+    height: 20px;
+    padding: 2px;
+    margin: 2px;
+    border: solid black 1px;
+}
 
 .box::-webkit-scrollbar-thumb{
     background: linear-gradient(135deg, transparent 15px, cyan 0) top left,
