@@ -78,14 +78,18 @@ const handleOnSubmit = async (e) => {
             ...register,
             avatar: newImage
         },token)
-        setLoading(false)
-        if(request.status === 201) {
+        if(request.status === 202) {
+            setLoading(false)
             successMessage(request.data.message).then(()=>{
                 autoLoginAfterPostRegister(request.data.token)
             })
          }else if(request.response.status === 500){
+            setLoading(false)
             errorMenssage('Upss, Alparecer hubo problemas, intentalo mas tarde')
-         }else errorMenssage(request.response.data.data || 'Upss, error inesperado')
+         }else{
+            setLoading(false)
+            errorMenssage(request.response.data.data || 'Upss, error inesperado')
+        }
     }else{
         setLoading(false)
         errorMenssage(Object.values(errors).join(', ')|| 'Porfavor completa todos los campos del formulario')
