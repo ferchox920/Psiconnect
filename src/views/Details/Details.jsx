@@ -78,8 +78,7 @@ export default function Details() {
 
   setTimeout(() => {
     setLoading(false)
-
-  }, 3000)
+  }, 5000)
 
   const handleClick = (e) => {
     e.preventDefault(e);
@@ -109,11 +108,13 @@ export default function Details() {
 
           {loading && <p className= {style.cargando}>Cargando calificaciones...</p>}
 
-          {  reviewProfessional && reviewProfessional.length > 0  ?  (
+          {  reviewProfessional && reviewProfessional.length > 0  ?  
+          
+          ( 
             <Swiper
               modules={[Autoplay, Pagination]}
               autoplay={{
-                delay: 5000,
+                delay: 3000,
                 disableOnInteraction: true,
               }}
               spaceBetween={15}
@@ -143,6 +144,7 @@ export default function Details() {
                 );
               })}
             </Swiper>
+          
           ): (
             <div className={style.sincalificacion}>
               <p className={style.nohaycalf}>

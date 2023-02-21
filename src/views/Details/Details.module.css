@@ -90,10 +90,12 @@
   
 }
 .swiper-slide{
-  width: 350px !important;
+  width: 330px !important;
   height: auto;
 
 }
+
+
 
 .cardreview{
   position: absolute;
