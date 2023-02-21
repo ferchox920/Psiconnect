@@ -22,8 +22,8 @@ export async function professionalRegister(body) {
 
     return request;
   } catch (error) {
-    errorMenssage(error.response.data);
-    throw new Error(error.response.data);
+    errorMenssage(error.response.data.errors? error.response.data.errors[0] : error.response.data);
+    throw new Error(error.response.data.errors? error.response.data.errors[0] : error.response.data);
   }
 }
 export async function userLogin(body) {
