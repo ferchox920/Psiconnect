@@ -263,8 +263,10 @@ export async function createProfessionalReview(body) {
 
 export async function requestConsultation(body) {
   try {
+
     const peticion = await axios.post(`/payment/create-payment`, body);
     console.log(peticion.data.data.links[1].href);
+    
     return peticion.data.data.links[1].href;
   } catch (error) {
     errorMenssage("Upps algo salio mal en nuestros sistemas");
