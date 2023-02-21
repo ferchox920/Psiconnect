@@ -1,3 +1,4 @@
+
 .usersForm{
     width: 100%;
     height: 100vh;
@@ -28,96 +29,118 @@
     border-style: dotted;
     border-radius: 200px ;
     overflow: hidden;
-    
 }
-
-.userAvatar{
-    border-radius: 200px;
-    width: 100%;
-    height: auto;
-}
-
-.form {
+.profileContainer{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    padding: 0 50px;
-    height: 100%;
-    text-align: center;
-    background-color: #f4f1bb;
 }
 
-.inputfile{
-    margin-left: -670px;
-    margin-top: 14%;
-    
-}
-
-.userInfo{
-    margin-left: -150px;
-    margin-right: -450px;
-    margin-bottom: 20%;
-    position: absolute;
-    width: 40%;
+.profileTitle{
     display: flex;
     flex-direction: column;
-    height: 300px;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    font: var(--paragraph);
+    font-size: 250%;
 }
 
-.formSubmit{
-    background-color:  cadetblue;
-    height: 60px;
-    font-size: 125%;
-    width: 110px;
-    position: absolute;
-    border-radius: 25px;
-    margin-top: 35%;
-    margin-left: 35%;
-    border: dotted white;
-    
+.p{
+    text-align: center;
+    margin: 2% 0 2% 0;
 }
 
-.formSubmit:hover{
-    background-color: white;
-    border: dotted cadetblue; 
-    cursor: pointer;
+.profileForm{
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 0 1%;
+    padding: 3%;
+    gap: 3rem;
 }
 
-.saveImg{
+.changesField{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10rem;
+}
 
-    background-color:  cadetblue;
-    height: 60px;
-    font-size: 105%;
-    width: 110px;
-    position: absolute;
-    border-radius: 25px;
-    margin-top: 35%;
-    margin-left: -800px;
-    border: dotted white;
+.imageChange{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35rem;
+    gap: 1em;
+}
 
+.avatarTitle{
+    font: var(--lightParagrah);
+    font-size: 150%;
+}
+
+.imageContainer{
+    height: 230px;
+    width: 215px;
+    border-radius: 200px;
+    border: 4px dotted cadetblue;
+    overflow: hidden;
+}
+
+.sourceImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.imageForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imageInput{
+    background: white;
+    padding: 12px 15px;
+    margin: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 7px 7px 12px #c1c1c1, -7px -7px 13px #fff !important;
+    font: var(--lightParagrah);
+    font-size: 100%;
 }
 
 
-.changeImg{
+.dataInput{
+    background: white;
+    padding: 12px 15px;
+    margin: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 7px 7px 12px #c1c1c1, -7px -7px 13px #fff !important;
+    font: var(--lightParagrah);
+    font-size: 100%;
+}
 
-    background-color:  cadetblue;
-    height: 60px;
-    font-size: 105%;
-    width: 110px;
-    position: absolute;
+.dataButton{
+    background-color: cadetblue;
     border-radius: 25px;
     margin-top: 35%;
     margin-left: -600px;
     border: dotted white;
-
-}
-
-.changeImg:hover{
-    background-color: white;
-    border: dotted cadetblue; 
+    font: var(--paragraph);
+    font-size: 175%;
+    color: white;
     cursor: pointer;
+    padding: 1%;
 }
 
 .name{
@@ -154,38 +177,6 @@
 
 .fileSelect{
     background-color: white;
-    
-}
-
-.inputerrorname{
-    display: block;
-    font-size: 12px;
-    font-weight: 3px;
-    position: absolute;
-    margin-top: -150px;
-     margin-left: 25px;
-    color:rgb(5, 5, 5);
-}
-
-.inputerrorlastName{
-
-    display: block;
-    font-size: 12px;
-    font-weight: 3px;
-    position: absolute;
-    margin-top: 2px;
-     margin-left: 25px;
-    color:rgb(5, 5, 5);
-
-}
-
-.inputerrorPhone{
-    display: block;
-    font-size: 12px;
-    font-weight: 3px;
-    position: absolute;
-    margin-top: 158px;
-     margin-left: 25px;
-    color:rgb(5, 5, 5);
-
+    border: dotted cadetblue;
+    color: cadetblue;
 }

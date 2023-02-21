@@ -22,33 +22,27 @@ export default function ApptHistory() {
   }, [])
 
   return (
-    <div className={style.container}>
-      <div className={style.consultsContainer}>
-        <h1 className={style.title}>Esta es tu lista de consultas completadas y/o pendientes:</h1>
-       
-      </div>
-      <div className={style.box}>
+    <div className={style.mainContainer}>
+      <section className={style.titleContainer}>
+        <h1>Esta es tu lista de consultas completadas y/o pendientes:</h1>       
+      </section>
+      
+      <section className={style.infoContainer}>
         {consults && 
           consults.map((c, i) => {
             return(
-              <div className={style.consult}>
+              <section className={style.infoItem}>
                 <Card key={i} consult={c} status={c.status} link={c.linkpay}/>
-              </div>
+              </section>
             )
         })}
-        {!consults?.length && <div  className={style.noAppt}>
-          <p> <b>No tienes citas agendadas</b> </p>
-        </div> }
-      </div>
 
-     
-      
-      
-      {/* <div className={style.calendary}>
-        <Calendary/>
-      </div> */}
-
-      
+        {!consults?.length && <section className={style.infoItem}>
+          <p className={style.noAppt}>
+            <b>No tienes citas agendadas</b>
+          </p>
+        </section> }
+      </section>
     </div>
   )
 }

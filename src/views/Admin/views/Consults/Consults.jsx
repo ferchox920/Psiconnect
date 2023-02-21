@@ -1,30 +1,30 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import {  getAllReviews, updateStatusToProfessional } from "../../feutures/apiPetitions";
+import { getAllConsult } from "../../feutures/apiPetitions";
 
 export default function Consults() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllReviews(setData);
+    getAllConsult(setData);
   }, []);
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "score",
-      headerName: "score",
+      field: "price",
+      headerName: "price",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "score",
-      headerName: "score",
+      field: "status",
+      headerName: "status",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "comments",
-      headerName: "comments",
+      field: "date",
+      headerName: "date",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -40,8 +40,6 @@ export default function Consults() {
       flex: 1,
       cellClassName: "name-column--cell",
     },
-
-   
   ];
 
   return (
@@ -71,7 +69,6 @@ export default function Consults() {
             borderTop: "none",
             backgroundColor: "#5f9ea0",
           },
-
         }}
       >
         <DataGrid

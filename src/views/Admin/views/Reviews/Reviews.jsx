@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import {  getAllReviews } from "../../feutures/apiPetitions";
+import {  getAllReviews, updateStatusToReview } from "../../feutures/apiPetitions";
 
 export default function Reviews() {
   const [data, setData] = useState([]);
@@ -13,6 +13,24 @@ export default function Reviews() {
     {
       field: "score",
       headerName: "score",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "general",
+      headerName: "general",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "puntualidad",
+      headerName: "puntualidad",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "trato",
+      headerName: "trato",
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -53,7 +71,7 @@ export default function Reviews() {
             display="flex"
             justifyContent="center"
             onClick={() => {
-                updateStatusToAreas(params.row.id).then(()=>{
+                updateStatusToReview(params.row.id).then(()=>{
                     params.row.state = !params.row.state;
                 })
             }}
