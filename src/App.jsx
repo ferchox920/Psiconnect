@@ -85,7 +85,17 @@ function App() {
           }
         />
         <Route
-          path="/admin/:section"
+          path="/admin/:section/"
+          element={
+            <ProtectedRoute type={"admin"}>
+              <ProSidebarProvider>
+                <Admin />
+              </ProSidebarProvider>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/:section/:id"
           element={
             <ProtectedRoute type={"admin"}>
               <ProSidebarProvider>
