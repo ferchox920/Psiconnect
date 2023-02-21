@@ -122,15 +122,48 @@ export default function UsersForm (){
                 onChange= {e => handleInputChanges(e)}
               />
 
-              <input
-                className={style.dataInput}  
-                type="text" 
-                placeholder='Apellidos'
-                name = 'lastName'
-                value = {users?.lastName}
-                disabled
-                onChange= {handleInputChanges} 
+          <div className={style.userInfo}>
+            <input 
+              className= {style.name}
+              type="text" 
+              placeholder='Nombres' 
+              name = 'name'
+              value = {users?.name}
+              disabled
+              onChange= {e => handleInputChanges(e)}
               />
+             
+
+            <input 
+            className= {style.lastName}
+            type="text" 
+            placeholder='Apellidos'
+            name = 'lastName'
+            value = {users?.lastName}
+            disabled
+            onChange= {handleInputChanges} 
+            />
+           
+            <input 
+            type="text" 
+            className={style.phone}
+            placeholder='Telefono'
+            name = 'phone'
+            value = {input.phone}
+            onChange= {handleInputChanges}
+            />
+            {error.phone ? <p className = {style.inputerrorPhone}>{error.phone}</p> : <></>}
+            
+            <input 
+            type="text" 
+            placeholder='URL de tu imagen en linea' 
+            id = 'imgUrl'
+            name = 'image'
+            value = {input.image}
+            onChange= {e => handleInputChanges(e)}
+            />
+            
+
 
               <input
                 className={style.dataInput}  
@@ -153,14 +186,17 @@ export default function UsersForm (){
               />                      
             </section>
           </div>
-          
+          <button 
+           className={style.formSubmit}
+           type="submit" 
+           disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
+           onSubmit = {e => handleSubmitUpdate(e)}  >Actualizar</button>
 
-          <button
-              className={style.dataButton}  
-              type="submit" 
-              disabled = {Object.keys(validation(input)).length !== 0 ? true : false}
-              onSubmit = {e => handleSubmitUpdate(e)}  
-          >Actualiza tus datos</button>            
+          <button type="submit"  
+          className={style.changeImg}
+          onClick = {e => handledChangeImage(e)}
+          disabled
+          >Cambiar Imagen</button>
         </form>
       </div>
   )
@@ -169,16 +205,7 @@ export default function UsersForm (){
 
 const validation  = (input) => {
   let error = {}
-  const onlyLetter = new RegExp('^[A-Z]+$', 'i');
   const rgOnlyNumbers = new RegExp(/^\d+$/)
-  
-
-  // if (!input.name) error.name = 'El nombre es requerido'
-  // else if(!onlyLetter.test(input.name)) error.name = "Solo letras" 
-
-  // if (!input.lastName) error.lastName = 'El apellido es requerido'
-  // else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras" 
-
   if(!input.phone) error.phone = 'Nro tlf es requerido'
   else if(!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros" 
   
