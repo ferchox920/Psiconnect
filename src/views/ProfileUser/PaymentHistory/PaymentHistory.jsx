@@ -8,12 +8,12 @@ import Card from "./Card/Card.jsx";
 import style from "./PaymentHistory.module.css";
 export default function PaymentHistory() {
   const [consults, setConsults] = useState();
-  const [pay, setPay] = useState();
+
   const users = useSelector((state) => state.user.user);
 
   useEffect(() => {
     getUserPayments(users.id, setConsults);
-    getResultUserPayments(users.id, setPay);
+
   }, []);
 
   return (
@@ -39,14 +39,7 @@ export default function PaymentHistory() {
           </div>
         )}
       </div>
-      {/* <div className={style.paymentsPayContainer}>  Agregar un contenedor para el monto total 
-        {pay ? (
-          <>
-            <p className={style.paymentsPayTitle}>En total tus pagos suman</p>
-            <p className={style.paymentsPayAmount}>{pay}</p>
-          </>
-        ) : null}
-      </div> */}
+    
     </div>
   );
 }
