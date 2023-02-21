@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getProfessionalById } from "../../../../features/apiPetitions";
 import style from "./Card.module.css";
 
