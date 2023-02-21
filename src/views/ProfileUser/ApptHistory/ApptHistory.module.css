@@ -1,4 +1,4 @@
-.container{
+/* .container{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -22,7 +22,7 @@
     border-radius: 10px;
     border-color: gray;
     overflow-y: auto;
-    background-color: beige;
+    background-color: var(--cream);
     max-height: 400px;
     margin-bottom: 100px;
 }
@@ -55,4 +55,39 @@
     background-size: 50% 50%;
     background-repeat: no-repeat;
     height: 10%;
+} */
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleContainer{
+    font: var(--h1Title);
+    font-size: 200%;
+    margin: 2%;
+}
+
+.infoContainer{
+    background: lightyellow;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border-radius: 10px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.infoItem{
+    /*Clase creada por si acaso*/
+    background: transparent;
+}
+
+.noAppt{
+    font: var(--paragraph);
+    font-size: 125%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

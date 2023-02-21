@@ -28,7 +28,7 @@ export default function User({set, closeModal}) {
         <div className={`${style.overlay} ${loginProf?style.loginProf:null}`}>
           <div className={style.overlayIzq}>
             <h1 className={style.text}>Bienvenido/a de nuevo</h1>
-            <p className={style.text}>
+            <p className={`${style.p} ${style.text}`}>
               Para mantenerse conectado con nosotros por favor inicie sesión con
               su información personal
             </p>
@@ -37,7 +37,7 @@ export default function User({set, closeModal}) {
           <div className={style.overlayD}>
             <div className={style.ContainerText}>
             <h1 className={style.text} >!Hola!</h1>
-            <p className={style.text}>
+            <p className={`${style.p} ${style.text}`}>
               Ingresa tus datos personales y vive esta nueva aventura con
               nosotros
             </p>

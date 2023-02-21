@@ -124,7 +124,6 @@ const uploadImage= async (file)=>{
         [e.target.name]: form[e.target.name].filter((el) => el !== e.target.value),
       })
     );
-    console.log(errors)
       options.disabled = false;
     }
   }
