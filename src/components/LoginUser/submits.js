@@ -24,7 +24,7 @@ export const submitHandler = async (e, errors, form, dispatch, closeModal) => {
     } else
       swal({
         title: "Error!",
-        text: Object.values(errors)[0],
+        text: 'Credenciales incorrectas',
         icon: "error",
       });
   };
