@@ -78,8 +78,7 @@ export default function Details() {
 
   setTimeout(() => {
     setLoading(false)
-
-  }, 3000)
+  }, 5000)
 
   const handleClick = (e) => {
     e.preventDefault(e);
@@ -109,36 +108,42 @@ export default function Details() {
 
           {loading && <p className= {style.cargando}>Cargando calificaciones...</p>}
 
-          {  reviewProfessional && reviewProfessional.length > 0  ? (
+          {  reviewProfessional && reviewProfessional.length > 0  ?  
+          
+          ( 
             <Swiper
               modules={[Autoplay, Pagination]}
               autoplay={{
-                delay: 5000,
+                delay: 3000,
                 disableOnInteraction: true,
               }}
+              
               pagination={{
                 dynamicBullets: true,
               }}
               loop={true}
+              spaceBetween={5}
               slidesPerView={3}
             >
               {reviewProfessional?.map((el) => {
-                return (
-                  <SwiperSlide key={el.id}>
-                    <div className={style.cardreview}>
-                      <CardReview
+                return ( 
+                  <SwiperSlide key={el.id} className = {style['swiper-slide']}>  
+                   <div className={style.cardreview}>
+                      <CardReview    
                         name={el.username}
                         lastName={el.lastusername}
                         puntualidad={el.puntualidad}
                         trato={el.trato}
                         general={el.general}
                         comments={el.comments}
-                      />
-                    </div>
+                      />   
+                      </div>                 
                   </SwiperSlide>
+                  
                 );
               })}
             </Swiper>
+          
           ): (
             <div className={style.sincalificacion}>
               <p className={style.nohaycalf}>
@@ -157,10 +162,6 @@ export default function Details() {
                   <button className={style.cta}>
                     <span>Inicia un chat en vivo</span>
                   </button>
-
-                  <div className={style.iconochat2}>
-                    <Chat />
-                  </div>
                 </div>
               </div>
 
