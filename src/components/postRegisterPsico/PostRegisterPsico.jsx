@@ -19,7 +19,7 @@ const [ register, setRegister ] = useState({
     avatarIMG:'',
     altIMG:'',
     skills:[],
-    price:0
+    price:''
 })
 const [ errors, setErrors ] = useState({})
 const [ areas, setAreas ] = useState([])
@@ -51,7 +51,7 @@ const validatorForm = () => {
     })
 };
 const inputErrorChecker = () => {
-return  Object.values(register).some(el=> (el === '' || el.length === 0)) &&
+return  Object.values(register).some(el=> (el === '' || el.length === 0 )) &&
             Object.keys(errors).at(0) || Object.keys(errors).at(0)? 
                 true : false;
 };
@@ -99,13 +99,14 @@ const handleOnSubmit = async (e) => {
     }
 };
 
-if(tokenVerify === null ){
-  return (<h1>Loading</h1>)
-}
-else if(tokenVerify === false){
-  return <Navigate to='/'/>
-}
-else return(
+// if(tokenVerify === null ){
+//   return (<h1>Loading</h1>)
+// }
+// else if(tokenVerify === false){
+//   return <Navigate to='/'/>
+// }
+// else 
+return(
     <div className={style.divContainer}>
         {   loading ? 
              <div>

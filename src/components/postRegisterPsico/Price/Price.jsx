@@ -22,7 +22,7 @@ const handleInputChange = (e) => {
 
     return(
         <>
-            <label className={label}> Price </label>
+            <label className={label}>Price</label>
             <p className={p}>
                 *Selecciona el precio por hora de tus consultas
             </p>

@@ -65,10 +65,11 @@ const hanldeOnSubimt = async(e) => {
         }else errorMenssage('Upss, Alparecer hubo problemas, intentalo de nuevo mas tarde')
     }
 }
-if(verifyToken === null) return (<h1>Cargando</h1>)
-else if(verifyToken === false){
-    return <Navigate to='/' />
-}else return(   
+// if(verifyToken === null) return (<h1>Cargando</h1>)
+// else if(verifyToken === false){
+//     return <Navigate to='/' />
+// }else 
+return(   
     <div className={DivContainerForm}> 
         <form 
         onSubmit={hanldeOnSubimt}
