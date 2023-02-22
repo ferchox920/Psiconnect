@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import ChangeEmail from "./ChangeEmail/ChangeEmail";
 import ChangePassword from "./ChangePassword/ChangePassword";
+import style from './Security.module.css'
 
 export default function Security() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [showEmail, setShowEmail] = useState(false);
 
   const handleShowPassword = () => {
@@ -17,15 +18,16 @@ export default function Security() {
   };
 
   return (
-    <>
-      <div>
-        <br />
-        <button onClick={handleShowPassword}>Cambiar contraseña</button>
-        <button onClick={handleShowEmail}>Cambiar correo electrónico</button>
-      </div>
+    <div className={style.securityContainer}>
+      <section className={style.optionButtons}>
+        <button onClick={handleShowPassword} className={style.button}>Cambiar contraseña</button>
+        <button onClick={handleShowEmail} className={style.button}>Cambiar correo electrónico</button>
+      </section>
 
-      {showPassword && <ChangePassword />}
-      {showEmail && <ChangeEmail />}
-    </>
+      <section className={style.changeSection}>
+        {showPassword && <ChangePassword />}
+        {showEmail && <ChangeEmail />}
+      </section>
+    </div>
   );
 }
