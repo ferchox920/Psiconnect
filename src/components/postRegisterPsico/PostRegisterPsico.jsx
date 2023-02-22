@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getOnlyAreas, getSkills, verifyTokenPostRegister, postRegisterProfesional, autoLoginAfterPostRegister } from '../../features/apiPetitions';
 import { errorMenssage, successMessage } from '../../features/errorsModals.js'
-import Form from './Form/Form';
-
+import Form from './Form/Form.jsx';
 import style from './PostRegisterPsico.module.css';
 import validationsForm from './validatorDatas.js';
 
@@ -19,7 +18,8 @@ const [ register, setRegister ] = useState({
     avatar:'',
     avatarIMG:'',
     altIMG:'',
-    skills:[]
+    skills:[],
+    price:0
 })
 const [ errors, setErrors ] = useState({})
 const [ areas, setAreas ] = useState([])
@@ -76,8 +76,10 @@ const handleOnSubmit = async (e) => {
         const newImage = await uploadImage(register.avatar)
         const request = await postRegisterProfesional({
             ...register,
-            avatar: newImage
+            avatar: newImage,
+            price: String(register.price.split('.')[0])
         },token)
+        console.log(register.price)
         if(request.status === 202) {
             setLoading(false)
             successMessage(request.data.message).then(()=>{
@@ -88,7 +90,8 @@ const handleOnSubmit = async (e) => {
             errorMenssage('Upss, Alparecer hubo problemas, intentalo mas tarde')
          }else{
             setLoading(false)
-            errorMenssage(request.response.data.data || 'Upss, error inesperado')
+            console.log(request)
+            errorMenssage(request.response.data.data[0] || 'Upss, error inesperado')
         }
     }else{
         setLoading(false)

@@ -55,9 +55,10 @@ export default function ReviewProfessionalHome () {
                  <div className={style.card}>
                    <CardReviewHome 
                      key={el.id}
-                     avatar = {el.professional.avatar}
-                     name={el.professional.name}
-                     lastName={el.professional.lastName}
+                     professionalId= {el.professionalId}
+                     avatar = {el.avatar}
+                     name={el.professionalName}
+                     lastName={el.professionalLastName}
                      puntualidad={el.puntualidad}
                      trato={el.trato}
                      general={el.general}  

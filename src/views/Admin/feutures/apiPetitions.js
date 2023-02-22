@@ -92,7 +92,12 @@ export async function createArea(body) {
 }
 export async function editArea(body) {
   try {
-    const peticion = await axios.put(`/admin/edit-area/${body.id}`, body);
+    const peticion = await axios.put(`/admin/edit-area/${body.id}`, body, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*", // aquí agregamos el encabezado
+      },
+    });
     successMessage(peticion.data);
     return;
   } catch (error) {
@@ -174,10 +179,6 @@ export async function deleteSkill(id) {
     }
   });
 }
-
-
-
-
 
 export async function updateStatusToProfessional(id) {
   try {
