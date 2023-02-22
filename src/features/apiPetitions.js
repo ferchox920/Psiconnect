@@ -320,12 +320,18 @@ export async function postRegisterProfesional(body, token) {
   }
 }
 
-export default async function putUserData(id, body) {
+export  async function putUserData({state, type, body}) {
   try {
-    const updateUser = await axios.put(`user/${body.id}`, body);
-    return updateUser;
+    console.log(body)
+    const petition = await axios.put(`user/id`, body ,{
+      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+  });
+  type === "local" ? state(petition?.data) : state(setUser(petition?.data));
+  //console.log(petition?.data);
+  return petition;
   } catch (error) {
-    console.log(error);
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
   }
 }
 export async function getProfessionalPayments(professionalId, state) {
@@ -364,16 +370,15 @@ export async function getResultUserPayments(userId, state) {
     console.log(error);
   }
 }
-// export default async function postImageCloudinary(file, image) {
+export default async function postImageCloudinary(file, image) {
 
-//       try{
-//           const imageUpload = await axios.post('img/upload', (file, image) )
-//           return imageUpload
-//       }catch(error){
-//         console.log(error)
-//       }
-
-// }
+      try{
+          const imageUpload = await axios.post('img/upload', (file, image) )
+          return imageUpload
+      }catch(error){
+        console.log(error)
+      }
+}
 
 export async function autoLoginAfterPostRegister(token) {
   localStorage.setItem("profTkn", token);
