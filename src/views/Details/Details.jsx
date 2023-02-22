@@ -62,16 +62,11 @@ export default function Details() {
       state: setContextProfessional,
     });
     getConsultsProfessional({ professionalId: id, state: setDaysDisabled });
+    getContextProfessional({ professionalId:id, state: setContextProfessional });
     
-  }, [id,]);
+  }, [id]);
 
-  useEffect(
-    () =>
-      onSnapshot(collection(firestore, `context/${id}/times`), (snapshot) => {
-        setContextProfessional(snapshot.docs.map((doc) => doc.data()));
-      }),
-    [id]
-  );
+
   const handleCklicBuscar = (e) => {
     navigate("/Asistencia#searchprofessional");
   };

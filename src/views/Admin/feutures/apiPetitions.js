@@ -1,6 +1,7 @@
 import swal from "sweetalert";
 import axios from "../../../features/axios";
 import { errorMenssage, successMessage } from "../../../features/errorsModals";
+import { loading } from "../../../features/helpers";
 
 export async function getAllUser(state) {
   try {
@@ -148,8 +149,10 @@ export async function createSkill(body) {
 }
 export async function editSkill(body) {
   try {
+    await loading();
     const peticion = await axios.put(`/admin/edit-skill/${body.id}`, body);
     successMessage(peticion.data);
+    await loading();
     return;
   } catch (error) {
     errorMenssage(error.response.data);
