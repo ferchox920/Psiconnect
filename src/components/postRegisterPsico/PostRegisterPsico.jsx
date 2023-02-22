@@ -99,14 +99,13 @@ const handleOnSubmit = async (e) => {
     }
 };
 
-// if(tokenVerify === null ){
-//   return (<h1>Loading</h1>)
-// }
-// else if(tokenVerify === false){
-//   return <Navigate to='/'/>
-// }
-// else 
-return(
+if(tokenVerify === null ){
+  return (<h1>Loading</h1>)
+}
+else if(tokenVerify === false){
+  return <Navigate to='/'/>
+}
+else return(
     <div className={style.divContainer}>
         {   loading ? 
              <div>
