@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {putUserData} from "../../../features/apiPetitions.js";
+import { putUserData } from "../../../features/apiPetitions.js";
 import swal from "sweetalert";
 import style from "./UsersForm.module.css";
+import Loading from "../../../components/Loading/Loading.jsx";
 
 export default function UsersForm() {
   const users = useSelector((state) => state.user.user);
   const [selectedFile, setSelectedFile] = useState();
   const [fileInputState, setFileInputState] = useState();
   const [previewSource, setPreviewSource] = useState(users?.avatar);
+  const [loading, setLoading]= useState(false)
 
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
 
-  const [error, setError] = useState({});
+ // const [error, setError] = useState({});
 
   const [input, setInput] = useState({
     name: users?.name,
@@ -27,14 +29,6 @@ export default function UsersForm() {
       ...input,
       [e.target.name]: e.target.value,
     });
-
-    setError(
-      validation({
-
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
   };
 
   const previewFile = (file) => {
@@ -47,6 +41,7 @@ export default function UsersForm() {
 
   const handleChangeFile = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
     previewFile(file);
     setSelectedFile(file);
     setFileInputState(e.target.value);
@@ -57,31 +52,66 @@ export default function UsersForm() {
     });
   };
 
+  const uploadImage = async (file) => {
+    let formData = new FormData();
+    formData?.append("file", file);
+    formData?.append("upload_preset", "psiconnectpreset");
+    formData.append("api_key", 652951616386787);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+      "POST",
+      "https://api.cloudinary.com/v1_1/dcdywqotf/image/upload",
+      false
+    );
+
+    xhr.send(formData);
+    const imageResponse = JSON.parse(xhr.responseText);
+
+    return imageResponse.secure_url;
+  };
+
   const handleSubmitUpdate = async (e) => {
-    setError(validation(input));
     e.preventDefault();
-    if(Object.entries(error).at(0)) return swal({title: "Error!", text: Object.values(error)[0], icon: "error",});
-      else{
-        console.log(input)
-        const reader = new FileReader();
-        reader.readAsDataURL(fileInputState);
-        reader.onloadend = async () => {
-        putUserData({
-          state: dispatch,
-          type: 'global',
-          body: {
-            ...input,
-            avatar: reader.result
-          }
-        }).then(() =>
+    setLoading(true)
+      console.log(input);
+    if (selectedFile) {
+      
+      const newImage = await uploadImage(selectedFile);
+     await putUserData({
+        state: dispatch,
+        type: "global",
+        body: {
+                ...input,
+                avatar: newImage,
+              }
+      }).then(() =>{
+      setLoading(false);
           swal({
             title: "Cambios guardados!",
             text: `Sus datos fueron actualizados correctamente`,
             icon: "success",
-          })
-          );
-        };
-      };
+          })}
+        )
+        .catch((err) => console.log(err));
+      }
+      else{
+        //setLoading(true)
+        await putUserData({
+          state: dispatch,
+          type: "global",
+          body: input                
+        }).then(() =>{
+        setLoading(false)
+          swal({
+          title: "Cambios guardados!",
+          text: `Sus datos fueron actualizados correctamente`,
+          icon: "success",
+        })}
+      )
+      .catch((err) => console.log(err));
+      }
+        
   };
   return (
     <div className={style.profileContainer}>
@@ -97,6 +127,8 @@ export default function UsersForm() {
         className={style.profileForm}
         onSubmit={(e) => handleSubmitUpdate(e)}
       >
+        
+        <div>
         <div className={style.changesField}>
           <section className={style.imageChange}>
             <label className={style.avatarTitle}>Tu foto de perfil</label>
@@ -141,17 +173,11 @@ export default function UsersForm() {
             <input
               className={style.dataInput}
               type="text"
-              required
               placeholder="Telefono"
               name="phone"
               value={input.phone || ""}
               onChange={handleInputChanges}
             />
-            {error.phone ? (
-              <p className={style.pError}>{error.phone}</p>
-            ) : (
-              <></>
-            )}
           </section>
         </div>
 
@@ -159,27 +185,29 @@ export default function UsersForm() {
           className={style.dataButton}
           type="submit"
           onSubmit={(e) => handleSubmitUpdate(e)}
-        >
-          Actualiza tus datos
+        >{loading?
+          'CARGANDO...' :
+          'Actualiza tus datos'}
         </button>
+        </div>
       </form>
     </div>
   );
 }
 
-const validation = (input) => {
-  let error = {};
-  const onlyLetter = new RegExp("^[A-Z]+$", "i");
-  const rgOnlyNumbers = new RegExp(/^\d+$/);
+// const validation = (input) => {
+//   let error = {};
+//   const onlyLetter = new RegExp("^[A-Z]+$", "i");
+//   const rgOnlyNumbers = new RegExp(/^\d+$/);
 
-  // if (!input.name) error.name = 'El nombre es requerido'
-  // else if(!onlyLetter.test(input.name)) error.name = "Solo letras"
+//   // if (!input.name) error.name = 'El nombre es requerido'
+//   // else if(!onlyLetter.test(input.name)) error.name = "Solo letras"
 
-  // if (!input.lastName) error.lastName = 'El apellido es requerido'
-  // else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras"
+//   // if (!input.lastName) error.lastName = 'El apellido es requerido'
+//   // else if(!onlyLetter.test(input.lastName)) error.lastName = "Solo letras"
 
-  if (!input.phone) error.phone = "Nro telefónico es requerido";
-  else if (!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros";
+//   if (!input.phone) error.phone = "Nro telefónico es requerido";
+//   else if (!rgOnlyNumbers.test(input.phone)) error.phone = "Solo numeros";
 
-  return error;
-};
+//   return error;
+// };

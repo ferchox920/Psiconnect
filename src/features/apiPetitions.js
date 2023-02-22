@@ -330,7 +330,8 @@ export  async function putUserData({state, type, body}) {
   //console.log(petition?.data);
   return petition;
   } catch (error) {
-    console.log(error);
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
   }
 }
 export async function getProfessionalPayments(professionalId, state) {
