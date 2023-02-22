@@ -21,7 +21,7 @@ export default function CardReview (props) {
                 activeColor= '#efb810' 
                 size = {25} 
                 value = {props.puntualidad} 
-                half = {true}
+                half = {false}
               />  
           </div>
         </div>
