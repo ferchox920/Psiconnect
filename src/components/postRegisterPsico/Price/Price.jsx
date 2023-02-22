@@ -3,8 +3,9 @@ import{
     inputs,
     inputsErrors
 } from '../Linkedin/Linkedin.module.css'
+import validationsForm from '../validatorDatas.js';
 
-const Price = ({state, setState, errors}) => {
+const Price = ({state, setState, errors, setErrors}) => {
 
 const handleInputChange = (e) => {
     if(errors.price) delete errors.price
@@ -12,6 +13,11 @@ const handleInputChange = (e) => {
         ...state,
         price : e.target.value,
     })
+    setErrors(validationsForm.price({
+        ...errors,
+        ...state,
+        price : e.target.value
+    }))
 };
 
     return(
