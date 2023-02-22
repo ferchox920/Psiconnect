@@ -40,7 +40,6 @@ export default function CardProfessional(props) {
             <span>Linkedin:</span> {props.linkedin}
           </p>
           <p className={style.infprofile}>{props.description}</p>
-          <p className={style.infprofile}>{props.description}</p>
         </div>
       </div>
       <div className={style.moreInfo}>
