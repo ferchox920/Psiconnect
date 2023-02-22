@@ -23,7 +23,7 @@ export default function CardReviewHome (props) {
                     activeColor= '#efb810' 
                     size = {25} 
                     value = {props.puntualidad} 
-                    half = {true}
+                    half = {false}
                   />  
               </div>
             </div>
