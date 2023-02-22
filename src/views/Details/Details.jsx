@@ -162,10 +162,6 @@ export default function Details() {
                   <button className={style.cta}>
                     <span>Inicia un chat en vivo</span>
                   </button>
-
-                  <div className={style.iconochat2}>
-                    <Chat />
-                  </div>
                 </div>
               </div>
 
