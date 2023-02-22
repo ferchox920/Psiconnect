@@ -9,14 +9,21 @@
 
 }
 
-.containerimg {
+  .imgandname{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+  }
+
+  .containerimg {
     width: 150px;
     height: 100px;
     border-radius: 75px;
     display: flex;
     justify-content: center;
-    margin-top: 10px;
-    margin-left: 25%;;
   }
   
   .image {
@@ -25,13 +32,15 @@
     background: white;
     width: 80%;
     border-radius: 50%;
-
+    cursor: pointer;
   }
-
+  
+  .nameLastName{
+    width: auto;
+  }
   .name{
-    margin-top: 25px;
+    margin-top: 15px;
     font-size: 25px;
-    margin-left: 60px;
 
   }
 

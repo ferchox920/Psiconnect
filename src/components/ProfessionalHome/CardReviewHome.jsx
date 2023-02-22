@@ -1,19 +1,27 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import style from './CardReviewHome.module.css'
 import ReactStars from 'react-rating-stars-component'
 
 
 export default function CardReviewHome (props) {
     return (
+     
       <div className={style.container}>
-        <div className = {style.containercard}>
+        <div className = {style.containercard} >
         <div className = {style.card}>
-            <div className={style.containerimg}>
-            <img className = {style.image} src={props.avatar} alt="" />
+          <div className={style.imgandname}>
+
+          <NavLink to = {`Details/${props.professionalId}`}  >
+            <div className={style.containerimg}>  
+                <img className = {style.image} src={props.avatar} alt="" />
             </div>
+            </NavLink>  
             <div className = {style.nameLastName}>
-            <p className = {style.name}>{`${props.name} ${props.lastName}`} </p>
-            </div>   
+                 <p className = {style.name}>{`${props.name} ${props.lastName}`} </p>
+            </div> 
+          </div>
+          
             <div className = {style.puntualidad}>
               <label className={style.labelpuntualidad}>Puntualidad:</label>
               <div className = {style.starspuntualidad}>
@@ -67,5 +75,6 @@ export default function CardReviewHome (props) {
     
         </div>
       </div>
+     
       )
     }
