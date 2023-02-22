@@ -94,10 +94,7 @@ export async function editArea(body) {
   try {
     const peticion = await axios.put(`/admin/edit-area/${body.id}`, body, {
       headers: {
-        'Content-Type': 'application/json', // o el tipo de contenido que estás enviando
-        'Access-Control-Allow-Origin': '*', // permitir acceso desde cualquier origen
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', // permitir métodos HTTP
-        'Access-Control-Allow-Headers': 'Content-Type',// permitir encabezados personalizados
+        "Content-Type": "application/json",
       },
     });
     successMessage(peticion.data);
