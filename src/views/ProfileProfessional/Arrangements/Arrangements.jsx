@@ -24,19 +24,16 @@ export default function Arrangements() {
   const [freeDays, setFreeDays] = useState([])
   const [freeDaysRender, setFreeDaysRender] = useState([])
 
-
   const professionalId = useSelector((store) => store.user.user.id);
 
   const hours = Array.from({length: 24}, (_, i) => ("0" + i).slice(-2) + ":00");
-
   
-
   useEffect(() => {
     getProfessionalConsults(professionalId, setConsults);
     getContextProfessional({ professionalId, state: setContextProfessional });
-    getConsultsProfessional({professionalId, state:setDaysDisabled});
-    
+    getConsultsProfessional({professionalId, state:setDaysDisabled});    
   }, []);
+
   useEffect(() => {
     if(contextProfessional?.freeDays){
     setFreeDays(contextProfessional?.freeDays)
@@ -86,83 +83,95 @@ export default function Arrangements() {
 
 
   return (
-    <div className={style.container}>
-      <div className={style.consultsContainer}>
-        <h1 className={style.title}>Estas son tus citas agendadas</h1>
-      </div>
-      <div className={style.box}>
-        {consults &&
-          consults.map((c, i) => {
-            return <CardConsult key={i} consult={c} />;
-          })}
-        {!consults?.length && <p> No tienes citas agendadas </p>}
-      </div>
-      
-      <div className={style.select}>
-        <h4>Selecciona tu horario de trabajo</h4>
-        <div className={style.section}>
-          <label className={style.selectDays}>Aquí puedes seleccionar los días que no quieras trabajar:</label>
-            <select name="days" className={style.select} onChange={(e) => handleChange(e)}>
-              <option hidden>Selecciona</option>
-              <option value="Lunes-Mon">Lunes</option>
-              <option value="Martes-Tue">Martes</option>
-              <option value="Miércoles-Wed">Miércoles</option>
-              <option value="Jueves-Thu">Jueves</option>
-              <option value="Viernes-Fri">Viernes</option>
-              <option value="Sábado-Sat">Sábado</option>
-              <option value="Domingo-Sun">Domingo</option>
-            </select>
-        </div>
-        {freeDaysRender?.length>0 &&
-        <div  className={style.divDays}>
-          {freeDaysRender?.length && freeDaysRender.map((element,i) => {
-            return(
-              <div key={i} className={style.divDaysCard}>
-                <div>{element.toString().split('-')[0]}</div>
-                <button value={element} onClick={(e) => cleanRender(e)}>x</button>
-              </div>
-            )
-          })}
-        </div>}
-        <div className={style.section}>
-          <label>Aqué puedes seleccionar el rango horario en que trabajarás:
-          </label>
-          <div className={style.select}>
-            <label>De {' '}
-            <select className={style.select} name='start' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
-              {hours.map((h, i) => {
+    <div className={style.consultContainer}>
+      <section className={style.mainBox}>
+          <p className={style.title}>Estas son tus citas agendadas</p>
+
+          <section className={style.consultList}>
+            {consults &&
+              consults.map((c, i) => {
+                return <CardConsult key={i} consult={c} />;
+              })}
+            {!consults?.length && <section className={style.infoItem}>
+                <p className={style.noAppt}>
+                  <b>No tienes citas agendadas</b>
+                </p>
+              </section> }
+          </section>
+      </section>
+
+      <section className={style.mainBox2}>
+          <p className={style.title}>Selecciona tu horario de trabajo</p>
+
+          <section className={style.consultSched}>
+            <div className={style.daysOff}>
+              <label>Aquí puedes seleccionar los días que no quieras trabajar:</label>
+                <select name="days" className={style.select} onChange={(e) => handleChange(e)}>
+                  <option hidden>Selecciona</option>
+                  <option value="Lunes-Mon">Lunes</option>
+                  <option value="Martes-Tue">Martes</option>
+                  <option value="Miércoles-Wed">Miércoles</option>
+                  <option value="Jueves-Thu">Jueves</option>
+                  <option value="Viernes-Fri">Viernes</option>
+                  <option value="Sábado-Sat">Sábado</option>
+                  <option value="Domingo-Sun">Domingo</option>
+                </select>
+            </div>
+            {freeDaysRender?.length>0 &&
+            <div  className={style.divDays}>
+              {freeDaysRender?.length && freeDaysRender.map((element,i) => {
                 return(
-                  <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
+                  <div key={i} className={style.divDaysCard}>
+                    <p className={style.day}>{element.toString().split('-')[0]}</p>
+                    <button className={style.dayClose} value={element} onClick={(e) => cleanRender(e)}>X</button>
+                  </div>
                 )
               })}
-            </select> hs a </label>
-            <label>
-            <select className={style.select} name='end' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
-            {hours.map((h, i) => {
-                return(
-                  <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
-                )
-              })}
-            </select> hs</label>
-          </div>
-        </div>
-      </div>
-      <div className={style.calendary}>
-        <Calendary
-          workingHours={contextProfessional?.workingHours || [
-            "9:00 am",
-            "10:00 am",
-            "11:00 am",
-            "12:00 am",
-            "13:00 am",
-            "17:00 am",
-            "20:00 pm",
-          ]}
-          freeDays={contextProfessional?.freeDays || []}
-          daysDisabled = {daysDisabled || []}
-        />
-      </div>
-      <input type='submit' value={'Guardar Cambios'} className={style.inputSubmit} onClick={() => {createContextProfessional()}}/>
+            </div>}
+            <div className={style.divHours}>
+              <label>Aquí puedes seleccionar el rango horario en que trabajarás:</label>
+
+              <label className={style.hour}>
+                Inicio:<select className={style.select} name='start' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
+                  {hours.map((h, i) => {
+                    return(
+                      <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
+                    )
+                  })}
+                </select> hs
+              </label>
+
+              <label className={style.hour}>
+                Fin: <select className={style.select} name='end' defaultValue={hours[0]} onChange={(e) => handleChange(e)}>
+                  {hours.map((h, i) => {
+                    return(
+                      <option key={i} value={`${h.slice(0,2)}`}>{h}</option>
+                    )
+                  })}
+                </select> hs
+              </label>
+            </div>
+          </section>
+
+          <section className={style.consultCalendar}>
+            <Calendary
+              workingHours={contextProfessional?.workingHours || [
+                "9:00 am",
+                "10:00 am",
+                "11:00 am",
+                "12:00 am",
+                "13:00 am",
+                "17:00 am",
+                "20:00 pm",
+              ]}
+              freeDays={contextProfessional?.freeDays || []}
+              daysDisabled = {daysDisabled || []}
+            />
+          </section>
+      </section> 
+
+      <button className={style.saveInfo} onClick={() => {createContextProfessional()}}>Guardar Cambios</button>
+      {/* <input type='submit' className={style.saveInfoInput} value={'Guardar Cambios'} onClick={() => {createContextProfessional()}}/>     */}
     </div>
   );
 }
