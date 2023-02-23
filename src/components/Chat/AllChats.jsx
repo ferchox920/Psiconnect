@@ -8,15 +8,17 @@ import firestore, {
 } from "../../features/firebase/chatsFeatures";
 import style from "./Chat.module.css";
 import closeIcon from "../../assets/close.svg";
+import { useNavigate } from "react-router-dom";
 
 // import ForumIcon from '@mui/icons-material/Forum';
 
 export default function AllChats({ setTo, to, setOpen }) {
   const dispacht = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const chats = useSelector((state) => state.chats.allChats);
   const getAllMessage = (e) => {
-    const obj = JSON.parse(e.target.value)
+    const obj = JSON.parse(e.target.value);
     setTo(obj);
     getMessageOfChat({
       from: user.id,
@@ -40,10 +42,7 @@ export default function AllChats({ setTo, to, setOpen }) {
   useEffect(
     () =>
       onSnapshot(
-        collection(
-          firestore,
-          `chats/${user?.id}/chat`
-        ),
+        collection(firestore, `chats/${user?.id}/chat`),
         (snapshot) => {
           dispacht(setAllChats(snapshot.docs.map((doc) => doc.data())));
         }
@@ -56,17 +55,17 @@ export default function AllChats({ setTo, to, setOpen }) {
 
   return (
     <div className={style.allChatsContainer}>
+      <img
+        src={closeIcon}
+        alt="closeIcon"
+        onClick={() => setOpen(false)}
+        className={style.closeIcon}
+      />
       <section className={style.containerImage}>
-        <img
-          src={closeIcon}
-          alt="closeIcon"
-          onClick={() => setOpen(false)}
-          className={style.closeIcon}
-        />
-        <img src={to?.avatarOfTo || user?.avatar} alt={to?.to || user?.name} />
-        <h2>
-          {to?.to || 'tu'} 
-        </h2>
+        <img src={to?.avatarOfTo || user?.avatar} alt={to?.to || user?.name} onClick={
+          ()=> navigate(`/Details/${to.idOfTo}`)
+        } />
+        <h2>{to?.to || "tu"}</h2>
       </section>
       <div className={style.itemChats}>
         {chats?.map((chat, i) => (

@@ -24,7 +24,7 @@ const validationsForm = {
             delete validationsForm.errors.avatar
         }
         if(!register.description){
-            validationsForm.errors.description = 'La descripcion es una dato necesario'
+            validationsForm.errors.description = 'La descripcion es un dato necesario'
         }else if(register.description.length-10 < 0){
             validationsForm.errors.description = `La descripcion debe contener ${10-register.description.length} caracter/es mas de longitud`
         }else if(register.description.length-1500 > 0){
@@ -32,11 +32,12 @@ const validationsForm = {
         }else{
             delete validationsForm.errors.description
         }if(!register.price){
-            validationsForm.errors.price = 'El precio es una dato necesario';
-        }else if(parseInt(register.price) < 15){
-            validationsForm.errors.price = 'El precio debe ser menor a 15';
-        }else if(parseInt(register.price) > 500){
-            validationsForm.errors.price = "El precio no debe ser mayor a 500";
+            validationsForm.errors.price = 'El precio es un dato necesario';
+        }else if(register.price < 15){
+            validationsForm.errors.price = 'El precio no debe ser menor a 15';
+        }else if(register.price > 200){
+            validationsForm.errors.price = "El precio no debe ser mayor a 200";
+
         }else{
             delete validationsForm.errors.price;
         }

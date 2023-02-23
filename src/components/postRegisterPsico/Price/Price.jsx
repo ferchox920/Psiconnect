@@ -22,9 +22,9 @@ const handleInputChange = (e) => {
 
     return(
         <>
-            <label className={label}>Price</label>
+            <label className={label}> Precio </label>
             <p className={p}>
-                *Selecciona el precio por hora de tus consultas
+            *Selecciona el precio en USD (dólares estadounidenses) por hora de tus consultas
             </p>
             <span className={errorsText}>
                 {errors.price}
