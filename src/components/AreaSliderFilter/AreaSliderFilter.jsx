@@ -48,7 +48,6 @@ export default function AreaSliderFilter() {
             1200: {
               slidesPerView: 4,
             },
-            // when window width is <= 768px
             900: {
               slidesPerView: 3,
             },

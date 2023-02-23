@@ -9,10 +9,9 @@
 }
 
 .reviews{
-    width: 80%;
+    width: 100%;
     margin-top: 20px;
-    height:400px;
-    margin-left: 130px;
+    height:420px;
     display: flex;
     
 
@@ -91,14 +90,18 @@
   cursor: pointer; 
 }
 .swiper-slide{
-  width: 400px !important;
   height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardreview{
-  width: 300px;
-  margin-left: 45px;
-  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  max-width: 450px;
+  align-items: center;
+  justify-content: center;
 }
 
 .sinreview{
