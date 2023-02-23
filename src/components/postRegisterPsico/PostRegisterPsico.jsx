@@ -100,7 +100,7 @@ const handleOnSubmit = async (e) => {
 };
 
 if(tokenVerify === null ){
-  return (<h1>Loading</h1>)
+  return (<h1>Cargando...</h1>)
 }
 else if(tokenVerify === false){
   return <Navigate to='/'/>

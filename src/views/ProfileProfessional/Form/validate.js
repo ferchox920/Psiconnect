@@ -46,6 +46,18 @@ const validationsForm = {
             delete validationsForm.errors.description
         }
         return validationsForm.errors
+    },
+    price: (form)=>{
+        if(!form.price){
+            validationsForm.errors.price = 'El precio es un dato necesario';
+        }else if(form.price < 15){
+            validationsForm.errors.price = 'El precio no debe ser menor a 15';
+        }else if(form.price > 200){
+            validationsForm.errors.price = "El precio no debe ser mayor a 200";
+        }else{
+            delete validationsForm.errors.price;
+        }
+        return validationsForm.errors
     }
    
    
