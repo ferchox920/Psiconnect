@@ -13,10 +13,10 @@
   --yellow: rgb(255, 249, 127);
   --oyster: #eaf2e3;
   --aquamarine: rgb(102, 215, 209);
-  --pink: #ffa8b6;
-  --cream: #f4f1bb;
+  --pink: rgb(255, 168, 182);
+  --cream: rgb(244, 241, 187);
   --white: #fff;
-  --cadetblue: #5f9ea0;
+  --cadetblue: rgb(95, 158, 160);
   /* Paleta de Colores Fuente */
   --black: #000;
   --gray: #5e5b5b;
