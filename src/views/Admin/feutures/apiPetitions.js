@@ -1,6 +1,7 @@
 import swal from "sweetalert";
 import axios from "../../../features/axios";
 import { errorMenssage, successMessage } from "../../../features/errorsModals";
+import { loading } from "../../../features/helpers";
 
 export async function getAllUser(state) {
   try {
@@ -92,7 +93,11 @@ export async function createArea(body) {
 }
 export async function editArea(body) {
   try {
-    const peticion = await axios.put(`/admin/edit-area/${body.id}`, body);
+    const peticion = await axios.put(`/admin/edit-area/${body.id}`, body, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     successMessage(peticion.data);
     return;
   } catch (error) {
@@ -144,8 +149,10 @@ export async function createSkill(body) {
 }
 export async function editSkill(body) {
   try {
+    await loading();
     const peticion = await axios.put(`/admin/edit-skill/${body.id}`, body);
     successMessage(peticion.data);
+    await loading();
     return;
   } catch (error) {
     errorMenssage(error.response.data);
@@ -175,10 +182,6 @@ export async function deleteSkill(id) {
   });
 }
 
-
-
-
-
 export async function updateStatusToProfessional(id) {
   try {
     const peticion = await axios.put(`/admin/disable-professional/${id}`);
@@ -199,9 +202,28 @@ export async function getAllReviews(state) {
     throw new Error(error.response.data);
   }
 }
+export async function updateStatusToReview(id) {
+  try {
+    const peticion = await axios.put(`/admin/disable-review/${id}`);
+    successMessage(peticion.data.message);
+    return peticion.data.state;
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
 export async function getAllPayment(state) {
   try {
     const peticion = await axios.get("/payment");
+    state(peticion.data);
+  } catch (error) {
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
+  }
+}
+export async function getAllConsult(state) {
+  try {
+    const peticion = await axios.get("/consult");
     state(peticion.data);
   } catch (error) {
     errorMenssage(error.response.data);

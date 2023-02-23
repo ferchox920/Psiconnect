@@ -1,46 +1,199 @@
-.container{
+
+.consultContainer{
+    background: white;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    height: 100vh;
-    background-color: var(--cream);
-    
+    align-items: center;
 }
 
 .title{
-    font-family: var(--h1Title);
-    padding: 30px;
+    font: var(--paragraph);
+    font-size: 300%;
+    margin: 0%;
 }
 
-.box{
+.mainBox{
+    background: lightyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5%;
+    margin: 1%;
+    border-radius: 15px;
+    border: 1px solid black;
+    width: 58%;
+}
+
+.mainBox2{
+    background: lightyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+    margin: 1%;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.consultList{
     display: flex;
     flex-direction: column;
     position: sticky;
-    min-height: 30%;
-    width: 100vh;
-    border-style: solid;
-    border-width: 2px;
+    width: 84%;
     border-radius: 10px;
-    border-color: gray;
+    border: 1px solid black;
     overflow-y: auto;
-    background-color: beige;
     max-height: 400px;
+    min-height: 50px;
     text-align: center;
+    margin-bottom: 1%;
+    background: lightgoldenrodyellow;
 }
 
-.calendary{
-   display: flex;
-   justify-content: center; 
-   margin-left: -350px; 
-}
-
-
-.box::-webkit-scrollbar-thumb{
-    background: linear-gradient(135deg, transparent 15px, cyan 0) top left,
-    linear-gradient(-135deg, transparent 15px, cyan 0) top right,
-    linear-gradient(-45deg, transparent 15px, cyan 0) bottom right,
-    linear-gradient(45deg, transparent 15px, cyan 0) bottom left;
+.consultList::-webkit-scrollbar-thumb{
+    background: linear-gradient(135deg, transparent 15px, cadetblue 0) top left,
+    linear-gradient(-135deg, transparent 15px, cadetblue 0) top right,
+    linear-gradient(-45deg, transparent 15px, cadetblue 0) bottom right,
+    linear-gradient(45deg, transparent 15px, cadetblue 0) bottom left;
     background-size: 50% 50%;
     background-repeat: no-repeat;
     height: 10%;
+} 
+
+.infoItem{
+    /*Clase creada por si acaso*/
+    background: transparent;
+}
+
+.noAppt{
+    font: var(--paragraph);
+    font-size: 125%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.consultSched{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1%;
+    gap: 1rem;
+    font: var(--lightParagrah);
+    font-size: 135%;
+}
+
+.daysOff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.select{
+    font: var(--lightParagrah);
+    font-size: 92%;
+    background-color: white;
+    border: dotted cadetblue;
+    color: cadetblue;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.5%;
+    margin-bottom: 1.5%;
+}
+
+.select:hover{
+    background-color: cadetblue;
+    border: dotted white;
+    color: white;
+}
+
+.divDays{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1.1%;
+}
+
+.divDaysCard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font: var(--lightParagrah);
+    font-size: 92%;
+    background-color: white;
+    border: dotted cadetblue;
+    color: cadetblue;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 4px;
+    margin-bottom: 1.5%;
+}
+
+.day{
+    margin: 0;
+}
+
+.dayClose{
+    background: white;
+    color: cadetblue;
+    border: transparent;
+    font-size: 102%;
+}
+
+.divHours{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hour{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.consultCalendar{
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.saveInfo{
+    background-color: cadetblue;
+    border-radius: 25px;
+    border: dotted white;
+    font: var(--paragraph);
+    font-size: 123%;
+    color: white;
+    cursor: pointer;
+    padding: 0.5%;
+    margin-bottom: 1.5%;
+}
+
+.saveInfo:hover{
+    background-color: white;
+    border: dotted cadetblue;
+    color: cadetblue;
+}
+
+/*En caso que el button falle y se restaure el input*/
+.saveInfoInput{
+    background-color: cadetblue;
+    border-radius: 25px;
+    border: dotted white;
+    font: var(--paragraph);
+    font-size: 123%;
+    color: white;
+    cursor: pointer;
+    padding: 0.5%;
+    margin-bottom: 1.5%;
+    width: max-content;
+}
+
+.saveInfoInput:hover{
+    background-color: white;
+    border: dotted cadetblue;
+    color: cadetblue;
 }

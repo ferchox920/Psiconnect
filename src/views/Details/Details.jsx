@@ -2,7 +2,6 @@ import style from "./Details.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { HiOutlineArrowDown } from "react-icons/hi";
 import {
   getProfessionalById,
   getProfessionalReview,
@@ -21,11 +20,10 @@ import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import firestore, {
+import  {
   getConsultsProfessional,
   getContextProfessional,
 } from "../../features/firebase/calendaryFeatures";
-import { collection, onSnapshot } from "@firebase/firestore";
 const cerebritomeditando =
   "https://res.cloudinary.com/dcdywqotf/image/upload/v1676483326/Cerebritos%20svg/Cerebritomeditando_iimsr6.svg";
 export default function Details() {
@@ -34,8 +32,6 @@ export default function Details() {
   const [daysDisabled, setDaysDisabled] = useState();
   const [reviewProfessional, setReviewProfessional] = useState();
   const [modal, setModal] = useState(null);
-
-  const [noreview, setNoreview] = useState(true);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [openLogin, setOpenLogin] = useState(null);
@@ -54,55 +50,28 @@ export default function Details() {
       state: dispacht,
     });
   };
+
   const { id } = useParams();
   useEffect(() => {
     getProfessionalById(id, setProfessional);
-    getProfessionalReview(id, setReviewProfessional);
+    getProfessionalReview(id, setReviewProfessional)  
     getContextProfessional({
       professionalId: id,
       state: setContextProfessional,
     });
     getConsultsProfessional({ professionalId: id, state: setDaysDisabled });
+    getContextProfessional({ professionalId:id, state: setContextProfessional });
+    
   }, [id]);
 
-  useEffect(
-    () =>
-      onSnapshot(collection(firestore, `context/${id}/times`), (snapshot) => {
-        setContextProfessional(snapshot.docs.map((doc) => doc.data()));
-      }),
-    [id]
-  );
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setReviewProfessional([
-  //       {
-  //         user1: reviewProfessional[0].username,
-  //         lastName1: reviewProfessional[0].lastusername,
-  //       },
-  //       {
-  //         user2: reviewProfessional[1].username,
-  //         lastName2: reviewProfessional[1].lastusername,
-  //       },
-  //       {
-  //         user3: reviewProfessional[2].username,
-  //         lastName3: reviewProfessional[2].lastusername,
-  //       },
-  //     ]);
-  //     setLoading(false);
-  //   }, 3000);
-  // }, []);
-
-  useEffect(() => {
-    if (reviewProfessional && reviewProfessional.length > 0) {
-      setNoreview(false);
-    }
-    setLoading(false);
-  }, [reviewProfessional]);
 
   const handleCklicBuscar = (e) => {
     navigate("/Asistencia#searchprofessional");
   };
+
+  setTimeout(() => {
+    setLoading(false)
+  }, 5000)
 
   const handleClick = (e) => {
     e.preventDefault(e);
@@ -117,7 +86,7 @@ export default function Details() {
           name={professional?.name}
           lastName={professional?.lastName}
           areas={professional?.areas?.map((el) => el.area)}
-          skills={professional?.skills?.map((el) => el.skills)}
+          skills={professional?.skills?.map((el) => el.skill)}
           precio={professional.price}
           description={professional.description}
           email={professional.email}
@@ -129,13 +98,61 @@ export default function Details() {
         />
 
         <div className={style.reviews}>
-          {loading && (
-            <div>
-              <p>Cargando...</p>
-            </div>
-          )}
 
-          {noreview && !loading && (
+          {loading && <p className= {style.cargando}>Cargando calificaciones...</p>}
+
+          {  reviewProfessional && reviewProfessional.length > 0  ?  
+          
+          ( 
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              autoplay={{
+                delay: 6000,
+                disableOnInteraction: true,
+              }}
+              
+              pagination={{
+                dynamicBullets: true,
+              }}
+              loop={true}
+              spaceBetween={5}
+              slidesPerView={Math.min(reviewProfessional.length, 3)}
+              breakpoints={{
+                0: {
+                  slidesPerView: Math.min(reviewProfessional.length, 1), // Muestra 1 tarjeta en pantallas menores a 700px
+                },
+                700: {
+                  slidesPerView: Math.min(reviewProfessional.length, 2), // Muestra 2 tarjetas en pantallas entre 700px y 1100px
+                },
+                1100: {
+                  slidesPerView: Math.min(reviewProfessional.length, 3), // Muestra 3 tarjetas en pantallas mayores a 1100px
+                },
+                1500: {
+                  slidesPerView: Math.min(reviewProfessional.length, 4), // Muestra 3 tarjetas en pantallas mayores a 1100px
+                },
+               
+              }}
+            >
+              {reviewProfessional?.map((el) => {
+                return ( 
+                  <SwiperSlide key={el.id} className = {style['swiper-slide']}>  
+                   <div className={style.cardreview}>
+                      <CardReview    
+                        name={el.username}
+                        lastName={el.lastusername}
+                        puntualidad={el.puntualidad}
+                        trato={el.trato}
+                        general={el.general}
+                        comments={el.comments}
+                      />   
+                      </div>                 
+                  </SwiperSlide>
+                  
+                );
+              })}
+            </Swiper>
+          
+          ): (
             <div className={style.sincalificacion}>
               <p className={style.nohaycalf}>
                 **Aún no hay calificaciones para este profesional**
@@ -153,10 +170,6 @@ export default function Details() {
                   <button className={style.cta}>
                     <span>Inicia un chat en vivo</span>
                   </button>
-
-                  <div className={style.iconochat2}>
-                    <Chat />
-                  </div>
                 </div>
               </div>
 
@@ -171,52 +184,6 @@ export default function Details() {
               </div>
             </div>
           )}
-
-          {!noreview && !loading && (
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: true,
-              }}
-              pagination={{
-                dynamicBullets: true,
-              }}
-              loop={true}
-              slidesPerView={3}
-            >
-              {reviewProfessional.map((el) => {
-                return (
-                  <SwiperSlide key={el.id}>
-                    <div className={style.cardreview}>
-                      <CardReview
-                        name={el.username}
-                        lastName={el.lastusername}
-                        puntualidad={el.puntualidad}
-                        trato={el.trato}
-                        general={el.general}
-                        comments={el.comments}
-                      />
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          )}
-        </div>
-
-        <div className={style.contImg}>
-          <img className={style.cerebrito} src={cerebrito} alt="" />
-          <div className={style.volver2}>
-            <button className={style.cta} onClick={handleCklicBuscar}>
-              <span>Seguir buscando</span>
-              <svg viewBox="0 0 13 10" height="30px" width="35px">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </button>
-          </div>
-          <img className={style.paypal} src={paypal} alt="" />
         </div>
 
         <div ref={viewref} className={style.contcalendary}>
@@ -240,7 +207,22 @@ export default function Details() {
             daysDisabled={daysDisabled || []}
             setOpenLogin={setOpenLogin}
           />
+          
         </div>
+        <div className={style.contImg}>
+          <img className={style.cerebrito} src={cerebrito} alt="" />
+          <div className={style.volver2}>
+            <button className={style.cta} onClick={handleCklicBuscar}>
+              <span>Seguir buscando</span>
+              <svg viewBox="0 0 13 10" height="30px" width="35px">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <img className={style.paypal} src={paypal} alt="" />
+        </div>
+
       </div>
       {openLogin && <FormModal name="User" set={setOpenLogin} />}
       {modal && <Chat initialValue={modal} />}

@@ -1,0 +1,20 @@
+.containerswiper{
+    width: 80%;
+    height: 40;
+    margin-left: 10%;  
+}
+
+.title{  
+    font-weight: bold;
+    font-size: 50px;
+    margin-top: -20px;
+    margin-left: 30%; 
+}
+
+.swiper-slice{    
+    height: 430px;
+    margin-left: 5px;
+    margin-top: 10px;  
+}
+
+

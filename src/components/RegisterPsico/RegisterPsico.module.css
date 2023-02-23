@@ -6,8 +6,7 @@
     border-radius: 30px;
     padding: 5px 50px;
     flex-wrap: wrap;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
-
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
     border: solid 3px var(--cadetblue);
 }
 .classPsicoRegister input{
@@ -24,6 +23,12 @@
     font-weight: bold;
     margin: 0;
     border: 2px solid cadetblue;
+    box-shadow: none;
+}
+.classPsicoRegister input:focus, input:hover {
+  box-shadow: 10px 10px 15px rgb(70 70 70 / 12%), 
+  inset -10px -10px 15px rgb(255 255 255 / 50%), 
+  inset 10px 10px 15px rgb(70 70 70 / 12%);
 }
   .inputs {
     width: 100%;
@@ -32,6 +37,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
   }
+
   
 .spanError{
     color:#ff5050;

@@ -26,7 +26,7 @@ export default function RegisterPsico() {
     e.preventDefault();
     if (!CheckTermsAndConditions)
       return errorMenssage("Por favor lea nuestas politicas de empresa");
-    if (!Object.keys(errors).length) {
+    if (!Object.keys(errors).at(0)) {
       professionalRegister(register);
     } else errorMenssage(Object.values(errors)[0]);
   };

@@ -97,7 +97,7 @@ const FormArea = ({ initialValues, apiPetition, text }) => {
         ></textarea>
       </div>
 
-      <input className={style.inputSubmit} type="submit" value="Actualizar" />
+      <input className={style.inputSubmit} type="submit" value={initialValues.area===''?'Crear':"Actualizar"} />
     </form>
   );
 };

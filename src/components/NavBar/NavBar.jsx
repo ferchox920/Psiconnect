@@ -74,7 +74,7 @@ export default function NavBar() {
                 <div
                   onClick={() => {
                     user.rol == "admin"
-                      ? navigate("/admin/home")
+                      ? navigate("/admin/users")
                       : navigate(`/${user.rol}Profile/profile`);
                   }}
                 >
@@ -124,7 +124,7 @@ export default function NavBar() {
                   <MenuItem
                     onClick={() => {
                       user.rol == "admin"
-                        ? navigate("/admin/home")
+                        ? navigate("/admin/users")
                         : navigate(`/${user.rol}Profile/profile`);
                     }}
                   >

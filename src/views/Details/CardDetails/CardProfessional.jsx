@@ -7,6 +7,8 @@ import swal from "sweetalert";
 
 export default function CardProfessional(props) {
   const user = useSelector((state) => state.user.user);
+
+  
   return (
     <div className={style.card}>
       <div className={style.detalles}>
@@ -15,11 +17,11 @@ export default function CardProfessional(props) {
         </div>
         <p className={style.username}>{`${props.name} ${props.lastName}`}</p>
         <div className={style.data}>
+          {props.skills && <p>
+            <span>Skills:</span> {props.skills + ''}
+          </p>}
           <p>
-            <span>Skills:</span> {props.skills || "AMABLE"}
-          </p>
-          <p>
-            <span>Areas:</span> {props.areas}
+            <span>Areas:</span> {props.areas + ''}
           </p>
           <p>
             <span>Precio:</span> ${props.precio || 200}
@@ -39,7 +41,6 @@ export default function CardProfessional(props) {
           >
             <span>Linkedin:</span> {props.linkedin}
           </p>
-          <p className={style.infprofile}>{props.description}</p>
           <p className={style.infprofile}>{props.description}</p>
         </div>
       </div>

@@ -5,17 +5,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
-
-
 .reviews{
-    width: 80%;
+    width: 100%;
     margin-top: 20px;
-    height:400px;
-    margin-left: 130px;
+    height:420px;
     display: flex;
+    
 
+}
+
+.cargando{
+  color:beige;
 }
 
 .cerebrito{
@@ -84,34 +87,32 @@
   height: 90px; 
   font-weight: -20px;
   color: #292D32;
-  cursor: pointer;
-  
+  cursor: pointer; 
+}
+.swiper-slide{
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardreview{
- 
-  width: 200px;
-  margin-top: -20px;
+  width: 100%;
   display: flex;
-  flex-direction:row;
-  margin-left: 100px;
-  
+  max-width: 450px;
+  align-items: center;
+  justify-content: center;
 }
 
 .sinreview{
   width: 100%;
-  background: green;
   height: 300px;
-  margin-top: 20px;
- 
+  margin-top: 20px; 
 }
 
 .sincalificacion{
   width: 100%;
-  height: 300px;
-  
- 
-  
+  height: 300px;  
 }
 
 .nohaycalf{

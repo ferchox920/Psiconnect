@@ -9,6 +9,11 @@ import {
 } from "../../../features/apiPetitions.js";
 import style from "./Form.module.css";
 import swal from "sweetalert";
+import{ label, p, errorsText } from '../../../components/postRegisterPsico/PostRegisterPsico.module.css';
+import{
+    inputs,
+    inputsErrors
+} from '../../../components/postRegisterPsico/Linkedin/Linkedin.module.css'
 
 const ProfileForm = () => {
   const user = useSelector((state) => state.user.user);
@@ -26,6 +31,7 @@ const ProfileForm = () => {
     avatar: user?.avatar,
     avatarIMG: user?.avatar,
     skills: user?.skills?.map((s) => s.skill),
+    price: user?.price
   });
 
   useEffect(() => {
@@ -215,7 +221,7 @@ const uploadImage= async (file)=>{
         </div>
 
         <label className={style.label}>Areas</label>
-        <p className={style.p}>*selecciona las areas en las que trbajas</p>
+        <p className={style.p}>*selecciona las areas en las que trabajas</p>
         <span className={style.spanError}>{errors.areas}</span>
         <select
           className={style.select}
@@ -308,7 +314,23 @@ const uploadImage= async (file)=>{
           placeholder="https://www.linkedin.com/in/..."
           onChange={handleInputChange}
         />
-
+        
+        <label className={label}> Precio  </label>
+            <p className={p}>
+                *Selecciona el precio en USD (dólares estadounidenses) por hora de tus consultas
+            </p>
+            <span className={errorsText}>
+                {errors.price}
+            </span>
+            <input
+            className={errors.price? inputsErrors : inputs}
+            type="number" 
+            name='price'
+            value={form.price}
+            placeholder='$15'
+            onChange={handleInputChange}
+            />
+{console.log(errors)}
         <input className={style.inputSubmit} type="submit" value="Actualizar" />
       </form>
     </div>

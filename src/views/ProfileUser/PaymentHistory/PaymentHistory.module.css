@@ -1,47 +1,48 @@
 .paymentsContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .paymentsTitle {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .paymentsListContainer {
-    width: auto;
-    /* max-width: 600px; */
-  }
-  
-  .paymentsPayContainer {
-    margin-top: 40px;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  .paymentsPayTitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .paymentsPayAmount {
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  .noPymnt{
-    font: var(--paragraph);
-    font-size: 125%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: beige;
-    width: 600px;
-    border-radius: 10px;
-    border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
+
+.paymentTitle{
+  font: var(--paragraph);
+  font-size: 300%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20em;
+}
+
+.title{
+  margin-top: 0;
+  margin-bottom: 2%;
+}
+
+.paymentList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: lightyellow;
+  width: 600px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 1%;
+  gap: 1rem;
+}
+
+.paymentInfo{
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.noPymnt{
+  font: var(--paragraph);
+  font-size: 125%;  
+} 

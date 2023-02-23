@@ -1,3 +1,4 @@
+
 .profileContainer{
     display: flex;
     flex-direction: column;
@@ -85,14 +86,11 @@
     font-size: 100%;
 }
 
-.dataChange{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 35rem;
-    gap: 1em;
+.pError{
+    color:#f11010;
+    font-size:small;
+    margin: 0%;
 }
-
 .dataInput{
     background: white;
     padding: 12px 15px;
@@ -104,7 +102,17 @@
     font: var(--lightParagrah);
     font-size: 100%;
 }
-
+.dataDisabled{
+    background: rgba(204, 203, 203, 0.555);
+    padding: 12px 15px;
+    margin: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 7px 7px 12px #c1c1c1, -7px -7px 13px #fff !important;
+    font: var(--lightParagrah);
+    font-size: 100%;
+}
 .dataButton{
     background-color: cadetblue;
     border-radius: 25px;

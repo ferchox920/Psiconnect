@@ -7,12 +7,6 @@ import ReactStars from "react-rating-stars-component";
 
 export default function CardReview (props) {
 
-  
-
-
-
-
-
   return (
     <div className = {style.containercard}>
     <div className = {style.card}>
@@ -27,7 +21,7 @@ export default function CardReview (props) {
                 activeColor= '#efb810' 
                 size = {25} 
                 value = {props.puntualidad} 
-                half = {true}
+                half = {false}
               />  
           </div>
         </div>
