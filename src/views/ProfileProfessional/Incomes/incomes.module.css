@@ -1,0 +1,97 @@
+.paymentsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  background: white;
+}
+
+.paymentTitle{
+  font: var(--paragraph);
+  font-size: 300%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20em;
+}
+
+.title{
+  margin: 0;
+}
+
+.mainBox{
+  background: lightyellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5%;
+  margin: 1%;
+  border-radius: 15px;
+  border: 1px solid black;
+  width: 58%;
+}
+
+.paymentList{
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  width: 84%;
+  border-radius: 10px;
+  border: 1px solid black;
+  overflow-y: auto;
+  max-height: 400px;
+  min-height: 50px;
+  text-align: center;
+  margin-bottom: 1%;
+  background: lightgoldenrodyellow;
+}
+
+.paymentList::-webkit-scrollbar-thumb{
+  background: linear-gradient(135deg, transparent 15px, cadetblue 0) top left,
+  linear-gradient(-135deg, transparent 15px, cadetblue 0) top right,
+  linear-gradient(-45deg, transparent 15px, cadetblue 0) bottom right,
+  linear-gradient(45deg, transparent 15px, cadetblue 0) bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  height: 10%;
+} 
+
+.paymentInfo{
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 78%;
+}
+
+.noPymnt{
+  font: var(--paragraph);
+  font-size: 125%;  
+}
+
+.totalPayment{
+  background: lightyellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1%;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 1%;
+}
+
+.payTitle{
+  font: var(--paragraph);
+  font-size: 150%;
+  margin: 0;
+}
+
+.payAmount{
+  font: var(--h1Title);
+  font-size: 150%;
+  margin: 0;
+}

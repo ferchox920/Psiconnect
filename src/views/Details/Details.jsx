@@ -2,7 +2,6 @@ import style from "./Details.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { HiOutlineArrowDown } from "react-icons/hi";
 import {
   getProfessionalById,
   getProfessionalReview,
@@ -21,11 +20,10 @@ import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import firestore, {
+import  {
   getConsultsProfessional,
   getContextProfessional,
 } from "../../features/firebase/calendaryFeatures";
-import { collection, onSnapshot } from "@firebase/firestore";
 const cerebritomeditando =
   "https://res.cloudinary.com/dcdywqotf/image/upload/v1676483326/Cerebritos%20svg/Cerebritomeditando_iimsr6.svg";
 export default function Details() {
@@ -109,7 +107,7 @@ export default function Details() {
             <Swiper
               modules={[Autoplay, Pagination]}
               autoplay={{
-                delay: 3000,
+                delay: 6000,
                 disableOnInteraction: true,
               }}
               
@@ -118,7 +116,22 @@ export default function Details() {
               }}
               loop={true}
               spaceBetween={5}
-              slidesPerView={3}
+              slidesPerView={Math.min(reviewProfessional.length, 3)}
+              breakpoints={{
+                0: {
+                  slidesPerView: Math.min(reviewProfessional.length, 1), // Muestra 1 tarjeta en pantallas menores a 700px
+                },
+                700: {
+                  slidesPerView: Math.min(reviewProfessional.length, 2), // Muestra 2 tarjetas en pantallas entre 700px y 1100px
+                },
+                1100: {
+                  slidesPerView: Math.min(reviewProfessional.length, 3), // Muestra 3 tarjetas en pantallas mayores a 1100px
+                },
+                1500: {
+                  slidesPerView: Math.min(reviewProfessional.length, 4), // Muestra 3 tarjetas en pantallas mayores a 1100px
+                },
+               
+              }}
             >
               {reviewProfessional?.map((el) => {
                 return ( 
@@ -173,20 +186,6 @@ export default function Details() {
           )}
         </div>
 
-        <div className={style.contImg}>
-          <img className={style.cerebrito} src={cerebrito} alt="" />
-          <div className={style.volver2}>
-            <button className={style.cta} onClick={handleCklicBuscar}>
-              <span>Seguir buscando</span>
-              <svg viewBox="0 0 13 10" height="30px" width="35px">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </button>
-          </div>
-          <img className={style.paypal} src={paypal} alt="" />
-        </div>
-
         <div ref={viewref} className={style.contcalendary}>
           <Calendary
             professionalId={id}
@@ -208,7 +207,22 @@ export default function Details() {
             daysDisabled={daysDisabled || []}
             setOpenLogin={setOpenLogin}
           />
+          
         </div>
+        <div className={style.contImg}>
+          <img className={style.cerebrito} src={cerebrito} alt="" />
+          <div className={style.volver2}>
+            <button className={style.cta} onClick={handleCklicBuscar}>
+              <span>Seguir buscando</span>
+              <svg viewBox="0 0 13 10" height="30px" width="35px">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <img className={style.paypal} src={paypal} alt="" />
+        </div>
+
       </div>
       {openLogin && <FormModal name="User" set={setOpenLogin} />}
       {modal && <Chat initialValue={modal} />}

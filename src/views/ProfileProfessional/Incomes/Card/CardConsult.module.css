@@ -1,5 +1,9 @@
 .container{
     display: flex;
+    border: solid black 1px;
+    margin: 10px;
+    border-radius: 10px;
+    height: 100%;
 }
 
 .consult{
@@ -7,6 +11,7 @@
     flex-direction: column;
     width: 50%;
     align-items: center;
+    border-right: 1px black solid;
 }
 
 .client{
@@ -16,10 +21,16 @@
     width: 50%;
 }
 
+.info p{
+    margin: 2px;
+}
+
 .title{
-    height: 30%;
     width: 100%;
-    text-align: center;
     border-bottom: solid black 1px;
-    border-right: dotted black 1px;
+}
+.title h5{
+    margin: 5px;
+    height: 30%;
+    text-align: center;
 }
