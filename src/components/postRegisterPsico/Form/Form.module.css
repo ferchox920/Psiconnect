@@ -9,15 +9,20 @@
     border-style: dotted;
     background: linear-gradient( 254deg, rgba(255, 255, 255, 1) 9%, rgba(234, 242, 227, 1) 96%)
 }
+.form input:focus, input:hover{
+    box-shadow: 10px 10px 15px rgb(70 70 70 / 12%), 
+    inset -10px -10px 15px rgb(255 255 255 / 50%), 
+    inset 10px 10px 15px rgb(70 70 70 / 12%);
+}
 .inputSubmitDisabled{
-    margin-top: 5%;
-    width: 8rem;
-    border-radius: 10rem;
-    font-size: medium;
+    margin: 10% 0%;
+    width: 9rem;
+    border-radius: 1rem;
+    font:var(--paragraph);
+    font-size: large;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
     color: gray;
-    border:1px solid gray;
+    border:2px solid gray;
     background-color: white;
     box-shadow: 0px 0px 10px #dbdbdb;
 }
@@ -25,22 +30,35 @@
     box-shadow: 0px 0px 10px #dbdbdb;
 }
 .inputSubmit{
-    margin-top: 5%;
+    margin: 10% 0%;
     width: 8rem;
-    border-radius: 10rem;
-    font-size: medium;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
+    border-radius: 1rem;
+    font:var(--paragraph);
+    font-size: large;
     cursor: pointer;
-    color: cadetblue;
-    border:1px solid cadetblue;
-    background-color: white;
+    color: var(--white);
+    border: 2px solid var(--cadetblue);
+    background-color: var(--cadetblue);
     box-shadow: 0px 0px 10px #dbdbdb;
-    transition: transform .5s, color .5s, background-color .5s, border .5s ;
+    padding: 0.7rem;
+    width: 9rem;
+    max-width: 90%;
+    transition: border .5s, background-color .5s, color .5s, transform .5s; 
 }
 .inputSubmit:hover{
-    transform: translate(0px, -10px);
-    color: white;
-    background-color: cadetblue;
-    box-shadow: none;
+    background-color: var(--white);
+    color: var(--cadetblue);
+    border: 2px solid var(--cadetblue);
+    transform: translateY(-10px);
+}
+
+
+@media (max-width: 426px) {
+    .form{
+        width: 75%;
+    }
+    .form .inputSubmitDisabled, .inputSubmit{
+        font-size: medium;
+        margin: 20% 0%;
+    }
 }

@@ -3,8 +3,9 @@ import{
     inputs,
     inputsErrors
 } from '../Linkedin/Linkedin.module.css'
+import validationsForm from '../validatorDatas.js';
 
-const Price = ({state, setState, errors}) => {
+const Price = ({state, setState, errors, setErrors}) => {
 
 const handleInputChange = (e) => {
     if(errors.price) delete errors.price
@@ -12,13 +13,18 @@ const handleInputChange = (e) => {
         ...state,
         price : e.target.value,
     })
+    setErrors(validationsForm.price({
+        ...errors,
+        ...state,
+        price : e.target.value
+    }))
 };
 
     return(
         <>
-            <label className={label}> Price </label>
+            <label className={label}> Precio </label>
             <p className={p}>
-                *Selecciona el precio por hora de tus consultas
+            *Selecciona el precio en USD (dólares estadounidenses) por hora de tus consultas
             </p>
             <span className={errorsText}>
                 {errors.price}

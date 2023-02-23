@@ -1,14 +1,33 @@
 .inputs{
-    font-size: medium;
-    font-family: 'Poppins', sans-serif;
+    border-radius: 0.5rem;
+    border: 2px solid var(--cadetblue);
+    font: var(--paragraph);
+    font-size: 1.1rem;
+    margin: 0rem;
     width: 25rem;
     box-shadow: 0px 0px 10px #dbdbdb;
+    transition: box-shadow .6s;
 }
 .inputsErrors{
-    font-size: medium;
-    font-family: 'Poppins', sans-serif;
+    border-radius: 0.5rem;
+    border-right: 0px solid transparent;
+    font: var(--paragraph);
+    font-size: 1.1rem;
+    margin: 0rem;
     width: 25rem;
+    box-shadow: 0px 0px 10px #dbdbdb;
     border: 1px solid red;
-    box-shadow: none;
-    margin: 0px;
+    transition: box-shadow .6s;
 }
+
+@media (max-width: 1050px) {
+
+  }
+  @media (max-width: 768px) {
+  }
+    @media (max-width: 426px) {
+        .inputs, .inputsErrors{
+            width: 90%;
+            font-size: 1rem;
+        }
+    }
