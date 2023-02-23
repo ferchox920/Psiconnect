@@ -79,7 +79,6 @@ export default function Arrangements() {
 
   const cleanRender = (e) => {
     const {value} = e.target
-    console.log(value)
     setFreeDays(freeDays.filter((e) => e !== (value.split('-').length<=1 ? value : value.split('-')[1])))
     setFreeDaysRender(freeDaysRender.filter((e) => e !== value))
   }

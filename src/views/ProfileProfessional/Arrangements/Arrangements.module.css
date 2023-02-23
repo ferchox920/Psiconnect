@@ -41,7 +41,7 @@
 }
 
 .inputSubmit{
-    margin-top: 5%;
+    margin-top: 1%;
     width: 12rem;
     font-size: medium;
     font-weight: 500;
@@ -53,6 +53,7 @@
     border-style: dotted;
     box-shadow: none;
     transition: transform .5s, color .5s, background-color .5s, border .5s ;
+    margin-bottom: 20px;
 }
 
 .selectDays{
@@ -72,7 +73,6 @@
 
 .divDaysCard{
     display: flex;
-    
     height: 20px;
     padding: 2px;
     margin: 2px;
