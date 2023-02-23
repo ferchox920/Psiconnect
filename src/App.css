@@ -37,7 +37,8 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--cream)
+  background: var(--cream);
+  height: 2px;
 }
 
 /* Handle */
