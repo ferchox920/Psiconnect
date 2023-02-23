@@ -1,0 +1,57 @@
+.container{
+  position: fixed;
+  width: 100%;
+  display: flex;
+  z-index: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(208, 217, 216, 0.45);
+  height: 100vh;
+}
+
+
+.mover {
+    background: rgb(244, 241, 187);
+    height: 10px;
+    width: 80px;
+    border-radius: 10px;
+    position: relative;
+    animation: mover5 2s ease-in-out infinite;
+  }
+  
+  .mover::before,
+  .mover::after {
+    content: '';
+    position: absolute;
+    height: 10px;
+    border-radius: 10px;
+    left: 20px;
+    animation: mover5 2s ease-in-out infinite;
+  }
+  
+  .mover::before {
+    background: rgb(255, 168, 182);
+    top: 20px;
+    width: 50px;
+  }
+  
+  .mover::after {
+    background:  rgb(102, 215, 209);
+    top: -20px;
+    width: 60px;
+  }
+  
+  @keyframes mover5 {
+    0% {
+      transform: translateX(30px) scale(1);
+    }
+  
+    50% {
+      transform: translateX(-30px) scale(1.1);
+    }
+  
+    100% {
+      transform: translateX(30px) scale(1);
+    }
+  }
