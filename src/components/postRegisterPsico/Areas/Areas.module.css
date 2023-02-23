@@ -1,6 +1,7 @@
 .errorsSelect{
     border-radius: 1rem;
-    font-family: 'Poppins', sans-serif;
+    font:var(--paragraph);
+    font-size: 1rem;
     width: auto;
     text-align: center;
     cursor: pointer;
@@ -8,8 +9,15 @@
 }
 .select{
     border-radius: 1rem;
-    font-family: 'Poppins', sans-serif;
+    font:var(--paragraph);
+    font-size: 1rem;
     width: auto;
     text-align: center;
     cursor: pointer;
+}
+
+@media (max-width: 426px) {
+    .select , .errorsSelect{
+        font-size: 0.9rem;
+    }
 }

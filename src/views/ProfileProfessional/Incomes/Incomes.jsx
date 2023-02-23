@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {  getProfessionalPayments, getResultProfessionalPayments } from "../../../features/apiPetitions";
 import CardConsult from "./Card/CardConsult";
-import "./incomes.css"; // Importar el archivo de estilos
+import style from "./incomes.module.css"; // Importar el archivo de estilos
 
 export default function Incomes() {
   const [consults, setConsults] = useState();
@@ -16,26 +16,36 @@ export default function Incomes() {
   }, []);
 
   return (
-    <div className="incomes-container"> {/* Aplicar la clase CSS en el contenedor principal */}
-      <div className="incomes-title">Historial de pagos</div>
-      <div className="incomes-list-container"> {/* Agregar un contenedor para la lista de consultas */}
-        {consults &&
-          consults.map((c, i) => {
-            return (
-              <div>
-                <CardConsult key={i} consult={c} />
-              </div>
-            );
-          })}
-      </div>
-      <div className="incomes-pay-container"> {/* Agregar un contenedor para el monto total */}
+    <div className={style.paymentsContainer}> 
+      <section className={style.paymentTitle}>
+        <p className={style.title}>
+          <b>Historial de ingresos</b>
+        </p> 
+      </section>
+
+      <section className={style.mainBox}>
+        <section className={style.paymentList}>
+          {consults &&
+            consults.map((c, i) => {
+              return <CardConsult key={i} consult={c} />                
+            })}
+
+          {!consults?.length && <section className={style.infoItem}>
+              <p className={style.noPymnt}>
+                <b>No tienes citas agendadas</b>
+              </p>
+            </section> }
+        </section>
+      </section>
+
+      <section className={style.totalPayment}>
         {pay ? (
           <>
-            <p className="incomes-pay-title">Monto total generado</p>
-            <p className="incomes-pay-amount">{pay}</p>
+            <p className={style.payTitle}>Tus ingresos con psiconnect suman en total:</p>
+            <p className={style.payAmount}>{pay} usd</p>
           </>
         ) : null}
-      </div>
+      </section>      
     </div>
   );
 }

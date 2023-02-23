@@ -6,19 +6,21 @@
     margin-top:10rem; 
     margin-bottom:8rem;
 }
-
 .p{
-    color:cadetblue;
-    font-weight: 500;
+    color:var(--cadetblue);
+    font: var(--paragraph);
+    font-size: large;
     max-width: 55%;
     text-align: center;
 }
 .label{
-    text-align: center;
     width: 100%;
-    font-weight: 500;
-    font-size: 1.4rem;
-    margin: 2.5rem 0px 0rem 0px;
+    text-align: center;
+    font: var(--h1Title);
+    font-size: 1.8rem;
+    padding-bottom:0rem;
+    padding-top:0rem;
+    margin: 4rem 0rem 0rem 0rem; 
 }
 .divContainerMapCards{ 
     margin-top: 1rem;
@@ -48,7 +50,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid gray;
     width: 1.2rem;
     height: 80%;
     margin:0rem 0.1rem 0rem 0.5rem;
@@ -66,7 +67,41 @@
 }
 .errorsText{
     text-align: start;
-    font-family: 'Poppins', sans-serif;
     color: rgb(223, 5, 5);
+    font: var(--paragraph);
+    font-size: large;
+    max-width: 55%;
     margin-bottom: 8px;
 }
+
+
+/*responsive*/
+
+@media (max-width: 1050px) {
+    .divContainer .p, .errorsText{
+        max-width: 85%
+    }
+  }
+  @media (max-width: 768px) {
+    .divContainer .p, .errorsText{
+        max-width: 92%;
+        font-size: medium;
+    }
+  }
+    @media (max-width: 426px) {
+        .divContainer .p, .errorsText{
+            max-width: 98%;
+            font-size: 0.9rem;
+        }
+        .divContainer{
+            margin-top:7rem; 
+            margin-bottom:5rem;
+        }
+        .label{
+            font-size: 1.6rem;
+            margin: 2.5rem 0rem 0rem 0rem; 
+        }
+        .divContainer .divContainerMapCards{
+            max-width: 100%;
+        }
+    }

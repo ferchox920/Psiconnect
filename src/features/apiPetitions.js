@@ -191,7 +191,6 @@ export async function getProfessionalsFilters({
   name,
   lastName,
 }) {
-  console.log(area);
   try {
     const peticion = await axios.get(
       `/professional${area ? `/area/${area}` : ""}${

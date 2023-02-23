@@ -23,6 +23,7 @@ const handleInputSelectChange = (e) =>{
             ...state,
             areas : state.areas.filter(el=> el.name !== values[0])
             })
+            
     }
 };
     return(
