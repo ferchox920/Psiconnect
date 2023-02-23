@@ -88,7 +88,7 @@ export default function Details() {
           name={professional?.name}
           lastName={professional?.lastName}
           areas={professional?.areas?.map((el) => el.area)}
-          skills={professional?.skills?.map((el) => el.skills)}
+          skills={professional?.skills?.map((el) => el.skill)}
           precio={professional.price}
           description={professional.description}
           email={professional.email}
