@@ -334,7 +334,6 @@ const ProfileForm = () => {
             placeholder='$15'
             onChange={handleInputChange}
             />
-{console.log(errors)}
         <input className={style.inputSubmit} type="submit" value="Actualizar" />
       </form>
     </div>
