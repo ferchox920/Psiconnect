@@ -60,7 +60,7 @@ const validationsForm = {
         if(!register.price){
             validationsForm.errors.price = 'El precio es una dato necesario';
         }else if(parseInt(register.price) < 15){
-            validationsForm.errors.price = 'El precio debe ser menor a 15';
+            validationsForm.errors.price = 'El precio debe ser mayor a 15';
         }else if(parseInt(register.price) > 500){
             validationsForm.errors.price = "El precio no debe ser mayor a 500";
         }else{
