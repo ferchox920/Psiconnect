@@ -5,20 +5,22 @@ import {
   getAreas,
   getSkills,
   profUpdate,
-  getProfByJWT
+  getProfByJWT,
 } from "../../../features/apiPetitions.js";
 import style from "./Form.module.css";
 import swal from "sweetalert";
 
 const ProfileForm = () => {
   const user = useSelector((state) => state.user.user);
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [areas, setAreas] = useState();
   const [skills, setSkills] = useState();
+  const [price, setPrice] = useState("");
   const [imageDisabled, setImageDisabled] = useState(false);
   const [form, setForm] = useState({
     name: user?.name,
+    price: user?.price,
     lastName: user?.lastName,
     linkedin: user?.linkedin,
     description: user?.description,
@@ -46,17 +48,16 @@ const ProfileForm = () => {
       state: setSkills,
       type: "local",
     });
-   
   }, []);
 
   const handleInputDeletedAvatar = () => {
-    if (!form.avatar ) return;
+    if (!form.avatar) return;
     setForm({
       ...form,
       avatar: "",
-      avatarIMG:''
+      avatarIMG: "",
     });
-    
+
     let img = document.querySelector("#imageAvatar");
     img.value = "";
   };
@@ -67,23 +68,25 @@ const ProfileForm = () => {
       [e.target.name]: e.target.files[0],
       avatarIMG: URL.createObjectURL(e.target.files[0]),
     });
-   
-    
   };
-const uploadImage= async (file)=>{
-  let formData = new FormData();
+  const uploadImage = async (file) => {
+    let formData = new FormData();
     formData?.append("file", file);
-    formData?.append('upload_preset',"psiconnectpreset");
-    formData.append('api_key', 652951616386787);
-    
+    formData?.append("upload_preset", "psiconnectpreset");
+    formData.append("api_key", 652951616386787);
+
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://api.cloudinary.com/v1_1/dcdywqotf/image/upload', false);
+    xhr.open(
+      "POST",
+      "https://api.cloudinary.com/v1_1/dcdywqotf/image/upload",
+      false
+    );
 
     xhr.send(formData);
     const imageResponse = JSON.parse(xhr.responseText);
-    
-    return imageResponse.secure_url
-}
+
+    return imageResponse.secure_url;
+  };
 
   const handleInputChange = (e) => {
     setForm({
@@ -98,7 +101,7 @@ const uploadImage= async (file)=>{
     );
   };
 
-  const handleSelectChange= (e)=>{
+  const handleSelectChange = (e) => {
     let options = document.querySelector(`#${e.target.value}`);
 
     if (!form[e.target.name].some((el) => el === e.target.value)) {
@@ -116,39 +119,42 @@ const uploadImage= async (file)=>{
     } else {
       setForm({
         ...form,
-        [e.target.name]: form[e.target.name].filter((el) => el !== e.target.value),
+        [e.target.name]: form[e.target.name].filter(
+          (el) => el !== e.target.value
+        ),
       });
-       setErrors(
-      validationsForm[e.target.name]({
-        ...errors,
-        [e.target.name]: form[e.target.name].filter((el) => el !== e.target.value),
-      })
-    );
+      setErrors(
+        validationsForm[e.target.name]({
+          ...errors,
+          [e.target.name]: form[e.target.name].filter(
+            (el) => el !== e.target.value
+          ),
+        })
+      );
       options.disabled = false;
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors(validationsForm.avatar(form))
-    const newImage= await uploadImage(form.avatar)
+    setErrors(validationsForm.avatar(form));
+    const newImage = await uploadImage(form.avatar);
     if (!Object.keys(errors).at(0)) {
       profUpdate({
         state: dispatch,
-        type: 'global',
+        type: "global",
         payload: {
           ...form,
-          avatar: newImage
-        }})
-        .then((e) => {
-          
-          swal({
-            title: "Cambios guardados!",
-            text: `Sus datos fueron actualizados correctamente`,
-            icon: "success",
-          })
-        })
-    } else{
+          avatar: newImage,
+        },
+      }).then((e) => {
+        swal({
+          title: "Cambios guardados!",
+          text: `Sus datos fueron actualizados correctamente`,
+          icon: "success",
+        });
+      });
+    } else {
       swal({
         title: "Error!",
         text: Object.values(errors)[0],
@@ -162,7 +168,8 @@ const uploadImage= async (file)=>{
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
         <label className={style.labelInicio}>
           {user.name} {user.lastName}
-        </label> <br />
+        </label>{" "}
+        <br />
         <label className={style.label}>Avatar</label>
         <p className={style.p}>*selecciona un imagen para tu foto de perfil</p>
         <div className={style.divContainerImg}>
@@ -194,7 +201,6 @@ const uploadImage= async (file)=>{
             />
           </div>
         </div>
-
         <label className={style.label}>Descripción</label>
         <p className={style.p}>
           *escribe una breve descripción de tu perfil como profesional si aún no
@@ -213,7 +219,6 @@ const uploadImage= async (file)=>{
             onChange={handleInputChange}
           ></textarea>
         </div>
-
         <label className={style.label}>Areas</label>
         <p className={style.p}>*selecciona las areas en las que trabajas</p>
         <span className={style.spanError}>{errors.areas}</span>
@@ -245,7 +250,7 @@ const uploadImage= async (file)=>{
                 <span
                   className={style.skillsSpanX}
                   onClick={() =>
-                    handleSelectChange({ target: { value: el , name:'areas'} })
+                    handleSelectChange({ target: { value: el, name: "areas" } })
                   }
                 >
                   x
@@ -254,7 +259,6 @@ const uploadImage= async (file)=>{
             );
           })}
         </div>
-
         <label className={style.label}>Habilidades</label>
         <p className={style.p}>
           *selecciona las habilidades que consideras tener
@@ -286,7 +290,9 @@ const uploadImage= async (file)=>{
                 <span
                   className={style.skillsSpanX}
                   onClick={() =>
-                    handleSelectChange({ target: { value: el , name: 'skills'} })
+                    handleSelectChange({
+                      target: { value: el, name: "skills" },
+                    })
                   }
                 >
                   x
@@ -295,7 +301,25 @@ const uploadImage= async (file)=>{
             );
           })}
         </div>
-
+        <label className={style.label}>Precio</label>
+        <input
+        className={style.price}
+          type="number"
+          min="15"
+          name="price"
+          value={price}
+          defaultValue={15}
+          onChange={(e) => {
+            setPrice(e.target.value);
+            setErrors(
+              validationsForm[e.target.name]({
+                ...errors,
+                [e.target.name]: e.target.value,
+              })
+            );
+          }}
+        />
+        {errors.price && <p className={style.error}>{errors.price}</p>}
         <label className={style.label}>Linkedin</label>
         <p className={style.p}>
           *copie y pega el link de tu perfil de Linkedin
@@ -308,7 +332,6 @@ const uploadImage= async (file)=>{
           placeholder="https://www.linkedin.com/in/..."
           onChange={handleInputChange}
         />
-
         <input className={style.inputSubmit} type="submit" value="Actualizar" />
       </form>
     </div>
