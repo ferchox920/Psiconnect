@@ -102,7 +102,7 @@ const Calendary = ({
 
   return (
     <div className={style.calendar}>
-      <h2 className={style.titlecalendar}>Agenda un cita</h2>
+      <h2 className={style.titlecalendar}>Agenda una cita</h2>
       <div className={style.header}>
         <div
           className={style.right}
