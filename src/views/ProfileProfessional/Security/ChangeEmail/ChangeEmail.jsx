@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { changeEmailProfessional } from "../../../../features/apiPetitions";
+import style from './ChangeEmail.module.css'
 
 function ChangeEmail() {
   const [emailData, setEmailData] = useState({
@@ -32,21 +33,24 @@ function ChangeEmail() {
   };
 
   return (
-    <div>
-      <h2>Cambiar correo electrónico</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="current-email">Correo electrónico actual:</label>
-        <input
-          type="email"
-          id="current-email"
-          value={emailData.currentEmail}
-          onChange={(e) =>
-            setEmailData({ ...emailData, currentEmail: e.target.value })
-          }
-          required
-        />
-        <label htmlFor="new-email">Nuevo correo electrónico:</label>
-        <div className="email-verification-container">
+    <div className={style.changeContainer}>
+      <h2 className={style.emailTitle}>Cambiar correo electrónico</h2>
+      <form className={style.changeForm} onSubmit={handleSubmit}>
+        <label className={style.formLabel} htmlFor="current-email">Correo electrónico actual:</label>
+        <div className={style.changeField}>
+          <input
+            type="email"
+            id="current-email"
+            value={emailData.currentEmail}
+            onChange={(e) =>
+              setEmailData({ ...emailData, currentEmail: e.target.value })
+            }
+            required
+          />
+        </div>
+        
+        <label className={style.formLabel} htmlFor="new-email">Nuevo correo electrónico:</label>
+        <div className={style.changeField}>
           <input
             type="email"
             id="new-email"
@@ -57,18 +61,17 @@ function ChangeEmail() {
             required
           />
         </div>
-        <label htmlFor="verify-new-email">Verifica tu correo:</label>
-        <div className="email-verification-container">
+        <label className={style.formLabel} htmlFor="verify-new-email">Verifica tu correo:</label>
+        <div className={style.changeField}>
           <input
             type="email"
             id="verify-new-email"
             value={verifyNewEmail}
             onChange={(e) => setVerifyNewEmail(e.target.value)}
-            placeholder="Verificar nuevo correo electrónico"
             required
           />
         </div>
-        <button type="submit">Guardar cambios</button>
+        <button className={style.submitButton} type="submit">Guardar cambios</button>
       </form>
     </div>
   );

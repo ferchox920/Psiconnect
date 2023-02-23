@@ -22,8 +22,8 @@ export async function professionalRegister(body) {
 
     return request;
   } catch (error) {
-    errorMenssage(error.response.data);
-    throw new Error(error.response.data);
+    errorMenssage(error.response.data.errors? error.response.data.errors[0] : error.response.data);
+    throw new Error(error.response.data.errors? error.response.data.errors[0] : error.response.data);
   }
 }
 export async function userLogin(body) {
@@ -42,7 +42,6 @@ export async function userLoginByGoogle(body) {
     localStorage.setItem("tkn", peticion?.data);
     return peticion;
   } catch (error) {
-    console.log(error);
     errorMenssage(error.response.data);
     throw new Error(error.response.data);
   }
@@ -65,7 +64,6 @@ export async function profUpdate({ state, type, payload }) {
       headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
     });
     type === "local" ? state(petition?.data) : state(setUser(petition?.data));
-    console.log(petition?.data);
     return petition;
   } catch (error) {
     errorMenssage(error.response.data);
@@ -76,18 +74,18 @@ export async function profUpdate({ state, type, payload }) {
 export async function getProfByJWT({ state, type }) {
   try {
     const peticion = await axios.get("/professional/id", {
-      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+      headers: {'Authorization': `Bearer ${localStorage.getItem("profTkn")}` },
     });
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
-    localStorage.removeItem("profTkn"), console.log("jaj soy un error");
+    localStorage.removeItem("profTkn");
   }
 }
 
 export async function changePassword(body) {
   try {
     const peticion = await axios.post(`/user/login`, body, {
-      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+      headers: {'Authorization': `Bearer ${localStorage.getItem("tkn")}` },
     });
     localStorage.setItem("tkn", peticion?.data.data);
     return peticion;
@@ -98,7 +96,7 @@ export async function changePassword(body) {
 export async function changePasswordProfessional(body) {
   try {
     const peticion = await axios.put(`/professional/changePassword`, body, {
-      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+      headers: {'Authorization': `Bearer ${localStorage.getItem("profTkn")}` },
     });
     successMessage("Cambiamos tu contraseña");
     return peticion;
@@ -115,7 +113,6 @@ export async function changePasswordUser(body) {
     successMessage("Cambiamos tu contraseña");
     return peticion;
   } catch (error) {
-    console.log(localStorage.getItem("tkn"));
     errorMenssage("Tuvimos problemas");
     return error.response;
   }
@@ -123,7 +120,7 @@ export async function changePasswordUser(body) {
 export async function changeEmailProfessional(body) {
   try {
     const peticion = await axios.put(`/professional/changeEmail`, body, {
-      headers: { authorization: `Bearer ${localStorage.getItem("profTkn")}` },
+      headers: {'Authorization': `Bearer ${localStorage.getItem("profTkn")}` },
     });
     successMessage("Ve a verificar tu email");
     localStorage.removeItem("profTkn");
@@ -137,7 +134,7 @@ export async function changeEmailProfessional(body) {
 export async function changeEmailUser(body) {
   try {
     const peticion = await axios.put(`/user/changeEmail`, body, {
-      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+      headers: { 'Authorization': `Bearer ${localStorage.getItem("tkn")}` },
     });
     successMessage("Ve a verificar tu email");
     localStorage.removeItem("tkn");
@@ -160,11 +157,11 @@ export async function getAreas(state) {
 export async function getUserByJWT({ state, type }) {
   try {
     const peticion = await axios.get(`/user/id`, {
-      headers: { authorization: `Bearer ${localStorage.getItem("tkn")}` },
+      headers: { 'Authorization': `Bearer ${localStorage.getItem("tkn")}` },
     });
     type === "local" ? state(peticion?.data) : state(setUser(peticion?.data));
   } catch (error) {
-    localStorage.removeItem("tkn"), console.log("soy un mapa");
+    localStorage.removeItem("tkn");
   }
 }
 export async function getProfessionalById(id, state) {
@@ -235,7 +232,7 @@ export async function getProfessionalReview(id, state) {
 export async function verifyTokenPostRegister(token) {
   try {
     const request = await axios.get(`/professional/token/postRegister`, {
-      headers: { pos: `Bearer ${token}` },
+      headers: { 'pos': `Bearer ${token}` },
     });
     return request;
   } catch (error) {
@@ -314,7 +311,7 @@ export async function postRegisterProfesional(body, token) {
       "/professional/descriptionProfesional",
       body,
       {
-        headers: { pos: `Bearer ${token}` },
+        headers: { 'pos': `Bearer ${token}` },
       }
     );
     return request;
@@ -323,12 +320,18 @@ export async function postRegisterProfesional(body, token) {
   }
 }
 
-export default async function putUserData(id, body) {
+export  async function putUserData({state, type, body}) {
   try {
-    const updateUser = await axios.put(`user/${body.id}`, body);
-    return updateUser;
+    console.log(body)
+    const petition = await axios.put(`user/id`, body ,{
+      headers: { 'Authorization': `Bearer ${localStorage.getItem("tkn")}` },
+  });
+  type === "local" ? state(petition?.data) : state(setUser(petition?.data));
+  //console.log(petition?.data);
+  return petition;
   } catch (error) {
-    console.log(error);
+    errorMenssage(error.response.data);
+    throw new Error(error.response.data);
   }
 }
 export async function getProfessionalPayments(professionalId, state) {
@@ -367,16 +370,15 @@ export async function getResultUserPayments(userId, state) {
     console.log(error);
   }
 }
-// export default async function postImageCloudinary(file, image) {
+export default async function postImageCloudinary(file, image) {
 
-//       try{
-//           const imageUpload = await axios.post('img/upload', (file, image) )
-//           return imageUpload
-//       }catch(error){
-//         console.log(error)
-//       }
-
-// }
+      try{
+          const imageUpload = await axios.post('img/upload', (file, image) )
+          return imageUpload
+      }catch(error){
+        console.log(error)
+      }
+}
 
 export async function autoLoginAfterPostRegister(token) {
   localStorage.setItem("profTkn", token);
@@ -404,7 +406,7 @@ export async function getAllProfessionals(state) {
 export async function verifyTokenForgotPassword(token) {
   try {
     const request = await axios.get("/professional/token/forgetPassword", {
-      headers: { reset: `Bearer ${token}` },
+      headers: { 'reset': `Bearer ${token}` },
     });
     return request;
   } catch (error) {
@@ -417,7 +419,7 @@ export async function forgotPasswordProfessional(token, body) {
       "/professional/ChangePasswordForget",
       body,
       {
-        headers: { reset: `Bearer ${token}` },
+        headers: { 'reset': `Bearer ${token}` },
       }
     );
     return request;
@@ -428,7 +430,7 @@ export async function forgotPasswordProfessional(token, body) {
 export async function forgotPasswordUser(token, body) {
   try {
     const request = await axios.put("/user/ChangePasswordForget", body, {
-      headers: { reset: `Bearer ${token}` },
+      headers: { 'reset': `Bearer ${token}` },
     });
     return request;
   } catch (err) {
@@ -454,6 +456,14 @@ export async function sendEmailForgetPassProfessional(body) {
   }
 }
 
+export async function getAllReview(state) {
+    try{
+        const allReview = await axios.get('/review')
+        return state(allReview?.data);
+    }catch(error){
+      console.log(error.response)
+    }
+}
 export async function getBestProfessionals(state){
   try{
     const request = await axios.get('/professional/score');

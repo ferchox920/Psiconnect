@@ -1,0 +1,41 @@
+.securityContainer{
+    background: white;
+    height: 100vh;
+}
+
+
+.optionButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2%;
+}
+
+.button{
+    background-color: cadetblue;
+    border-radius: 25px;
+    border: dotted white;
+    padding: 1%;
+    font: var(--paragraph);
+    font-size: 150%;
+    color: white;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: white;
+    border-radius: 25px;
+    border: dotted cadetblue;
+    padding: 1%;
+    font: var(--paragraph);
+    font-size: 150%;
+    color: cadetblue;
+    cursor: pointer;
+}
+
+.changeSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { changePasswordProfessional } from "../../../../features/apiPetitions";
+import style from './ChangePassword.module.css'
 
 //Hay un problema con el token que no permite que la petition se ejecute
 
@@ -37,11 +38,11 @@ function ChangePassword() {
   };
 
   return (
-    <div>
-      <h2>Cambiar contraseña</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="current-password">Contraseña actual:</label>
-        <div className="password-input-container">
+    <div className={style.changeContainer}>
+      <h2 className={style.psswrdTitle}>Cambiar contraseña</h2>
+      <form className={style.changeForm} onSubmit={handleSubmit}>
+        <label className={style.formLabel} htmlFor="current-password">Contraseña actual:</label>
+        <div className={style.changeField}>
           <input
             type={showPassword ? "text" : "password"}
             id="current-password"
@@ -53,15 +54,15 @@ function ChangePassword() {
           />
           <button
             type="button"
-            className="password-toggle-button"
+            className={style.changeButton}
             onClick={toggleShowPassword}
             disabled={buttonDisabled}
           >
             {showPassword ? "Ocultar" : "Mostrar"}
           </button>
         </div>
-        <label htmlFor="new-password">Nueva contraseña:</label>
-        <div className="password-input-container">
+        <label  className={style.formLabel} htmlFor="new-password">Nueva contraseña:</label>
+        <div className={style.changeField}>
           <input
             type={showPassword ? "text" : "password"}
             id="new-password"
@@ -73,30 +74,32 @@ function ChangePassword() {
           />
           <button
             type="button"
-            className="password-toggle-button"
+            className={style.changeButton}
             onClick={toggleShowPassword}
             disabled={buttonDisabled}
           >
             {showPassword ? "Ocultar" : "Mostrar"}
           </button>
         </div>
-        <label htmlFor="confirm-password">Confirmar nueva contraseña:</label>
-        <input
+        <label className={style.formLabel} htmlFor="confirm-password">Confirmar nueva contraseña:</label>
+        <div className={style.changeField}>
+          <input
           type={showPassword ? "text" : "password"}
           id="confirm-password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-        <button
-          type="button"
-          className="password-toggle-button"
-          onClick={toggleShowPassword}
-          disabled={buttonDisabled}
-        >
-          {showPassword ? "Ocultar" : "Mostrar"}
-        </button>
-        <button type="submit">Guardar cambios</button>
+          <button
+            type="button"
+            className={style.changeButton}
+            onClick={toggleShowPassword}
+            disabled={buttonDisabled}
+          >
+            {showPassword ? "Ocultar" : "Mostrar"}
+          </button>
+        </div>
+        <button className={style.submitButton} type="submit">Guardar cambios</button>
       </form>
     </div>
   );

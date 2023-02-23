@@ -1,11 +1,7 @@
 .containercard{
     height: 300px;
-    position: absolute;
-    width: 90%;
-    margin-left: -80px;
-    margin-top: 15px;
-  
-   
+    width: 300px;
+    margin-top: 15px;     
 }
 
 .card{
@@ -21,9 +17,7 @@
 .name{
    font-size: 20px;
    margin-left: 30%;
-   font-weight: bold;
-    
-
+   font-weight: bold;    
 }
 
 .puntualidad{
@@ -32,8 +26,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 7px;
-    font-weight: lighter;
-   
+    font-weight: lighter;   
 }
  .labelpuntualidad{
     margin-left: 20px;

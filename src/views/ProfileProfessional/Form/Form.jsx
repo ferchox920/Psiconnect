@@ -215,7 +215,7 @@ const uploadImage= async (file)=>{
         </div>
 
         <label className={style.label}>Areas</label>
-        <p className={style.p}>*selecciona las areas en las que trbajas</p>
+        <p className={style.p}>*selecciona las areas en las que trabajas</p>
         <span className={style.spanError}>{errors.areas}</span>
         <select
           className={style.select}

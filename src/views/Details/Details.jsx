@@ -34,8 +34,6 @@ export default function Details() {
   const [daysDisabled, setDaysDisabled] = useState();
   const [reviewProfessional, setReviewProfessional] = useState();
   const [modal, setModal] = useState(null);
-
-  const [noreview, setNoreview] = useState(true);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [openLogin, setOpenLogin] = useState(null);
@@ -54,55 +52,28 @@ export default function Details() {
       state: dispacht,
     });
   };
+
   const { id } = useParams();
   useEffect(() => {
     getProfessionalById(id, setProfessional);
-    getProfessionalReview(id, setReviewProfessional);
+    getProfessionalReview(id, setReviewProfessional)  
     getContextProfessional({
       professionalId: id,
       state: setContextProfessional,
     });
     getConsultsProfessional({ professionalId: id, state: setDaysDisabled });
+    getContextProfessional({ professionalId:id, state: setContextProfessional });
+    
   }, [id]);
 
-  useEffect(
-    () =>
-      onSnapshot(collection(firestore, `context/${id}/times`), (snapshot) => {
-        setContextProfessional(snapshot.docs.map((doc) => doc.data()));
-      }),
-    [id]
-  );
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setReviewProfessional([
-  //       {
-  //         user1: reviewProfessional[0].username,
-  //         lastName1: reviewProfessional[0].lastusername,
-  //       },
-  //       {
-  //         user2: reviewProfessional[1].username,
-  //         lastName2: reviewProfessional[1].lastusername,
-  //       },
-  //       {
-  //         user3: reviewProfessional[2].username,
-  //         lastName3: reviewProfessional[2].lastusername,
-  //       },
-  //     ]);
-  //     setLoading(false);
-  //   }, 3000);
-  // }, []);
-
-  useEffect(() => {
-    if (reviewProfessional && reviewProfessional.length > 0) {
-      setNoreview(false);
-    }
-    setLoading(false);
-  }, [reviewProfessional]);
 
   const handleCklicBuscar = (e) => {
     navigate("/Asistencia#searchprofessional");
   };
+
+  setTimeout(() => {
+    setLoading(false)
+  }, 5000)
 
   const handleClick = (e) => {
     e.preventDefault(e);
@@ -129,13 +100,46 @@ export default function Details() {
         />
 
         <div className={style.reviews}>
-          {loading && (
-            <div>
-              <p>Cargando...</p>
-            </div>
-          )}
 
-          {noreview && !loading && (
+          {loading && <p className= {style.cargando}>Cargando calificaciones...</p>}
+
+          {  reviewProfessional && reviewProfessional.length > 0  ?  
+          
+          ( 
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: true,
+              }}
+              
+              pagination={{
+                dynamicBullets: true,
+              }}
+              loop={true}
+              spaceBetween={5}
+              slidesPerView={3}
+            >
+              {reviewProfessional?.map((el) => {
+                return ( 
+                  <SwiperSlide key={el.id} className = {style['swiper-slide']}>  
+                   <div className={style.cardreview}>
+                      <CardReview    
+                        name={el.username}
+                        lastName={el.lastusername}
+                        puntualidad={el.puntualidad}
+                        trato={el.trato}
+                        general={el.general}
+                        comments={el.comments}
+                      />   
+                      </div>                 
+                  </SwiperSlide>
+                  
+                );
+              })}
+            </Swiper>
+          
+          ): (
             <div className={style.sincalificacion}>
               <p className={style.nohaycalf}>
                 **Aún no hay calificaciones para este profesional**
@@ -153,10 +157,6 @@ export default function Details() {
                   <button className={style.cta}>
                     <span>Inicia un chat en vivo</span>
                   </button>
-
-                  <div className={style.iconochat2}>
-                    <Chat />
-                  </div>
                 </div>
               </div>
 
@@ -170,38 +170,6 @@ export default function Details() {
                 </button>
               </div>
             </div>
-          )}
-
-          {!noreview && !loading && (
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: true,
-              }}
-              pagination={{
-                dynamicBullets: true,
-              }}
-              loop={true}
-              slidesPerView={3}
-            >
-              {reviewProfessional.map((el) => {
-                return (
-                  <SwiperSlide key={el.id}>
-                    <div className={style.cardreview}>
-                      <CardReview
-                        name={el.username}
-                        lastName={el.lastusername}
-                        puntualidad={el.puntualidad}
-                        trato={el.trato}
-                        general={el.general}
-                        comments={el.comments}
-                      />
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
           )}
         </div>
 

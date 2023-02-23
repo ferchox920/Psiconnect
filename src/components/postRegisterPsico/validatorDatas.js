@@ -20,8 +20,6 @@ const validationsForm = {
         }
         if(!register.avatar){
             validationsForm.errors.avatar = 'Seleccione alguna imagen para su foto de perfil'
-        }else if(register.avatar.type.split('/')[0] !== 'image'){
-            validationsForm.errors.avatar = 'Seleccione una imagen valida'
         }else{
             delete validationsForm.errors.avatar
         }
@@ -33,6 +31,14 @@ const validationsForm = {
             validationsForm.errors.description = `La descripcion debe contener menos de ${register.description.length-1500} caracter/es de longitud`
         }else{
             delete validationsForm.errors.description
+        }if(!register.price){
+            validationsForm.errors.price = 'El precio es una dato necesario';
+        }else if(register.price < 15){
+            validationsForm.errors.price = 'El precio debe ser menor a 15';
+        }else if(register.price > 200){
+            validationsForm.errors.price = "El precio no debe ser mayor a 200";
+        }else{
+            delete validationsForm.errors.price;
         }
         return validationsForm.errors
     },
