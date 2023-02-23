@@ -45,6 +45,7 @@ const Form = (props) => {
             state={props.state} 
             setState={props.setState} 
             errors={props.errors}
+            setErrors={props.setErrors}
             />
 
             <input 
