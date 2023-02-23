@@ -33,7 +33,6 @@ const ProfileForm = () => {
     avatar: user?.avatar,
     avatarIMG: user?.avatar,
     skills: user?.skills?.map((s) => s.skill),
-    price: user?.price
   });
 
   useEffect(() => {
@@ -307,25 +306,6 @@ const ProfileForm = () => {
             );
           })}
         </div>
-        <label className={style.label}>Precio</label>
-        <input
-        className={style.price}
-          type="number"
-          min="15"
-          name="price"
-          value={price}
-          defaultValue={15}
-          onChange={(e) => {
-            setPrice(e.target.value);
-            setErrors(
-              validationsForm[e.target.name]({
-                ...errors,
-                [e.target.name]: e.target.value,
-              })
-            );
-          }}
-        />
-        {errors.price && <p className={style.error}>{errors.price}</p>}
         <label className={style.label}>Linkedin</label>
         <p className={style.p}>
           *copie y pega el link de tu perfil de Linkedin
@@ -338,8 +318,6 @@ const ProfileForm = () => {
           placeholder="https://www.linkedin.com/in/..."
           onChange={handleInputChange}
         />
-<<<<<<< HEAD
-=======
         
         <label className={label}> Precio  </label>
             <p className={p}>
@@ -357,7 +335,6 @@ const ProfileForm = () => {
             onChange={handleInputChange}
             />
 {console.log(errors)}
->>>>>>> 4d84c1d722f082270fd86af1c4b3dc81a9c521ba
         <input className={style.inputSubmit} type="submit" value="Actualizar" />
       </form>
     </div>
