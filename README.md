@@ -1,4 +1,5 @@
 Psiconnect 🧠💬
+
 Psiconnect es una aplicación web desarrollada como proyecto final del programa de formación en desarrollo web Full Stack de SoyHenry. La aplicación tiene como objetivo principal brindar a los usuarios un servicio de asesoramiento y terapia psicológica en línea.
 
 🚀 Tecnologías Utilizadas
